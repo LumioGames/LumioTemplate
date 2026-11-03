@@ -3,7 +3,7 @@ name: art-review
 description: 对照美术规范审查美术资产与设计稿,产出裁决与修改意见。当收到 UI 稿、原画、特效、场景等美术产出需要评审,或要检查资产是否符合既定风格时使用。
 ---
 
-> 来源：LumioGames/LumioGame 的 `.spec/skills`（Apache-2.0），经 Samsara 适配后收入 lumio-game-starter。项目事实以 `.spec/AGENTS.md` 为准。
+> 来源：LumioGames/LumioGame 的 `.spec/skills`（Apache-2.0），经 Samsara 适配后收入 LumioTemplate。项目事实以 `.spec/AGENTS.md` 为准。
 
 # Art Review(美术资产审查)
 

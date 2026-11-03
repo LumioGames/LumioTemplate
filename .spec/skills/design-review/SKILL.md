@@ -3,7 +3,7 @@ name: design-review
 description: 对照策划案与架构约束审查策划文档与开发需求,产出裁决与修改意见。当收到策划案、玩法方案、需求单需要评审时使用。
 ---
 
-> 来源：LumioGames/LumioGame 的 `.spec/skills`（Apache-2.0），经 Samsara 适配后收入 lumio-game-starter。项目事实以 `.spec/AGENTS.md` 为准。
+> 来源：LumioGames/LumioGame 的 `.spec/skills`（Apache-2.0），经 Samsara 适配后收入 LumioTemplate。项目事实以 `.spec/AGENTS.md` 为准。
 
 # Design Review(策划评审)
 

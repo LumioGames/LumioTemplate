@@ -1,8 +1,8 @@
-# Lumio Game Starter
+# LumioTemplate
 
 [中文](README.md)
 
-An empty repository for starting a web game on [Lumio](https://lumiogames.cn). It holds no game code: only rules for AI agents, Lumio platform knowledge, game design and art skills, and a packaging tool. Hand it to an agent (Claude Code, Codex, …). The agent asks what game you want to make, turns the repository into your project, installs dependencies, creates the game project, connects the Lumio SDK, and produces a ZIP you can upload as is.
+The Lumio game template: an empty repository for starting a web game on [Lumio](https://lumiogames.cn). It holds no game code: only rules for AI agents, Lumio platform knowledge, game design and art skills, and a packaging tool. Hand it to an agent (Claude Code, Codex, …). The agent asks what game you want to make, turns the repository into your project, installs dependencies, creates the game project, connects the Lumio SDK, and produces a ZIP you can upload as is.
 
 ## Three steps
 

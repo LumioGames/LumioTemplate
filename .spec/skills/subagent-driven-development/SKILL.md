@@ -3,7 +3,7 @@ name: subagent-driven-development
 description: Use when executing implementation plans with independent tasks in the current session
 ---
 
-> 来源：LumioGames/LumioGame 的 `.spec/skills`（Apache-2.0），经 Samsara 适配后收入 lumio-game-starter。项目事实以 `.spec/AGENTS.md` 为准。
+> 来源：LumioGames/LumioGame 的 `.spec/skills`（Apache-2.0），经 Samsara 适配后收入 LumioTemplate。项目事实以 `.spec/AGENTS.md` 为准。
 
 宿主依赖：配套脚本需要 Bash、Git 与已初始化的 Git 工作区。在 Windows 使用 Git Bash。提交差异审查时仍需先记录实际任务的基线提交与结束提交。
 

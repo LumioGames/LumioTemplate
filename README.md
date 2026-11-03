@@ -1,8 +1,8 @@
-# Lumio 游戏起步仓库
+# LumioTemplate
 
 [English](README.en.md)
 
-用来开始做一个 [Lumio](https://lumiogames.cn) 网页游戏的空仓库。里面没有游戏代码，只有给 AI Agent 的规则、Lumio 平台知识、策划和美术技能，以及打包工具。你把它交给 Agent（Claude Code、Codex 等），Agent 会问你想做什么游戏，然后把仓库改成你的项目，装好依赖、建好工程、接通 Lumio SDK，最后打出能直接上传的 ZIP。
+Lumio 游戏模板：用来开始做一个 [Lumio](https://lumiogames.cn) 网页游戏的空仓库。里面没有游戏代码，只有给 AI Agent 的规则、Lumio 平台知识、策划和美术技能，以及打包工具。你把它交给 Agent（Claude Code、Codex 等），Agent 会问你想做什么游戏，然后把仓库改成你的项目，装好依赖、建好工程、接通 Lumio SDK，最后打出能直接上传的 ZIP。
 
 ## 三步上手
 

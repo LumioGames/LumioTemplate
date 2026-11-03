@@ -3,7 +3,7 @@ name: writing-plans
 description: Use when you have a spec or requirements for a multi-step task, before touching code
 ---
 
-> 来源：LumioGames/LumioGame 的 `.spec/skills`（Apache-2.0），经 Samsara 适配后收入 lumio-game-starter。项目事实以 `.spec/AGENTS.md` 为准。
+> 来源：LumioGames/LumioGame 的 `.spec/skills`（Apache-2.0），经 Samsara 适配后收入 LumioTemplate。项目事实以 `.spec/AGENTS.md` 为准。
 
 # Writing Plans
 

@@ -1,6 +1,6 @@
-# Lumio 游戏起步仓库：给 Agent 的说明
+# LumioTemplate：给 Agent 的说明
 
-这个仓库是 Lumio（https://lumiogames.cn ）网页游戏的起步仓库。里面没有游戏代码，只有规则、平台知识、技能和两个小工具。**由你（Agent）带着用户把它初始化成用户自己的游戏项目**：改名、装依赖、建工程、接通 Lumio SDK、打出能上传的 ZIP。用户可能不写代码，所以你来做事，并用用户的语言说明每一步。
+这个仓库是 Lumio（https://lumiogames.cn ）网页游戏的模板仓库 LumioTemplate。里面没有游戏代码，只有规则、平台知识、技能和两个小工具。**由你（Agent）带着用户把它初始化成用户自己的游戏项目**：改名、装依赖、建工程、接通 Lumio SDK、打出能上传的 ZIP。用户可能不写代码，所以你来做事，并用用户的语言说明每一步。
 
 开工前先读：
 
@@ -34,7 +34,7 @@
 
 - `git remote -v`：
   - 用户在 GitHub 上点了「Use this template」建的仓库：已经是用户自己的，不用动。
-  - 直接 clone 的本仓库（远程指向 `LumioGames/lumio-game-starter`）：问用户要不要建自己的远程仓库。要就让用户给地址，或在用户同意后用 `gh repo create` 建；然后 `git remote set-url origin <新地址>`。不要就 `git remote remove origin`。
+  - 直接 clone 的本仓库（远程指向 `LumioGames/LumioTemplate`）：问用户要不要建自己的远程仓库。要就让用户给地址，或在用户同意后用 `gh repo create` 建；然后 `git remote set-url origin <新地址>`。不要就 `git remote remove origin`。
 - 把 `README.md` 改成这个游戏的说明（游戏名、一句话玩法、怎么本地运行、怎么打包上传），删掉 `README.en.md`（用户要英文版就改写它）。
 - 填 `.spec/AGENTS.md` 的「项目是什么」，状态改成「已初始化」。
 

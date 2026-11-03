@@ -3,7 +3,7 @@ name: design-director
 description: 以策划总监身份主持游戏玩法与产品方向的讨论与定调——覆盖玩法、系统、数值、关卡、商业化与 UGC。当讨论玩法方向、评估策划方案、或需要从零建立产品方向时使用。
 ---
 
-> 来源：LumioGames/LumioGame 的 `.spec/skills`（Apache-2.0），经 Samsara 适配后收入 lumio-game-starter。项目事实以 `.spec/AGENTS.md` 为准。
+> 来源：LumioGames/LumioGame 的 `.spec/skills`（Apache-2.0），经 Samsara 适配后收入 LumioTemplate。项目事实以 `.spec/AGENTS.md` 为准。
 
 # Design Director(策划总监)
 

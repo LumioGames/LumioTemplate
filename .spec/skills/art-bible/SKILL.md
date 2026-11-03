@@ -3,7 +3,7 @@ name: art-bible
 description: 把已定调的美术决策沉淀为美术规范文档并长期维护——含落点、结构与导航同步。当美术讨论出了需要写进规范的结论、或要修订既有美术规范时使用。
 ---
 
-> 来源：LumioGames/LumioGame 的 `.spec/skills`（Apache-2.0），经 Samsara 适配后收入 lumio-game-starter。项目事实以 `.spec/AGENTS.md` 为准。
+> 来源：LumioGames/LumioGame 的 `.spec/skills`（Apache-2.0），经 Samsara 适配后收入 LumioTemplate。项目事实以 `.spec/AGENTS.md` 为准。
 
 # Art Bible(美术规范维护)
 

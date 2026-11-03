@@ -36,7 +36,7 @@
 
 相关仓库：
 
-- [Lumio SDK](https://github.com/LumioGames/lumio-sdk)：`@lumiogames/sdk` 的说明与类型。
+- [Lumio SDK](https://github.com/LumioGames/LumioSDK)：`@lumiogames/sdk` 的说明与类型。
 - [LGUI](https://github.com/LumioGames/LGUI)：给 Agent 用的游戏 UI 框架。
 - [Lumio DevKit](https://github.com/LumioGames/Lumio-DevKit)：Lumio 引擎（联机、体素、服务端）的 Agent 插件；做网页游戏用不到。
 

@@ -38,7 +38,7 @@ Start with [AGENTS.md](AGENTS.md). Lumio platform, SDK, and packaging facts are 
 
 Related repositories:
 
-- [Lumio SDK](https://github.com/LumioGames/lumio-sdk): docs and types for `@lumiogames/sdk`.
+- [Lumio SDK](https://github.com/LumioGames/LumioSDK): docs and types for `@lumiogames/sdk`.
 - [LGUI](https://github.com/LumioGames/LGUI): a game UI framework for agents.
 - [Lumio DevKit](https://github.com/LumioGames/Lumio-DevKit): agent plugin for the Lumio engine (multiplayer, voxels, servers); not needed for web games.
 

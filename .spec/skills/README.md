@@ -16,4 +16,7 @@
 
 ## 来源与许可
 
-这些技能来自 LumioGames/LumioGame 仓库的 `.spec/skills`（固定提交 `f7bef4624fb555013e59f64eed0302055d454000`，Apache-2.0，全文见 [LICENSE](LICENSE)），先经 Samsara 项目适配，再为本仓库去掉了项目专属内容和对 Workflow 插件的依赖。每个技能开头注明了来源。
+这些技能来自 LumioGames/LumioGame 仓库的 `.spec/skills`（固定提交 `f7bef4624fb555013e59f64eed0302055d454000`），先经 Samsara 项目适配，再为本仓库去掉了项目专属内容和对 Workflow 插件的依赖。每个技能开头注明了来源。
+
+- 策划和美术的 7 个技能：Apache-2.0，全文见 [LICENSE](LICENSE)。
+- writing-plans、subagent-driven-development：改编自 [obra/superpowers](https://github.com/obra/superpowers)，MIT，Copyright (c) 2025 Jesse Vincent，全文见 [LICENSE-superpowers](LICENSE-superpowers)。

@@ -1,5 +1,10 @@
 # LumioTemplate
 
+[![LumioGames 出品](https://img.shields.io/badge/LumioGames-%E5%87%BA%E5%93%81-6659DB?style=flat-square&labelColor=171C34&logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIiB3aWR0aD0iOTYiIGhlaWdodD0iOTYiPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjEiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iIzY2NTlkYiIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzlhYTZmZiIvPjwvbGluZWFyR3JhZGllbnQ%2BPC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiByeD0iMjkiIGZpbGw9InVybCgjZykiLz48cmVjdCB4PSIyNSIgeT0iMjIiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgcng9IjQiIGZpbGw9IiNmZmYiLz48cmVjdCB4PSIyNSIgeT0iNDIiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgcng9IjQiIGZpbGw9IiNmZmYiLz48cmVjdCB4PSIyNSIgeT0iNjIiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgcng9IjQiIGZpbGw9IiNmZmYiLz48cmVjdCB4PSI0NSIgeT0iNjIiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgcng9IjQiIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iLjYiLz48cmVjdCB4PSI2NSIgeT0iNjIiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgcng9IjQiIGZpbGw9IiM1ZGUyYzYiLz48cGF0aCBkPSJNNzAgMTlDNzEuNTYgMjguMSA3My45IDMwLjQ0IDgzIDMyQzczLjkgMzMuNTYgNzEuNTYgMzUuOSA3MCA0NUM2OC40NCAzNS45IDY2LjEgMzMuNTYgNTcgMzJDNjYuMSAzMC40NCA2OC40NCAyOC4xIDcwIDE5WiIgZmlsbD0iI2ZmZiIvPjwvc3ZnPgo%3D)](https://lumiogames.cn/)
+[![Use this template](https://img.shields.io/badge/Use%20this%20template-%E4%B8%80%E9%94%AE%E5%A4%8D%E5%88%B6-6659DB?style=flat-square&labelColor=171C34)](https://github.com/LumioGames/LumioTemplate/generate)
+[![node](https://img.shields.io/badge/node-%E2%89%A524.18-5DE2C6?style=flat-square&labelColor=171C34)](https://nodejs.org/)
+[![license](https://img.shields.io/badge/license-PolyForm%20Shield%20%2B%20%E9%99%84%E5%8A%A0%E8%AE%B8%E5%8F%AF-AEB5D6?style=flat-square&labelColor=171C34)](#许可)
+
 [English](README.en.md)
 
 Lumio 游戏模板：用来开始做一个 [Lumio](https://lumiogames.cn) 网页游戏的空仓库。里面没有游戏代码，只有给 AI Agent 的规则、Lumio 平台知识、策划和美术技能，以及打包工具。你把它交给 Agent（Claude Code、Codex 等），Agent 会问你想做什么游戏，然后把仓库改成你的项目，装好依赖、建好工程、接通 Lumio SDK，最后打出能直接上传的 ZIP。
@@ -42,4 +47,16 @@ Lumio 游戏模板：用来开始做一个 [Lumio](https://lumiogames.cn) 网页
 
 ## 社群
 
-开发者 QQ 群：972220164
+开发者 QQ 群：[972220164](https://qm.qq.com/q/PGkXh4tCyQ)
+
+## 许可
+
+LumioTemplate 源码公开，采用 [PolyForm Shield 1.0.0](https://polyformproject.org/licenses/shield/1.0.0) 许可，另加 LumioGames 的附加许可和商标说明，全文都在 [LICENSE](LICENSE) 里。简单说：
+
+| 可以 | 不可以 |
+| :-- | :-- |
+| 用模板做你自己的游戏：游戏归你所有，可以收费商用，可以发到 Lumio 以外的平台 | 拿模板或改过的版本去做游戏模板、游戏开发工具、游戏平台这类竞品，收费、免费都不行 |
+| 点 Use this template、fork、修改、提 PR，用来学习、教学、研究 | 换个名字、换层皮把模板本身重新发布 |
+| 在你的游戏里写「用 LumioTemplate 制作」「在 Lumio 发布」 | 把 Lumio、LumioGames 的名字和图标当成自己的品牌 |
+
+`.spec/skills/` 里的技能保留各自的许可：策划、美术技能是 Apache-2.0，writing-plans 和 subagent-driven-development 改编自 obra/superpowers，是 MIT（见 [.spec/skills/README.md](.spec/skills/README.md)）。有其他用法，请先通过[开发者中心](https://lumiogames.cn/studio/)或上面的社群联系我们，单独授权。以 LICENSE 里的英文原文为准，这里的中文只是帮助理解。

@@ -1,5 +1,10 @@
 # LumioTemplate
 
+[![Made by LumioGames](https://img.shields.io/badge/made%20by-LumioGames-6659DB?style=flat-square&labelColor=171C34&logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIiB3aWR0aD0iOTYiIGhlaWdodD0iOTYiPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjEiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iIzY2NTlkYiIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzlhYTZmZiIvPjwvbGluZWFyR3JhZGllbnQ%2BPC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiByeD0iMjkiIGZpbGw9InVybCgjZykiLz48cmVjdCB4PSIyNSIgeT0iMjIiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgcng9IjQiIGZpbGw9IiNmZmYiLz48cmVjdCB4PSIyNSIgeT0iNDIiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgcng9IjQiIGZpbGw9IiNmZmYiLz48cmVjdCB4PSIyNSIgeT0iNjIiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgcng9IjQiIGZpbGw9IiNmZmYiLz48cmVjdCB4PSI0NSIgeT0iNjIiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgcng9IjQiIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iLjYiLz48cmVjdCB4PSI2NSIgeT0iNjIiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgcng9IjQiIGZpbGw9IiM1ZGUyYzYiLz48cGF0aCBkPSJNNzAgMTlDNzEuNTYgMjguMSA3My45IDMwLjQ0IDgzIDMyQzczLjkgMzMuNTYgNzEuNTYgMzUuOSA3MCA0NUM2OC40NCAzNS45IDY2LjEgMzMuNTYgNTcgMzJDNjYuMSAzMC40NCA2OC40NCAyOC4xIDcwIDE5WiIgZmlsbD0iI2ZmZiIvPjwvc3ZnPgo%3D)](https://lumiogames.cn/)
+[![Use this template](https://img.shields.io/badge/Use%20this%20template-one%20click-6659DB?style=flat-square&labelColor=171C34)](https://github.com/LumioGames/LumioTemplate/generate)
+[![node](https://img.shields.io/badge/node-%E2%89%A524.18-5DE2C6?style=flat-square&labelColor=171C34)](https://nodejs.org/)
+[![license](https://img.shields.io/badge/license-PolyForm%20Shield%20%2B%20extra%20grant-AEB5D6?style=flat-square&labelColor=171C34)](#license)
+
 [中文](README.md)
 
 The Lumio game template: an empty repository for starting a web game on [Lumio](https://lumiogames.cn). It holds no game code: only rules for AI agents, Lumio platform knowledge, game design and art skills, and a packaging tool. Hand it to an agent (Claude Code, Codex, …). The agent asks what game you want to make, turns the repository into your project, installs dependencies, creates the game project, connects the Lumio SDK, and produces a ZIP you can upload as is.
@@ -44,4 +49,16 @@ Related repositories:
 
 ## Community
 
-Developer QQ group: 972220164
+Developer QQ group: [972220164](https://qm.qq.com/q/PGkXh4tCyQ)
+
+## License
+
+LumioTemplate is source-available under the [PolyForm Shield License 1.0.0](https://polyformproject.org/licenses/shield/1.0.0), with an Additional Permission and a Trademarks notice from LumioGames. The full text is in [LICENSE](LICENSE). In short:
+
+| You may | You may not |
+| :-- | :-- |
+| Make your own game with the template: the game is yours, you may sell it, and you may publish it on platforms other than Lumio | Use the template or a changed version to build a competing game template, game development tool or game platform, paid or free |
+| Use this template, fork, change and send pull requests; use it for learning, teaching and research | Republish the template itself under another name or skin |
+| Say "made with LumioTemplate" or "published on Lumio" in your game | Use the Lumio or LumioGames names and logos as your own brand |
+
+The skills in `.spec/skills/` keep their own licenses: the design and art skills are Apache-2.0, and writing-plans and subagent-driven-development, adapted from obra/superpowers, are MIT (see [.spec/skills/README.md](.spec/skills/README.md)). For any other use, contact us through the [Developer Center](https://lumiogames.cn/studio/) or the community group above for a separate license. The English text in LICENSE is what counts.

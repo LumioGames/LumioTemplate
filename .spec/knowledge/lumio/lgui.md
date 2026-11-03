@@ -10,7 +10,7 @@ metadata:
 
 LGUI 是 Lumio 给 AI Agent 用的游戏 UI 框架：界面放在 `ui/`（FairyGUI 格式），功能用 TypeScript 按 MVC 写，在浏览器里预览和测试，以后还能导出到 Unity。仓库 https://github.com/LumioGames/LGUI ，许可是 PolyForm Shield 加 LumioGames 附加许可：做自己的游戏（含商业）可以用，详见它的 LICENSE。
 
-本篇写的流程在 LGUI 0.3.0 + SDK 2.10.1 上实际跑通过（2026-11-03）。
+本篇写的流程在 LGUI 0.3.0 + SDK 2.11.1 上实际跑通过（2026-11-03）。
 
 ## 1. 装 LGUI
 
@@ -30,7 +30,7 @@ LGUI 是 Lumio 给 AI Agent 用的游戏 UI 框架：界面放在 `ui/`（FairyG
 ```bash
 lgui init game --name <英文短名>
 cd game
-npm i --save-exact @lumiogames/sdk@2.10.1
+npm i --save-exact @lumiogames/sdk@2.11.1
 ```
 
 `lgui init` 只接受不存在或空的目录。它会在 `game/` 里放 `ui/`、`src/`、`tests/`、`i18n/`、`.lgui/`（框架副本和配置），以及 LGUI 自己的 `AGENTS.md` / `CLAUDE.md`（在 `game/` 里干活时也要遵守它们）。横竖屏在 `game/.lgui/project.json` 的 `orientation` 里改。

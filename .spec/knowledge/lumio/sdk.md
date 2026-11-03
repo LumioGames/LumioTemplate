@@ -14,13 +14,13 @@ metadata:
 
 | 项 | 值 |
 | --- | --- |
-| 本仓库使用 | `2.10.1`（npm 上目前最新） |
-| 安装 | 在 `game/` 里 `npm i --save-exact @lumiogames/sdk@2.10.1` |
+| 本仓库使用 | `2.11.1`（npm 上的 `latest`） |
+| 安装 | 在 `game/` 里 `npm i --save-exact @lumiogames/sdk@2.11.1` |
 | 查 npm 上有哪些版本 | `npm view @lumiogames/sdk versions` |
 
-已知问题：2.10.1 在 iPhone Safari 和微信内置浏览器里可能连不上平台（返回 `platform.not_granted`），2.11.1 已修复，但还没发到 npm。npm 上出现 2.11.1 或更高版本后就升级：改安装版本，重新构建、打包、上传，并把本节的「本仓库使用」改掉。
+不要用 2.11.1 以前的版本：2.10.x 在 iPhone Safari 和微信内置浏览器里可能连不上平台（返回 `platform.not_granted`），2.11.1 修好了。以后升级时改安装版本，重新构建、打包、上传，并改掉本节的「本仓库使用」。
 
-2.10.1 自己不上报加载进度和页面报错（2.11.0 起 SDK 才做），所以入口页建议引用平台启动脚本 `./lumio-bootstrap.js`，见 [publishing.md](publishing.md)。
+2.11.0 起，SDK 连上平台后自己上报加载进度和页面报错，连上就算游戏已启动。本模板的写法是第一次用到平台能力时才连接 SDK，所以入口页仍引用平台启动脚本 `./lumio-bootstrap.js`：它让游戏页一加载就开始；不引用的话，SDK 连上之前平台要等页面加载完 2 秒才开始。两者都在时，报错由启动脚本上报，进度以 SDK 为准。见 [publishing.md](publishing.md)。
 
 ## 本地模拟器和平台连接
 

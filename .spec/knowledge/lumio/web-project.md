@@ -8,7 +8,7 @@ metadata:
 
 # 不用 LGUI：Vite + TypeScript 工程
 
-适合 Canvas 小游戏，或用 Phaser、PixiJS 等网页引擎的游戏。本篇的写法在 Vite 7.3.7 + TypeScript 5.9.3 + SDK 2.10.1 上实际跑通过（2026-11-03）。
+适合 Canvas 小游戏，或用 Phaser、PixiJS 等网页引擎的游戏。本篇的写法在 Vite 7.3.7 + TypeScript 5.9.3 + SDK 2.11.1 上实际跑通过（2026-11-03）。
 
 ## 建工程
 
@@ -17,7 +17,7 @@ metadata:
 ```bash
 mkdir -p game/src game/public && cd game
 # 先写好下面的 package.json，再装依赖
-npm i --save-exact @lumiogames/sdk@2.10.1
+npm i --save-exact @lumiogames/sdk@2.11.1
 npm i -D --save-exact vite@7.3.7 typescript@5.9.3
 ```
 

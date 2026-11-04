@@ -32,7 +32,7 @@
 - 「帮我建工程」：按 `Client/README.md` 建客户端工程。
 - 「做某某功能」：先写计划，再派 Agent 实现。
 
-需要：Git、Node.js 24.18 或更高、一个 AI 编程 Agent。
+需要：Git、Node 24（24.18 以上的 24.x；Lumio SDK 不支持 25 及以上）、一个 AI 编程 Agent。
 
 ## 本地运行和打包
 

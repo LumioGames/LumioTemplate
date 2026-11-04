@@ -8,7 +8,7 @@ metadata:
 
 # Lumio SDK
 
-包名 `@lumiogames/sdk`，ESM，带类型声明，要求 Node 24.18 或更高。
+包名 `@lumiogames/sdk`，ESM，带类型声明，要求 Node 24（24.18 以上的 24.x；Lumio SDK 不支持 25 及以上）。
 
 ## 版本
 

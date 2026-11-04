@@ -2,7 +2,7 @@
 
 [![LumioGames 出品](https://img.shields.io/badge/LumioGames-%E5%87%BA%E5%93%81-6659DB?style=flat-square&labelColor=171C34&logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIiB3aWR0aD0iOTYiIGhlaWdodD0iOTYiPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjEiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iIzY2NTlkYiIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzlhYTZmZiIvPjwvbGluZWFyR3JhZGllbnQ%2BPC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiByeD0iMjkiIGZpbGw9InVybCgjZykiLz48cmVjdCB4PSIyNSIgeT0iMjIiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgcng9IjQiIGZpbGw9IiNmZmYiLz48cmVjdCB4PSIyNSIgeT0iNDIiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgcng9IjQiIGZpbGw9IiNmZmYiLz48cmVjdCB4PSIyNSIgeT0iNjIiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgcng9IjQiIGZpbGw9IiNmZmYiLz48cmVjdCB4PSI0NSIgeT0iNjIiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgcng9IjQiIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iLjYiLz48cmVjdCB4PSI2NSIgeT0iNjIiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgcng9IjQiIGZpbGw9IiM1ZGUyYzYiLz48cGF0aCBkPSJNNzAgMTlDNzEuNTYgMjguMSA3My45IDMwLjQ0IDgzIDMyQzczLjkgMzMuNTYgNzEuNTYgMzUuOSA3MCA0NUM2OC40NCAzNS45IDY2LjEgMzMuNTYgNTcgMzJDNjYuMSAzMC40NCA2OC40NCAyOC4xIDcwIDE5WiIgZmlsbD0iI2ZmZiIvPjwvc3ZnPgo%3D)](https://lumiogames.cn/)
 [![Use this template](https://img.shields.io/badge/Use%20this%20template-%E4%B8%80%E9%94%AE%E5%A4%8D%E5%88%B6-6659DB?style=flat-square&labelColor=171C34)](https://github.com/LumioGames/LumioTemplate/generate)
-[![node](https://img.shields.io/badge/node-%E2%89%A524.18-5DE2C6?style=flat-square&labelColor=171C34)](https://nodejs.org/)
+[![node](https://img.shields.io/badge/node-24.x-5DE2C6?style=flat-square&labelColor=171C34)](https://nodejs.org/)
 [![license](https://img.shields.io/badge/license-PolyForm%20Shield%20%2B%20%E9%99%84%E5%8A%A0%E8%AE%B8%E5%8F%AF-AEB5D6?style=flat-square&labelColor=171C34)](#许可)
 
 [English](README.en.md)
@@ -26,7 +26,7 @@ Lumio 游戏模板：帮你把一个游戏项目的**目录结构和规范**一�
    生成完 Agent 只问一句：要不要现在聊玩法 / 美术。不聊也行，以后随时说「我们来定玩法」「我们来定美术方向」。
 2. **收尾**：删掉一次性的初始化技能，把 README 改写成你的游戏说明，本地提交一次。推不推送到 GitHub，先问你。
 
-需要：Git、Node.js 24.18 或更高、一个 AI 编程 Agent。
+需要：Git、Node 24（24.18 以上的 24.x；Lumio SDK 不支持 25 及以上）、一个 AI 编程 Agent。
 
 ## 给 Agent
 
@@ -36,7 +36,7 @@ Lumio 游戏模板：帮你把一个游戏项目的**目录结构和规范**一�
 >
 > 按顺序做。任何一步失败都停下，把错误原文告诉用户，不要跳过。
 >
-> 1. 运行 `git --version` 和 `node -v`：要有 Git，Node 要 24.18 或更高。缺哪个就告诉用户装什么、去哪下载（Git：https://git-scm.com/downloads ；Node：https://nodejs.org ，选 24 LTS），请用户自己装，装好后再检查一遍。不要替用户装。
+> 1. 运行 `git --version` 和 `node -v`：要有 Git 和 Node 24（24.18 以上的 24.x；Lumio SDK 不支持 25 及以上）。缺哪个就告诉用户装什么、去哪下载（Git：https://git-scm.com/downloads ；Node：https://nodejs.org ，选 24 LTS），请用户自己装，装好后再检查一遍。不要替用户装。
 > 2. **当前文件夹是空的**（`ls -A` 没有输出；PowerShell 用 `Get-ChildItem -Force`）：运行 `git clone -c core.symlinks=true https://github.com/LumioGames/LumioTemplate .`。然后就在**这次对话里**接着做：先读 `AGENTS.md` 和它列出的几份文件，再按 `.spec/skills/lumio-init/SKILL.md` 开始初始化。不用开新对话——这次对话不会自动载入这些文件，你主动去读就行。
 > 3. **当前文件夹不是空的**：问用户项目文件夹叫什么（小写字母、数字和连字符，例如 `star-hop`），运行 `git clone -c core.symlinks=true https://github.com/LumioGames/LumioTemplate <文件夹名>`，然后请用户在那个文件夹里开一个新对话，说「开始」。不要在当前文件夹里初始化。
 > 4. **用户想要一个自己的 GitHub 仓库**：在第 2 或第 3 步克隆之前，先问用户仓库名、公开还是私有。用户同意后运行 `gh repo create <仓库名> --template LumioGames/LumioTemplate --private`（公开就用 `--public`），等几秒让 GitHub 生成好，再按第 2 或第 3 步克隆**这个新仓库**的地址，而不是模板的地址。没装或没登录 `gh` 时，请用户在 GitHub 上点 Use this template 建好仓库，把地址发给你。推送、建远程仓库、发布这类对外操作，每一次都先问用户。

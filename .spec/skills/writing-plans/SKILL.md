@@ -50,7 +50,7 @@ deliverable.
 
 ## Step Granularity (Within a Task)
 
-Decide at the top of the plan, in one sentence, whether this plan runs in fast mode (SDD) or TDD, per `knowledge/standards/testing.md`「两种模式和判据」; the failing-test-first steps below apply to TDD work.
+Decide at the top of the plan, in one sentence, whether this plan runs in SDD or TDD, per `knowledge/standards/testing.md`「两种模式和判据」; the failing-test-first steps below apply to TDD work.
 
 **Each step is one action (2-5 minutes):**
 - "Write the failing test" - step

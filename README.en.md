@@ -60,7 +60,7 @@ my-game/
 │  ├─ decisions/  Decision records (ADRs); the first one covers structure and tech route
 │  ├─ skills/     Skills for design, planning, subagent dispatch, test-first, debugging, upkeep, framework updates, game design and art
 │  ├─ agents/     Review subagent
-│  └─ tools/      Structure lint, closeout grading, pre-commit check
+│  └─ tools/      Structure lint, closeout grading
 ├─ AGENTS.md      Agent entry point (points to the docs)
 ├─ CLAUDE.md      Claude Code entry point (auto-loads the core docs)
 └─ README.md      Your game's README
@@ -79,8 +79,8 @@ You also get `Server/` if you write your own server code. Every module has a REA
 | `.spec/decisions/`, `plans/` | Formats for decision records and implementation plans (a task card is a `### Task N` section of a plan) |
 | `.spec/skills/` | 14 standing skills (including `lumio-update` for framework updates), plus the one-time `lumio-init` (setup flow and templates, deleted at the end of setup) |
 | `.spec/agents/reviewer.md` | Review subagent |
-| `.spec/tools/` | `spec-lint.mjs` structure lint, `closeout-gate.mjs` closeout grading, `guard-commit.mjs` pre-commit check; `lumio-pack.mjs` and `lgui-build-web.mjs` move to `Tools/` or are deleted during setup, depending on your route |
-| `.claude/`, `.agents/` | Symlinks into `.spec/` (so clients find the skills and the subagent), and Claude Code's pre-commit hook |
+| `.spec/tools/` | `spec-lint.mjs` structure lint, `closeout-gate.mjs` closeout grading; `lumio-pack.mjs` and `lgui-build-web.mjs` move to `Tools/` or are deleted during setup, depending on your route |
+| `.claude/`, `.agents/` | Symlinks into `.spec/` (so clients find the skills and the subagent) |
 | `CHANGELOG.md` | Framework release notes (one tag per version); deleted at the end of setup |
 
 The rules and knowledge files are written in Chinese; agents read them fine and reply in your language.
@@ -102,7 +102,6 @@ The agent uses the `lumio-update` skill. It fetches LumioTemplate's latest versi
 | Core docs | `@import` in `CLAUDE.md`, loaded every session | Read on demand via `AGENTS.md` | Read on demand via `AGENTS.md` |
 | Skills | `.claude/skills` symlink, discovered automatically | `.agents/skills` symlink, discovered automatically | Read from `.spec/skills/` as `AGENTS.md` says |
 | Review subagent | `.claude/agents` symlink | None; the main agent reviews with `reviewer.md` itself | Same as Codex |
-| Pre-commit check (reports only, never blocks) | `.claude/settings.json` hook | None; run it by hand as the rules say | None |
 
 On Windows, if the symlinks come out as plain files, the first setup step rebuilds them with `mklink /J` (no administrator rights needed) and asks you to reopen the conversation.
 

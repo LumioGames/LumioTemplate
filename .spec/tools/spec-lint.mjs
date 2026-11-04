@@ -1,10 +1,9 @@
 #!/usr/bin/env node
 /**
  * spec-lint —— 项目 `.spec/` 结构一致性校验。LumioTemplate 的框架文件,取自 LumioAgentSpec 1.1.1。
- * Claude Code 由 .claude/settings.json 的 PreToolUse 钩子经 guard-commit.mjs 在 git commit 前调用
- * (只提示、不阻断提交),也可手动跑。
+ * 收口时手动跑(只提示、不阻断提交)。
  * 用法:node .spec/tools/spec-lint.mjs [项目根目录]   (省略参数时取本脚本所在仓库的根目录)
- * 有问题时打印清单并以退出码 1 结束;是否放行提交由调用方决定(guard-commit 一律放行)。
+ * 有问题时打印清单并以退出码 1 结束。
  *
  * 校验项清单(本注释是项目侧「lint 能力清单」的单一权威):
  *  0. 项目没有 .spec/ 时静默通过——守卫不该卡住还没接入的仓库。

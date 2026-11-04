@@ -20,7 +20,7 @@ description: 当 `.spec/AGENTS.md` 写着「状态：未初始化」，或用户
 ## 两种开场
 
 - **客户端自动载入了**：用户在项目文件夹里开对话说「开始」，Claude Code 已经经 `CLAUDE.md` 载入核心文档、经软链发现了技能。直接往下做。
-- **你主动读文件开始的**：你刚在这次对话里把模板克隆进当前文件夹（README「给 Agent」那一节的第 2 步），客户端没有载入 `CLAUDE.md`，也没有发现技能。这不是错误，不用开新对话：先读根目录 `AGENTS.md` 和它列出的 5 份文件，再往下做；要用到别的技能（design-director、art-director 等）时，直接读 `.spec/skills/<技能名>/SKILL.md`。Claude Code 的提交前检查钩子这次对话里可能也没生效，所以每次提交前自己跑 `node .spec/tools/spec-lint.mjs`（第一段第 4 步、第二段第 5 步已经包含）。
+- **你主动读文件开始的**：你刚在这次对话里把模板克隆进当前文件夹（README「给 Agent」那一节的第 2 步），客户端没有载入 `CLAUDE.md`，也没有发现技能。这不是错误，不用开新对话：先读根目录 `AGENTS.md` 和它列出的 5 份文件，再往下做；要用到别的技能（design-director、art-director 等）时，直接读 `.spec/skills/<技能名>/SKILL.md`。
 
 ## 先判断做到哪了
 
@@ -42,7 +42,7 @@ description: 当 `.spec/AGENTS.md` 写着「状态：未初始化」，或用户
      ```
 
      重建后：如果这次对话是客户端自动载入的，请用户**重开一次对话**（客户端只在对话开始时扫描技能），再说「继续初始化」；如果是你主动读文件开始的，不用重开，接着往下做——这三条链接是给以后的新对话用的。这三条联接不要用 `git add` 提交成普通文件，收尾提交时按第二段第 6 步检查。
-2. **Git 和 Node。** `git --version`；`node -v` 要 24.18 或更高（结构检查和提交前检查用 Node；以后建网页工程、用 LGUI 和 Lumio SDK 也要 Node 24）。缺哪个就告诉用户装什么、去哪下载（Git：https://git-scm.com/downloads ；Node：https://nodejs.org ，选 24 LTS），用户装好后再检查一遍。**不替用户安装系统软件。**
+2. **Git 和 Node。** `git --version`；`node -v` 要 24.18 或更高（结构检查用 Node；以后建网页工程、用 LGUI 和 Lumio SDK 也要 Node 24）。缺哪个就告诉用户装什么、去哪下载（Git：https://git-scm.com/downloads ；Node：https://nodejs.org ，选 24 LTS），用户装好后再检查一遍。**不替用户安装系统软件。**
 
 ## 第一段：立项问答与生成骨架
 
@@ -139,7 +139,7 @@ description: 当 `.spec/AGENTS.md` 写着「状态：未初始化」，或用户
    - 远程指向 `LumioGames/LumioTemplate`（直接 clone 的）：先告诉用户要做什么——去掉模板的远程地址、清空模板的提交历史、重新开始一个只属于这个项目的仓库；这只影响本地这个文件夹，模板仓库本身不受影响。用户同意后，在仓库根目录删掉 `.git` 文件夹（bash：`rm -rf .git`；PowerShell：`Remove-Item -Recurse -Force .git`），再 `git init -b main`。用户不同意就只 `git remote remove origin`。
 4. **删掉本技能。** 删除整个 `.spec/skills/lumio-init/` 文件夹（还在 git 里时用 `git rm -r -q .spec/skills/lumio-init`）。三条软链都指向 `.spec/skills/`，删一次两边客户端就都看不到它了：`ls .claude/skills/ .agents/skills/` 里不应再有 `lumio-init`。
 5. **再检查一次。** `node .spec/tools/spec-lint.mjs` 输出 `spec-lint: OK`。
-6. **本地提交一次。** `git add -A`，然后 `git commit -m "chore: 用 LumioTemplate 初始化项目"`。提交后跑 `git ls-files -s .claude .agents`：应该正好是 `.claude/settings.json` 一个普通文件，加上 `.claude/agents`、`.claude/skills`、`.agents/skills` 三行 `120000`（符号链接）。如果这三条变成了一堆普通文件（Windows 上的目录联接可能被这样提交），在 Git Bash 里把它们改回符号链接，再提交一次：
+6. **本地提交一次。** `git add -A`，然后 `git commit -m "chore: 用 LumioTemplate 初始化项目"`。提交后跑 `git ls-files -s .claude .agents`：应该正好是 `.claude/agents`、`.claude/skills`、`.agents/skills` 三行 `120000`（符号链接）。如果这三条变成了一堆普通文件（Windows 上的目录联接可能被这样提交），在 Git Bash 里把它们改回符号链接，再提交一次：
 
    ```bash
    git rm -r --cached -q .claude/skills .claude/agents .agents/skills

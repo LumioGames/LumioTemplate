@@ -22,7 +22,6 @@ description: 当用户说「更新框架」「升级框架」「看看模板有�
 .spec/agents/reviewer.md
 .spec/tools/spec-lint.mjs
 .spec/tools/closeout-gate.mjs
-.spec/tools/guard-commit.mjs
 .spec/knowledge/lumio-platform/
 .spec/skills/README.md
 .spec/skills/LICENSE
@@ -45,7 +44,7 @@ description: 当用户说「更新框架」「升级框架」「看看模板有�
 
 `.spec/LICENSE` 是 LumioTemplate 的许可条款。它在模板仓库里放在根目录 `LICENSE`，初始化收尾时才移进 `.spec/`，所以第 4、5 步比较和复制它时，从 `<临时目录>/old/LICENSE`、`<临时目录>/new/LICENSE` 取。
 
-不在清单里的都不动：项目文件（`.spec/AGENTS.md`、`rules/project.md`、`knowledge/` 里除 `lumio-platform/` 以外的部分、`decisions/`、`plans/`）、用户自己加的技能和子 Agent、各模块目录、根目录的 `AGENTS.md` / `CLAUDE.md` / `README.md`、用户给游戏选的根目录 `LICENSE`、`.claude/settings.json` 和三条软链。初始化用的 `lumio-init` 不随更新分发。
+不在清单里的都不动：项目文件（`.spec/AGENTS.md`、`rules/project.md`、`knowledge/` 里除 `lumio-platform/` 以外的部分、`decisions/`、`plans/`）、用户自己加的技能和子 Agent、各模块目录、根目录的 `AGENTS.md` / `CLAUDE.md` / `README.md`、用户给游戏选的根目录 `LICENSE` 和三条软链。初始化用的 `lumio-init` 不随更新分发。
 
 ## 步骤
 
@@ -106,7 +105,7 @@ git diff --no-index --stat <临时目录>/old/<路径> <路径>
    - 新版在 `.spec/rules/` 下多了文件：在根目录 `CLAUDE.md` 加一行 `@.spec/rules/<文件名>`，在根目录 `AGENTS.md` 的必读清单加一行。去掉的规则文件，两处都删掉那一行。
    - 框架技能有增减：同步 `.spec/AGENTS.md` 的技能名册。
    - `lumio-platform/` 里有文档增减，或某篇的 frontmatter `description` 改了：同步 `.spec/knowledge/README.md` 的 lumio-platform 表（导航行和 `description` 是同一句话）。
-   - CHANGELOG 里「需要手动处理」的事项（例如 `.claude/settings.json` 的钩子变了），逐项给用户看，用户同意后照做。
+   - CHANGELOG 里「需要手动处理」的事项，逐项给用户看，用户同意后照做。
 2. **Lumio 工具**：项目里有 `Tools/lumio-pack.mjs` 或 `Tools/lgui-build-web.mjs` 时，和 `<临时目录>/new/.spec/tools/` 里的同名文件比；不一样就给用户看差异，问要不要换成新版。新版里没有这个文件了，告诉用户 CHANGELOG 是怎么说的。它们在 `Tools/` 里，属于项目，不自动覆盖。
 3. **检查**：`node .spec/tools/spec-lint.mjs` 输出 `spec-lint: OK`；不 OK 就按报出的问题修。
 4. **提交**：`git status` 和 `git diff --stat` 给用户看，确认改动只落在清单里的路径和上面补登记的几处；然后本地提交一次，例如 `git commit -m "chore: 框架更新到 <最新版本>"`。**推送前先问用户。**

@@ -16,7 +16,6 @@ description: 当用户说「更新框架」「升级框架」「看看模板有�
 只有下面这些路径随框架更新。以 `/` 结尾的是整个文件夹（更新时整个换掉，新版里删掉的文件也会跟着删掉）；其余是单个文件。
 
 ```
-.spec/LICENSE
 .spec/rules/system.md
 .spec/rules/dispatch.md
 .spec/agents/reviewer.md
@@ -40,76 +39,42 @@ description: 当用户说「更新框架」「升级框架」「看看模板有�
 .spec/skills/lumio-update/
 ```
 
-`.spec/LICENSE` 是 LumioTemplate 的许可条款。它在模板仓库里放在根目录 `LICENSE`，初始化收尾时才移进 `.spec/`，所以第 4、5 步比较和复制它时，从 `<临时目录>/old/LICENSE`、`<临时目录>/new/LICENSE` 取。
-
-不在清单里的都不动：项目文件（`.spec/AGENTS.md`、`rules/project.md`、`knowledge/` 里除 `lumio-platform/` 以外的部分、`decisions/`、`plans/`）、用户自己加的技能和子 Agent、各模块目录、根目录的 `AGENTS.md` / `CLAUDE.md` / `README.md`、用户给游戏选的根目录 `LICENSE` 和三条软链。初始化用的 `lumio-init` 不随更新分发。
+不在清单里的都不动：项目文件（`.spec/AGENTS.md`、`rules/project.md`、`knowledge/` 里除 `lumio-platform/` 以外的部分、`decisions/`、`plans/`）、用户自己加的技能和子 Agent、各模块目录、根目录的 `AGENTS.md` / `CLAUDE.md` / `README.md` / `LICENSE` 和三条软链。初始化用的 `lumio-init` 不随更新分发。
 
 ## 步骤
 
-任何一步失败就停下，把错误原文告诉用户；不跳过、不编造成功。命令按 bash 写，Windows 上在 Git Bash 里跑。临时目录放在项目外面（例如系统临时目录下新建一个），做完删掉。
+任何一步失败就停下，把错误原文告诉用户；不跳过、不编造成功。命令按 bash 写，Windows 上在 Git Bash 里跑。临时目录放在项目外面，做完删掉。
 
 ### 1. 准备
 
 - `git status` 要干净。有没提交的改动，先请用户提交或决定怎么处理，这样更新的改动能单独成一次提交。
-- 查最新版本：`git ls-remote --tags --refs https://github.com/LumioGames/LumioTemplate 'v*'`，按版本号取最大的那个。
-- 最新版本和上面「当前框架版本」一样：告诉用户框架已是最新，直接跳到第 7 步。
-- 最新版本比当前新：把两个版本都拉到临时目录。旧版用来判断项目有没有改过框架文件，新版是要换上的内容：
-
-  ```bash
-  git clone -q --depth 1 --branch <当前版本> https://github.com/LumioGames/LumioTemplate <临时目录>/old
-  git clone -q --depth 1 --branch <最新版本> https://github.com/LumioGames/LumioTemplate <临时目录>/new
-  ```
+- 查最新版本：`git ls-remote --tags --refs https://github.com/LumioGames/LumioTemplate 'v*'`，按版本号取最大的那个。和上面「当前框架版本」一样：告诉用户框架已是最新，直接跳到第 6 步。
+- 比当前新：`git clone -q --depth 1 --branch <最新版本> https://github.com/LumioGames/LumioTemplate <临时目录>`。
 
 ### 2. 给用户看改了什么
 
-读 `<临时目录>/new/CHANGELOG.md`，把当前版本之后、到最新版本为止的每一节给用户看，特别标出「需要手动处理」的事项。用户看完同意了再往下。
+读 `<临时目录>/CHANGELOG.md`，把当前版本之后、到最新版本为止的每一节给用户看，特别标出「需要手动处理」的事项。用户同意了再往下。
 
-### 3. 对清单
+### 3. 按清单覆盖或删除
 
-- 新清单：`<临时目录>/new/.spec/skills/lumio-update/SKILL.md` 里的「框架文件清单」。旧清单：本文件里的那份。
-- 只在新清单里的路径：新版新增的框架文件，第 5 步直接加进来。
-- 只在旧清单里的路径：新版去掉的框架文件。列给用户看，用户同意后删掉。
+新清单是 `<临时目录>/.spec/skills/lumio-update/SKILL.md` 里的「框架文件清单」，旧清单是本文件里的那份。
 
-### 4. 找出项目改过的框架文件
+- 新清单里的每个路径都从临时目录覆盖过来。单个文件：`cp <临时目录>/<路径> <路径>`（父目录不存在时先 `mkdir -p`）。文件夹：先删再按内容复制，源路径末尾写 `/.`，例如 `rm -rf .spec/skills/writing-plans && mkdir -p .spec/skills/writing-plans && cp -R <临时目录>/.spec/skills/writing-plans/. .spec/skills/writing-plans/`（不要写成 `…/writing-plans/ .spec/skills/`：macOS 上会把文件撒进 `.spec/skills/`）。
+- 只在旧清单里的路径是新版去掉的框架文件：删掉。
 
-对新旧清单里都有的每个路径，拿项目里的文件和 `<临时目录>/old` 里的同一路径比：
+### 4. 给用户看 diff
 
-```bash
-git diff --no-index --stat <临时目录>/old/<路径> <路径>
-```
+`git status` 和 `git diff` 给用户看：改动只应出现在清单里的路径下。框架文件按规则不在本地改；如果 diff 里冲掉了项目自己的内容，请用户决定把它挪进项目文件（红线进 `rules/project.md`、做法进 `knowledge/standards/`、自己的方法另建项目技能），旧内容在 git 历史里找得回来。
 
-一样的，说明项目没改过，第 5 步直接覆盖。不一样的，说明项目在本地改过：把差异（去掉 `--stat` 看全文）给用户看，问用户是覆盖（本地改动会丢，项目自己的内容建议先挪进项目文件，比如红线进 `rules/project.md`、做法进 `knowledge/standards/`、自己的方法另建项目技能），还是这一项先不更新。用户没回答前不动这个文件。
+### 5. 登记、检查、提交
 
-### 5. 覆盖
+1. 新版在 `.spec/rules/` 下多了文件：在根目录 `CLAUDE.md` 加一行 `@.spec/rules/<文件名>`，在根目录 `AGENTS.md` 的必读清单加一行；去掉的规则文件，两处都删掉那一行。
+2. CHANGELOG 里「需要手动处理」的事项，逐项给用户看，用户同意后照做。
+3. **Lumio 工具**：项目里有 `Tools/lumio-pack.mjs` 或 `Tools/lgui-build-web.mjs` 时，和 `<临时目录>/.spec/tools/` 里的同名文件比；不一样就给用户看差异，问要不要换成新版。它们在 `Tools/` 里，属于项目，不自动覆盖。
+4. `node .spec/tools/spec-lint.mjs`，报出的问题告诉用户。
+5. 本地提交一次，例如 `git commit -m "chore: 框架更新到 <最新版本>"`。**推送前先问用户。** 删掉临时目录。
 
-只碰清单里的路径，其余一概不动：
-
-- 单个文件：`cp <临时目录>/new/<路径> <路径>`（父目录不存在时先 `mkdir -p`）。
-- 整个文件夹：先删掉再按内容复制，源路径末尾写 `/.`，例如：
-
-  ```bash
-  rm -rf .spec/skills/brainstorming
-  mkdir -p .spec/skills/brainstorming
-  cp -R <临时目录>/new/.spec/skills/brainstorming/. .spec/skills/brainstorming/
-  ```
-
-  不要写成 `cp -R <临时目录>/new/.spec/skills/brainstorming/ .spec/skills/`：在 macOS 上，源路径末尾带 `/` 会把文件夹里的文件直接撒进 `.spec/skills/`。
-
-覆盖完用 `git status` 看一眼：改动只应出现在清单里的路径下。
-
-### 6. 登记、检查、提交
-
-1. **补登记**（漏了，新东西就隐身）：
-   - 新版在 `.spec/rules/` 下多了文件：在根目录 `CLAUDE.md` 加一行 `@.spec/rules/<文件名>`，在根目录 `AGENTS.md` 的必读清单加一行。去掉的规则文件，两处都删掉那一行。
-   - 框架技能有增减：同步 `.spec/AGENTS.md` 的技能名册。
-   - `lumio-platform/` 里有文档增减，或某篇的 frontmatter `description` 改了：同步 `.spec/knowledge/README.md` 的 lumio-platform 表（导航行和 `description` 是同一句话）。
-   - CHANGELOG 里「需要手动处理」的事项，逐项给用户看，用户同意后照做。
-2. **Lumio 工具**：项目里有 `Tools/lumio-pack.mjs` 或 `Tools/lgui-build-web.mjs` 时，和 `<临时目录>/new/.spec/tools/` 里的同名文件比；不一样就给用户看差异，问要不要换成新版。新版里没有这个文件了，告诉用户 CHANGELOG 是怎么说的。它们在 `Tools/` 里，属于项目，不自动覆盖。
-3. **检查**：`node .spec/tools/spec-lint.mjs` 输出 `spec-lint: OK`；不 OK 就按报出的问题修。
-4. **提交**：`git status` 和 `git diff --stat` 给用户看，确认改动只落在清单里的路径和上面补登记的几处；然后本地提交一次，例如 `git commit -m "chore: 框架更新到 <最新版本>"`。**推送前先问用户。**
-5. 删掉临时目录。
-
-### 7. 看看 LGUI 和 SDK 有没有新版（只提示，不自动升）
+### 6. 看看 LGUI 和 SDK 有没有新版（只提示，不自动升）
 
 - **LGUI**：装着的插件版本看插件缓存目录名（Claude Code 是 `~/.claude/plugins/cache/lumio-lgui/lgui/<版本>/`，Codex 是 `~/.codex/plugins/cache/lumio-lgui/lgui/<版本>/`）；最新版本看 LGUI 仓库根目录 `CHANGELOG.md` 最上面一节（仓库打了 tag 时，也可以 `git ls-remote --tags --refs https://github.com/LumioGames/LGUI`）。有新版就告诉用户，怎么升见 `.spec/knowledge/lumio-platform/lgui.md`「更新 LGUI」。
 - **Lumio SDK**：项目里用到 SDK 时（比如 `Client/app/package.json` 里有 `@lumiogames/sdk`），用 `npm view @lumiogames/sdk version` 和 `package.json` 里的版本比。有新版就告诉用户，怎么升见 `.spec/knowledge/lumio-platform/sdk.md`「升级 SDK」。

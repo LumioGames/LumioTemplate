@@ -91,7 +91,7 @@ The general red lines, dispatch rules, skills, lint tools and Lumio platform fac
 
 > update the framework
 
-The agent uses the `lumio-update` skill. It fetches LumioTemplate's latest version tag and shows you the release notes since your version. It then replaces only the framework files, showing you a diff first for any you changed locally, runs the structure lint, and makes one local commit; it asks before pushing. It also checks whether LGUI or the Lumio SDK has a newer version, and only tells you. The current framework version is written in `.spec/skills/lumio-update/SKILL.md`.
+The agent uses the `lumio-update` skill. It fetches LumioTemplate's latest version tag and shows you the release notes since your version. It then replaces only the framework files, shows you the resulting `git diff`, runs the structure lint, and makes one local commit; it asks before pushing. It also checks whether LGUI or the Lumio SDK has a newer version, and only tells you. The current framework version is written in `.spec/skills/lumio-update/SKILL.md`.
 
 ## Supported agents
 

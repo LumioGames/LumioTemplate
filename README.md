@@ -89,7 +89,7 @@ my-game/
 
 > 更新框架
 
-Agent 会用 `lumio-update` 技能：拉取 LumioTemplate 最新的版本 tag，把这之间的更新记录给你看，只覆盖框架文件（你本地改过的先给你看差异再问），跑一遍结构检查，本地提交一次，推送前先问你。顺带看看 LGUI 和 Lumio SDK 有没有新版，只提示、不自动升级。当前框架版本写在 `.spec/skills/lumio-update/SKILL.md` 里。
+Agent 会用 `lumio-update` 技能：拉取 LumioTemplate 最新的版本 tag，把这之间的更新记录给你看，只覆盖框架文件，覆盖后把改动（`git diff`）给你看，跑一遍结构检查，本地提交一次，推送前先问你。顺带看看 LGUI 和 Lumio SDK 有没有新版，只提示、不自动升级。当前框架版本写在 `.spec/skills/lumio-update/SKILL.md` 里。
 
 ## 支持哪些 Agent
 

@@ -75,7 +75,7 @@ my-game/
 | `AGENTS.md` / `CLAUDE.md` | Agent 的入口：先读哪几份文档；Claude Code 经 `CLAUDE.md` 自动载入 |
 | `.spec/AGENTS.md` | 项目中心文档，初始状态是「未初始化」 |
 | `.spec/rules/` | `system.md` 工作方式与通用红线、`project.md` 项目红线（初始化时生成） |
-| `.spec/knowledge/` | 规范骨架、功能文档模板、经验教训，以及 `lumio-platform/`：SDK、`lumio.json` 与打包、LGUI、网页工程、资源地址 |
+| `.spec/knowledge/` | 规范骨架、功能文档模板、bug 墙，以及 `lumio-platform/`：SDK、`lumio.json` 与打包、LGUI、网页工程、资源地址 |
 | `.spec/decisions/`、`plans/` | 决策记录、实现计划的格式（任务卡就是计划里的 `### Task N`） |
 | `.spec/skills/` | 11 个常驻技能（含更新框架用的 `lumio-update`），加上一次性的 `lumio-init`（初始化流程和生成模板，收尾时删除） |
 | `.spec/agents/reviewer.md` | 审查子 Agent |

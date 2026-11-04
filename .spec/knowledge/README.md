@@ -28,11 +28,11 @@ metadata:
 
 > 暂无正式功能文档。
 
-## lessons(经验教训 · 复发问题暂存区)
+## bug-wall(bug 墙)
 
 | 文档 | 一句话 |
 |------|--------|
-| [`lessons.md`](lessons.md) | 经验教训:reviewer 反复退回的同类问题与 Agent 常犯坑——开工前与复盘沉淀时查 |
+| [`bug-wall.md`](bug-wall.md) | bug 墙:值得记的 bug 一条一行(现象、状态、归因)——记 bug 前用关键词 grep 查重,满 200 行或用户说时整理 |
 
 ## lumio-platform/(Lumio 平台事实 · 框架文件)
 

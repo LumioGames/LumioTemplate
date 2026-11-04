@@ -15,7 +15,7 @@ description: 维护项目 `.spec/` 的结构并把改动沉淀进知识库——
 | **框架文件** | `LICENSE`（模板的许可条款）、`rules/system.md`、`agents/`、`skills/` 里模板自带的技能（含 `lumio-update`）、`tools/`、`knowledge/lumio-platform/`；逐个路径的清单在 `lumio-update` 技能里 | 项目不改；以后随模板更新，按文件或按技能文件夹整份覆盖 |
 | **项目文件** | `AGENTS.md`、`rules/project.md`、`knowledge/` 里除 `lumio-platform/` 以外的部分、`decisions/`、`plans/`、项目自己加的技能 | 归项目所有，初始化时生成，之后由项目维护 |
 
-判据:**这处改动要落在框架文件里吗?** 要 → 不改框架文件，把项目自己的版本写进项目文件（红线进 `rules/project.md`，做法进 `knowledge/standards/`，新方法另建项目技能）；框架文件本身有问题，记进 `knowledge/lessons.md` 或告诉用户，等模板更新。
+判据:**这处改动要落在框架文件里吗?** 要 → 不改框架文件，把项目自己的版本写进项目文件（红线进 `rules/project.md`，做法进 `knowledge/standards/`，新方法另建项目技能）；框架文件本身有问题，记进 `knowledge/bug-wall.md`（归因「框架」）并告诉用户，等模板更新。
 
 ## 何时使用
 
@@ -57,7 +57,7 @@ description: 维护项目 `.spec/` 的结构并把改动沉淀进知识库——
    - 影响**开发流程 / 规范**（workflow / 测试策略 / 代码风格等）→ 更新 `knowledge/standards/` 对应文件。
    - 影响**功能设计**（新功能、行为变更）→ 更新 `knowledge/features/` 对应文档并流转 `status`（feature 文档在设计期直接建立、`设计中` 起步，交付时改 `已交付`；确无文档才从 `_TEMPLATE.md` 补建）——只写设计现状，不留决策记录，无二次搬运。
    - **决策**（功能内与框架级都算：为什么这样调度 / 选型 / 划边界）→ `.spec/decisions/` 新增 ADR（**唯一落点**，见其 `README.md`）。
-   - **复发问题 / 踩坑经验**（reviewer 退回报告、known gaps 中第二次出现的同类问题）→ 追加进 `.spec/knowledge/lessons.md`（收录准入与条目格式见该文档）。
+   - **bug**（大需求合完后的最后一遍测试、用户报的、reviewer 审出的）→ 值得记的追加一行进 `.spec/knowledge/bug-wall.md`（记什么、怎么记见该文件开头）。
 3. 更新正文——**只保留当前有效内容**，交付历史不入库（git 提交即历史）。
 4. frontmatter `status` 只能取枚举：`设计中` / `实施中` / `已交付` / `历史归档`；`description` 保持一句话（是什么 + 何时查，≤120 字符，spec-lint 检查），**不得**把交付历史写进 description / status。
 5. `.spec/knowledge/README.md` 导航行**来源于** frontmatter `description`：同一句话口径，允许排版差异，但不得出现 description 没有的事实、不含交付历史（行文一致性靠本步骤自觉，spec-lint 只机械校验长度 / 枚举 / 覆盖 / 链接）——导航行是 Agent 决定「要不要翻开这份文档」的唯一依据，含糊或膨胀都会让判断失准。
@@ -76,7 +76,7 @@ description: 维护项目 `.spec/` 的结构并把改动沉淀进知识库——
 | 怎么开发（流程 / 规范） | `.spec/knowledge/standards/` | 有 |
 | 某功能的设计 / 记录 | `.spec/knowledge/features/…` | 有 |
 | 决策（功能内 / 框架级，唯一落点） | `.spec/decisions/`（ADR） | 无（见其 README 模板） |
-| 复发问题 / 踩坑经验 | `.spec/knowledge/lessons.md` | 有 |
+| bug（值得记的） | `.spec/knowledge/bug-wall.md` | 有 |
 | 职能角色 | `.spec/agents/` | 仅 name+description |
 | 可复用方法 | `.spec/skills/<name>/SKILL.md` | name+description（+ 标准可选字段）|
 

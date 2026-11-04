@@ -75,7 +75,7 @@ You also get `Server/` if you write your own server code. Every module has a REA
 | `AGENTS.md` / `CLAUDE.md` | Agent entry points: which docs to read first; Claude Code loads them through `CLAUDE.md` |
 | `.spec/AGENTS.md` | Project hub, initially marked 「未初始化」 (not set up) |
 | `.spec/rules/` | `system.md` way of working and general red lines, `project.md` project red lines (generated during setup) |
-| `.spec/knowledge/` | Convention skeletons, a feature doc template, lessons, and `lumio-platform/`: SDK, `lumio.json` and packaging, LGUI, web projects, links |
+| `.spec/knowledge/` | Convention skeletons, a feature doc template, a bug wall, and `lumio-platform/`: SDK, `lumio.json` and packaging, LGUI, web projects, links |
 | `.spec/decisions/`, `plans/` | Formats for decision records and implementation plans (a task card is a `### Task N` section of a plan) |
 | `.spec/skills/` | 11 standing skills (including `lumio-update` for framework updates), plus the one-time `lumio-init` (setup flow and templates, deleted at the end of setup) |
 | `.spec/agents/reviewer.md` | Review subagent |

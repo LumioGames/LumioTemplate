@@ -123,7 +123,7 @@ description: 当 `.spec/AGENTS.md` 写着「状态：未初始化」，或用户
 
 1. **处理远程地址（先做，免得后面的 `git mv` 白做）。** 跑 `git remote -v`：
    - 远程是用户自己的仓库（在 GitHub 上点 Use this template 建的）：不动。
-   - 远程指向 `LumioGames/LumioTemplate`（直接 clone 的）：先告诉用户要做什么——去掉模板的远程地址、清空模板的提交历史、重新开始一个只属于这个项目的仓库；这只影响本地这个文件夹，模板仓库本身不受影响。用户同意后，在仓库根目录删掉 `.git` 文件夹（bash：`rm -rf .git`；PowerShell：`Remove-Item -Recurse -Force .git`），再 `git init -b main`。用户不同意就只 `git remote remove origin`。
+   - 远程指向 `LumioGames/LumioTemplate`（直接 clone 的）：先告诉用户要做什么——去掉模板的远程地址、清空模板的提交历史、重新开始一个只属于这个项目的仓库；这只影响本地这个文件夹，模板仓库本身不受影响。用户同意后，**先记住**当前生效的 `git config user.name`、`git config user.email` 和 `git config core.symlinks` 的值（这些可能只存在于即将删除的仓库配置中）。然后在仓库根目录删掉 `.git` 文件夹（bash：`rm -rf .git`；PowerShell：`Remove-Item -Recurse -Force .git`），再 `git init -b main`；在新仓库用 `git config --local user.name`、`git config --local user.email` 和 `git config --local core.symlinks` 恢复刚才记住的值（`core.symlinks` 没有值时不设置），并重新检查三项，失败就停下。不要改全局配置。用户不同意就只 `git remote remove origin`。
 2. **处理许可，改写 README，删掉模板专用的文件。**
    - 把根目录 `LICENSE` 移到 `.spec/LICENSE`（第 1 步清过历史的，文件还没被跟踪，用 `mv LICENSE .spec/LICENSE`；没清的用 `git mv LICENSE .spec/LICENSE`）。它是 LumioTemplate 的许可条款，跟着项目里保留的模板文件走；根目录留给用户自己的游戏。
    - 问用户要不要给游戏选一个许可，默认不放。跟用户说清楚：不放许可文件，游戏的代码和内容仍然归用户所有，只是没有对外授权；想让别人也能用（比如开源），才需要选一个。用户要选，就请用户说用哪一种（例如 MIT、Apache-2.0）和版权人写谁，按该许可的标准全文写进根目录 `LICENSE`。Agent 不替用户挑许可。

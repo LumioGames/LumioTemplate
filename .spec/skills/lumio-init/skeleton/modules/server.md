@@ -8,7 +8,7 @@
 
 ## 怎么建工程
 
-> 待完善：建工程时写清语言与框架、本地怎么启动、怎么跑测试、怎么部署。
+> 待完善（建工程时）：写清语言与框架、本地怎么启动、怎么跑测试、怎么部署。
 
 <!-- 如果：发布到 Lumio -->
 发布到 Lumio 的游戏要连这里的服务器时，服务器地址要在 `lumio.json` 的 `network.connect` 里写成精确的 `https://` 或 `wss://` 来源（见 `.spec/knowledge/lumio-platform/publishing.md`）。

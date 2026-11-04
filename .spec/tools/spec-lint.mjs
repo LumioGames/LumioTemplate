@@ -1,10 +1,9 @@
 #!/usr/bin/env node
 /**
  * spec-lint —— 项目 `.spec/` 结构一致性校验。LumioTemplate 的框架文件,取自 LumioAgentSpec 1.1.1。
- * Claude Code 由 .claude/settings.json 的 PreToolUse 钩子经 guard-commit.mjs 在 git commit 前调用
- * (只提示、不阻断提交),也可手动跑。
+ * 收口时手动跑(只提示、不阻断提交)。
  * 用法:node .spec/tools/spec-lint.mjs [项目根目录]   (省略参数时取本脚本所在仓库的根目录)
- * 有问题时打印清单并以退出码 1 结束;是否放行提交由调用方决定(guard-commit 一律放行)。
+ * 有问题时打印清单并以退出码 1 结束。
  *
  * 校验项清单(本注释是项目侧「lint 能力清单」的单一权威):
  *  0. 项目没有 .spec/ 时静默通过——守卫不该卡住还没接入的仓库。
@@ -15,15 +14,13 @@
  *     链接到(索引漂移 = 知识隐身);decisions/ 下每条 ADR 必须登记进 decisions/README.md 索引。
  *  3. 链接可达:.spec 下全部 .md 的相对链接必须指向存在的文件
  *     (剥围栏代码块与行内代码,避免代码里的 [T](x) 误判)。
- *  4. 任务卡 frontmatter:.spec/tasks/ 根目录每张卡(README 除外)必须有 frontmatter,
- *     且只允许 status 字段,枚举 pending / in_progress / completed;子目录不校验。
  *  5. 禁并行文档根:git 索引内不得出现 docs/specs/、docs/plans/,或仓根之外的
- *     第二个 .spec/(templates/.spec/ 模板骨架豁免);非 git 仓库或无 git 时跳过本项,
+ *     第二个 .spec/;非 git 仓库或无 git 时跳过本项,
  *     其余 git 失败上报(不静默失效)。
  *  6. ADR 状态行:每条 ADR 必有「- 状态:」行,取值以「生效」开头,或
  *     「(部分)被 [NNNN](<file>) 取代」——被取代必须链接取代者。
- *  7. 计划 frontmatter:.spec/plans/ 根目录每份计划(README 除外)与任务卡同契约
- *     (仅 status,枚举 pending / in_progress / completed)。
+ *  7. 计划 frontmatter:.spec/plans/ 根目录每份计划(README 除外)必须有 frontmatter,
+ *     且只允许 status 字段,枚举 pending / in_progress / completed;子目录不校验。
  *  8. 强制载入完整性:.spec/AGENTS.md、.spec/knowledge/README.md 与 .spec/rules/ 下每个 .md
  *     都必须在根 CLAUDE.md 有对应的 `@.spec/<路径>` 行(漏一行 = Claude Code 会话开始时静默不载入);
  *     缺 CLAUDE.md 本身也报。
@@ -155,7 +152,7 @@ for (const file of walk(SPEC, (p) => p.endsWith('.md'))) {
   }
 }
 
-// ── 4. 任务卡 / 计划 frontmatter(共享契约:仅 status,同一枚举) ──────────
+// ── 7. 计划 frontmatter(仅 status) ────────────────────────────────────────
 function checkStatusCards(dir, label) {
   if (!existsSync(dir)) return
   for (const name of readdirSync(dir)) {
@@ -170,7 +167,6 @@ function checkStatusCards(dir, label) {
     }
   }
 }
-checkStatusCards(join(SPEC, 'tasks'), '任务卡')
 checkStatusCards(join(SPEC, 'plans'), '计划')
 
 // ── 5. 禁并行文档根(遍历面 = git 索引;非 git 环境跳过) ───────────────
@@ -191,8 +187,8 @@ for (const rel of indexedFiles ?? []) {
   if (/(^|\/)docs\/(specs|plans)\//.test(rel)) {
     err(join(ROOT, rel), '并行文档根:框架产物(设计/计划)只落 .spec/,不落 docs/')
   }
-  if (rel.includes('/.spec/') && !rel.includes('templates/.spec/')) {
-    err(join(ROOT, rel), '仓根之外出现第二个 .spec/(模板骨架 templates/.spec/ 豁免)')
+  if (rel.includes('/.spec/')) {
+    err(join(ROOT, rel), '仓根之外出现第二个 .spec/')
   }
 }
 

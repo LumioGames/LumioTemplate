@@ -1,101 +1,60 @@
 ---
 name: systematic-debugging
-description: Use when encountering any bug, test failure, or unexpected behavior, before proposing fixes
+description: 遇到 bug、测试失败、异常行为时，在提修法之前使用。
 ---
 
-# Systematic Debugging
+# 排障（先找根因）
 
-## Overview
+**铁律：没查清根因，不提修法。** 乱改会掩盖真问题、引出新 bug。简单的 bug 也有根因，按流程走反而更快。
 
-Random fixes waste time and create new bugs. Quick patches mask underlying issues.
+## 四个阶段（做完一阶段再进下一阶段）
 
-**Core principle:** ALWAYS find root cause before attempting fixes. Symptom fixes are failure.
+### 1. 找根因
 
-**Violating the letter of this process is violating the spirit of debugging.**
+- **先稳定复现**：固定随机种子，记下操作顺序（第几步、点了什么、过了多久），做到每次都能复现；复现不了先补信息，不猜。
+- **读全错误信息**：完整的报错、堆栈、行号。
+- **看对的日志**：网页看浏览器控制台，Unity 看 Console，真机看设备日志；服务端看服务端日志。
+- **数值不对，先查配表再查代码**：值是不是表里的值，表改了有没有重新导出、客户端读到的是不是新表。
+- **联机问题先分清是客户端还是服务端**：对两端的日志和收发的协议消息，看哪一边先出错。
+- **只在某台设备上出问题**：先比设备、浏览器、系统版本、帧率。
+- **看最近改了什么**：`git diff`、最近的提交、新加的依赖和配置。
+- **往回追坏值的来源**：沿调用链往上追到第一次出错的地方，在源头修，不在症状处打补丁。
 
-## The Iron Law
+### 2. 找对照
 
-```
-NO FIXES WITHOUT ROOT CAUSE INVESTIGATION FIRST
-```
+找同一项目里能正常工作的类似代码或流程，完整读完，列出它和出问题的地方的每一处差别，不预设「这个不可能有关」。
 
-If you haven't completed Phase 1, you cannot propose fixes.
+### 3. 单一假设，一次只改一个变量
 
-## When to Use
+写下一句「我认为根因是 X，因为 Y」，用最小的改动验证；不成就换一个新假设，不在上面叠更多改动。不懂的地方直接说不懂，去查。
 
-Any technical issue: test failures, bugs, unexpected behavior, performance problems, build failures, integration issues.
+### 4. 修
 
-ESPECIALLY when skipping is tempting: under time pressure, "just one quick fix" seems obvious, previous fixes didn't work, or the issue seems simple. Systematic debugging is faster than guess-and-check thrashing — and simple bugs have root causes too.
+1. 修根因，只改一处，不顺手改别的。
+2. 能自动复现的 bug（数值、规则）修的时候补一条回归用例（见 `knowledge/standards/testing.md`「回归用例」）；界面长相和手感类用复现步骤说明症状消失。
+3. 确认症状消失；跑没跑测试照实写，没跑写「未执行」。
+4. 修完按 `.spec/knowledge/bug-wall.md` 开头「值得才记」的判据，决定要不要记进 bug 墙。
 
-## The Four Phases
+**修 3 次不成就停下**：每次修好一处又冒出别处的问题，说明方案本身可能错了。不再试第 4 次，质疑架构，把查到的告诉用户、一起定怎么办。
 
-Complete each phase before the next.
+## 游戏里常见的根因
 
-### Phase 1: Root Cause Investigation
+- 按帧数而不是按时间算移动、冷却、动画（高帧率机器上跑得快）。
+- 异步加载的先后顺序不固定（资源、配表、场景没就绪就被用了）。
+- 对象池复用时没重置状态（上一局的血量、buff、计时器还在）。
+- 浮点误差（相等比较、累加漂移、不同平台结果不同）。
+- 读到旧版本的存档或缓存（字段缺失、格式变了没升级）。
 
-1. **Read error messages carefully** — full stack traces, line numbers, error codes. They often contain the exact solution.
-2. **Reproduce consistently** — exact steps, reliable trigger. Not reproducible → gather more data, don't guess.
-3. **Check recent changes** — git diff, recent commits, new dependencies, config, environment.
-4. **Gather evidence at component boundaries** (multi-component systems: CI → build → signing, API → service → DB): before proposing fixes, log what enters and exits each component, run once, and let the evidence show WHERE it breaks — then investigate that component.
-5. **Trace data flow backward** — where does the bad value originate? Keep tracing up the call stack to the source; fix at the source, not the symptom. Complete technique: `root-cause-tracing.md` in this directory.
+## 测试时好时坏
 
-### Phase 2: Pattern Analysis
+等条件成立（轮询到需要的状态为真），不用固定的 `sleep` / 超时去猜时长；只有测的就是时长本身时才用固定延迟，并写明为什么。
 
-- Find similar working code in the same codebase
-- Read reference implementations COMPLETELY — skimming guarantees partial understanding
-- List every difference between working and broken, however small; don't assume "that can't matter"
-- Understand the dependencies, config, and assumptions involved
+## 找不到根因
 
-### Phase 3: Hypothesis and Testing
+如实写下查过什么、查到哪一步，给出清楚的错误信息和日志，作为「未修」记进 bug 墙（`.spec/knowledge/bug-wall.md`），写明卡在哪里。不加 retry、timeout 之类掩盖失败的兜底。多数「找不到根因」其实是没查完。
 
-- State a single, specific hypothesis: "I think X is the root cause because Y"
-- Test it with the SMALLEST possible change, one variable at a time
-- Didn't work → form a NEW hypothesis; DON'T stack more fixes on top
-- Don't understand something? Say "I don't understand X" and research — don't pretend
+## 停下回到第 1 阶段的信号
 
-### Phase 4: Implementation
-
-1. **Large fixes** (size gate: `rules/dispatch.md`「测试分级」): **create a failing test case first** (use `test-driven-development`) — simplest reproduction; MUST exist before fixing. **Small fixes:** reproduce the symptom with the exact steps from Phase 1 instead — no new test required, but the symptom must be shown gone in step 3
-2. **Implement a single fix** for the root cause — ONE change, no "while I'm here" improvements, no bundled refactoring
-3. **Verify:** test passes, no other tests broken, symptom actually gone
-4. **Fix didn't work?** STOP. Count attempts. Fewer than 3 → back to Phase 1 with the new information. **3 or more → question the architecture.**
-
-### If 3+ Fixes Failed: Question the Architecture
-
-Each fix revealing a new problem elsewhere, or every fix requiring "massive refactoring", means the pattern itself may be wrong. This is not a failed hypothesis — it's a wrong architecture. STOP and discuss with the user before attempting more fixes.
-
-## Red Flags — STOP and Return to Phase 1
-
-- "Quick fix for now, investigate later" / "Just try changing X and see"
-- Multiple changes at once; skipping the failing test
-- "It's probably X" / "I don't fully understand but this might work"
-- Proposing solutions before tracing data flow
-- **"One more fix attempt" when you've already tried 2+**
-- The user questioning your approach ("Is that verified?", "Stop guessing") — that's a redirection, not noise
-
-| Excuse | Reality |
-|--------|---------|
-| "Issue is simple, don't need process" | Simple issues have root causes too; the process is fast for them. |
-| "Emergency, no time for process" | Systematic debugging is FASTER than thrashing. |
-| "I'll write the test after confirming the fix" | Untested fixes don't stick. Test first proves it. |
-| "Reference too long, I'll adapt the pattern" | Partial understanding guarantees bugs. Read it completely. |
-| "One more fix attempt" (after 2+) | 3+ failures = architectural problem. Stop fixing symptoms. |
-
-## Quick Reference
-
-| Phase | Key activities | Done when |
-|-------|---------------|-----------|
-| 1. Root cause | Read errors, reproduce, check changes, gather evidence | You understand WHAT and WHY |
-| 2. Pattern | Find working examples, compare | Differences identified |
-| 3. Hypothesis | Single theory, minimal test | Confirmed or replaced |
-| 4. Implementation | Failing test, single fix, verify | Bug resolved, tests pass |
-
-## When Investigation Finds "No Root Cause"
-
-If the issue is truly environmental or timing-dependent: document what you investigated, implement appropriate handling (retry / timeout / clear error message), add logging for future investigation. But 95% of "no root cause" cases are incomplete investigation.
-
-## Supporting Techniques
-
-In this directory: `root-cause-tracing.md` (trace bugs backward through the call stack), `defense-in-depth.md` (multi-layer validation after the root cause is found), `condition-based-waiting.md` (replace arbitrary timeouts with condition polling).
-
-Related: `test-driven-development` (Phase 4's failing test for large fixes; small fixes reproduce by steps — size gate in `rules/dispatch.md`「测试分级」); claim "fixed" only with the verification run per `rules/dispatch.md`「收工即验证」.
+- 想「先随便改改看」「先临时修一下，以后再查」。
+- 一次改了好几处，或说不清为什么这样改能好。
+- 已经修了 2 次还想「再试一次」；或者用户在问「确认过了吗」。

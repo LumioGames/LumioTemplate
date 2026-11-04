@@ -12,9 +12,9 @@ metadata:
 
 ## 文档与注释的语言
 
-> 待完善：初始化时按立项答案填写（中文或英文）。默认：`.spec/` 下的项目文件、各模块 README 和代码注释都用中文。
+> 待完善（初始化时）：默认跟用户说话的语言一致，`.spec/` 下的项目文件、各模块 README 和代码注释都用这一种。要文档和注释用不同语言，在这里分开写明。
 
-- 框架文件（`rules/system.md`、`rules/dispatch.md`、`skills/` 里模板自带的技能等）保持原样，不跟着改语言；其中部分技能文档是英文。
+- 框架文件（`rules/system.md`、`skills/` 里模板自带的技能等）保持原样，不跟着改语言。
 - knowledge 文档的 `metadata.status` 只能取 `设计中` / `实施中` / `已交付` / `历史归档`——这是 `spec-lint` 内置的枚举，用英文写文档时也保持这四个中文值。
 
 ## 文件命名（通用）
@@ -34,4 +34,4 @@ metadata:
 
 ## 语言 / 框架特定风格
 
-> 待完善：初始化时按技术路线写默认值，建工程时补上 formatter / linter 的配置位置。例：网页路线用 TypeScript 严格模式（`strict: true`），界面用 LGUI 时遵守 LGUI 工程自带的 `AGENTS.md`；Unity 路线用 C#，遵守 Unity 官方命名惯例。
+> 待完善（建工程时）：初始化时先按技术路线写默认值，建工程时补上 formatter / linter 的配置位置。例：网页路线用 TypeScript 严格模式（`strict: true`），界面用 LGUI 时遵守 LGUI 工程自带的 `AGENTS.md`；Unity 路线用 C#，遵守 Unity 官方命名惯例。

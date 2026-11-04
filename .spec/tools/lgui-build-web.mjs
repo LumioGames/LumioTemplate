@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // 过渡脚本：LGUI 插件还没有「网页正式构建」命令，这里用已装插件里的同一套生成与打包代码，把 LGUI 工程打成静态网页。
 // LGUI 提供 `lgui build` 之后删掉本文件，改用它。逻辑同 LGUI 仓库的 scripts/build-demo.mjs。
-// 用法：node Tools/lgui-build-web.mjs [工程目录=Client/app] [输出目录=<工程>/dist]（模板里先放在 .spec/tools/，初始化时，网页加 LGUI 路线把它移到 Tools/）
+// 用法：node .spec/tools/lgui-build-web.mjs [工程目录=Client/app] [输出目录=<工程>/dist]（框架文件，随框架更新）
 // 插件目录：环境变量 LGUI_PLUGIN；不设就在 Claude Code / Codex 的插件缓存里找最新版本。
 import crypto from 'node:crypto';
 import fs from 'node:fs';

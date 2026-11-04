@@ -1,6 +1,6 @@
 # Client（客户端）
 
-{{暂定名}}的客户端。技术路线：网页，界面用 LGUI。
+{{暂定名}}的客户端。发布目标：{{发布目标}}。技术路线：网页，界面用 LGUI。
 
 ## 放什么
 
@@ -10,15 +10,15 @@
 
 初始化只建了这个目录和本文件。建工程是初始化之后的第一步：
 
-1. 装 LGUI：按 `.spec/knowledge/lumio-platform/lgui.md`「装 LGUI」，Claude Code 和 Codex 各有安装命令；装完先跑 `lgui doctor`。
-2. 在仓库根目录跑 `lgui init Client/app --name {{英文短名}}`（`lgui init` 只接受不存在或空的目录）。工程里会带 LGUI 自己的 `AGENTS.md` / `CLAUDE.md`，在 `Client/app/` 里干活时也要遵守它们。
+- 装 LGUI：按 `.spec/knowledge/lumio-platform/lgui.md`「装 LGUI」，Claude Code 和 Codex 各有安装命令；装完先跑 `lgui doctor`。
+- 在仓库根目录跑 `lgui init Client/app --name {{英文短名}}`（`lgui init` 只接受不存在或空的目录）。工程里会带 LGUI 自己的 `AGENTS.md` / `CLAUDE.md`，在 `Client/app/` 里干活时也要遵守它们。
 <!-- 如果：发布到 Lumio -->
-3. 接 Lumio：在 `Client/app/` 里装 SDK、加 Lumio Service、写 `lumio.json`，按 `lgui.md`「接 Lumio」和 `.spec/knowledge/lumio-platform/sdk.md`、`publishing.md`。正式构建和打包用 `Tools/lgui-build-web.mjs` 和 `Tools/lumio-pack.mjs`，ZIP 输出到 `Builds/lumio/`。
+- 接 Lumio：在 `Client/app/` 里装 SDK、加 Lumio Service、写 `lumio.json`，按 `lgui.md`「接 Lumio」和 `.spec/knowledge/lumio-platform/sdk.md`、`publishing.md`。正式构建和打包用 `node .spec/tools/lgui-build-web.mjs` 和 `node .spec/tools/lumio-pack.mjs`，ZIP 输出到 `Builds/lumio-platform/`。
 <!-- 结束 -->
-<!-- 如果：不发布到 Lumio -->
-3. 正式构建用 `Tools/lgui-build-web.mjs`，输出到 `Builds/web/`。
+<!-- 如果：发布到网页 -->
+- 网页正式构建（发到自己的网站等）：`node .spec/tools/lgui-build-web.mjs <工程目录> <输出目录>` 能指定输出目录，但它出的是 Lumio 用的网页包——工程里要有 `lumio.json`，入口页会引用 `./lumio-bootstrap.js`。发到 Lumio 以外的网站用的包，这个脚本现在做不到；建工程时和用户一起定做法（例如等 LGUI 出正式构建命令），定下来写进本文件，产物放 `Builds/web/`。
 <!-- 结束 -->
-4. 把构建和测试命令（`lgui test`、`lgui verify` 等）补进 `.spec/AGENTS.md`「收口门槛」和 `.spec/knowledge/standards/testing.md`。
+- 把构建和测试命令（`lgui test`、`lgui verify` 等）补进 `.spec/AGENTS.md`「收口门槛」和 `.spec/knowledge/standards/testing.md`。
 
 以后更新 LGUI：先更新插件，再在 `Client/app/` 里跑 `lgui upgrade`，见 `.spec/knowledge/lumio-platform/lgui.md`「更新 LGUI」。
 

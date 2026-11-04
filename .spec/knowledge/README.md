@@ -9,8 +9,6 @@ metadata:
 
 本文件是 `knowledge/` 下所有 .md 的导航 meta:一行描述 + 路径,按需下钻。
 
-> **导航行与各文档 frontmatter `description` 同一句话口径,只写「是什么 + 何时查」。** 交付历史在 git,不进文档;长度 / status 枚举 / 登记覆盖 / 链接可达由 `node .spec/tools/spec-lint.mjs` 机械校验。
-
 ## standards/(开发规范 · 要遵守的「怎么做」)
 
 | 文档 | 一句话 |
@@ -18,32 +16,22 @@ metadata:
 | [`standards/project-structure.md`](standards/project-structure.md) | 项目结构:有哪些模块、依赖方向、命名规则、新东西放哪——建目录、加文件、跨模块引用前查 |
 | [`standards/workflow.md`](standards/workflow.md) | 开发工作流:分支/提交/合并·PR 与知识同步义务——动手改代码、开 PR 前查 |
 | [`standards/code-style.md`](standards/code-style.md) | 代码与文档风格:语言约定、命名、注释原则、生成物纪律——写代码/建文档时查 |
-| [`standards/testing.md`](standards/testing.md) | 测试与验收:测试分层政策、TDD 时机、验收 DoD 与验证证据——实现功能/修 bug 时查 |
+| [`standards/testing.md`](standards/testing.md) | 测试与验收:SDD 和 TDD 两种模式的判据、测什么不测什么、什么时候跑、回归用例与验收——写计划、实现功能、修 bug 时查 |
 
 ## features/(功能设计与记录 · 供了解)
 
 | 文档 | 一句话 |
 |------|--------|
-| [`features/_TEMPLATE.md`](features/_TEMPLATE.md) | 新功能文档模板——新增功能记录时照此建,放对 领域 / 模块 |
+| [`features/_TEMPLATE.md`](features/_TEMPLATE.md) | 新功能文档模板——新增功能记录时照此建 `features/<名称>.md`,多了再按领域分子目录 |
 
 > 暂无正式功能文档。
 
-## lessons(经验教训 · 复发问题暂存区)
+## bug-wall(bug 墙)
 
 | 文档 | 一句话 |
 |------|--------|
-| [`lessons.md`](lessons.md) | 经验教训:reviewer 反复退回的同类问题与 Agent 常犯坑——开工前与复盘沉淀时查 |
+| [`bug-wall.md`](bug-wall.md) | bug 墙:值得记的 bug 一条一行(现象、状态、归因)——记 bug 前用关键词 grep 查重,满 200 行或用户说时整理 |
 
 ## lumio-platform/(Lumio 平台事实 · 框架文件)
 
-| 文档 | 一句话 |
-|------|--------|
-| [`lumio-platform/sdk.md`](lumio-platform/sdk.md) | Lumio SDK 的版本、安装、本地模拟器与平台连接、开放能力和调用规则——接入或使用平台能力时查 |
-| [`lumio-platform/publishing.md`](lumio-platform/publishing.md) | `lumio.json` 声明、ZIP 打包规则和两种发布方式（自己上传 ZIP、用作者 API 密钥发布）——打包发布或被拒收时查 |
-| [`lumio-platform/lgui.md`](lumio-platform/lgui.md) | 用 LGUI 做界面的游戏怎么建工程、接 SDK、正式构建——选了 LGUI 时查 |
-| [`lumio-platform/web-project.md`](lumio-platform/web-project.md) | 不用 LGUI 时用 Vite + TypeScript 建网页工程并接 SDK——自己画界面或用其他网页引擎时查 |
-| [`lumio-platform/resources.md`](lumio-platform/resources.md) | Lumio 相关仓库、文档、创作中心和社群地址——找官方资料或求助时查 |
-
----
-
-新增 / 修改 / 维护知识文档(放哪、frontmatter、同步本导航)→ 用 `spec-steward` 技能;决策记录(唯一落点)→ [`../decisions/`](../decisions/README.md)。
+Lumio 平台的事实在 `lumio-platform/`：sdk（接 SDK）、publishing（打包发布）、lgui（用 LGUI 做界面）、web-project（不用 LGUI 的网页工程）、resources（官方链接）。

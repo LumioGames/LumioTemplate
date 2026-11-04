@@ -6,15 +6,8 @@
 
 | 工具 | 做什么 | 用法 |
 | --- | --- | --- |
-<!-- 如果：发布到 Lumio -->
-| `lumio-pack.mjs` | 把构建好的网页目录打成能直接在 Lumio 创作中心上传的 ZIP，打包前先按平台规则检查 | `node Tools/lumio-pack.mjs <构建目录> Builds/lumio/{{英文短名}}.zip`，规则见 `.spec/knowledge/lumio-platform/publishing.md` |
-<!-- 结束 -->
-<!-- 如果：网页 -->
-| `lgui-build-web.mjs` | 过渡脚本：LGUI 还没有网页正式构建命令，用它把 LGUI 工程打成静态网页 | `node Tools/lgui-build-web.mjs Client/app <输出目录>`，见 `.spec/knowledge/lumio-platform/lgui.md`。LGUI 有了构建命令后删掉 |
-<!-- 结束 -->
-<!-- 生成时：上表一行工具都没有（不发布到 Lumio，也不是网页路线），就把整张表换成「（还没有工具。）」 -->
 
-结构检查等框架工具在 `.spec/tools/`，不放这里。
+结构检查、Lumio 打包（`lumio-pack.mjs`）、LGUI 网页构建（`lgui-build-web.mjs`）这些框架工具在 `.spec/tools/`，不放这里，用法写 `node .spec/tools/<工具>`。
 
 ## 依赖
 

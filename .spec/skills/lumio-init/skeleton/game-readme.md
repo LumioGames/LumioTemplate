@@ -18,7 +18,7 @@
 | `Server/` | 自己写的服务端代码 |
 <!-- 结束 -->
 | `Art/` | 美术源文件 |
-| `Tools/` | 开发工具<!-- 如果：发布到 Lumio -->（含 Lumio 打包工具 `lumio-pack.mjs`）<!-- 结束 --> |
+| `Tools/` | 开发工具 |
 | `Builds/` | 构建产物，不进 git |
 | `.spec/` | 项目规范：中心文档、红线、知识、决策、技能 |
 | `AGENTS.md` / `CLAUDE.md` | 给 AI Agent 的入口 |
@@ -32,7 +32,7 @@
 - 「帮我建工程」：按 `Client/README.md` 建客户端工程。
 - 「做某某功能」：先写计划，再派 Agent 实现。
 
-需要：Git、Node.js 24.18 或更高、一个 AI 编程 Agent。
+需要：Git、Node 26 LTS（Lumio SDK 支持 24.18 到 26.x，27 及以上不支持）、一个 AI 编程 Agent。
 
 ## 本地运行和打包
 
@@ -43,7 +43,7 @@
 
 游戏做好后对 Agent 说「打包发布」。规则和步骤见 `.spec/knowledge/lumio-platform/publishing.md`，有两种方式：
 
-- **自己上传**：Agent 把 ZIP 打到 `Builds/lumio/`，你登录 https://lumiogames.cn/studio/games/new 创建作品，在「版本」页上传 ZIP 并提交审核。
+- **自己上传**：Agent 把 ZIP 打到 `Builds/lumio-platform/`，你登录 https://lumiogames.cn/studio/games/new 创建作品，在「版本」页上传 ZIP 并提交审核。
 - **用作者 API 密钥发布**：你在创作中心建一把作者 API 密钥，自己设进环境变量 `LUMIO_API_KEY`（不要贴进对话），Agent 用它完成上传、填资料和提交审核，每一步对外操作前都会先问你。
 <!-- 结束 -->
 

@@ -13,20 +13,22 @@
 
 ## 有哪些表
 
-> 待完善：玩法定下来后列出每张表（管什么、主键）。
+> 待完善（定玩法时）：列出每张表（管什么、主键）。
 
 ## 格式
 
-> 待完善：默认 JSON，一张表一个文件，UTF-8。用表格软件编辑时，写清楚怎么导出成 JSON（导出脚本放 `Tools/`）。
+> 待完善（定玩法时）：默认 JSON，一张表一个文件，UTF-8。用表格软件编辑时，写清楚怎么导出成 JSON（导出脚本放 `Tools/`）。
+
+客户端工程读不到仓根的 `Config/` 时（例如 Unity 只打包 `Assets/` 下的文件），默认由 `Tools/` 里的导出脚本把 `Config/` 复制进工程<!-- 如果：Unity -->（Unity：`Client/unity/Assets/StreamingAssets/Config/`）<!-- 结束 -->。复制出来的是生成物，不手改，改 `Config/` 再重新导出。
 
 ## 命名
 
-> 待完善：默认文件名用 kebab-case（如 `level-list.json`），字段名用 camelCase。
+> 待完善（定玩法时）：默认文件名用 kebab-case（如 `level-list.json`），字段名用 camelCase。
 <!-- 如果：有 Server -->
 
 ## 协议
 
-> 待完善：消息格式、存档格式、错误码放在哪个子目录、用什么格式描述（默认 JSON Schema 或 TypeScript 类型），改协议要两端一起改。
+> 待完善（建工程时）：消息格式、存档格式、错误码放在哪个子目录、用什么格式描述（默认 JSON Schema，两端各自生成类型），改协议要两端一起改。
 <!-- 结束 -->
 
 ## 依赖

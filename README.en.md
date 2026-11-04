@@ -108,7 +108,7 @@ On Windows, if the symlinks come out as plain files, the first setup step rebuil
 
 ## Related repositories
 
-- [LumioAgentSpec](https://github.com/LumioGames/LumioAgentSpec): the original source of the framework files (general red lines, dispatch rules, framework skills, lint tools); merged into this repository and no longer maintained on its own.
+- [LumioAgentSpec](https://github.com/LumioGames/LumioAgentSpec): the source of the framework files (general red lines, dispatch rules, framework skills, lint tools). It is a general-purpose agent project management framework, not limited to games, and is still maintained on its own. This template holds a snapshot of its 1.1.1 release, adapted to live inside the repository with symlinks.
 - [LGUI](https://github.com/LumioGames/LGUI): a game UI framework for agents, recommended for the UI on every route.
 - [Lumio SDK](https://github.com/LumioGames/LumioSDK): docs and types for `@lumiogames/sdk`.
 

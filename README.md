@@ -106,7 +106,7 @@ Windows 上如果软链被检出成了普通文件，初始化第一步会用 `m
 
 ## 相关仓库
 
-- [LumioAgentSpec](https://github.com/LumioGames/LumioAgentSpec)：框架文件（通用红线、调度规程、框架技能、检查工具）最初的来源，已并入本仓库，不再单独维护。
+- [LumioAgentSpec](https://github.com/LumioGames/LumioAgentSpec)：框架文件（通用红线、调度规程、框架技能、检查工具）的来源。它是一个不限于游戏的通用 Agent 项目管理框架，仍在独立维护；本模板里是它 1.1.1 的快照，按游戏项目改成了仓库内加软链的形态。
 - [LGUI](https://github.com/LumioGames/LGUI)：给 Agent 用的游戏 UI 框架，每条路线都推荐用它做界面。
 - [Lumio SDK](https://github.com/LumioGames/LumioSDK)：`@lumiogames/sdk` 的说明与类型。
 

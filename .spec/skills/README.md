@@ -26,4 +26,4 @@ LumioTemplate 的许可条款在它的 `LICENSE` 里：模板仓库放在根目�
 - **策划和美术技能**（design-director、design-doc、design-review、art-director、art-bible、art-prompt、art-review）：来自 LumioGames/LumioGame 仓库的 `.spec/skills`（固定提交 `f7bef4624fb555013e59f64eed0302055d454000`），Apache-2.0，全文见 [LICENSE](LICENSE)。收入本仓库时去掉了只适用于原项目的内容（如写死的平台约束、开源定位）。每个技能开头注明了来源。
 - **按 PolyForm Shield 加附加许可的部分**包括 lumio-init、lumio-update 两个技能，`.spec/knowledge/lumio-platform/`，以及 `lumio-pack.mjs`、`lgui-build-web.mjs` 两个 Lumio 工具。
 
-LumioAgentSpec 已并入 LumioTemplate，以后框架在本仓库维护和发版，版本记录在模板仓库的 `CHANGELOG.md`。
+框架文件是 LumioAgentSpec 1.1.1 的快照。LumioAgentSpec 仍独立维护（通用，不限于游戏）。模板的框架版本记在模板仓库的 `CHANGELOG.md`，用户项目通过 lumio-update 从模板更新。

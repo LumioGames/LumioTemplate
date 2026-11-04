@@ -86,7 +86,7 @@ description: 当 `.spec/AGENTS.md` 写着「状态：未初始化」，或用户
 | --- | --- |
 | `.spec/AGENTS.md` | 「项目是什么」写四行摘要（一句话、技术路线、有没有自己的服务端、发不发布到 Lumio），末尾一句「以 `knowledge/project.md` 为准」；填「模块」（每个模块一行：放什么 + 指向它的 README）。「收口门槛」保持只有 spec-lint。状态这时不改，第二段才改 |
 | `.spec/knowledge/standards/project-structure.md` | 「模块」一节换成本项目的模块表，删掉那条「待完善」；没有 `Server/` 时，依赖方向和「新东西放哪」里删掉 Server 和协议相关的内容 |
-| `.spec/knowledge/standards/workflow.md` | 按人数填「分支策略」「合并 / PR 流程」，删掉这两节的「待完善」；「怎么派 Agent」保留默认内容和「待完善」 |
+| `.spec/knowledge/standards/workflow.md` | 按人数填「分支策略」「合并 / PR 流程」，删掉这两节的「待完善」 |
 | `.spec/knowledge/standards/code-style.md` | 按语言填「文档与注释的语言」，删掉这一节的「待完善」；「语言 / 框架特定风格」写上本路线的默认值，保留「待完善」 |
 | `.spec/knowledge/standards/testing.md` | 不改，两处「待完善」留到以后（定玩法、建工程时） |
 | `.spec/knowledge/README.md` | 在 standards 一节前加一节「一页纸（先看这里）」，两行：`[project.md](project.md)` 项目一页纸——是什么、技术、美术一句话、范围，开工和讨论玩法前先看；`[art/README.md](art/README.md)` 美术一页纸——风格、色板、UI 基调和各块细节，出图、做资产、审美术稿前先看。「暂无正式功能文档」那行保留（还没有功能文档） |

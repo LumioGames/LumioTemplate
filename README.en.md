@@ -20,11 +20,11 @@ Any engine works: web, Unity, UE and others. Publishing to [Lumio](https://lumio
    Cloning this repository directly also works; at the end of setup the agent asks whether to drop the template's remote and history.
 2. **Let your agent clone it**: in any conversation, send the agent this repository's address and say "use LumioTemplate to start a game for me". The agent follows the "For AI agents" section below. If the current folder is empty, it clones the template right there and starts setup in the same conversation. Otherwise it asks for a folder name, clones into it, and asks you to open a new conversation in that folder and say "start".
 
-Setup has three parts:
+Setup has two parts:
 
 1. **Skeleton**: five questions (working title and a one-line idea, whether you write your own server code, web or Unity / UE, whether you publish to Lumio, team size and documentation language). Each comes with an example and a default; say "you decide" to take the default. The agent shows you the folder tree first and generates everything after you confirm. At this point the project is complete and usable.
-2. **Fill in**: gameplay, data tables, art style, design docs, testing, workflow, other conventions, one topic at a time. Say "that's enough for now" whenever you like; what's left can be filled in later.
-3. **Wrap up**: delete the one-time setup skill, rewrite the README for your game, and make one local commit. The agent asks before pushing anywhere.
+   After generating, the agent asks one question: do you want to talk about gameplay or art now? You can also skip it and later say "let's decide the gameplay" or "let's decide the art direction".
+2. **Wrap up**: delete the one-time setup skill, rewrite the README for your game, and make one local commit. The agent asks before pushing anywhere.
 
 You need Git, Node.js 24.18 or later, and an AI coding agent.
 

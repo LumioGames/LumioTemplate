@@ -2,7 +2,7 @@
 
 状态：未初始化
 
-> 未初始化时，Agent 先按 [`skills/lumio-init/SKILL.md`](skills/lumio-init/SKILL.md) 带用户初始化：问几个立项问题，生成模块目录、README 和规范，再引导补全玩法、配表、美术等。初始化结束时删掉 `skills/lumio-init/` 和这段提示，把上面的状态改成「已初始化」。
+> 未初始化时，Agent 先按 [`skills/lumio-init/SKILL.md`](skills/lumio-init/SKILL.md) 带用户初始化：问几个立项问题，生成模块目录、README 和规范，再问要不要接着聊玩法、美术。初始化结束时删掉 `skills/lumio-init/` 和这段提示，把上面的状态改成「已初始化」。
 
 本文件只写本项目独有的东西：项目是什么、模块、收口门槛、技能名册、文件归属。通用规程（调度核心、编码约定、交回物格式、宿主差异）在 [`rules/dispatch.md`](rules/dispatch.md)，通用红线在 [`rules/system.md`](rules/system.md)，本项目的红线在 [`rules/project.md`](rules/project.md)，这里不复述。
 

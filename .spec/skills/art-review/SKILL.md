@@ -1,13 +1,13 @@
 ---
 name: art-review
-description: 对照美术规范审查美术资产与设计稿,产出裁决与修改意见。当收到 UI 稿、原画、特效、场景等美术产出需要评审,或要检查资产是否符合既定风格时使用。
+description: 对照美术规范审查已有的美术资产与设计稿,产出裁决与修改意见。当收到 UI 稿、原画、特效、场景等美术产出需要评审,或要检查资产是否符合既定风格时使用。
 ---
 
 > 来源：来自 LumioGames/LumioGame（Apache-2.0，见 [LICENSE](../LICENSE)），收入 LumioTemplate。项目事实以 `.spec/AGENTS.md` 为准。
 
 # Art Review(美术资产审查)
 
-对照美术规范审查美术资产与设计稿,产出三级裁决与可执行修改意见。规范基准在 `.spec/knowledge/standards/art-direction.md`(落点定义见 [art-bible](../art-bible/SKILL.md))——审查只对照、不立法。
+对照美术规范审查美术资产与设计稿,产出三级裁决与可执行修改意见。规范基准在 `.spec/knowledge/standards/art-direction.md`(数值来源纪律见 [art-director](../art-director/SKILL.md))——审查只对照、不立法。
 
 ## 何时使用
 
@@ -23,7 +23,7 @@ description: 对照美术规范审查美术资产与设计稿,产出裁决与修
    - **L3 可读性 / 功能**:实机尺寸(25% 缩放)测试;玩法信息优先于装饰;剪影 / 层级测试。
    - **L4 落地还原度**:引擎内截图 vs 设计稿并排;色彩偏移归因(资产问题还是场景灯光,TA 裁定)。
 3. **裁决(三级)。** 通过 / 有条件通过(条件清单 + 截止时间,登记为债务、不阻塞下游)/ 退回。退回意见每条:问题定位(截图标注或坐标)+ 违反条款(降级模式注明临时基准)+ **数值化期望**(「标题字号 20→24」,不写「大一点」)+ 严重级;单次退回聚焦 ≤3 个主要问题,小毛病并入条件清单。
-4. **回流。** 同类问题第二次出现 → 建立或更新 `.spec/knowledge/lessons.md`,并登记知识导航;同类退回 3 次 → 路由 art-director 定调后由 [art-bible](../art-bible/SKILL.md) 补条款,AI 产图问题另修 [art-prompt](../art-prompt/SKILL.md) 模板。
+4. **回流。** 同类问题第二次出现 → 建立或更新 `.spec/knowledge/lessons.md`,并登记知识导航;同类退回 3 次 → 用 art-director 定调并补条款,AI 产图问题另修 [art-prompt](../art-prompt/SKILL.md) 模板。
 
 ## 快速参考(域 × 差异化检查点)
 

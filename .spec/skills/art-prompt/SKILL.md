@@ -7,7 +7,7 @@ description: 把美术方向翻译成 AI 出图提示词(Midjourney / Stable Dif
 
 # Art Prompt(AI 出图提示词)
 
-把美术方向系统地翻译成 AI 出图 prompt。方向权威在 [art-director](../art-director/SKILL.md),规范基准在 `.spec/knowledge/standards/art-direction.md`(落点定义见 [art-bible](../art-bible/SKILL.md))——本技能只做翻译,不做定调。
+把美术方向系统地翻译成 AI 出图 prompt。方向权威在 [art-director](../art-director/SKILL.md),规范基准在 `.spec/knowledge/standards/art-direction.md`——本技能只做翻译,不做定调。
 
 ## 何时使用
 
@@ -47,7 +47,7 @@ description: 把美术方向翻译成 AI 出图提示词(Midjourney / Stable Dif
 
 ## 注意事项(Pitfalls)
 
-- **prompt 不是规范。** 好用的出图词想进规范,必须先经 art-director 定调、art-bible 落档。
+- **prompt 不是规范。** 好用的出图词想进规范,必须先经 art-director 定调并写进规范。
 - **探索图 ≠ 定稿。** 拿探索图当既成风格是走私定调。
 - **负向提示不可省。** 移动端资产需要干净剪影与低噪底。
 - **别把假设写成事实。** 探索模式的每张产出都带「未定调」标注。

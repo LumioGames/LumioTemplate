@@ -12,7 +12,7 @@ LumioTemplate 框架的版本记录。每个版本对应一个 tag（`vX.Y.Z`）
 
 - 规则：`rules/system.md` 通用红线、`rules/dispatch.md` 调度与编码规程。结构检查只报告、不阻断。
 - 子 Agent：`agents/reviewer.md`。
-- 14 个常驻技能：框架技能 writing-plans、subagent-driven-development、test-driven-development、systematic-debugging、spec-steward、lumio-update；策划技能 design-director、design-doc、design-review；美术技能 art-director、art-bible、art-prompt、art-review。
+- 11 个常驻技能：框架技能 writing-plans、subagent-driven-development、test-driven-development、systematic-debugging、spec-steward、lumio-update；策划技能 design-director、design-review；美术技能 art-director、art-prompt、art-review。
 - 工具：`tools/spec-lint.mjs` 结构检查（含「`rules/` 下每个文件都要在 `CLAUDE.md` 有 `@import`」）、`tools/closeout-gate.mjs` 收口定级。
 - Lumio 平台知识：`knowledge/lumio-platform/`（SDK 2.11.1、`lumio.json` 与打包、LGUI、网页工程、资源地址）。
 - 客户端发现方式：`CLAUDE.md` 的 `@import`、根目录 `AGENTS.md` 指路、三条软链（`.claude/skills`、`.claude/agents`、`.agents/skills`）。

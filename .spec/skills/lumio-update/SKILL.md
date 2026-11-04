@@ -33,10 +33,8 @@ description: 当用户说「更新框架」「升级框架」「看看模板有�
 .spec/skills/systematic-debugging/
 .spec/skills/spec-steward/
 .spec/skills/design-director/
-.spec/skills/design-doc/
 .spec/skills/design-review/
 .spec/skills/art-director/
-.spec/skills/art-bible/
 .spec/skills/art-prompt/
 .spec/skills/art-review/
 .spec/skills/lumio-update/

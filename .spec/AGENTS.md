@@ -34,11 +34,9 @@ node .spec/tools/spec-lint.mjs
 | [systematic-debugging](skills/systematic-debugging/SKILL.md) | 遇到 bug、测试失败、异常行为，先找根因再动手 |
 | [spec-steward](skills/spec-steward/SKILL.md) | 改了 `.spec/` 的结构，或做完一处改动要沉淀进知识库 |
 | [lumio-update](skills/lumio-update/SKILL.md) | 用户说「更新框架」：把框架文件更新到 LumioTemplate 最新版本，顺带看 LGUI 和 SDK 有没有新版 |
-| [design-director](skills/design-director/SKILL.md) | 讨论并定下玩法、系统、数值、关卡、商业化方向 |
-| [design-doc](skills/design-doc/SKILL.md) | 把定下的玩法写成策划案（`knowledge/features/`） |
+| [design-director](skills/design-director/SKILL.md) | 讨论并定下玩法、系统、数值、关卡、商业化方向，写进策划案（`knowledge/features/`） |
 | [design-review](skills/design-review/SKILL.md) | 审查策划案和开发需求 |
-| [art-director](skills/art-director/SKILL.md) | 讨论并定下美术风格：UI、原画、特效、场景 |
-| [art-bible](skills/art-bible/SKILL.md) | 把定下的美术方向写成美术规范（`knowledge/standards/art-direction.md`） |
+| [art-director](skills/art-director/SKILL.md) | 讨论并定下美术风格：UI、原画、特效、场景，写进美术规范（`knowledge/standards/art-direction.md`） |
 | [art-prompt](skills/art-prompt/SKILL.md) | 把美术方向写成 AI 出图提示词 |
 | [art-review](skills/art-review/SKILL.md) | 按美术规范审查美术资产和设计稿 |
 

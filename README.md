@@ -58,7 +58,7 @@ my-game/
 │  ├─ rules/      通用红线、调度与编码规程、本项目的红线
 │  ├─ knowledge/  规范（项目结构、工作流、代码风格、测试、美术）、玩法方向、Lumio 平台知识
 │  ├─ decisions/  决策记录（ADR），第一条是项目结构与技术路线
-│  ├─ skills/     技能：设计、写计划、派子 Agent、测试先行、排障、沉淀、更新框架，以及策划和美术
+│  ├─ skills/     技能：写计划、派子 Agent、测试先行、排障、沉淀、更新框架，以及策划和美术
 │  ├─ agents/     审查子 Agent
 │  └─ tools/      结构检查、收口定级
 ├─ AGENTS.md      给 Agent 的入口（指路）
@@ -77,7 +77,7 @@ my-game/
 | `.spec/rules/` | `system.md` 通用红线、`dispatch.md` 调度与编码规程、`project.md` 项目红线（初始化时生成） |
 | `.spec/knowledge/` | 规范骨架、功能文档模板、经验教训，以及 `lumio-platform/`：SDK、`lumio.json` 与打包、LGUI、网页工程、资源地址 |
 | `.spec/decisions/`、`plans/` | 决策记录、实现计划的格式（任务卡就是计划里的 `### Task N`） |
-| `.spec/skills/` | 14 个常驻技能（含更新框架用的 `lumio-update`），加上一次性的 `lumio-init`（初始化流程和生成模板，收尾时删除） |
+| `.spec/skills/` | 11 个常驻技能（含更新框架用的 `lumio-update`），加上一次性的 `lumio-init`（初始化流程和生成模板，收尾时删除） |
 | `.spec/agents/reviewer.md` | 审查子 Agent |
 | `.spec/tools/` | `spec-lint.mjs` 结构检查、`closeout-gate.mjs` 收口定级；`lumio-pack.mjs` 和 `lgui-build-web.mjs` 初始化时按路线移到 `Tools/` 或删除 |
 | `.claude/`、`.agents/` | 指向 `.spec/` 的软链（让客户端找到技能和子 Agent） |

@@ -58,7 +58,7 @@ my-game/
 │  ├─ rules/      General red lines, dispatch and coding rules, this project's red lines
 │  ├─ knowledge/  Conventions (structure, workflow, code style, testing, art), gameplay direction, Lumio platform facts
 │  ├─ decisions/  Decision records (ADRs); the first one covers structure and tech route
-│  ├─ skills/     Skills for design, planning, subagent dispatch, test-first, debugging, upkeep, framework updates, game design and art
+│  ├─ skills/     Skills for planning, subagent dispatch, test-first, debugging, upkeep, framework updates, game design and art
 │  ├─ agents/     Review subagent
 │  └─ tools/      Structure lint, closeout grading
 ├─ AGENTS.md      Agent entry point (points to the docs)
@@ -77,7 +77,7 @@ You also get `Server/` if you write your own server code. Every module has a REA
 | `.spec/rules/` | `system.md` general red lines, `dispatch.md` dispatch and coding rules, `project.md` project red lines (generated during setup) |
 | `.spec/knowledge/` | Convention skeletons, a feature doc template, lessons, and `lumio-platform/`: SDK, `lumio.json` and packaging, LGUI, web projects, links |
 | `.spec/decisions/`, `plans/` | Formats for decision records and implementation plans (a task card is a `### Task N` section of a plan) |
-| `.spec/skills/` | 14 standing skills (including `lumio-update` for framework updates), plus the one-time `lumio-init` (setup flow and templates, deleted at the end of setup) |
+| `.spec/skills/` | 11 standing skills (including `lumio-update` for framework updates), plus the one-time `lumio-init` (setup flow and templates, deleted at the end of setup) |
 | `.spec/agents/reviewer.md` | Review subagent |
 | `.spec/tools/` | `spec-lint.mjs` structure lint, `closeout-gate.mjs` closeout grading; `lumio-pack.mjs` and `lgui-build-web.mjs` move to `Tools/` or are deleted during setup, depending on your route |
 | `.claude/`, `.agents/` | Symlinks into `.spec/` (so clients find the skills and the subagent) |

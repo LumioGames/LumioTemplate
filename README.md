@@ -1,126 +1,75 @@
-# LumioTemplate
+<div align="center">
 
-[![LumioGames 出品](https://img.shields.io/badge/LumioGames-%E5%87%BA%E5%93%81-6659DB?style=flat-square&labelColor=171C34&logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIiB3aWR0aD0iOTYiIGhlaWdodD0iOTYiPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjEiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iIzY2NTlkYiIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzlhYTZmZiIvPjwvbGluZWFyR3JhZGllbnQ%2BPC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiByeD0iMjkiIGZpbGw9InVybCgjZykiLz48cmVjdCB4PSIyNSIgeT0iMjIiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgcng9IjQiIGZpbGw9IiNmZmYiLz48cmVjdCB4PSIyNSIgeT0iNDIiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgcng9IjQiIGZpbGw9IiNmZmYiLz48cmVjdCB4PSIyNSIgeT0iNjIiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgcng9IjQiIGZpbGw9IiNmZmYiLz48cmVjdCB4PSI0NSIgeT0iNjIiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgcng9IjQiIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iLjYiLz48cmVjdCB4PSI2NSIgeT0iNjIiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgcng9IjQiIGZpbGw9IiM1ZGUyYzYiLz48cGF0aCBkPSJNNzAgMTlDNzEuNTYgMjguMSA3My45IDMwLjQ0IDgzIDMyQzczLjkgMzMuNTYgNzEuNTYgMzUuOSA3MCA0NUM2OC40NCAzNS45IDY2LjEgMzMuNTYgNTcgMzJDNjYuMSAzMC40NCA2OC40NCAyOC4xIDcwIDE5WiIgZmlsbD0iI2ZmZiIvPjwvc3ZnPgo%3D)](https://lumiogames.cn/)
+<a href="https://lumio.games/studio/"><img src=".github/readme/hero.zh-CN.svg" width="100%" alt="LumioGames 出品 · LumioTemplate：用 AI 做游戏，从一句开始起步"></a>
+
+**[LGUI](https://github.com/LumioGames/LGUI)** &nbsp;·&nbsp; **[Lumio SDK](https://github.com/LumioGames/LumioSDK)** &nbsp;·&nbsp; [English](README.en.md) &nbsp;·&nbsp; 简体中文
+
+[![LumioGames 出品](https://img.shields.io/badge/LumioGames-%E5%87%BA%E5%93%81-6659DB?style=flat-square&labelColor=171C34&logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIiB3aWR0aD0iOTYiIGhlaWdodD0iOTYiPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjEiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iIzY2NTlkYiIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzlhYTZmZiIvPjwvbGluZWFyR3JhZGllbnQ%2BPC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiByeD0iMjkiIGZpbGw9InVybCgjZykiLz48cmVjdCB4PSIyNSIgeT0iMjIiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgcng9IjQiIGZpbGw9IiNmZmYiLz48cmVjdCB4PSIyNSIgeT0iNDIiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgcng9IjQiIGZpbGw9IiNmZmYiLz48cmVjdCB4PSIyNSIgeT0iNjIiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgcng9IjQiIGZpbGw9IiNmZmYiLz48cmVjdCB4PSI0NSIgeT0iNjIiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgcng9IjQiIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iLjYiLz48cmVjdCB4PSI2NSIgeT0iNjIiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgcng9IjQiIGZpbGw9IiM1ZGUyYzYiLz48cGF0aCBkPSJNNzAgMTlDNzEuNTYgMjguMSA3My45IDMwLjQ0IDgzIDMyQzczLjkgMzMuNTYgNzEuNTYgMzUuOSA3MCA0NUM2OC40NCAzNS45IDY2LjEgMzMuNTYgNTcgMzJDNjYuMSAzMC40NCA2OC40NCAyOC4xIDcwIDE5WiIgZmlsbD0iI2ZmZiIvPjwvc3ZnPgo%3D)](https://lumio.games/studio/)
 [![Use this template](https://img.shields.io/badge/Use%20this%20template-%E4%B8%80%E9%94%AE%E5%A4%8D%E5%88%B6-6659DB?style=flat-square&labelColor=171C34)](https://github.com/LumioGames/LumioTemplate/generate)
-[![node](https://img.shields.io/badge/node-26-5DE2C6?style=flat-square&labelColor=171C34)](https://nodejs.org/)
+[![Claude Code](https://img.shields.io/badge/Claude%20Code-supported-9AA6FF?style=flat-square&labelColor=171C34)](https://docs.anthropic.com/en/docs/claude-code)
+[![Codex](https://img.shields.io/badge/Codex-supported-9AA6FF?style=flat-square&labelColor=171C34)](https://github.com/openai/codex)
 [![license](https://img.shields.io/badge/license-PolyForm%20Shield%20%2B%20%E9%99%84%E5%8A%A0%E8%AE%B8%E5%8F%AF-AEB5D6?style=flat-square&labelColor=171C34)](#许可)
 
-[English](README.en.md)
+</div>
 
-Lumio 游戏模板：帮你把一个游戏项目的**目录结构和规范**一次整理好。你把它交给 AI Agent（Claude Code、Codex 等），说一句「开始」，Agent 会问你几个问题，然后生成按你的项目裁剪好的模块目录（每个目录一份 README，写明放什么、依赖谁、不准做什么）和一整套规范：项目结构、开发流程、代码风格、测试、项目红线，以及 Agent 的调度和审查规程。
+<h3 align="center">加入开发者社群 · 访问官网</h3>
 
-不限引擎：网页、Unity、UE 都行，默认发布到 [Lumio](https://lumiogames.cn)。模板不写游戏代码、不建工程、不装依赖，这些是初始化之后的下一步，Agent 会告诉你怎么做。
+<p align="center">
+  <a href="https://qm.qq.com/q/PGkXh4tCyQ"><img src=".github/readme/qr-qq.zh-CN.svg" width="250" alt="扫码或点击加入 QQ 交流群 972220164"></a>
+  <a href="https://applink.feishu.cn/client/chat/chatter/add_by_link?link_token=b24vf257-5a2b-41ce-935e-bc4ce19dc396"><img src=".github/readme/qr-feishu.zh-CN.svg" width="250" alt="扫码或点击加入飞书话题群 LumioGame 开发者社区"></a>
+  <a href="https://lumio.games/studio/"><img src=".github/readme/studio-card.zh-CN.svg" width="250" alt="打开 Lumio 开发者中心 lumio.games/studio"></a>
+</p>
 
-## 两种开始方式
+---
 
-1. **用模板建仓库**：在 GitHub 上点 **Use this template** → **Create a new repository**，把新仓库 clone 到电脑上，用 Claude Code 或 Codex 打开这个文件夹，说：
+## LumioTemplate 是什么
 
-   > 开始
+LumioTemplate 是 [LumioGames](https://lumio.games/studio/) 出品的游戏项目模板。它把游戏项目的上下文、规范、进度和开发技能统一写在仓库的 `.spec/` 里——**支持 Claude Code、Codex、Cursor 等所有 AI 编程工具，并且可以随时在不同 Agent 之间无缝切换接着开发**。
 
-   直接 clone 本仓库也行，收尾时 Agent 会问你要不要去掉模板的远程地址和提交历史。
-2. **让 Agent 帮你克隆**：在任意对话里把本仓库的地址发给 Agent，说「用 LumioTemplate 帮我建个游戏」。Agent 按下面「给 Agent」一节做：当前文件夹是空的，就直接克隆进来，在同一个对话里开始初始化；不是空的，就问好文件夹名克隆进去，再请你到那个文件夹里开一个新对话说「开始」。
+| <img src=".github/readme/icon-engine.svg" width="56" alt=""><br>**支持所有 Agent，随时切换** | <img src=".github/readme/icon-start.svg" width="56" alt=""><br>**面向 Agent 的上下文管理** | <img src=".github/readme/icon-memory.svg" width="56" alt=""><br>**配套 LGUI 与 Lumio SDK** |
+| :-- | :-- | :-- |
+| 遵循统一的仓库规范，**Claude Code、Codex、Cursor** 等符合这套规范的 Agent 全都支持，不用装插件。今天用 Claude 写一半，明天直接换 Codex 接着写，完全不用重新交代。 | 玩法设计、美术风格、代码红线、实现计划和 bug 记录全部沉淀在项目里。不管新开多少次对话、换哪个工具，Agent 每次都能读到最新进度，代码不会越写越乱。 | 内置 Lumio 平台完整知识库：用 [LGUI](https://github.com/LumioGames/LGUI) 快速做界面，用 [Lumio SDK](https://github.com/LumioGames/LumioSDK) 接云存档、排行榜和成就，一键打包发到 [Lumio](https://lumio.games/studio/)（也支持 Unity、UE 等引擎）。 |
 
-初始化分两段：
+## 推荐使用的功能
 
-1. **生成骨架**：问 5 个问题（暂定名和一句话想法、有没有自己写的服务端、发布到哪（Lumio、网页、小游戏、Steam、手机……）、用什么引擎（Agent 按发布目标推荐，你拍板）、几个人做；文档语言默认跟你说话的语言一致），每题都有例子和默认值，没想好就说「你定」。先把目录树画给你确认，再一次生成。到这一步项目就完整能用了。
-   生成完 Agent 只问一句：要不要现在聊玩法 / 美术。不聊也行，以后随时说「我们来定玩法」「我们来定美术方向」。
-2. **收尾**：删掉一次性的初始化技能，把 README 改写成你的游戏说明，本地提交一次。推不推送到 GitHub，先问你。
+打开项目后不用记复杂命令，直接用自然语言跟 Agent 说：
 
-需要：Git、Node 26 LTS（Lumio SDK 支持 24.18 到 26.x，27 及以上不支持）、一个 AI 编程 Agent。
+| 功能 | 怎么跟 Agent 说 | 它会帮你做什么 |
+| :-- | :-- | :-- |
+| **快速建项** | `开始` | 问你 5 个简单问题（做什么游戏、用什么引擎、发到哪等），几分钟建好 `Client/`、`Config/`、`Art/` 目录和全套项目文档。 |
+| **策划与玩法定调** | `我们来定玩法` | 以策划总监视角给你 2–3 个方向选，定下核心循环和最小可玩版本，写进项目文档供后续写代码时自动参考。 |
+| **美术定调与 AI 出图** | `我们来定美术方向`<br>`帮我出主界面 / 角色的图` | 定下配色与固定风格词；出图时自动对照 `Art/baseline/` 基准图库，确保不同时间生成的 UI、角色、场景保持同一画风。 |
+| **多 Agent 并行写代码** | `帮我建工程`<br>`做背包和商店功能` | 先提取公共配表与接口契约，再把功能拆成独立任务派给多个子 Agent 并行开发，写完自动跑测试和代码审查。 |
+| **接入 SDK 与打包发布** | `接上 Lumio SDK`<br>`打包发布` | 按内置文档接入 `@lumiogames/sdk`（本地模拟器先跑通，再接正式平台），用内置打包脚本生成符合规范的 ZIP，直接上传到[开发者中心](https://lumio.games/studio/)。 |
+| **复盘与框架升级** | `复盘一下` / `更新框架` | 把踩过的坑沉淀进 `bug-wall.md` 与项目规范；模板出新版本时一键只更新框架能力，不覆盖你的游戏代码。 |
 
-## 给 Agent
+## 怎么开始
 
-这一节写给从仓库外面读到这份 README 的 AI Agent（比如用户只发了一个链接）。用户可能不写代码：用用户的语言说明每一步在做什么。
+1. **自己在 GitHub 上建仓库**：点 **[Use this template](https://github.com/LumioGames/LumioTemplate/generate)** 创建你的游戏仓库并克隆到本地，用 Claude Code、Codex 或任意 Agent 打开，输入 `开始`（Windows 克隆请加 `git clone -c core.symlinks=true`）。
+2. **直接把链接发给 Agent**：在任意对话里发一句「用 `https://github.com/LumioGames/LumioTemplate` 帮我建个游戏」。
 
-> **给 AI Agent：用 LumioTemplate 开始一个游戏项目**
+> **给 AI Agent 的快速指引**（当用户把本仓库链接发给你时按顺序执行）：
 >
-> 按顺序做。任何一步失败都停下，把错误原文告诉用户，不要跳过。
->
-> 1. 运行 `git --version` 和 `node -v`：要有 Git 和 Node 26 LTS（Lumio SDK 支持 24.18 到 26.x，27 及以上不支持）。缺哪个就告诉用户装什么、去哪下载（Git：https://git-scm.com/downloads ；Node：https://nodejs.org ，选 26 LTS），请用户自己装，装好后再检查一遍。不要替用户装。
-> 2. **当前文件夹是空的**（`ls -A` 没有输出；PowerShell 用 `Get-ChildItem -Force`）：运行 `git clone -c core.symlinks=true https://github.com/LumioGames/LumioTemplate .`。然后就在**这次对话里**接着做：先读 `AGENTS.md` 和它列出的几份文件，再按 `.spec/skills/lumio-init/SKILL.md` 开始初始化。不用开新对话——这次对话不会自动载入这些文件，你主动去读就行。
-> 3. **当前文件夹不是空的**：问用户项目文件夹叫什么（小写字母、数字和连字符，例如 `star-hop`），运行 `git clone -c core.symlinks=true https://github.com/LumioGames/LumioTemplate <文件夹名>`，然后请用户在那个文件夹里开一个新对话，说「开始」。不要在当前文件夹里初始化。
-> 4. **用户想要一个自己的 GitHub 仓库**：在第 2 或第 3 步克隆之前，先问用户仓库名、公开还是私有。用户同意后运行 `gh repo create <仓库名> --template LumioGames/LumioTemplate --private`（公开就用 `--public`），等几秒让 GitHub 生成好，再按第 2 或第 3 步克隆**这个新仓库**的地址，而不是模板的地址。没装或没登录 `gh` 时，请用户在 GitHub 上点 Use this template 建好仓库，把地址发给你。推送、建远程仓库、发布这类对外操作，每一次都先问用户。
+> 1. 检查 `git --version` 和 `node -v`（需 Node 24.18–26.x），缺哪个请用户自行安装（Git：https://git-scm.com/downloads ；Node：https://nodejs.org 选 26 LTS），不要替用户装。
+> 2. 若用户想先在 GitHub 建自己的仓库，询问仓库名与公开/私有后运行 `gh repo create <name> --template LumioGames/LumioTemplate` 并克隆该仓库；否则直接运行 `git clone -c core.symlinks=true https://github.com/LumioGames/LumioTemplate <目标目录>`（当前目录为空可克隆到 `.`）。
+> 3. 克隆完成后，若在项目根目录则直接读取 `AGENTS.md` 指向的文档并按 `.spec/skills/lumio-init/SKILL.md` 带用户完成初始化；若克隆在子目录则请用户在该子目录开新对话说「开始」。所有对外操作（建远端仓库、`git push`、上传发布）每次都先征得用户同意。
 
-## 你会得到什么
+## 配套工具与平台
 
-以「单机、发布到 Lumio、网页 + LGUI」为例，初始化后的项目是这样：
-
-```
-my-game/
-├─ Client/        客户端。网页路线以后在 Client/app 建 LGUI 工程（Unity 路线还有 Client/unity）
-├─ Config/        配表和通用配置；有自己的服务端时还放协议
-├─ Art/           美术源文件：风格探索、参考图、出图提示词
-├─ Tools/         开发工具（Lumio 打包工具在 .spec/tools/）
-├─ Builds/        构建产物，按发布目标分子目录，只有 README 进 git
-├─ .spec/
-│  ├─ AGENTS.md   项目中心文档：项目是什么、模块、收口命令
-│  ├─ LICENSE     LumioTemplate 的许可条款（初始化时从根目录移进来，根目录留给你的游戏）
-│  ├─ rules/      工作方式与通用红线、本项目的红线
-│  ├─ knowledge/  规范（项目结构、工作流、代码风格、测试、美术）、玩法方向、Lumio 平台知识
-│  ├─ decisions/  决策记录（ADR），第一条是项目结构与技术路线
-│  ├─ skills/     技能：写计划、派子 Agent、测试先行、排障、沉淀、更新框架，以及策划和美术
-│  ├─ agents/     审查子 Agent
-│  └─ tools/      结构检查
-├─ AGENTS.md      给 Agent 的入口（指路）
-├─ CLAUDE.md      Claude Code 的入口（自动载入核心文档）
-└─ README.md      你的游戏说明
-```
-
-有自己写的服务端代码时多一个 `Server/`。每个模块一份 README；还没跟你确认的地方标着「待完善」，以后随时补。
-
-## 模板仓库里有什么
-
-| 路径 | 内容 |
-| --- | --- |
-| `AGENTS.md` / `CLAUDE.md` | Agent 的入口：先读哪几份文档；Claude Code 经 `CLAUDE.md` 自动载入 |
-| `.spec/AGENTS.md` | 项目中心文档，初始状态是「未初始化」 |
-| `.spec/rules/` | `system.md` 工作方式与通用红线、`project.md` 项目红线（初始化时生成） |
-| `.spec/knowledge/` | 规范骨架、功能文档模板、bug 墙，以及 `lumio-platform/`：SDK、`lumio.json` 与打包、LGUI、网页工程、资源地址 |
-| `.spec/decisions/`、`plans/` | 决策记录、实现计划的格式（任务卡就是计划里的 `### Task N`） |
-| `.spec/skills/` | 11 个常驻技能（含更新框架用的 `lumio-update`），加上一次性的 `lumio-init`（初始化流程和生成模板，收尾时删除） |
-| `.spec/agents/reviewer.md` | 审查子 Agent |
-| `.spec/tools/` | `spec-lint.mjs` 结构检查、`lumio-pack.mjs` Lumio 打包、`lgui-build-web.mjs` LGUI 网页构建（过渡脚本） |
-| `.claude/`、`.agents/` | 指向 `.spec/` 的软链（让客户端找到技能和子 Agent） |
-| `CHANGELOG.md` | 框架的版本记录（每个版本一个 tag），初始化收尾时删除 |
-
-## 更新框架
-
-`.spec/` 里的工作方式与通用红线、技能、检查工具和 Lumio 平台知识是**框架文件**，项目不改；你自己的规则、规范、玩法和决策是**项目文件**，归你所有。模板以后出了新版，在项目里对 Agent 说：
-
-> 更新框架
-
-Agent 会用 `lumio-update` 技能：拉取 LumioTemplate 最新的版本 tag，把这之间的更新记录给你看，只覆盖框架文件，覆盖后把改动（`git diff`）给你看，跑一遍结构检查，本地提交一次，推送前先问你。顺带看看 LGUI 和 Lumio SDK 有没有新版，只提示、不自动升级。当前框架版本写在 `.spec/skills/lumio-update/SKILL.md` 里。
-
-## 支持哪些 Agent
-
-`.spec/` 是唯一来源，各客户端看到的是同一套文件，不需要装任何框架插件。
-
-| 能力 | Claude Code | Codex | 其他读 `AGENTS.md` 的 Agent |
-| --- | --- | --- | --- |
-| 核心文档 | 模板用 `CLAUDE.md` 的 `@import` 每次会话载入 | 模板在根目录 `AGENTS.md` 列出要读的文件，主 Agent 主动读 | 同 Codex |
-| 技能 | 模板放了 `.claude/skills` 软链 | 模板放了 `.agents/skills` 软链 | 按 `AGENTS.md` 去 `.spec/skills/` 读 |
-| 审查子 Agent | 模板放了 `.claude/agents` 软链 | 模板没给 Codex 配项目级子 Agent，主 Agent 读 `reviewer.md` 自审 | 主 Agent 读 `reviewer.md` 自审 |
-
-Windows 上要先打开开发者模式，再用上面带 `-c core.symlinks=true` 的命令克隆，否则三条软链会变成普通文件，技能找不到。
-
-## 相关仓库
-
-- [LumioAgentSpec](https://github.com/LumioGames/LumioAgentSpec)：框架文件（通用红线、框架技能、检查工具）的来源。它是一个不限于游戏的通用 Agent 项目管理框架，仍在独立维护；本模板里是它 1.1.1 的快照，按游戏项目改成了仓库内加软链的形态。
-- [LGUI](https://github.com/LumioGames/LGUI)：给 Agent 用的游戏 UI 框架，每条路线都推荐用它做界面。
-- [Lumio SDK](https://github.com/LumioGames/LumioSDK)：`@lumiogames/sdk` 的说明与类型。
-
-## 社群
-
-开发者 QQ 群：[972220164](https://qm.qq.com/q/PGkXh4tCyQ)
+| 产品 / 仓库 | 说明 |
+| :-- | :-- |
+| **[Lumio 开发者中心](https://lumio.games/studio/)** | `lumio.games/studio` — 上传游戏 ZIP 包、配置云存档与排行榜、管理版本、获取作者 API 密钥。 |
+| **[LGUI](https://github.com/LumioGames/LGUI)** | 面向 AI Agent 的游戏 UI 框架，不依赖游戏引擎，直接在浏览器里把游戏界面和交互做完。 |
+| **[Lumio SDK](https://github.com/LumioGames/LumioSDK)** | `@lumiogames/sdk` — 提供平台登录状态、云存档、排行榜、成就、游戏公屏与本地模拟器。 |
+| **[LumioAgentSpec](https://github.com/LumioGames/LumioAgentSpec)** | 本模板底层使用的通用 Agent 上下文与项目管理框架。 |
 
 ## 许可
 
-LumioTemplate 源码公开，采用 [PolyForm Shield 1.0.0](https://polyformproject.org/licenses/shield/1.0.0) 许可，另加 LumioGames 的附加许可和商标说明，全文都在 [LICENSE](LICENSE) 里。简单说：
+源码公开，采用 [PolyForm Shield 1.0.0](https://polyformproject.org/licenses/shield/1.0.0) 与附加许可（全文见 [LICENSE](LICENSE)，第三方组件许可说明见 `.spec/skills/README.md`）：
 
-| 可以 | 不可以 |
-| :-- | :-- |
-| 用模板做你自己的游戏：游戏归你所有，可以收费商用，可以发到 Lumio 以外的平台 | 拿模板或改过的版本去做游戏模板、游戏开发工具、游戏平台这类竞品，收费、免费都不行 |
-| 点 Use this template、fork、修改、提 PR，用来学习、教学、研究 | 换个名字、换层皮把模板本身重新发布 |
-| 在你的游戏里写「用 LumioTemplate 制作」「在 Lumio 发布」 | 把 Lumio、LumioGames 的名字和图标当成自己的品牌 |
+- **可以**：用模板开发你自己的游戏（可免费或收费商用，可发到 Lumio 或任何其他平台），也可用于学习、修改、提 PR。
+- **不可以**：拿本模板或修改版去做游戏模板、游戏开发工具、游戏平台等竞品，或直接换皮重新发布模板本身。
 
-许可覆盖模板的文件和它们的副本，包括你用模板初始化的项目里保留的那些（初始化后条款放在 `.spec/LICENSE`）；你在自己项目里新加的文件不在其中。其中几部分另有许可：取自 LumioAgentSpec 的规则、子 Agent、检查工具和 5 个框架技能（writing-plans、subagent-driven-development、test-driven-development、systematic-debugging、spec-steward）是 MIT（writing-plans 和 subagent-driven-development 同时改编自 obra/superpowers，也是 MIT）；5 个策划、美术技能（design-director、design-review、art-director、art-prompt、art-review）是 Apache-2.0（见 [.spec/skills/README.md](.spec/skills/README.md)）。有其他用法，请先通过[开发者中心](https://lumiogames.cn/studio/)或上面的社群联系我们，单独授权。以 LICENSE 里的英文原文为准，这里的中文只是帮助理解。
+<br>
+
+<p align="center"><a href="https://lumio.games/studio/"><img src=".github/readme/brand.zh-CN.svg" width="100%" alt="LumioTemplate 由 LumioGames 出品 · Lumio，游戏创造快乐 · 打开开发者中心"></a></p>

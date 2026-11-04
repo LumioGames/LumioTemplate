@@ -10,18 +10,19 @@
  *  1. knowledge 文档 frontmatter:name / description / metadata.type / metadata.status 齐全;
  *     status 只能取枚举(设计中 / 实施中 / 已交付 / 历史归档);description ≤ 120 字符,
  *     且必须单行明文(禁 YAML 多行标量 > / |,防止绕过长度校验)。
- *  2. 导航覆盖:features/ 与 standards/ 及 knowledge 根下的 .md 必须被 knowledge/README.md
- *     链接到(索引漂移 = 知识隐身);decisions/ 下每条 ADR 必须登记进 decisions/README.md 索引。
+ *  2. 导航覆盖:features/、standards/、art/README.md 及 knowledge 根下的 .md 必须被 knowledge/README.md
+ *     链接到,art/ 下的细节 .md 必须被 art/README.md 链接到(索引漂移 = 知识隐身);
+ *     decisions/ 下每条 ADR 必须登记进 decisions/README.md 索引。
  *  3. 链接可达:.spec 下全部 .md 的相对链接必须指向存在的文件
  *     (剥围栏代码块与行内代码,避免代码里的 [T](x) 误判)。
- *  5. 禁并行文档根:git 索引内不得出现 docs/specs/、docs/plans/,或仓根之外的
+ *  4. 禁并行文档根:git 索引内不得出现 docs/specs/、docs/plans/,或仓根之外的
  *     第二个 .spec/;非 git 仓库或无 git 时跳过本项,
  *     其余 git 失败上报(不静默失效)。
- *  6. ADR 状态行:每条 ADR 必有「- 状态:」行,取值以「生效」开头,或
+ *  5. ADR 状态行:每条 ADR 必有「- 状态:」行,取值以「生效」开头,或
  *     「(部分)被 [NNNN](<file>) 取代」——被取代必须链接取代者。
- *  7. 计划 frontmatter:.spec/plans/ 根目录每份计划(README 除外)必须有 frontmatter,
+ *  6. 计划 frontmatter:.spec/plans/ 根目录每份计划(README 除外)必须有 frontmatter,
  *     且只允许 status 字段,枚举 pending / in_progress / completed;子目录不校验。
- *  8. 强制载入完整性:.spec/AGENTS.md、.spec/knowledge/README.md 与 .spec/rules/ 下每个 .md
+ *  7. 强制载入完整性:.spec/AGENTS.md、.spec/knowledge/README.md 与 .spec/rules/ 下每个 .md
  *     都必须在根 CLAUDE.md 有对应的 `@.spec/<路径>` 行(漏一行 = Claude Code 会话开始时静默不载入);
  *     缺 CLAUDE.md 本身也报。
  */
@@ -97,7 +98,13 @@ function mdLinks(file) {
 const knowledgeDir = join(SPEC, 'knowledge')
 const featureDocs = walk(join(knowledgeDir, 'features'), (p) => p.endsWith('.md'))
 const standardDocs = walk(join(knowledgeDir, 'standards'), (p) => p.endsWith('.md'))
-for (const file of [...featureDocs, ...standardDocs]) {
+const artDocs = walk(join(knowledgeDir, 'art'), (p) => p.endsWith('.md'))
+const rootDocs = existsSync(knowledgeDir)
+  ? readdirSync(knowledgeDir)
+      .filter((n) => n.endsWith('.md') && n !== 'README.md')
+      .map((n) => join(knowledgeDir, n))
+  : []
+for (const file of [...featureDocs, ...standardDocs, ...artDocs, ...rootDocs]) {
   const fm = parseFrontmatter(file)
   if (!fm) { err(file, '缺少 frontmatter'); continue }
   for (const key of ['name', 'description']) if (!fm[key]) err(file, `frontmatter 缺 ${key}`)
@@ -113,18 +120,25 @@ for (const file of [...featureDocs, ...standardDocs]) {
   }
 }
 
-// ── 2. 导航覆盖 + ADR 索引覆盖 ────────────────────────────────────────────
+// ── 2. 导航覆盖 + ADR 索引覆盖（含 5. ADR 状态行） ────────────────────────
 const navFile = join(knowledgeDir, 'README.md')
+const artReadme = join(knowledgeDir, 'art', 'README.md')
 if (existsSync(navFile)) {
   const navLinkSet = new Set(mdLinks(navFile).map((l) => resolve(knowledgeDir, l)))
-  const rootDocs = readdirSync(knowledgeDir)
-    .filter((n) => n.endsWith('.md') && n !== 'README.md')
-    .map((n) => join(knowledgeDir, n))
-  for (const file of new Set([...featureDocs, ...standardDocs, ...rootDocs])) {
+  const mustInNav = [...featureDocs, ...standardDocs, ...rootDocs, ...(existsSync(artReadme) ? [artReadme] : [])]
+  for (const file of new Set(mustInNav)) {
     if (!navLinkSet.has(file)) err(file, '未登记进 knowledge/README.md 导航(索引漂移 = 知识隐身)')
   }
 } else if (existsSync(knowledgeDir)) {
   err(navFile, '缺知识导航 knowledge/README.md')
+}
+if (existsSync(artReadme)) {
+  const artLinkSet = new Set(mdLinks(artReadme).map((l) => resolve(dirname(artReadme), l)))
+  for (const file of artDocs.filter((p) => p !== artReadme)) {
+    if (!artLinkSet.has(file)) err(file, '未登记进 knowledge/art/README.md 导航(索引漂移 = 知识隐身)')
+  }
+} else if (artDocs.length > 0) {
+  err(artReadme, '缺美术一页纸 knowledge/art/README.md')
 }
 
 const decisionsDir = join(SPEC, 'decisions')
@@ -152,7 +166,7 @@ for (const file of walk(SPEC, (p) => p.endsWith('.md'))) {
   }
 }
 
-// ── 7. 计划 frontmatter(仅 status) ────────────────────────────────────────
+// ── 6. 计划 frontmatter(仅 status) ────────────────────────────────────────
 function checkStatusCards(dir, label) {
   if (!existsSync(dir)) return
   for (const name of readdirSync(dir)) {
@@ -169,7 +183,7 @@ function checkStatusCards(dir, label) {
 }
 checkStatusCards(join(SPEC, 'plans'), '计划')
 
-// ── 5. 禁并行文档根(遍历面 = git 索引;非 git 环境跳过) ───────────────
+// ── 4. 禁并行文档根(遍历面 = git 索引;非 git 环境跳过) ───────────────
 let indexedFiles = null
 try {
   indexedFiles = execFileSync('git', ['ls-files', '-z'], {
@@ -192,7 +206,7 @@ for (const rel of indexedFiles ?? []) {
   }
 }
 
-// ── 8. 强制载入完整性(CLAUDE.md @import) ────────────────────────────────
+// ── 7. 强制载入完整性(CLAUDE.md @import) ────────────────────────────────
 const claudeMdFile = join(ROOT, 'CLAUDE.md')
 if (!existsSync(claudeMdFile)) {
   err(claudeMdFile, '缺 CLAUDE.md(Claude Code 的强制载入入口)')

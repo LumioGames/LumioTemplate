@@ -128,7 +128,7 @@ description: 当 `.spec/AGENTS.md` 写着「状态：未初始化」，或用户
    - 把根目录 `LICENSE` 移到 `.spec/LICENSE`（第 1 步清过历史的，文件还没被跟踪，用 `mv LICENSE .spec/LICENSE`；没清的用 `git mv LICENSE .spec/LICENSE`）。它是 LumioTemplate 的许可条款，跟着项目里保留的模板文件走；根目录留给用户自己的游戏。
    - 问用户要不要给游戏选一个许可，默认不放。跟用户说清楚：不放许可文件，游戏的代码和内容仍然归用户所有，只是没有对外授权；想让别人也能用（比如开源），才需要选一个。用户要选，就请用户说用哪一种（例如 MIT、Apache-2.0）和版权人写谁，按该许可的标准全文写进根目录 `LICENSE`。Agent 不替用户挑许可。
    - 按 `skeleton/game-readme.md` 把根目录 `README.md` 改写成这款游戏的说明（条件 `选了游戏许可` / `没选游戏许可` 按上一条的答案）。
-   - 问用户要不要英文版 README，默认不要：删掉 `README.en.md`；要就按同样的内容改写它。删掉根目录 `CHANGELOG.md`（那是模板的版本记录，以后更新框架时读的是新版模板里的那份）。
+   - 问用户要不要英文版 README，默认不要：删掉 `README.en.md`；要就按同样的内容改写它。删掉根目录 `CHANGELOG.md` 和 `.github/readme/`（那是模板的版本记录与说明配图，以后更新框架时读的是新版模板里的那份）。
 3. **改入口文档。** `.spec/AGENTS.md`：状态改成「已初始化」，删掉状态下面那段引用块提示。根目录 `AGENTS.md`：删掉「`.spec/AGENTS.md` 写着『状态：未初始化』时……」那一段。
 4. **删掉本技能。** 删除整个 `.spec/skills/lumio-init/` 文件夹（还在 git 里时用 `git rm -r -q .spec/skills/lumio-init`）。三条软链都指向 `.spec/skills/`，删一次两边客户端就都看不到它了：`ls .claude/skills/ .agents/skills/` 里不应再有 `lumio-init`。
 5. **再检查一次。** `node .spec/tools/spec-lint.mjs` 输出 `spec-lint: OK`。

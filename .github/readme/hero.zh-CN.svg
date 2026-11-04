@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 560" width="1280" height="560" role="img" aria-label="LumioGames 出品 · LumioTemplate：用 AI 做游戏，从一句开始起步">
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#12152B"/><stop offset="1" stop-color="#1D2148"/></linearGradient>
+  <radialGradient id="gTeal" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#6659DB" stop-opacity=".55"/><stop offset="1" stop-color="#6659DB" stop-opacity="0"/></radialGradient>
+  <radialGradient id="gAmber" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#FFB86B" stop-opacity=".20"/><stop offset="1" stop-color="#FFB86B" stop-opacity="0"/></radialGradient>
+  <radialGradient id="gViolet" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#5DE2C6" stop-opacity=".14"/><stop offset="1" stop-color="#5DE2C6" stop-opacity="0"/></radialGradient>
+  <pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="12" cy="12" r="1.1" fill="#8CA0FF" fill-opacity=".16"/></pattern>
+  <clipPath id="round"><rect width="1280" height="560" rx="28"/></clipPath>
+  <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#000" flood-opacity=".45"/></filter>
+</defs>
+<g clip-path="url(#round)">
+  <rect width="1280" height="560" fill="url(#bg)"/>
+  <rect width="1280" height="560" fill="url(#dots)"/>
+  <circle cx="980" cy="150" r="380" fill="url(#gTeal)"/>
+  <circle cx="1220" cy="560" r="320" fill="url(#gAmber)"/>
+  <circle cx="120" cy="620" r="360" fill="url(#gViolet)"/>
+
+  <g transform="translate(64 40) scale(0.6)">
+  <defs><linearGradient id="heroMark" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6659db"/><stop offset="1" stop-color="#9aa6ff"/></linearGradient></defs>
+  <rect width="100" height="100" rx="29" fill="url(#heroMark)"/><rect x="25" y="22" width="16" height="16" rx="4" fill="#fff"/><rect x="25" y="42" width="16" height="16" rx="4" fill="#fff"/><rect x="25" y="62" width="16" height="16" rx="4" fill="#fff"/><rect x="45" y="62" width="16" height="16" rx="4" fill="#fff" fill-opacity=".6"/><rect x="65" y="62" width="16" height="16" rx="4" fill="#5de2c6"/><path d="M70 19C71.56 28.1 73.9 30.44 83 32C73.9 33.56 71.56 35.9 70 45C68.44 35.9 66.1 33.56 57 32C66.1 30.44 68.44 28.1 70 19Z" fill="#fff"/></g>
+  <text x="140.2" y="73.6" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei','Noto Sans CJK SC',system-ui,sans-serif" font-size="31.200000000000003" font-weight="800" fill="#F6F7FD">Lumio</text>
+  <text x="141.4" y="91.6" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei','Noto Sans CJK SC',system-ui,sans-serif" font-size="13.8" font-weight="700" letter-spacing="3.45" fill="#F6F7FD">GAMES</text>
+  <path d="M250 46V94" stroke="#fff" stroke-opacity=".25" stroke-width="1.5"/>
+  <text font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei','Noto Sans CJK SC',system-ui,sans-serif">
+    <tspan x="270" y="66" font-size="19" font-weight="800" fill="#F6F7FD">LumioGames 出品</tspan>
+    <tspan x="270" y="90" font-size="15" font-weight="500" fill="#AEB5D6">面向 AI Agent 的游戏项目模板 · 源码公开</tspan>
+  </text>
+
+  <text x="60" y="226" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei','Noto Sans CJK SC',system-ui,sans-serif" font-size="88" font-weight="800" letter-spacing="-2" fill="#F6F7FD">Template<tspan fill="#5DE2C6">.</tspan></text>
+
+  <text font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei','Noto Sans CJK SC',system-ui,sans-serif" font-size="40" font-weight="800" fill="#F6F7FD">
+    <tspan x="64" y="324">用 AI 做游戏，</tspan><tspan x="64" y="378">从一句「<tspan fill="#5DE2C6">开始</tspan>」起步</tspan>
+  </text>
+  <text font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei','Noto Sans CJK SC',system-ui,sans-serif" font-size="18.5" fill="#AEB5D6">
+    <tspan x="64" y="426">自带面向 Agent 的上下文规范、游戏开发技能与 Lumio SDK 指南。</tspan><tspan x="64" y="455">支持 Claude、Codex 等所有 Agent，随时切换不同工具接着开发。</tspan>
+  </text>
+  <rect x="64" y="488" width="174" height="34" rx="10" fill="#fff" fill-opacity="0.06" stroke="#fff" stroke-opacity="0.14" /><text x="151" y="510.5" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei','Noto Sans CJK SC',system-ui,sans-serif" font-size="14.5" font-weight="600" fill="#D5DAEE">支持所有主流 Agent</text><rect x="248" y="488" width="138" height="34" rx="10" fill="#fff" fill-opacity="0.06" stroke="#fff" stroke-opacity="0.14" /><text x="317" y="510.5" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei','Noto Sans CJK SC',system-ui,sans-serif" font-size="14.5" font-weight="600" fill="#D5DAEE">LGUI · Lumio SDK</text><rect x="396" y="488" width="134" height="34" rx="10" fill="#fff" fill-opacity="0.06" stroke="#fff" stroke-opacity="0.14" /><text x="463" y="510.5" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei','Noto Sans CJK SC',system-ui,sans-serif" font-size="14.5" font-weight="600" fill="#D5DAEE">网页 / Unity / UE</text>
+
+  <g transform="translate(616 78)"><g filter="url(#shadow)">
+    <rect x="0" y="0" width="600" height="262" rx="16" fill="#0A0F1E" fill-opacity=".94" stroke="#fff" stroke-opacity=".14"/>
+    <circle cx="22" cy="20" r="4.5" fill="#FF7EA6"/><circle cx="38" cy="20" r="4.5" fill="#FFB86B"/><circle cx="54" cy="20" r="4.5" fill="#5DE2C6"/>
+    <text x="578" y="25" text-anchor="end" font-family="'SF Mono',Menlo,Consolas,'Liberation Mono',monospace" font-size="12" fill="#7480A8">my-game — claude / codex / cursor</text>
+    <path d="M0 38H600" stroke="#fff" stroke-opacity=".08"/>
+    <text font-family="'SF Mono',Menlo,Consolas,'Liberation Mono',monospace" font-size="14" fill="#F6F7FD">
+      <tspan x="24" y="68" fill="#5DE2C6">❯ 开始</tspan>
+      <tspan x="24" y="98" fill="#AEB5D6">回答 5 个问题，自动生成项目目录与统一上下文：</tspan>
+      <tspan x="24" y="132"><tspan fill="#FFB86B">├─ Client/</tspan>   <tspan fill="#7480A8">客户端工程</tspan>     <tspan fill="#FFB86B">├─ Config/</tspan>   <tspan fill="#7480A8">配表与通用配置</tspan></tspan>
+      <tspan x="24" y="160"><tspan fill="#FFB86B">├─ Art/</tspan>      <tspan fill="#7480A8">美术与基准图</tspan>   <tspan fill="#FFB86B">├─ Builds/</tspan>   <tspan fill="#7480A8">各平台构建包</tspan></tspan>
+      <tspan x="24" y="188"><tspan fill="#9AA6FF">└─ .spec/</tspan>    <tspan fill="#7480A8">统一上下文规范 · 换任何 Agent 都能直接接着写</tspan></tspan>
+      <tspan x="24" y="228" fill="#5DE2C6">✓ 项目已就绪 · 直接对你的 Agent 说想做什么</tspan>
+    </text>
+  </g></g>
+
+  <g transform="translate(956 356)"><g filter="url(#shadow)">
+    <rect x="0" y="0" width="260" height="168" rx="16" fill="#171C34" stroke="#fff" stroke-opacity=".16" stroke-width="1.5"/>
+    <text x="20" y="34" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei','Noto Sans CJK SC',system-ui,sans-serif" font-size="16" font-weight="800" fill="#F6F7FD">推荐功能</text>
+    <rect x="16" y="48" width="228" height="32" rx="8" fill="#fff" fill-opacity=".06"/>
+    <text x="28" y="69" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei','Noto Sans CJK SC',system-ui,sans-serif" font-size="13.5" font-weight="600" fill="#5DE2C6">定玩法 · 定美术 · AI 出图</text>
+    <rect x="16" y="86" width="228" height="32" rx="8" fill="#fff" fill-opacity=".06"/>
+    <text x="28" y="107" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei','Noto Sans CJK SC',system-ui,sans-serif" font-size="13.5" font-weight="600" fill="#FFB86B">多 Agent 并行写功能代码</text>
+    <rect x="16" y="124" width="228" height="32" rx="8" fill="#fff" fill-opacity=".06"/>
+    <text x="28" y="145" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei','Noto Sans CJK SC',system-ui,sans-serif" font-size="13.5" font-weight="600" fill="#9AA6FF">接 Lumio SDK · 打包发布</text>
+  </g></g>
+
+  <g transform="translate(616 392)"><g filter="url(#shadow)">
+    <rect x="0" y="0" width="316" height="62" rx="14" fill="#0A0F1E" fill-opacity=".94" stroke="#5DE2C6" stroke-opacity=".5"/>
+    <circle cx="31" cy="31" r="14" fill="#5DE2C6"/>
+    <path d="M25 31.5L29.5 36L37.5 27" fill="none" stroke="#12152B" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="56" y="27" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei','Noto Sans CJK SC',system-ui,sans-serif" font-size="15" font-weight="800" fill="#F6F7FD">支持所有 Agent · 随时切换</text>
+    <text x="56" y="46" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei','Noto Sans CJK SC',system-ui,sans-serif" font-size="12.5" fill="#7480A8">Claude · Codex · Cursor 无缝接力开发</text>
+  </g></g>
+  <path d="M1200 64C1201.2 72.8 1201.2 72.8 1210 74C1201.2 75.2 1201.2 75.2 1200 84C1198.8 75.2 1198.8 75.2 1190 74C1198.8 72.8 1198.8 72.8 1200 64Z" fill="#FFB86B" opacity="0.9"/><path d="M1230 103C1230.6 107.4 1230.6 107.4 1235 108C1230.6 108.6 1230.6 108.6 1230 113C1229.4 108.6 1229.4 108.6 1225 108C1229.4 107.4 1229.4 107.4 1230 103Z" fill="#5DE2C6" opacity="0.8"/><path d="M602 76C602.72 81.28 602.72 81.28 608 82C602.72 82.72 602.72 82.72 602 88C601.28 82.72 601.28 82.72 596 82C601.28 81.28 601.28 81.28 602 76Z" fill="#5DE2C6" opacity="0.7"/>
+</g>
+<rect x=".75" y=".75" width="1278.5" height="558.5" rx="27.5" fill="none" stroke="#fff" stroke-opacity=".08" stroke-width="1.5"/>
+</svg>

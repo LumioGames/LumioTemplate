@@ -1,128 +1,75 @@
-# LumioTemplate
+<div align="center">
 
-[![Made by LumioGames](https://img.shields.io/badge/made%20by-LumioGames-6659DB?style=flat-square&labelColor=171C34&logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIiB3aWR0aD0iOTYiIGhlaWdodD0iOTYiPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjEiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iIzY2NTlkYiIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzlhYTZmZiIvPjwvbGluZWFyR3JhZGllbnQ%2BPC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiByeD0iMjkiIGZpbGw9InVybCgjZykiLz48cmVjdCB4PSIyNSIgeT0iMjIiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgcng9IjQiIGZpbGw9IiNmZmYiLz48cmVjdCB4PSIyNSIgeT0iNDIiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgcng9IjQiIGZpbGw9IiNmZmYiLz48cmVjdCB4PSIyNSIgeT0iNjIiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgcng9IjQiIGZpbGw9IiNmZmYiLz48cmVjdCB4PSI0NSIgeT0iNjIiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgcng9IjQiIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iLjYiLz48cmVjdCB4PSI2NSIgeT0iNjIiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgcng9IjQiIGZpbGw9IiM1ZGUyYzYiLz48cGF0aCBkPSJNNzAgMTlDNzEuNTYgMjguMSA3My45IDMwLjQ0IDgzIDMyQzczLjkgMzMuNTYgNzEuNTYgMzUuOSA3MCA0NUM2OC40NCAzNS45IDY2LjEgMzMuNTYgNTcgMzJDNjYuMSAzMC40NCA2OC40NCAyOC4xIDcwIDE5WiIgZmlsbD0iI2ZmZiIvPjwvc3ZnPgo%3D)](https://lumiogames.cn/)
-[![Use this template](https://img.shields.io/badge/Use%20this%20template-one%20click-6659DB?style=flat-square&labelColor=171C34)](https://github.com/LumioGames/LumioTemplate/generate)
-[![node](https://img.shields.io/badge/node-26-5DE2C6?style=flat-square&labelColor=171C34)](https://nodejs.org/)
-[![license](https://img.shields.io/badge/license-PolyForm%20Shield%20%2B%20extra%20grant-AEB5D6?style=flat-square&labelColor=171C34)](#license)
+<a href="https://lumio.games/studio/"><img src=".github/readme/hero.en.svg" width="100%" alt="By LumioGames · LumioTemplate: Build games with AI Agents, starting with one word"></a>
 
-[中文](README.md)
+**[LGUI](https://github.com/LumioGames/LGUI)** &nbsp;·&nbsp; **[Lumio SDK](https://github.com/LumioGames/LumioSDK)** &nbsp;·&nbsp; English &nbsp;·&nbsp; [简体中文](README.md)
 
-The Lumio game template sets up the **layout and conventions** of a game project in one go. Hand it to an AI agent (Claude Code, Codex, …) and say "start". The agent asks a few questions, then generates module folders cut to fit your project (each with a README that says what goes in it, what it depends on and what it must not do) and a full set of conventions: project structure, workflow, code style, testing, project red lines, and the rules agents follow when they dispatch and review work.
+[![By LumioGames](https://img.shields.io/badge/LumioGames-official-6659DB?style=flat-square&labelColor=171C34&logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIiB3aWR0aD0iOTYiIGhlaWdodD0iOTYiPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjEiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iIzY2NTlkYiIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzlhYTZmZiIvPjwvbGluZWFyR3JhZGllbnQ%2BPC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiByeD0iMjkiIGZpbGw9InVybCgjZykiLz48cmVjdCB4PSIyNSIgeT0iMjIiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgcng9IjQiIGZpbGw9IiNmZmYiLz48cmVjdCB4PSIyNSIgeT0iNDIiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgcng9IjQiIGZpbGw9IiNmZmYiLz48cmVjdCB4PSIyNSIgeT0iNjIiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgcng9IjQiIGZpbGw9IiNmZmYiLz48cmVjdCB4PSI0NSIgeT0iNjIiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgcng9IjQiIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iLjYiLz48cmVjdCB4PSI2NSIgeT0iNjIiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgcng9IjQiIGZpbGw9IiM1ZGUyYzYiLz48cGF0aCBkPSJNNzAgMTlDNzEuNTYgMjguMSA3My45IDMwLjQ0IDgzIDMyQzczLjkgMzMuNTYgNzEuNTYgMzUuOSA3MCA0NUM2OC40NCAzNS45IDY2LjEgMzMuNTYgNTcgMzJDNjYuMSAzMC40NCA2OC40NCAyOC4xIDcwIDE5WiIgZmlsbD0iI2ZmZiIvPjwvc3ZnPgo%3D)](https://lumio.games/studio/)
+[![Use this template](https://img.shields.io/badge/Use%20this%20template-copy-6659DB?style=flat-square&labelColor=171C34)](https://github.com/LumioGames/LumioTemplate/generate)
+[![Claude Code](https://img.shields.io/badge/Claude%20Code-supported-9AA6FF?style=flat-square&labelColor=171C34)](https://docs.anthropic.com/en/docs/claude-code)
+[![Codex](https://img.shields.io/badge/Codex-supported-9AA6FF?style=flat-square&labelColor=171C34)](https://github.com/openai/codex)
+[![license](https://img.shields.io/badge/license-PolyForm%20Shield%20%2B%20Additional%20Grant-AEB5D6?style=flat-square&labelColor=171C34)](#license)
 
-Any engine works: web, Unity, UE and others. Publishing to [Lumio](https://lumiogames.cn) is the default. The template writes no game code, creates no engine project and installs no dependencies. Those come after setup, and the agent tells you how.
+</div>
 
-## Two ways to start
+<h3 align="center">Join the Developer Community · Visit Studio</h3>
 
-1. **Make a repository from the template**: on GitHub, click **Use this template** → **Create a new repository**, clone it, open the folder in Claude Code or Codex, and say:
+<p align="center">
+  <a href="https://qm.qq.com/q/PGkXh4tCyQ"><img src=".github/readme/qr-qq.en.svg" width="250" alt="Scan or click to join QQ group 972220164"></a>
+  <a href="https://applink.feishu.cn/client/chat/chatter/add_by_link?link_token=b24vf257-5a2b-41ce-935e-bc4ce19dc396"><img src=".github/readme/qr-feishu.en.svg" width="250" alt="Scan or click to join the Feishu community"></a>
+  <a href="https://lumio.games/studio/"><img src=".github/readme/studio-card.en.svg" width="250" alt="Open Lumio Studio lumio.games/studio"></a>
+</p>
 
-   > start
+---
 
-   Cloning this repository directly also works; at the end of setup the agent asks whether to drop the template's remote and history.
-2. **Let your agent clone it**: in any conversation, send the agent this repository's address and say "use LumioTemplate to start a game for me". The agent follows the "For AI agents" section below. If the current folder is empty, it clones the template right there and starts setup in the same conversation. Otherwise it asks for a folder name, clones into it, and asks you to open a new conversation in that folder and say "start".
+## What is LumioTemplate
 
-Setup has two parts:
+LumioTemplate is a game project template built by [LumioGames](https://lumio.games/studio/). It keeps your project context, standards, plans, and game development skills unified inside `.spec/` — **supporting Claude Code, Codex, Cursor, and any other AI coding Agent, so you can switch between different Agents at any time and keep building seamlessly**.
 
-1. **Skeleton**: five questions (working title and a one-line idea, whether you write your own server code, where you publish (Lumio, web, mini games, Steam, mobile…), which engine (the agent recommends one for your targets, you decide), team size; docs follow the language you speak to the agent in). Each comes with an example and a default; say "you decide" to take the default. The agent shows you the folder tree first and generates everything after you confirm. At this point the project is complete and usable.
-   After generating, the agent asks one question: do you want to talk about gameplay or art now? You can also skip it and later say "let's decide the gameplay" or "let's decide the art direction".
-2. **Wrap up**: delete the one-time setup skill, rewrite the README for your game, and make one local commit. The agent asks before pushing anywhere.
+| <img src=".github/readme/icon-engine.svg" width="56" alt=""><br>**Works with All Agents, Switch Anytime** | <img src=".github/readme/icon-start.svg" width="56" alt=""><br>**Agent-Oriented Context Management** | <img src=".github/readme/icon-memory.svg" width="56" alt=""><br>**Built for LGUI & Lumio SDK** |
+| :-- | :-- | :-- |
+| Follows a unified repository specification supported by **Claude Code, Codex, Cursor**, and any Agent that reads repo docs — no plugins required. Start a feature in Claude today and continue in Codex tomorrow without re-explaining your project. | Gameplay design, art direction, coding rules, implementation plans, and bug records live right in the repo. Every new session or tool reads the latest state, keeping your project organized as it grows. | Includes complete Lumio platform guides: build game UI in the browser with [LGUI](https://github.com/LumioGames/LGUI), wire up cloud saves, leaderboards, and achievements with [Lumio SDK](https://github.com/LumioGames/LumioSDK), and pack for [Lumio](https://lumio.games/studio/) (or use Unity, UE, etc.). |
 
-You need Git, Node 26 LTS (the Lumio SDK supports 24.18 through 26.x, not 27+), and an AI coding agent.
+## Featured Capabilities
 
-## For AI agents
+Talk to your Agent in plain language:
 
-This section is for an AI agent that reads this README from outside the repository (for example, the user only sent a link). The user may not write code: explain each step in the user's language.
+| Capability | What to say | What the Agent does |
+| :-- | :-- | :-- |
+| **Quick Project Setup** | `Start` | Asks 5 simple questions (game idea, engine, target platform, etc.) and generates `Client/`, `Config/`, `Art/`, and all project docs in minutes. |
+| **Gameplay Direction** | `Let's decide the gameplay` | Proposes 2–3 directions, locks in the core loop and MVP scope, and records them in project docs for future coding tasks. |
+| **Art Direction & Consistent AI Art** | `Let's set the art direction`<br>`Generate main menu / character art` | Defines color palettes and fixed style tags; compares against approved reference images in `Art/baseline/` so UI, characters, and scenes stay in the same style across batches. |
+| **Parallel Multi-Agent Coding** | `Set up the client project`<br>`Build the inventory and shop` | Extracts shared data schemas and interfaces first, then dispatches independent implementation tasks to multiple subagents in parallel, followed by tests and review. |
+| **Lumio SDK & Publishing** | `Integrate Lumio SDK`<br>`Pack for release` | Wires up `@lumiogames/sdk` (test locally with the simulator first, then connect to the live platform) and packs a validated ZIP ready for [Lumio Studio](https://lumio.games/studio/). |
+| **Retrospective & Framework Updates** | `Run a retro` / `Update framework` | Turns recurring bugs from `bug-wall.md` into project rules; pulls new LumioTemplate releases to upgrade framework skills without touching your game files. |
 
-> **For AI agents: starting a game project with LumioTemplate**
+## Getting Started
+
+1. **Create from template on GitHub**: Click **[Use this template](https://github.com/LumioGames/LumioTemplate/generate)** to create your game repository, clone it locally (on Windows, use `git clone -c core.symlinks=true`), open it in Claude Code, Codex, or any Agent, and say `Start`.
+2. **Send the link to your Agent**: Paste `https://github.com/LumioGames/LumioTemplate` into any Agent chat and say “Create a game project for me with LumioTemplate”.
+
+> **Quick Guide for AI Agents** (follow in order when the user gives you this repo URL):
 >
-> Do these in order. If any step fails, stop and show the user the exact error. Do not skip steps.
->
-> 1. Run `git --version` and `node -v`: Git and Node 26 LTS must be installed (the Lumio SDK supports 24.18 through 26.x, not 27+). If either is missing, tell the user what to install and where to get it (Git: https://git-scm.com/downloads ; Node: https://nodejs.org , pick 26 LTS), ask the user to install it, and check again afterwards. Do not install it for the user.
-> 2. **The current folder is empty** (`ls -A` prints nothing; in PowerShell, `Get-ChildItem -Force`): run `git clone -c core.symlinks=true https://github.com/LumioGames/LumioTemplate .`. Then carry on **in this same conversation**: read `AGENTS.md` and the files it lists, then start setup by following `.spec/skills/lumio-init/SKILL.md`. There is no need for a new conversation. This conversation does not load those files automatically, so read them yourself.
-> 3. **The current folder is not empty**: ask the user what to call the project folder (lowercase letters, digits and hyphens, e.g. `star-hop`), run `git clone -c core.symlinks=true https://github.com/LumioGames/LumioTemplate <folder>`, then ask the user to open a new conversation in that folder and say "start". Do not set up the project in the current folder.
-> 4. **The user wants their own GitHub repository**: before cloning in step 2 or 3, ask for the repository name and whether it should be public or private. With the user's consent, run `gh repo create <name> --template LumioGames/LumioTemplate --private` (or `--public`), wait a few seconds for GitHub to generate it, then clone **that new repository** in step 2 or 3 instead of the template. If `gh` is not installed or not signed in, ask the user to click Use this template on GitHub and send you the new repository's address. Ask the user before every outward action, such as pushing, creating a remote repository or publishing.
+> 1. Check `git --version` and `node -v` (Node 24.18–26.x required). If either is missing, ask the user to install it themselves (Git: https://git-scm.com/downloads ; Node: https://nodejs.org, pick 26 LTS).
+> 2. If the user wants their own GitHub repository first, ask for the repo name and visibility, run `gh repo create <name> --template LumioGames/LumioTemplate`, and clone that repo; otherwise run `git clone -c core.symlinks=true https://github.com/LumioGames/LumioTemplate <target-dir>` (use `.` if the current directory is empty).
+> 3. Once cloned, if you are in the project root, read `AGENTS.md` and the files it lists, then follow `.spec/skills/lumio-init/SKILL.md` to initialize the project; if cloned into a subfolder, ask the user to open a new session in that subfolder and say `Start`. Always ask the user before any external action (creating remote repos, `git push`, or publishing).
 
-## What you get
+## Ecosystem & Platform
 
-For "single-player, published on Lumio, web + LGUI", the project looks like this after setup:
-
-```
-my-game/
-├─ Client/        Client. The web route later creates an LGUI project in Client/app (Unity also adds Client/unity)
-├─ Config/        Data tables and shared config; protocols too if you write your own server
-├─ Art/           Art sources: style exploration, references, image prompts
-├─ Tools/         Dev tools (the Lumio packaging tool lives in .spec/tools/)
-├─ Builds/        Build output, one subfolder per publish target; only its README is in git
-├─ .spec/
-│  ├─ AGENTS.md   Project hub: what it is, modules, closeout commands
-│  ├─ LICENSE     LumioTemplate's license terms (moved here from the root during setup; the root is left for your game)
-│  ├─ rules/      Way of working and general red lines, this project's red lines
-│  ├─ knowledge/  Conventions (structure, workflow, code style, testing, art), gameplay direction, Lumio platform facts
-│  ├─ decisions/  Decision records (ADRs); the first one covers structure and tech route
-│  ├─ skills/     Skills for planning, subagent dispatch, test-first, debugging, upkeep, framework updates, game design and art
-│  ├─ agents/     Review subagent
-│  └─ tools/      Structure lint
-├─ AGENTS.md      Agent entry point (points to the docs)
-├─ CLAUDE.md      Claude Code entry point (auto-loads the core docs)
-└─ README.md      Your game's README
-```
-
-You also get `Server/` if you write your own server code. Every module has a README; anything not yet confirmed with you is marked 「待完善」 (to be filled in).
-
-## What's in the template
-
-| Path | Contents |
-| --- | --- |
-| `AGENTS.md` / `CLAUDE.md` | Agent entry points: which docs to read first; Claude Code loads them through `CLAUDE.md` |
-| `.spec/AGENTS.md` | Project hub, initially marked 「未初始化」 (not set up) |
-| `.spec/rules/` | `system.md` way of working and general red lines, `project.md` project red lines (generated during setup) |
-| `.spec/knowledge/` | Convention skeletons, a feature doc template, a bug wall, and `lumio-platform/`: SDK, `lumio.json` and packaging, LGUI, web projects, links |
-| `.spec/decisions/`, `plans/` | Formats for decision records and implementation plans (a task card is a `### Task N` section of a plan) |
-| `.spec/skills/` | 11 standing skills (including `lumio-update` for framework updates), plus the one-time `lumio-init` (setup flow and templates, deleted at the end of setup) |
-| `.spec/agents/reviewer.md` | Review subagent |
-| `.spec/tools/` | `spec-lint.mjs` structure lint, `lumio-pack.mjs` Lumio packaging, `lgui-build-web.mjs` LGUI web build (stopgap) |
-| `.claude/`, `.agents/` | Symlinks into `.spec/` (so clients find the skills and the subagent) |
-| `CHANGELOG.md` | Framework release notes (one tag per version); deleted at the end of setup |
-
-The rules and knowledge files are written in Chinese; agents read them fine and reply in your language.
-
-## Updating the framework
-
-The way of working and general red lines, skills, lint tools and Lumio platform facts in `.spec/` are **framework files**: your project does not edit them. Your own rules, conventions, gameplay docs and decisions are **project files** and belong to you. When the template ships a new version, say this to the agent in your project:
-
-> update the framework
-
-The agent uses the `lumio-update` skill. It fetches LumioTemplate's latest version tag and shows you the release notes since your version. It then replaces only the framework files, shows you the resulting `git diff`, runs the structure lint, and makes one local commit; it asks before pushing. It also checks whether LGUI or the Lumio SDK has a newer version, and only tells you. The current framework version is written in `.spec/skills/lumio-update/SKILL.md`.
-
-## Supported agents
-
-`.spec/` is the single source. Every client sees the same files, and no framework plugin needs to be installed.
-
-| Capability | Claude Code | Codex | Other agents that read `AGENTS.md` |
-| --- | --- | --- | --- |
-| Core docs | The template loads them every session through `@import` in `CLAUDE.md` | The template lists them in the root `AGENTS.md`; the main agent reads them | Same as Codex |
-| Skills | The template ships a `.claude/skills` symlink | The template ships a `.agents/skills` symlink | Read from `.spec/skills/` as `AGENTS.md` says |
-| Review subagent | The template ships a `.claude/agents` symlink | The template sets up no project-level subagent for Codex; the main agent reviews with `reviewer.md` itself | The main agent reviews with `reviewer.md` itself |
-
-On Windows, turn on Developer Mode first, then clone with the `-c core.symlinks=true` command above; otherwise the three symlinks come out as plain files and the skills are not found.
-
-## Related repositories
-
-- [LumioAgentSpec](https://github.com/LumioGames/LumioAgentSpec): the source of the framework files (general red lines, framework skills, lint tools). It is a general-purpose agent project management framework, not limited to games, and is still maintained on its own. This template holds a snapshot of its 1.1.1 release, adapted to live inside the repository with symlinks.
-- [LGUI](https://github.com/LumioGames/LGUI): a game UI framework for agents, recommended for the UI on every route.
-- [Lumio SDK](https://github.com/LumioGames/LumioSDK): docs and types for `@lumiogames/sdk`.
-
-## Community
-
-Developer QQ group: [972220164](https://qm.qq.com/q/PGkXh4tCyQ)
+| Product / Repo | Description |
+| :-- | :-- |
+| **[Lumio Studio](https://lumio.games/studio/)** | `lumio.games/studio` — Upload game ZIPs, configure cloud saves & leaderboards, manage releases, and create Author API keys. |
+| **[LGUI](https://github.com/LumioGames/LGUI)** | Engine-independent game UI framework designed for AI Agents — build and preview game interfaces directly in the browser. |
+| **[Lumio SDK](https://github.com/LumioGames/LumioSDK)** | `@lumiogames/sdk` — Platform sign-in state, cloud saves, leaderboards, achievements, game chat, and local simulator. |
+| **[LumioAgentSpec](https://github.com/LumioGames/LumioAgentSpec)** | The general-purpose Agent context and project management framework powering `.spec/`. |
 
 ## License
 
-LumioTemplate is source-available under the [PolyForm Shield License 1.0.0](https://polyformproject.org/licenses/shield/1.0.0), with an Additional Permission and a Trademarks notice from LumioGames. The full text is in [LICENSE](LICENSE). In short:
+Source-available under [PolyForm Shield 1.0.0](https://polyformproject.org/licenses/shield/1.0.0) with an Additional Grant from LumioGames (see [LICENSE](LICENSE) for full terms, and `.spec/skills/README.md` for third-party skill notices):
 
-| You may | You may not |
-| :-- | :-- |
-| Make your own game with the template: the game is yours, you may sell it, and you may publish it on platforms other than Lumio | Use the template or a changed version to build a competing game template, game development tool or game platform, paid or free |
-| Use this template, fork, change and send pull requests; use it for learning, teaching and research | Republish the template itself under another name or skin |
-| Say "made with LumioTemplate" or "published on Lumio" in your game | Use the Lumio or LumioGames names and logos as your own brand |
+- **Allowed**: Use the template to build your own games (free or commercial, on Lumio or any other platform), and for learning, modification, or pull requests.
+- **Not allowed**: Use the template or modified versions to build competing game templates, game development tools, or game platforms, or redistribute the template itself under a new name.
 
-The license covers the template's files and their copies, including the copies that remain in a project you set up from it (after setup the terms live in `.spec/LICENSE`); files you add to your own project are not covered. A few parts have their own licenses: the rules, subagent, lint tool and five framework skills taken from LumioAgentSpec (writing-plans, subagent-driven-development, test-driven-development, systematic-debugging, spec-steward) are MIT (writing-plans and subagent-driven-development are also adapted from obra/superpowers, MIT as well); the five design and art skills (design-director, design-review, art-director, art-prompt, art-review) are Apache-2.0 (see [.spec/skills/README.md](.spec/skills/README.md)). For any other use, contact us through the [Developer Center](https://lumiogames.cn/studio/) or the community group above for a separate license. The English text in LICENSE is what counts.
+<br>
+
+<p align="center"><a href="https://lumio.games/studio/"><img src=".github/readme/brand.en.svg" width="100%" alt="LumioTemplate is built by LumioGames · Lumio, Games Create Joy · Open Studio"></a></p>

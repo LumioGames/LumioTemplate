@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72" width="72" height="72" role="img" aria-label="agents">
+<rect width="72" height="72" rx="18" fill="#171C34"/>
+<rect x="1" y="1" width="70" height="70" rx="17" fill="none" stroke="#FFB86B" stroke-opacity=".45" stroke-width="2"/>
+
+<rect x="14" y="18" width="44" height="36" rx="7" fill="none" stroke="#FFB86B" stroke-width="2.5"/>
+<path d="M24 31L31 36L24 41" fill="none" stroke="#FFB86B" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M35 41H46" stroke="#FFB86B" stroke-width="2.6" stroke-linecap="round"/>
+</svg>

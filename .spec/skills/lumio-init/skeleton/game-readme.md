@@ -43,7 +43,7 @@
 
 游戏做好后对 Agent 说「打包发布」。规则和步骤见 `.spec/knowledge/lumio-platform/publishing.md`，有两种方式：
 
-- **自己上传**：Agent 把 ZIP 打到 `Builds/lumio/`，你登录 https://lumiogames.cn/studio/games/new 创建作品，在「版本」页上传 ZIP 并提交审核。
+- **自己上传**：Agent 把 ZIP 打到 `Builds/lumio-platform/`，你登录 https://lumiogames.cn/studio/games/new 创建作品，在「版本」页上传 ZIP 并提交审核。
 - **用作者 API 密钥发布**：你在创作中心建一把作者 API 密钥，自己设进环境变量 `LUMIO_API_KEY`（不要贴进对话），Agent 用它完成上传、填资料和提交审核，每一步对外操作前都会先问你。
 <!-- 结束 -->
 

@@ -20,20 +20,19 @@ metadata:
 
 ## 技术
 
-- **客户端**：{{技术路线}}，怎么建工程见 `Client/README.md`。
-- **界面**：推荐用 LGUI（见 `.spec/knowledge/lumio-platform/lgui.md`）。
+- **发布目标**：{{发布目标}}。
+- **客户端**：{{技术路线}}（{{引擎理由}}），怎么建工程见 `Client/README.md`。
+- **界面**：{{界面}}（LGUI 见 `.spec/knowledge/lumio-platform/lgui.md`）。
+<!-- 如果：Unity -->
+- **原型**：网页 + LGUI（验证后转 Unity），在 `Client/app/`。
+<!-- 结束 -->
 <!-- 如果：有 Server -->
 - **服务端**：自己写，见 `Server/README.md`；协议放 `Config/`。
 <!-- 结束 -->
 <!-- 如果：没有 Server -->
 - **服务端**：没有自己的服务端代码。
 <!-- 结束 -->
-<!-- 如果：发布到 Lumio -->
-- **发布**：发布到 Lumio，见 `.spec/knowledge/lumio-platform/`。
-<!-- 结束 -->
-<!-- 如果：不发布到 Lumio -->
-- **发布**：不发布到 Lumio，构建产物放 `Builds/`。
-<!-- 结束 -->
+- **构建产物**：`Builds/` 下按发布目标分子目录<!-- 如果：发布到 Lumio -->；发到 Lumio 见 `.spec/knowledge/lumio-platform/`<!-- 结束 -->。
 - 为什么这样定见 `.spec/decisions/0001-project-structure.md`。
 
 ## 美术

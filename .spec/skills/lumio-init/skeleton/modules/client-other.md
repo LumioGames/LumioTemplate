@@ -1,11 +1,11 @@
 # Client（客户端）
 
-{{暂定名}}的客户端。技术路线：{{技术路线}}。
+{{暂定名}}的客户端。发布目标：{{发布目标}}。技术路线：{{技术路线}}，界面用{{界面}}。
 
 ## 放什么
 
 - `<工程目录>/`：客户端工程，目录名建工程时和用户一起定，定下来补进本文件。游戏代码、界面、客户端资源都放在工程里。**现在还没建**，见下面「怎么建工程」。
-- 界面推荐用 LGUI：能导出到目标引擎时直接用；不能时，可以在 `app/` 用 LGUI 做网页原型，先验证玩法和界面流程。
+- LGUI 可以接 Cocos Creator、LayaAir 等引擎，但适配层还没做；现在可以在 `app/` 用 LGUI 做网页原型，先验证玩法和界面流程，正式界面用引擎自带的 UI。
 
 ## 怎么建工程
 
@@ -14,7 +14,7 @@
 - 和用户一起定引擎版本和工程目录名，写进 `.spec/decisions/`，再建工程；引擎生成的缓存和临时目录加进 `.gitignore`。
 - 要用 LGUI 时：按 `.spec/knowledge/lumio-platform/lgui.md`「装 LGUI」安装，在仓库根目录跑 `lgui init Client/app --name {{英文短名}}`。
 <!-- 如果：发布到 Lumio -->
-- 发布到 Lumio：Lumio 收的是网页包（见 `.spec/knowledge/lumio-platform/publishing.md`），先确认工程能导出成那样的网页包，再按 `sdk.md` 接 SDK、用 `node .spec/tools/lumio-pack.mjs` 打包，ZIP 输出到 `Builds/lumio/`。
+- 发布到 Lumio：Lumio 收的是网页包（见 `.spec/knowledge/lumio-platform/publishing.md`），先确认工程能导出成那样的网页包，再按 `sdk.md` 接 SDK、用 `node .spec/tools/lumio-pack.mjs` 打包，ZIP 输出到 `Builds/lumio-platform/`。
 <!-- 结束 -->
 - 把构建和测试命令补进 `.spec/AGENTS.md`「收口门槛」和 `.spec/knowledge/standards/testing.md`。
 

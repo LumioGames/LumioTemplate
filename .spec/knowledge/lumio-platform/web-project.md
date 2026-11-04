@@ -31,7 +31,7 @@ npm i -D --save-exact vite@7.3.7 typescript@5.9.3
   "scripts": {
     "dev": "vite",
     "build": "tsc --noEmit && vite build",
-    "pack": "node ../../.spec/tools/lumio-pack.mjs dist ../../Builds/lumio/<英文短名>.zip"
+    "pack": "node ../../.spec/tools/lumio-pack.mjs dist ../../Builds/lumio-platform/<英文短名>.zip"
   }
 }
 ```
@@ -138,7 +138,7 @@ try {
 ```bash
 npm run dev     # 打开终端里显示的地址，点按钮显示「已存档并提交」
 npm run build   # 输出到 dist/：index.html、assets/、lumio.json
-npm run pack    # 生成 Builds/lumio/<英文短名>.zip
+npm run pack    # 生成 Builds/lumio-platform/<英文短名>.zip
 ```
 
 `grep -c simulated_friend dist/assets/*.js` 结果为 0，说明正式包里没有模拟器。

@@ -52,7 +52,7 @@ description: 当 `.spec/AGENTS.md` 写着「状态：未初始化」，或用户
 
 ### 2. 画目录树，用户确认后再生成
 
-按答案把要生成的目录树画给用户看，只列顶层模块和会新建或改写的文件。例如「单机、网页、发布到 Lumio」：
+按答案把要生成的目录树画给用户看，只列顶层模块和会新建或改写的文件。例如「单机、发布到 Lumio、网页 + LGUI」：
 
 ```
 <项目>/
@@ -60,7 +60,7 @@ description: 当 `.spec/AGENTS.md` 写着「状态：未初始化」，或用户
 ├─ Config/README.md          配表和通用配置
 ├─ Art/README.md             美术源文件
 ├─ Tools/README.md           开发工具（Lumio 打包和 LGUI 网页构建工具在 .spec/tools/）
-├─ Builds/README.md          构建产物，只有 README 进 git
+├─ Builds/README.md          构建产物，按发布目标分子目录（这里是 lumio-platform/），只有 README 进 git
 └─ .spec/                    补全：项目中心文档、项目红线、4 份规范、ADR 0001、项目一页纸、美术一页纸
 ```
 
@@ -87,7 +87,7 @@ description: 当 `.spec/AGENTS.md` 写着「状态：未初始化」，或用户
 
 | 文件 | 怎么补 |
 | --- | --- |
-| `.spec/AGENTS.md` | 「项目是什么」写四行摘要（一句话、技术路线、有没有自己的服务端、发不发布到 Lumio），末尾一句「以 `knowledge/project.md` 为准」；填「模块」（每个模块一行：放什么 + 指向它的 README）。「收口门槛」保持只有 spec-lint。状态这时不改，第二段才改 |
+| `.spec/AGENTS.md` | 「项目是什么」写四行摘要（一句话、发布目标、引擎和界面、有没有自己的服务端），末尾一句「以 `knowledge/project.md` 为准」；填「模块」（每个模块一行：放什么 + 指向它的 README）。「收口门槛」保持只有 spec-lint。状态这时不改，第二段才改 |
 | `.spec/knowledge/standards/project-structure.md` | 「模块」一节换成本项目的模块表，删掉那条「待完善」；没有 `Server/` 时，依赖方向和「新东西放哪」里删掉 Server 和协议相关的内容 |
 | `.spec/knowledge/standards/workflow.md` | 按人数填「分支策略」「合并 / PR 流程」，删掉这两节的「待完善」 |
 | `.spec/knowledge/standards/code-style.md` | 「文档与注释的语言」写成 `{{语言}}`（跟用户说话的语言一致；用户要文档和注释用不同语言就分开写），删掉这一节的「待完善」；「语言 / 框架特定风格」写上本路线的默认值，保留「待完善」 |
@@ -108,8 +108,8 @@ description: 当 `.spec/AGENTS.md` 写着「状态：未初始化」，或用户
 
 `skeleton/` 里的文件用两种标记，生成时全部替换或删掉，不留在生成的文件里：
 
-- `{{名字}}`：占位，换成立项答案。用到的有 `{{暂定名}}`、`{{英文短名}}`、`{{一句话}}`、`{{技术路线}}`（只写引擎或平台名：网页、Unity、UE，或用户说的其他引擎）、`{{人数}}`（「一个人做」或「N 个人做」）、`{{语言}}`（用户说话用的语言，不用问）、`{{日期}}`（今天，YYYY-MM-DD）。
-- 条件块：`<!-- 如果：<条件> -->` 开头、`<!-- 结束 -->` 结尾，可以占几整行，也可以夹在一行中间。条件成立就保留中间的内容，不成立就连内容一起删掉；两种情况下标记本身都删掉，删完不留多余的空行。条件有：`有 Server`、`没有 Server`、`发布到 Lumio`、`不发布到 Lumio`、`一个人`、`多人`、`网页`、`Unity`、`UE`、`其他路线`；第二段改写 README 时还有 `选了游戏许可`、`没选游戏许可`。
+- `{{名字}}`：占位，换成立项答案。用到的有 `{{暂定名}}`、`{{英文短名}}`、`{{一句话}}`、`{{发布目标}}`（第 3 题选的，如「Lumio、安卓」）、`{{技术路线}}`（只写引擎或平台名：网页、Unity、UE，或用户说的其他引擎）、`{{引擎理由}}`（为什么按这些发布目标选这个引擎，一两句）、`{{界面}}`（「LGUI」，或用户不接受 PuerTS 时的「Unity 自带 UI」、LGUI 还没适配的引擎写「引擎自带 UI，网页原型用 LGUI」）、`{{人数}}`（「一个人做」或「N 个人做」）、`{{语言}}`（用户说话用的语言，不用问）、`{{日期}}`（今天，YYYY-MM-DD）。
+- 条件块：`<!-- 如果：<条件> -->` 开头、`<!-- 结束 -->` 结尾，可以占几整行，也可以夹在一行中间。条件成立就保留中间的内容，不成立就连内容一起删掉；两种情况下标记本身都删掉，删完不留多余的空行。条件有：`有 Server`、`没有 Server`、`发布到 Lumio`（发布目标里有 Lumio）、`不发布到 Lumio`、`一个人`、`多人`、`网页`、`Unity`、`Unity 用 LGUI`、`Unity 不用 LGUI`、`UE`、`其他路线`（`网页`、`Unity`、`UE` 之外的引擎，如 Cocos Creator、Godot）；第二段改写 README 时还有 `选了游戏许可`、`没选游戏许可`。
 - 说明注释：`<!-- 生成时：… -->`，照着做完后删掉。
 
 模板里提到的路径都写成代码格式（不写成 Markdown 链接），因为它们是按生成后的位置写的。
@@ -132,9 +132,9 @@ description: 当 `.spec/AGENTS.md` 写着「状态：未初始化」，或用户
 6. **本地提交一次。** `git add -A`，然后 `git commit -m "chore: 用 LumioTemplate 初始化项目"`。提交后跑 `git ls-files -s .claude .agents`：应该正好是 `.claude/agents`、`.claude/skills`、`.agents/skills` 三行 `120000`（符号链接）。不对时停下，告诉用户「提交里三条软链变成了普通文件，先不要推送」，不修复。
 7. **推送前先问用户。** 要不要推到 GitHub、推到哪个仓库，都由用户决定；用户要新建远程仓库，就请用户给地址，或在用户同意后用 `gh repo create` 建，再 `git remote add origin <地址>` 和 `git push -u origin main`。
 8. **告诉用户接下来能做什么**，第一项是建工程：
-   1. **建工程**：按 `Client/README.md` 做，包括装 LGUI、装依赖、建网页或 Unity 工程；建好后把构建和测试命令补进 `.spec/AGENTS.md`「收口门槛」和 `.spec/knowledge/standards/testing.md`。
+   1. **建工程**：按 `Client/README.md` 做，包括装 LGUI、装依赖、建工程。Unity 路线也先建网页原型（`Client/app/`），玩法验证得差不多再建 Unity 工程；建好后把构建和测试命令补进 `.spec/AGENTS.md`「收口门槛」和 `.spec/knowledge/standards/testing.md`。
    2. **定玩法、定美术**：初始化时没聊完的部分，说「我们来定玩法」（design-director）或「我们来定美术方向」（art-director）。
    3. **开始做某个功能**：先用 writing-plans 写计划，再派活。
-   4. **做完后打包发布**：发布到 Lumio 的项目按 `.spec/knowledge/lumio-platform/publishing.md` 做，有两种方式让用户选——A. Agent 把 ZIP 打到 `Builds/lumio/`，用户自己在创作中心上传；B. 用户建好作者 API 密钥、自己设进环境变量，Agent 用 API 发布。不发布到 Lumio 的项目，构建产物放 `Builds/`，发到哪里由用户定。
+   4. **做完后打包发布**：发布到 Lumio 的项目按 `.spec/knowledge/lumio-platform/publishing.md` 做，有两种方式让用户选——A. Agent 把 ZIP 打到 `Builds/lumio-platform/`，用户自己在创作中心上传；B. 用户建好作者 API 密钥、自己设进环境变量，Agent 用 API 发布。不发布到 Lumio 的项目，构建产物放 `Builds/`，发到哪里由用户定。
    5. 以后模板出了新版框架，说「更新框架」（lumio-update）。
    6. 以后在这个文件夹里开新对话，规则和技能会自动载入，直接说想做什么就行。

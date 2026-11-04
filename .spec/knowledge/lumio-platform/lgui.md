@@ -108,11 +108,11 @@ LGUI 插件还没有网页正式构建命令。在它提供之前，用过渡脚
 ```json
 "scripts": {
   "build": "node ../../.spec/tools/lgui-build-web.mjs . dist",
-  "pack": "node ../../.spec/tools/lumio-pack.mjs dist ../../Builds/lumio/<英文短名>.zip"
+  "pack": "node ../../.spec/tools/lumio-pack.mjs dist ../../Builds/lumio-platform/<英文短名>.zip"
 }
 ```
 
-`npm run build && npm run pack` 在 `Builds/lumio/` 生成 ZIP。正式构建里 `LGUI_DEV` 为 `false`，模拟器分支和它的动态 import 会被剔除；可以 `grep -c simulated_friend dist/app.js` 确认结果是 0（这个字符串只在模拟器模块里；正式包里残留一段走不到的 `createLumioSimulator(` 分支没关系）。
+`npm run build && npm run pack` 在 `Builds/lumio-platform/` 生成 ZIP。正式构建里 `LGUI_DEV` 为 `false`，模拟器分支和它的动态 import 会被剔除；可以 `grep -c simulated_friend dist/app.js` 确认结果是 0（这个字符串只在模拟器模块里；正式包里残留一段走不到的 `createLumioSimulator(` 分支没关系）。
 
 LGUI 出了正式构建命令后，把 `build` 换成它；`.spec/tools/lgui-build-web.mjs` 随之在框架更新里去掉。
 

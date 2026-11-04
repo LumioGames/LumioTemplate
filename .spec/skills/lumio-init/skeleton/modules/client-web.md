@@ -1,6 +1,6 @@
 # Client（客户端）
 
-{{暂定名}}的客户端。技术路线：网页，界面用 LGUI。
+{{暂定名}}的客户端。发布目标：{{发布目标}}。技术路线：网页，界面用 LGUI。
 
 ## 放什么
 
@@ -13,7 +13,7 @@
 1. 装 LGUI：按 `.spec/knowledge/lumio-platform/lgui.md`「装 LGUI」，Claude Code 和 Codex 各有安装命令；装完先跑 `lgui doctor`。
 2. 在仓库根目录跑 `lgui init Client/app --name {{英文短名}}`（`lgui init` 只接受不存在或空的目录）。工程里会带 LGUI 自己的 `AGENTS.md` / `CLAUDE.md`，在 `Client/app/` 里干活时也要遵守它们。
 <!-- 如果：发布到 Lumio -->
-3. 接 Lumio：在 `Client/app/` 里装 SDK、加 Lumio Service、写 `lumio.json`，按 `lgui.md`「接 Lumio」和 `.spec/knowledge/lumio-platform/sdk.md`、`publishing.md`。正式构建和打包用 `node .spec/tools/lgui-build-web.mjs` 和 `node .spec/tools/lumio-pack.mjs`，ZIP 输出到 `Builds/lumio/`。
+3. 接 Lumio：在 `Client/app/` 里装 SDK、加 Lumio Service、写 `lumio.json`，按 `lgui.md`「接 Lumio」和 `.spec/knowledge/lumio-platform/sdk.md`、`publishing.md`。正式构建和打包用 `node .spec/tools/lgui-build-web.mjs` 和 `node .spec/tools/lumio-pack.mjs`，ZIP 输出到 `Builds/lumio-platform/`。
 <!-- 结束 -->
 <!-- 如果：不发布到 Lumio -->
 3. 正式构建用 `node .spec/tools/lgui-build-web.mjs`，输出到 `Builds/web/`。

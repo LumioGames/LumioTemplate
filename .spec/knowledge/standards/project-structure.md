@@ -23,7 +23,7 @@ metadata:
 | `Server/` | 项目自己写的服务端代码：联机对战逻辑、自建后台。只用平台的存档、排行榜不算 | 只在有自己的服务端代码时有 |
 | `Art/` | 美术源文件：风格探索、参考图、出图提示词、可编辑源文件、资产清单 | 一直有 |
 | `Tools/` | 开发工具：打包、检查、数据转换 | 一直有 |
-| `Builds/` | 构建产物，按目标分子目录（`web/`、`lumio/`、`playtest/`）；只有 `README.md` 进 git | 一直有 |
+| `Builds/` | 构建产物，按发布目标分子目录，全小写（如 `web/`、`lumio-platform/`、`windows/`、`steam/`、`wegame/`、`wechat/`、`android/`、`ios/`）；只有 `README.md` 进 git | 一直有 |
 
 ## 依赖方向
 

@@ -1,16 +1,21 @@
 # Builds（构建产物）
 
-{{暂定名}}的构建产物，按目标分子目录。只有本文件进 git，其余都在 `.gitignore` 里。
+{{暂定名}}的构建产物，按发布目标分子目录，目录名全小写。只有本文件进 git，其余都在 `.gitignore` 里。
 
 ## 放什么
 
+本项目的发布目标：{{发布目标}}。
+
 | 子目录 | 放什么 |
 | --- | --- |
+<!-- 生成时：只留本项目发布目标对应的行；没列到的目标照同样规则加一行（全小写，如 `wegame/`、`switch/`） -->
 | `web/` | 网页正式构建 |
-<!-- 如果：发布到 Lumio -->
-| `lumio/` | 上传到 Lumio 创作中心的 ZIP（`.spec/tools/lumio-pack.mjs` 的输出） |
-<!-- 结束 -->
-| `playtest/` | 给试玩的人用的测试包 |
+| `lumio-platform/` | 上传到 Lumio 创作中心的 ZIP（`.spec/tools/lumio-pack.mjs` 的输出） |
+| `wechat/` | 微信小游戏构建 |
+| `windows/` | Windows（PC）构建 |
+| `steam/` | 上传到 Steam 的构建 |
+| `android/` | 安卓安装包 |
+| `ios/` | iOS 构建 |
 
 子目录在第一次构建时由构建命令创建，不用提前建。
 

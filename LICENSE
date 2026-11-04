@@ -2,7 +2,12 @@
 
 Copyright © 2026 LumioGames (https://lumiogames.cn)
 
-LumioTemplate is source-available. "The software" in these terms means the contents of this repository, except the files in `.spec/skills/`, which keep their own licenses: the Apache License 2.0 (see `.spec/skills/LICENSE`), and for `writing-plans` and `subagent-driven-development`, which are adapted from obra/superpowers, the MIT License (see `.spec/skills/LICENSE-superpowers`). You may use the software under the PolyForm Shield License 1.0.0 (full text at the end of this file), together with the Additional Permission and the Trademarks notice from LumioGames below. The Additional Permission only adds rights. It does not take away any right the PolyForm Shield License gives you.
+LumioTemplate is source-available. "The software" in these terms means the files in the LumioTemplate repository and any copies of them, including the copies that remain in a game project set up from it. Files you add to your own project are not part of the software. These parts of the software keep their own licenses instead of these terms:
+
+- The files taken from LumioAgentSpec are under the MIT License (see `.spec/skills/LICENSE-agentspec`): `.spec/rules/system.md`, `.spec/rules/dispatch.md`, `.spec/agents/reviewer.md`, the files in `.spec/references/`, the `spec-lint.mjs`, `closeout-gate.mjs` and `guard-commit.mjs` tools in `.spec/tools/`, and the six framework skills in `.spec/skills/`: `brainstorming`, `writing-plans`, `subagent-driven-development`, `test-driven-development`, `systematic-debugging` and `spec-steward`. `writing-plans` and `subagent-driven-development` are also adapted from obra/superpowers, under the MIT License (see `.spec/skills/LICENSE-superpowers`).
+- The seven design and art skills in `.spec/skills/` (`design-director`, `design-doc`, `design-review`, `art-director`, `art-bible`, `art-prompt` and `art-review`) are under the Apache License 2.0 (see `.spec/skills/LICENSE`).
+
+The rest of the software, including the `lumio-init` and `lumio-update` skills, `.spec/knowledge/lumio-platform/`, and the two Lumio tools `lumio-pack.mjs` and `lgui-build-web.mjs`, is under these terms. You may use the software under the PolyForm Shield License 1.0.0 (full text at the end of this file), together with the Additional Permission and the Trademarks notice from LumioGames below. The Additional Permission only adds rights. It does not take away any right the PolyForm Shield License gives you.
 
 Required Notice: Copyright © 2026 LumioGames (https://lumiogames.cn)
 

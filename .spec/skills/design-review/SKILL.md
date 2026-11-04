@@ -3,7 +3,7 @@ name: design-review
 description: 对照策划案与架构约束审查策划文档与开发需求,产出裁决与修改意见。当收到策划案、玩法方案、需求单需要评审时使用。
 ---
 
-> 来源：LumioGames/LumioGame 的 `.spec/skills`（Apache-2.0），经 Samsara 适配后收入 LumioTemplate。项目事实以 `.spec/AGENTS.md` 为准。
+> 来源：来自 LumioGames/LumioGame（Apache-2.0，见 [LICENSE](../LICENSE)），收入 LumioTemplate。项目事实以 `.spec/AGENTS.md` 为准。
 
 # Design Review(策划评审)
 
@@ -33,8 +33,8 @@ description: 对照策划案与架构约束审查策划文档与开发需求,产
 | 系统 | 是否服务核心循环;新玩家第一局会不会被系统挡住;断线容错是否与局时匹配 |
 | 数值 | 有无上限防滚雪球;落后方翻盘路径;每个数字来源齐全 |
 | 关卡 | 起手是否公平;地图尺寸与移速、局时是否匹配;出生安全区是否足够 |
-| 商业化 | 付费是否触碰公平性;与开源定位是否冲突 |
-| UGC | 表达力够不够(能否做出与官方不同的模式);V1 数据表达的边界 |
+| 商业化 | 付费是否触碰公平性;与产品定位是否冲突 |
+| UGC | 表达力够不够(能否做出与官方不同的模式);首版开放层级的边界 |
 
 通用评判维度见 [design-director](../design-director/SKILL.md) 六域表,此处不复述。
 

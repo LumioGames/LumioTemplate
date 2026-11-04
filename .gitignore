@@ -2,3 +2,7 @@ node_modules/
 dist/
 *.zip
 .DS_Store
+
+# 构建产物：Builds/ 下只有 README.md 进 git
+Builds/*
+!Builds/README.md

@@ -1,5 +1,5 @@
 ---
-name: lumio-sdk
+name: lumio-platform-sdk
 description: Lumio SDK 的版本、安装、本地模拟器与平台连接、开放能力和调用规则——接入或使用平台能力时查
 metadata:
   type: standard
@@ -14,13 +14,21 @@ metadata:
 
 | 项 | 值 |
 | --- | --- |
-| 本仓库使用 | `2.11.1`（npm 上的 `latest`） |
-| 安装 | 在 `game/` 里 `npm i --save-exact @lumiogames/sdk@2.11.1` |
+| 本模板验证过的版本 | `2.11.1`（npm 上的 `latest`）。项目实际用的版本以客户端工程的 `package.json` 为准 |
+| 安装 | 在 `Client/app/` 里 `npm i --save-exact @lumiogames/sdk@2.11.1` |
 | 查 npm 上有哪些版本 | `npm view @lumiogames/sdk versions` |
 
-不要用 2.11.1 以前的版本：2.10.x 在 iPhone Safari 和微信内置浏览器里可能连不上平台（返回 `platform.not_granted`），2.11.1 修好了。以后升级时改安装版本，重新构建、打包、上传，并改掉本节的「本仓库使用」。
+不要用 2.11.1 以前的版本：2.10.x 在 iPhone Safari 和微信内置浏览器里可能连不上平台（返回 `platform.not_granted`），2.11.1 修好了。以后升级见下面「升级 SDK」。
 
 2.11.0 起，SDK 连上平台后自己上报加载进度和页面报错，连上就算游戏已启动。本模板的写法是第一次用到平台能力时才连接 SDK，所以入口页仍引用平台启动脚本 `./lumio-bootstrap.js`：它让游戏页一加载就开始；不引用的话，SDK 连上之前平台要等页面加载完 2 秒才开始。两者都在时，报错由启动脚本上报，进度以 SDK 为准。见 [publishing.md](publishing.md)。
+
+## 升级 SDK
+
+1. 查有没有新版：`npm view @lumiogames/sdk version`，和客户端工程 `package.json` 里的版本比。
+2. 升级前先读 LumioSDK 的更新记录（仓库根目录的 `CHANGELOG.md`，地址见 [resources.md](resources.md)），看有没有不兼容的改动、要不要改 `lumio.json` 或调用写法。
+3. 在客户端工程里（网页路线是 `Client/app/`）：`npm i --save-exact @lumiogames/sdk@<新版>`。
+4. 重新跑测试、正式构建、打包，确认正式包里仍然搜不到 `simulated_friend`，再到创作中心上传新版本。
+5. 版本只写在 `package.json` 里，不改本文：本文是框架文件，随框架更新。升级有取舍时记 ADR。
 
 ## 本地模拟器和平台连接
 
@@ -30,7 +38,7 @@ metadata:
 | 平台上（正式构建） | `connectLumioFromLaunch()`，从 `@lumiogames/sdk` 导入 |
 
 - 模拟器的结果都带 `simulated: true`，数据只在内存里，刷新就没了。它不完整执行线上的声明、权限、配额和频率检查，不能代替上传验证。
-- 选哪个由**构建开关**决定（LGUI 的 `LGUI_DEV`，Vite 的 `import.meta.env.DEV`），不在运行时根据连接结果决定。连接失败就报错，不能换成模拟器（[rules/system.md](../../rules/system.md)）。
+- 选哪个由**构建开关**决定（LGUI 的 `LGUI_DEV`，Vite 的 `import.meta.env.DEV`），不在运行时根据连接结果决定。连接失败就报错，不能换成模拟器（发布到 Lumio 的项目，这条红线写在 [rules/project.md](../../rules/project.md)）。
 - 写法要让正式构建剔除模拟器：`connectLumioFromLaunch` 用静态 `import`；模拟器只在开发分支里用动态 `import('@lumiogames/sdk/simulator')`。如果写成 `import('@lumiogames/sdk')` 动态导入整个包，模拟器会被打进正式包。
 - 模拟器的 `gameKey` 只是格式合法的占位值，不需要是真的作品号；`connectLumioFromLaunch()` 从平台启动地址读取真实的作品和版本，不用写死。
 - 场景卸载时调用 `lumio.dispose()`。

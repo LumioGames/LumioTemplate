@@ -1,6 +1,6 @@
 ---
-name: lumio-publishing
-description: lumio.json 声明、ZIP 打包规则和创作中心上传步骤——打包上传或被拒收时查
+name: lumio-platform-publishing
+description: lumio.json 声明、ZIP 打包规则和两种发布方式（自己上传 ZIP、用作者 API 密钥发布）——打包发布或被拒收时查
 metadata:
   type: standard
   status: 已交付
@@ -12,7 +12,7 @@ metadata:
 
 ## lumio.json
 
-放在 `game/` 里，构建时原样复制到构建目录根部。最小写法（云存档 + 排行榜）：
+放在客户端工程里（网页路线是 `Client/app/`），构建时原样复制到构建目录根部。最小写法（云存档 + 排行榜）：
 
 ```json
 {
@@ -83,15 +83,34 @@ metadata:
 | 不能有符号链接、加密条目 | ZIP64 也不支持 |
 | 大小 | 平台按配置限制总大小和文件数；包超过 50 MB 时创作中心会提示，尽量压小 |
 
-打包工具：`node tools/lumio-pack.mjs <构建目录> <输出.zip>`。它先查上面几条（`lumio.json`、入口、保留文件、绝对路径、文件名），有问题直接报错，再生成平台能读的 ZIP（UTF-8 文件名、deflate 压缩）。不要用 Windows 资源管理器或 PowerShell 的 `Compress-Archive` 打包。
+打包工具：`node Tools/lumio-pack.mjs <构建目录> <输出.zip>`（初始化时，发布到 Lumio 的项目把它从 `.spec/tools/` 移到 `Tools/`），ZIP 默认输出到 `Builds/lumio/`。它先查上面几条（`lumio.json`、入口、保留文件、绝对路径、文件名），有问题直接报错，再生成平台能读的 ZIP（UTF-8 文件名、deflate 压缩）。不要用 Windows 资源管理器或 PowerShell 的 `Compress-Archive` 打包。
 
-## 上传步骤（用户自己操作）
+## 发布：两种方式
 
-1. 登录 https://lumiogames.cn/studio ，完成作者申请。
-2. 到 https://lumiogames.cn/studio/games/new 创建作品，填写标题、介绍、封面。
+两种方式都先把游戏正式构建好，用 `Tools/lumio-pack.mjs` 打成 ZIP，放在 `Builds/lumio/`。之后让用户选：
+
+- **A. 用户自己上传**：Agent 只打包，上传和提交审核由用户在创作中心点。
+- **B. 用作者 API 密钥发布**：用户建好作者 API 密钥、自己设进环境变量后，Agent 用 API 完成创建作品、上传、填资料、提交审核和确认上线。
+
+两种方式都要先登录 https://lumiogames.cn/studio 完成作者申请。上传成功、提交成功都不等于已上线，以创作中心显示的线上版本为准。
+
+### A. 打 ZIP，用户自己上传
+
+1. Agent 构建并打包，把 ZIP 的路径（`Builds/lumio/<英文短名>.zip`）告诉用户。
+2. 用户到 https://lumiogames.cn/studio/games/new 创建作品，填写标题、介绍、封面。
 3. 在作品的「版本」页选择 ZIP，填写版本号（主、次、修订）和更新说明，点「上传版本」。
 4. 等上传和包检查完成，选中生成的草稿版本，点「提交审核」。
-5. 在版本记录里看审核结果和整改提示；要改就重新上传新版本。上传成功、提交成功都不等于已上线，以创作中心显示的线上版本为准。
+5. 在版本记录里看审核结果和整改提示；要改就重新打包、上传新版本。
+
+### B. 用作者 API 密钥发布
+
+流程和请求细节以 [LumioSDK README「用 API 密钥发布」](https://github.com/LumioGames/LumioSDK#%E7%94%A8-api-%E5%AF%86%E9%92%A5%E5%8F%91%E5%B8%83) 和平台文档 [author-api.md](https://lumiogames.cn/assets/studio/docs/author-api.md) 为准，每次发布前照它们做。要点：
+
+1. **密钥由用户自己建、自己放。** 用户在创作中心的[作者 API 密钥](https://lumiogames.cn/studio/settings/credentials)页新建密钥（权限和作品范围按 LumioSDK README 的要求选），格式是 `lmo_api_…`，只显示一次。请用户自己在终端里把它设成环境变量，本模板约定变量名是 `LUMIO_API_KEY`。
+2. **密钥只放在环境变量里。** Agent 只从环境变量读；不让用户把密钥贴进对话，不写进代码、配置文件、仓库或 ZIP，不放在命令行参数里，不出现在日志和截图里。环境变量没设好就停下，请用户设好再来。
+3. **请求顺序**（同一把密钥）：首次发布先创建作品；然后申请上传 → 用回执里的地址上传 ZIP → 完成上传 → 等平台处理完 → 修改资料（首次发布必须有一句话介绍、分类、横竖屏和封面）→ 提交审核 → 查审核结果 → 确认上线。更新已有作品不要新建作品，从申请上传开始，版本号要比上一版大。
+4. **对外操作先问用户。** 创建作品、修改公开资料、提交审核之前，把要用的标题、版本号、更新说明和资料给用户看，用户同意再发。
+5. **出错按 LumioSDK README「出错时」处理。** 不在那张表里的失败，或审核结果不是通过，就停下，把 `gameKey`、`uploadId`、`versionId`、`requestId` 告诉用户，不自动重试。
 
 ## 常见拒收原因
 

@@ -1,28 +1,49 @@
 ---
 name: knowledge
-description: 项目知识库导航——查 Lumio 平台事实、玩法设计或开发规范时，从这里找到对应文档
+description: 项目知识库导航——查"某事怎么做"(standards)、"某功能怎么设计的"(features)或 Lumio 平台事实时,从这里找到对应 .md
 metadata:
   type: index
 ---
 
-# 知识导航
+# Knowledge(项目知识库 · 导航)
 
-`knowledge/` 下每篇文档在这里占一行：链接 + 一句话（与文档头的 `description` 同一句话，写「是什么 + 何时查」）。新增文档时加一行，修订文档不加行。
+本文件是 `knowledge/` 下所有 .md 的导航 meta:一行描述 + 路径,按需下钻。
 
-## lumio/（Lumio 平台事实）
+> **导航行与各文档 frontmatter `description` 同一句话口径,只写「是什么 + 何时查」。** 交付历史在 git,不进文档;长度 / status 枚举 / 登记覆盖 / 链接可达由 `node .spec/tools/spec-lint.mjs` 机械校验。
+
+## standards/(开发规范 · 要遵守的「怎么做」)
 
 | 文档 | 一句话 |
-| --- | --- |
-| [sdk](lumio/sdk.md) | Lumio SDK 的版本、安装、本地模拟器与平台连接、开放能力和调用规则——接入或使用平台能力时查 |
-| [publishing](lumio/publishing.md) | `lumio.json` 声明、ZIP 打包规则和创作中心上传步骤——打包上传或被拒收时查 |
-| [lgui](lumio/lgui.md) | 用 LGUI 做界面的游戏怎么建工程、接 SDK、正式构建——选了 LGUI 时查 |
-| [web-project](lumio/web-project.md) | 不用 LGUI 时用 Vite + TypeScript 建网页工程并接 SDK——自己画界面或用其他网页引擎时查 |
-| [resources](lumio/resources.md) | Lumio 相关仓库、文档、创作中心和社群地址——找官方资料或求助时查 |
+|------|--------|
+| [`standards/project-structure.md`](standards/project-structure.md) | 项目结构:有哪些模块、依赖方向、命名规则、新东西放哪——建目录、加文件、跨模块引用前查 |
+| [`standards/workflow.md`](standards/workflow.md) | 开发工作流:分支/提交/合并·PR 与知识同步义务——动手改代码、开 PR 前查 |
+| [`standards/code-style.md`](standards/code-style.md) | 代码与文档风格:语言约定、命名、注释原则、生成物纪律——写代码/建文档时查 |
+| [`standards/testing.md`](standards/testing.md) | 测试与验收:测试分层政策、TDD 时机、验收 DoD 与验证证据——实现功能/修 bug 时查 |
 
-## features/（玩法设计）
+## features/(功能设计与记录 · 供了解)
 
-（还没有。design-doc 技能会把定下来的玩法写到这里。）
+| 文档 | 一句话 |
+|------|--------|
+| [`features/_TEMPLATE.md`](features/_TEMPLATE.md) | 新功能文档模板——新增功能记录时照此建,放对 领域 / 模块 |
 
-## standards/（开发与美术规范）
+> 暂无正式功能文档。
 
-（还没有。art-bible 技能会把美术规范写到这里。）
+## lessons(经验教训 · 复发问题暂存区)
+
+| 文档 | 一句话 |
+|------|--------|
+| [`lessons.md`](lessons.md) | 经验教训:reviewer 反复退回的同类问题与 Agent 常犯坑——开工前与复盘沉淀时查 |
+
+## lumio-platform/(Lumio 平台事实 · 框架文件)
+
+| 文档 | 一句话 |
+|------|--------|
+| [`lumio-platform/sdk.md`](lumio-platform/sdk.md) | Lumio SDK 的版本、安装、本地模拟器与平台连接、开放能力和调用规则——接入或使用平台能力时查 |
+| [`lumio-platform/publishing.md`](lumio-platform/publishing.md) | `lumio.json` 声明、ZIP 打包规则和两种发布方式（自己上传 ZIP、用作者 API 密钥发布）——打包发布或被拒收时查 |
+| [`lumio-platform/lgui.md`](lumio-platform/lgui.md) | 用 LGUI 做界面的游戏怎么建工程、接 SDK、正式构建——选了 LGUI 时查 |
+| [`lumio-platform/web-project.md`](lumio-platform/web-project.md) | 不用 LGUI 时用 Vite + TypeScript 建网页工程并接 SDK——自己画界面或用其他网页引擎时查 |
+| [`lumio-platform/resources.md`](lumio-platform/resources.md) | Lumio 相关仓库、文档、创作中心和社群地址——找官方资料或求助时查 |
+
+---
+
+新增 / 修改 / 维护知识文档(放哪、frontmatter、同步本导航)→ 用 `spec-steward` 技能;决策记录(唯一落点)→ [`../decisions/`](../decisions/README.md)。

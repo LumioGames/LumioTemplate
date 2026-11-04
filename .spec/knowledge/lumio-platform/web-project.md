@@ -1,5 +1,5 @@
 ---
-name: lumio-web-project
+name: lumio-platform-web-project
 description: 不用 LGUI 时用 Vite + TypeScript 建网页工程并接 SDK——自己画界面或用其他网页引擎时查
 metadata:
   type: standard
@@ -12,16 +12,16 @@ metadata:
 
 ## 建工程
 
-在仓库根目录建 `game/`，按下面写文件（不用 `npm create vite`，避免拿到不确定的模板版本）：
+在 `Client/app/` 建工程，按下面写文件（不用 `npm create vite`，避免拿到不确定的模板版本）：
 
 ```bash
-mkdir -p game/src game/public && cd game
+mkdir -p Client/app/src Client/app/public && cd Client/app
 # 先写好下面的 package.json，再装依赖
 npm i --save-exact @lumiogames/sdk@2.11.1
 npm i -D --save-exact vite@7.3.7 typescript@5.9.3
 ```
 
-`game/package.json`：
+`Client/app/package.json`：
 
 ```json
 {
@@ -31,12 +31,12 @@ npm i -D --save-exact vite@7.3.7 typescript@5.9.3
   "scripts": {
     "dev": "vite",
     "build": "tsc --noEmit && vite build",
-    "pack": "node ../tools/lumio-pack.mjs dist ../<英文短名>.zip"
+    "pack": "node ../../Tools/lumio-pack.mjs dist ../../Builds/lumio/<英文短名>.zip"
   }
 }
 ```
 
-`game/vite.config.ts`：
+`Client/app/vite.config.ts`：
 
 ```ts
 import { defineConfig } from 'vite';
@@ -45,7 +45,7 @@ import { defineConfig } from 'vite';
 export default defineConfig({ base: './' });
 ```
 
-`game/tsconfig.json`：
+`Client/app/tsconfig.json`：
 
 ```json
 {
@@ -63,7 +63,7 @@ export default defineConfig({ base: './' });
 }
 ```
 
-`game/index.html`（入口；构建时 Vite 会把 `src/main.ts` 换成打包后的脚本）：
+`Client/app/index.html`（入口；构建时 Vite 会把 `src/main.ts` 换成打包后的脚本）：
 
 ```html
 <!doctype html>
@@ -85,11 +85,11 @@ export default defineConfig({ base: './' });
 
 构建时 Vite 会提示 `<script src="./lumio-bootstrap.js"> … can't be bundled without type="module"`，这是预期的：这个脚本由平台提供，要原样留在页面里。
 
-`game/public/lumio.json`：照 [publishing.md](publishing.md) 的写法。`public/` 里的文件构建时原样复制到 `dist/` 根部。
+`Client/app/public/lumio.json`：照 [publishing.md](publishing.md) 的写法。`public/` 里的文件构建时原样复制到 `dist/` 根部。
 
 ## 接 Lumio
 
-`game/src/lumio.ts`：
+`Client/app/src/lumio.ts`：
 
 ```ts
 // 本地开发（vite dev）用 SDK 模拟器，正式构建只连平台。连不上就报错，不换成模拟器。
@@ -104,7 +104,7 @@ export function connectLumio(): Promise<LumioSdk> {
 }
 ```
 
-`game/src/main.ts`（验证按钮，之后换成真正的游戏）：
+`Client/app/src/main.ts`（验证按钮，之后换成真正的游戏）：
 
 ```ts
 import { connectLumio } from './lumio';
@@ -131,14 +131,14 @@ try {
 }
 ```
 
-用 Phaser 等引擎时，引擎照常装进 `game/`，把 `connectLumio()` 的结果交给游戏逻辑；SDK 的 `@lumiogames/sdk/adapters` 里还有 `connectPhaser`、`connectCocos` 等适配，用前先读它的类型声明。
+用 Phaser 等引擎时，引擎照常装进 `Client/app/`，把 `connectLumio()` 的结果交给游戏逻辑；SDK 的 `@lumiogames/sdk/adapters` 里还有 `connectPhaser`、`connectCocos` 等适配，用前先读它的类型声明。
 
 ## 运行、构建、打包
 
 ```bash
 npm run dev     # 打开终端里显示的地址，点按钮显示「已存档并提交」
 npm run build   # 输出到 dist/：index.html、assets/、lumio.json
-npm run pack    # 生成 ../<英文短名>.zip
+npm run pack    # 生成 Builds/lumio/<英文短名>.zip
 ```
 
 `grep -c simulated_friend dist/assets/*.js` 结果为 0，说明正式包里没有模拟器。

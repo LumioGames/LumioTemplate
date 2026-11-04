@@ -3,7 +3,7 @@ name: design-doc
 description: 把已定调的策划决策沉淀为策划案文档并长期维护——含落点、结构、数值来源与导航同步。当策划讨论出了需要写进文档的结论、或要修订既有策划案时使用。
 ---
 
-> 来源：LumioGames/LumioGame 的 `.spec/skills`（Apache-2.0），经 Samsara 适配后收入 LumioTemplate。项目事实以 `.spec/AGENTS.md` 为准。
+> 来源：来自 LumioGames/LumioGame（Apache-2.0，见 [LICENSE](../LICENSE)），收入 LumioTemplate。项目事实以 `.spec/AGENTS.md` 为准。
 
 # Design Doc(策划案维护)
 

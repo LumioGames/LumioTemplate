@@ -9,8 +9,6 @@ metadata:
 
 本文件是 `knowledge/` 下所有 .md 的导航 meta:一行描述 + 路径,按需下钻。
 
-> **导航行与各文档 frontmatter `description` 同一句话口径,只写「是什么 + 何时查」。** 交付历史在 git,不进文档;长度 / status 枚举 / 登记覆盖 / 链接可达由 `node .spec/tools/spec-lint.mjs` 机械校验。
-
 ## standards/(开发规范 · 要遵守的「怎么做」)
 
 | 文档 | 一句话 |
@@ -36,14 +34,4 @@ metadata:
 
 ## lumio-platform/(Lumio 平台事实 · 框架文件)
 
-| 文档 | 一句话 |
-|------|--------|
-| [`lumio-platform/sdk.md`](lumio-platform/sdk.md) | Lumio SDK 的版本、安装、本地模拟器与平台连接、开放能力和调用规则——接入或使用平台能力时查 |
-| [`lumio-platform/publishing.md`](lumio-platform/publishing.md) | `lumio.json` 声明、ZIP 打包规则和两种发布方式（自己上传 ZIP、用作者 API 密钥发布）——打包发布或被拒收时查 |
-| [`lumio-platform/lgui.md`](lumio-platform/lgui.md) | 用 LGUI 做界面的游戏怎么建工程、接 SDK、正式构建——选了 LGUI 时查 |
-| [`lumio-platform/web-project.md`](lumio-platform/web-project.md) | 不用 LGUI 时用 Vite + TypeScript 建网页工程并接 SDK——自己画界面或用其他网页引擎时查 |
-| [`lumio-platform/resources.md`](lumio-platform/resources.md) | Lumio 相关仓库、文档、创作中心和社群地址——找官方资料或求助时查 |
-
----
-
-新增 / 修改 / 维护知识文档(放哪、frontmatter、同步本导航)→ 用 `spec-steward` 技能;决策记录(唯一落点)→ [`../decisions/`](../decisions/README.md)。
+Lumio 平台的事实在 `lumio-platform/`：sdk（接 SDK）、publishing（打包发布）、lgui（用 LGUI 做界面）、web-project（不用 LGUI 的网页工程）、resources（官方链接）。

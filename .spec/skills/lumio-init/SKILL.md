@@ -19,8 +19,8 @@ description: 当 `.spec/AGENTS.md` 写着「状态：未初始化」，或用户
 
 ## 两种开场
 
-- **客户端自动载入了**：用户在项目文件夹里开对话说「开始」，Claude Code 已经经 `CLAUDE.md` 载入核心文档、经软链发现了技能。直接往下做。
-- **你主动读文件开始的**：你刚在这次对话里把模板克隆进当前文件夹（README「给 Agent」那一节的第 2 步），客户端没有载入 `CLAUDE.md`，也没有发现技能。这不是错误，不用开新对话：先读根目录 `AGENTS.md` 和它列出的 4 份文件，再往下做；要用到别的技能（design-director、art-director 等）时，直接读 `.spec/skills/<技能名>/SKILL.md`。
+- **客户端自动载入了**：用户在项目文件夹里开对话说「开始」，Claude Code 已经经 `CLAUDE.md` 载入核心文档、经软链发现了技能。直接往下做。Codex 等客户端：先读根目录 `AGENTS.md` 列的文件，再往下做。
+- **你主动读文件开始的**：你刚在这次对话里把模板克隆进当前文件夹（README「给 Agent」那一节的第 2 步），客户端没有载入 `CLAUDE.md`，也没有发现技能。这不是错误，不用开新对话：先读根目录 `AGENTS.md` 和它列出的文件，再往下做；要用到别的技能（design-director、art-director 等）时，直接读 `.spec/skills/<技能名>/SKILL.md`。
 
 ## 先判断做到哪了
 
@@ -37,6 +37,12 @@ description: 当 `.spec/AGENTS.md` 写着「状态：未初始化」，或用户
 
      「这个文件夹里的三条软链（`.claude/skills`、`.claude/agents`、`.agents/skills`）被检出成了普通文件，Claude Code 和 Codex 会找不到技能和审查子 Agent，初始化先停在这里。请在 Windows 设置里打开开发者模式（设置 → 系统 → 开发者选项），然后换一个空文件夹，用 `git clone -c core.symlinks=true https://github.com/LumioGames/LumioTemplate <文件夹名>` 重新克隆，在新文件夹里开一个新对话，说「开始」。」
 2. **Git 和 Node。** `git --version`；`node -v` 要是 Node 24（24.18 以上的 24.x；Lumio SDK 不支持 25 及以上）。结构检查用 Node，以后建网页工程、用 LGUI 和 Lumio SDK 也要它。缺哪个就告诉用户装什么、去哪下载（Git：https://git-scm.com/downloads ；Node：https://nodejs.org ，选 24 LTS），用户装好后再检查一遍。**不替用户安装系统软件。**
+3. **Git 身份。** `git config user.name` 和 `git config user.email` 都要有输出（收尾时要提交一次）。没设就告诉用户这两条命令，请用户填上自己的名字和邮箱后跑，然后停下，等用户设好再继续：
+
+   ```bash
+   git config --global user.name "你的名字"
+   git config --global user.email "你的邮箱"
+   ```
 
 ## 第一段：立项问答与生成骨架
 
@@ -84,7 +90,7 @@ description: 当 `.spec/AGENTS.md` 写着「状态：未初始化」，或用户
 | `.spec/AGENTS.md` | 「项目是什么」写四行摘要（一句话、技术路线、有没有自己的服务端、发不发布到 Lumio），末尾一句「以 `knowledge/project.md` 为准」；填「模块」（每个模块一行：放什么 + 指向它的 README）。「收口门槛」保持只有 spec-lint。状态这时不改，第二段才改 |
 | `.spec/knowledge/standards/project-structure.md` | 「模块」一节换成本项目的模块表，删掉那条「待完善」；没有 `Server/` 时，依赖方向和「新东西放哪」里删掉 Server 和协议相关的内容 |
 | `.spec/knowledge/standards/workflow.md` | 按人数填「分支策略」「合并 / PR 流程」，删掉这两节的「待完善」 |
-| `.spec/knowledge/standards/code-style.md` | 按语言填「文档与注释的语言」，删掉这一节的「待完善」；「语言 / 框架特定风格」写上本路线的默认值，保留「待完善」 |
+| `.spec/knowledge/standards/code-style.md` | 「文档与注释的语言」写成 `{{语言}}`（跟用户说话的语言一致；用户要文档和注释用不同语言就分开写），删掉这一节的「待完善」；「语言 / 框架特定风格」写上本路线的默认值，保留「待完善」 |
 | `.spec/knowledge/standards/testing.md` | 不改，两处「待完善」留到以后（定玩法、建工程时） |
 | `.spec/knowledge/README.md` | 在 standards 一节前加一节「一页纸（先看这里）」，两行：`[project.md](project.md)` 项目一页纸——是什么、技术、美术一句话、范围，开工和讨论玩法前先看；`[art/README.md](art/README.md)` 美术一页纸——风格、色板、UI 基调和各块细节，出图、做资产、审美术稿前先看。「暂无正式功能文档」那行保留（还没有功能文档） |
 
@@ -102,7 +108,7 @@ description: 当 `.spec/AGENTS.md` 写着「状态：未初始化」，或用户
 
 `skeleton/` 里的文件用两种标记，生成时全部替换或删掉，不留在生成的文件里：
 
-- `{{名字}}`：占位，换成立项答案。用到的有 `{{暂定名}}`、`{{英文短名}}`、`{{一句话}}`、`{{技术路线}}`（只写引擎或平台名：网页、Unity、UE，或用户说的其他引擎）、`{{人数}}`（「一个人做」或「N 个人做」）、`{{文档语言}}`、`{{日期}}`（今天，YYYY-MM-DD）。
+- `{{名字}}`：占位，换成立项答案。用到的有 `{{暂定名}}`、`{{英文短名}}`、`{{一句话}}`、`{{技术路线}}`（只写引擎或平台名：网页、Unity、UE，或用户说的其他引擎）、`{{人数}}`（「一个人做」或「N 个人做」）、`{{语言}}`（用户说话用的语言，不用问）、`{{日期}}`（今天，YYYY-MM-DD）。
 - 条件块：`<!-- 如果：<条件> -->` 开头、`<!-- 结束 -->` 结尾，可以占几整行，也可以夹在一行中间。条件成立就保留中间的内容，不成立就连内容一起删掉；两种情况下标记本身都删掉，删完不留多余的空行。条件有：`有 Server`、`没有 Server`、`发布到 Lumio`、`不发布到 Lumio`、`一个人`、`多人`、`网页`、`Unity`、`UE`、`其他路线`；第二段改写 README 时还有 `选了游戏许可`、`没选游戏许可`。
 - 说明注释：`<!-- 生成时：… -->`，照着做完后删掉。
 

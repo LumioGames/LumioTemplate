@@ -22,7 +22,7 @@ Any engine works: web, Unity, UE and others. Publishing to [Lumio](https://lumio
 
 Setup has two parts:
 
-1. **Skeleton**: five questions (working title and a one-line idea, whether you write your own server code, web or Unity / UE, whether you publish to Lumio, team size and documentation language). Each comes with an example and a default; say "you decide" to take the default. The agent shows you the folder tree first and generates everything after you confirm. At this point the project is complete and usable.
+1. **Skeleton**: five questions (working title and a one-line idea, whether you write your own server code, web or Unity / UE, whether you publish to Lumio, team size; docs follow the language you speak to the agent in). Each comes with an example and a default; say "you decide" to take the default. The agent shows you the folder tree first and generates everything after you confirm. At this point the project is complete and usable.
    After generating, the agent asks one question: do you want to talk about gameplay or art now? You can also skip it and later say "let's decide the gameplay" or "let's decide the art direction".
 2. **Wrap up**: delete the one-time setup skill, rewrite the README for your game, and make one local commit. The agent asks before pushing anywhere.
 

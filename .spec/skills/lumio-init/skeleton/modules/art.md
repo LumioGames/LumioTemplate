@@ -1,6 +1,6 @@
 # Art（美术源文件）
 
-{{暂定名}}的美术源文件。风格怎么定、规范是什么，在 `.spec/knowledge/standards/art-direction.md`；这里只放文件。
+{{暂定名}}的美术源文件。风格怎么定、规范是什么，在 `.spec/knowledge/art/README.md`（美术一页纸）；这里只放文件。
 
 ## 放什么
 

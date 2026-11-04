@@ -1,5 +1,5 @@
 ---
-name: lumio-lgui
+name: lumio-platform-lgui
 description: 用 LGUI 做界面的游戏怎么建工程、接 SDK、正式构建——选了 LGUI 时查
 metadata:
   type: standard
@@ -21,25 +21,25 @@ LGUI 是 Lumio 给 AI Agent 用的游戏 UI 框架：界面放在 `ui/`（FairyG
 - 其他客户端：`git clone --depth 1 https://github.com/LumioGames/LGUI`，把里面的 `plugin/` 当插件目录。
 - 下文的 `lgui` 指 `node <插件目录>/tools/lgui.mjs`。Claude Code 的插件目录在 `~/.claude/plugins/cache/lumio-lgui/lgui/<版本>/`，Codex 在 `~/.codex/plugins/cache/lumio-lgui/lgui/<版本>/`。
 - 先跑 `lgui doctor`，要求 Node 24，电脑上有 Chrome 或 Edge。
-- LGUI 的技能要新开一个会话才生效。这次初始化不需要技能，命令行装完就能用；初始化完告诉用户新开会话再做界面。
+- LGUI 的技能要新开一个会话才生效。建工程只用命令行，装完就能用；建完告诉用户新开会话再做界面。
 
 ## 2. 建工程
 
 在仓库根目录：
 
 ```bash
-lgui init game --name <英文短名>
-cd game
+lgui init Client/app --name <英文短名>
+cd Client/app
 npm i --save-exact @lumiogames/sdk@2.11.1
 ```
 
-`lgui init` 只接受不存在或空的目录。它会在 `game/` 里放 `ui/`、`src/`、`tests/`、`i18n/`、`.lgui/`（框架副本和配置），以及 LGUI 自己的 `AGENTS.md` / `CLAUDE.md`（在 `game/` 里干活时也要遵守它们）。横竖屏在 `game/.lgui/project.json` 的 `orientation` 里改。
+`lgui init` 只接受不存在或空的目录。它会在 `Client/app/` 里放 `ui/`、`src/`、`tests/`、`i18n/`、`.lgui/`（框架副本和配置），以及 LGUI 自己的 `AGENTS.md` / `CLAUDE.md`（在 `Client/app/` 里干活时也要遵守它们）。横竖屏在 `Client/app/.lgui/project.json` 的 `orientation` 里改。
 
 ## 3. 接 Lumio：放在一个 Service 里
 
 按 LGUI 的 MVC 规范，跟平台打交道的代码放在 Service，Controller 通过 `lgui.service` 拿它，测试里换成假实现。`LGUI_DEV` 是 LGUI 构建时定义的开关：`lgui dev`、`lgui test`、`lgui verify` 为 `true`，正式构建为 `false`。
 
-`game/src/modules/lumio/LumioService.ts`：
+`Client/app/src/modules/lumio/LumioService.ts`：
 
 ```ts
 // 跟 Lumio 平台打交道：本地开发（lgui dev / test / verify）用 SDK 模拟器，正式构建只连平台。连不上就报错，不换成模拟器。
@@ -101,17 +101,17 @@ lgui verify  # 横竖屏标准尺寸截图
 
 ## 5. 正式构建和打包
 
-LGUI 插件还没有网页正式构建命令。在它提供之前，用仓库里的过渡脚本 `tools/lgui-build-web.mjs`：它调用已装插件里的生成和打包代码，输出 `index.html`、`app.js`、`ui/`、`i18n/`，在入口页引用 `./lumio-bootstrap.js`，并把 `lumio.json` 复制进去。插件目录自动从 Claude Code / Codex 的插件缓存里找，找不到时设环境变量 `LGUI_PLUGIN=<插件目录>`。
+LGUI 插件还没有网页正式构建命令。在它提供之前，用过渡脚本 `Tools/lgui-build-web.mjs`（初始化时，网页加 LGUI 路线把它从 `.spec/tools/` 移到 `Tools/`）：它调用已装插件里的生成和打包代码，输出 `index.html`、`app.js`、`ui/`、`i18n/`，在入口页引用 `./lumio-bootstrap.js`，并把 `lumio.json` 复制进去。插件目录自动从 Claude Code / Codex 的插件缓存里找，找不到时设环境变量 `LGUI_PLUGIN=<插件目录>`。
 
-`game/package.json` 里加：
+`Client/app/package.json` 里加：
 
 ```json
 "scripts": {
-  "build": "node ../tools/lgui-build-web.mjs . dist",
-  "pack": "node ../tools/lumio-pack.mjs dist ../<英文短名>.zip"
+  "build": "node ../../Tools/lgui-build-web.mjs . dist",
+  "pack": "node ../../Tools/lumio-pack.mjs dist ../../Builds/lumio/<英文短名>.zip"
 }
 ```
 
-`npm run build && npm run pack` 生成 ZIP。正式构建里 `LGUI_DEV` 为 `false`，模拟器分支和它的动态 import 会被剔除；可以 `grep -c simulated_friend dist/app.js` 确认结果是 0（这个字符串只在模拟器模块里；正式包里残留一段走不到的 `createLumioSimulator(` 分支没关系）。
+`npm run build && npm run pack` 在 `Builds/lumio/` 生成 ZIP。正式构建里 `LGUI_DEV` 为 `false`，模拟器分支和它的动态 import 会被剔除；可以 `grep -c simulated_friend dist/app.js` 确认结果是 0（这个字符串只在模拟器模块里；正式包里残留一段走不到的 `createLumioSimulator(` 分支没关系）。
 
-LGUI 出了正式构建命令后，把 `build` 换成它，删掉 `tools/lgui-build-web.mjs`。
+LGUI 出了正式构建命令后，把 `build` 换成它，删掉 `Tools/lgui-build-web.mjs`。

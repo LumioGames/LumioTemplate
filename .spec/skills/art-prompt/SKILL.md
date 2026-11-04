@@ -3,7 +3,7 @@ name: art-prompt
 description: 把美术方向翻译成 AI 出图提示词(Midjourney / Stable Diffusion 等)。当需要为概念探索、参考图或美术资产生成 AI 绘图 prompt 时使用。
 ---
 
-> 来源：LumioGames/LumioGame 的 `.spec/skills`（Apache-2.0），经 Samsara 适配后收入 LumioTemplate。项目事实以 `.spec/AGENTS.md` 为准。
+> 来源：来自 LumioGames/LumioGame（Apache-2.0，见 [LICENSE](../LICENSE)），收入 LumioTemplate。项目事实以 `.spec/AGENTS.md` 为准。
 
 # Art Prompt(AI 出图提示词)
 

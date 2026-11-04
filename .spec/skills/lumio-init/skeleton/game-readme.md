@@ -1,0 +1,49 @@
+# {{暂定名}}
+
+{{一句话}}
+
+<!-- 生成时：一句话还标着「待完善」就先写「玩法还在设计中。」 -->
+
+## 现在做到哪了
+
+项目的目录结构和规范已经整理好，游戏工程还没建。下一步是按 `Client/README.md` 建工程。
+
+## 目录
+
+| 路径 | 内容 |
+| --- | --- |
+| `Client/` | 客户端（{{技术路线}}），怎么建工程见它的 README |
+| `Config/` | 配表和通用配置<!-- 如果：有 Server -->，以及客户端和服务端之间的协议<!-- 结束 --> |
+<!-- 如果：有 Server -->
+| `Server/` | 自己写的服务端代码 |
+<!-- 结束 -->
+| `Art/` | 美术源文件 |
+| `Tools/` | 开发工具<!-- 如果：发布到 Lumio -->（含 Lumio 打包工具 `lumio-pack.mjs`）<!-- 结束 --> |
+| `Builds/` | 构建产物，不进 git |
+| `.spec/` | 项目规范：中心文档、红线、知识、决策、技能 |
+| `AGENTS.md` / `CLAUDE.md` | 给 AI Agent 的入口 |
+
+## 怎么开发
+
+用 Claude Code 或 Codex 打开这个文件夹，直接说想做什么。Agent 会先读 `.spec/` 里的规范再动手。常用的说法：
+
+- 「我们来定玩法」：讨论并定下玩法方向。
+- 「我们来定美术方向」：讨论并定下美术风格。
+- 「帮我建工程」：按 `Client/README.md` 建客户端工程。
+- 「做某某功能」：先写计划，再派 Agent 实现。
+
+需要：Git、Node.js 24.18 或更高、一个 AI 编程 Agent。
+
+## 本地运行和打包
+
+（建工程后补：怎么在本地运行、怎么构建<!-- 如果：发布到 Lumio -->、怎么打包成能上传到 Lumio 的 ZIP<!-- 结束 -->。）
+<!-- 如果：发布到 Lumio -->
+
+## 发布到 Lumio
+
+打包规则见 `.spec/knowledge/lumio-platform/publishing.md`。上传：登录 https://lumiogames.cn/studio/games/new 创建作品，在「版本」页上传 ZIP 并提交审核。
+<!-- 结束 -->
+
+## 许可
+
+本项目用 [LumioTemplate](https://github.com/LumioGames/LumioTemplate) 初始化。根目录的 `LICENSE` 是 LumioTemplate 模板本身的许可；你用它做的游戏归你所有。`.spec/skills/` 里的技能保留各自的许可，见 `.spec/skills/README.md`。

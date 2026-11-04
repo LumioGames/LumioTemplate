@@ -1,5 +1,5 @@
 ---
-name: lumio-sdk
+name: lumio-platform-sdk
 description: Lumio SDK 的版本、安装、本地模拟器与平台连接、开放能力和调用规则——接入或使用平台能力时查
 metadata:
   type: standard
@@ -15,7 +15,7 @@ metadata:
 | 项 | 值 |
 | --- | --- |
 | 本仓库使用 | `2.11.1`（npm 上的 `latest`） |
-| 安装 | 在 `game/` 里 `npm i --save-exact @lumiogames/sdk@2.11.1` |
+| 安装 | 在 `Client/app/` 里 `npm i --save-exact @lumiogames/sdk@2.11.1` |
 | 查 npm 上有哪些版本 | `npm view @lumiogames/sdk versions` |
 
 不要用 2.11.1 以前的版本：2.10.x 在 iPhone Safari 和微信内置浏览器里可能连不上平台（返回 `platform.not_granted`），2.11.1 修好了。以后升级时改安装版本，重新构建、打包、上传，并改掉本节的「本仓库使用」。
@@ -30,7 +30,7 @@ metadata:
 | 平台上（正式构建） | `connectLumioFromLaunch()`，从 `@lumiogames/sdk` 导入 |
 
 - 模拟器的结果都带 `simulated: true`，数据只在内存里，刷新就没了。它不完整执行线上的声明、权限、配额和频率检查，不能代替上传验证。
-- 选哪个由**构建开关**决定（LGUI 的 `LGUI_DEV`，Vite 的 `import.meta.env.DEV`），不在运行时根据连接结果决定。连接失败就报错，不能换成模拟器（[rules/system.md](../../rules/system.md)）。
+- 选哪个由**构建开关**决定（LGUI 的 `LGUI_DEV`，Vite 的 `import.meta.env.DEV`），不在运行时根据连接结果决定。连接失败就报错，不能换成模拟器（发布到 Lumio 的项目，这条红线写在 [rules/project.md](../../rules/project.md)）。
 - 写法要让正式构建剔除模拟器：`connectLumioFromLaunch` 用静态 `import`；模拟器只在开发分支里用动态 `import('@lumiogames/sdk/simulator')`。如果写成 `import('@lumiogames/sdk')` 动态导入整个包，模拟器会被打进正式包。
 - 模拟器的 `gameKey` 只是格式合法的占位值，不需要是真的作品号；`connectLumioFromLaunch()` 从平台启动地址读取真实的作品和版本，不用写死。
 - 场景卸载时调用 `lumio.dispose()`。

@@ -1,5 +1,5 @@
 ---
-name: lumio-publishing
+name: lumio-platform-publishing
 description: lumio.json 声明、ZIP 打包规则和创作中心上传步骤——打包上传或被拒收时查
 metadata:
   type: standard
@@ -12,7 +12,7 @@ metadata:
 
 ## lumio.json
 
-放在 `game/` 里，构建时原样复制到构建目录根部。最小写法（云存档 + 排行榜）：
+放在客户端工程里（网页路线是 `Client/app/`），构建时原样复制到构建目录根部。最小写法（云存档 + 排行榜）：
 
 ```json
 {
@@ -83,7 +83,7 @@ metadata:
 | 不能有符号链接、加密条目 | ZIP64 也不支持 |
 | 大小 | 平台按配置限制总大小和文件数；包超过 50 MB 时创作中心会提示，尽量压小 |
 
-打包工具：`node tools/lumio-pack.mjs <构建目录> <输出.zip>`。它先查上面几条（`lumio.json`、入口、保留文件、绝对路径、文件名），有问题直接报错，再生成平台能读的 ZIP（UTF-8 文件名、deflate 压缩）。不要用 Windows 资源管理器或 PowerShell 的 `Compress-Archive` 打包。
+打包工具：`node Tools/lumio-pack.mjs <构建目录> <输出.zip>`（初始化时，发布到 Lumio 的项目把它从 `.spec/tools/` 移到 `Tools/`），ZIP 默认输出到 `Builds/lumio/`。它先查上面几条（`lumio.json`、入口、保留文件、绝对路径、文件名），有问题直接报错，再生成平台能读的 ZIP（UTF-8 文件名、deflate 压缩）。不要用 Windows 资源管理器或 PowerShell 的 `Compress-Archive` 打包。
 
 ## 上传步骤（用户自己操作）
 

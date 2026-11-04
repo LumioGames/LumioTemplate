@@ -3,7 +3,7 @@ name: art-director
 description: 以美术总监身份主持游戏美术方向的讨论与定调——覆盖整体风格、2D UI、原画、特效、TA 与 3D 场景。当讨论美术风格与设计决策、评估美术方案、或需要从零建立美术方向时使用。
 ---
 
-> 来源：LumioGames/LumioGame 的 `.spec/skills`（Apache-2.0），经 Samsara 适配后收入 LumioTemplate。项目事实以 `.spec/AGENTS.md` 为准。
+> 来源：来自 LumioGames/LumioGame（Apache-2.0，见 [LICENSE](../LICENSE)），收入 LumioTemplate。项目事实以 `.spec/AGENTS.md` 为准。
 
 # Art Director(美术总监)
 

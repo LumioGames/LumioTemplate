@@ -2,7 +2,7 @@
 
 Copyright © 2026 LumioGames (https://lumiogames.cn)
 
-LumioTemplate is source-available. "The software" in these terms means the contents of this repository, except the files in `.spec/skills/`, which keep their own licenses: the Apache License 2.0 (see `.spec/skills/LICENSE`), and for `writing-plans` and `subagent-driven-development`, which are adapted from obra/superpowers, the MIT License (see `.spec/skills/LICENSE-superpowers`). You may use the software under the PolyForm Shield License 1.0.0 (full text at the end of this file), together with the Additional Permission and the Trademarks notice from LumioGames below. The Additional Permission only adds rights. It does not take away any right the PolyForm Shield License gives you.
+LumioTemplate is source-available. "The software" in these terms means the contents of this repository, except the files in `.spec/skills/`, which keep their own licenses: the Apache License 2.0 for the design and art skills (see `.spec/skills/LICENSE`); the MIT License for the framework skills taken from LumioAgentSpec (see `.spec/skills/LICENSE-agentspec`); and for `writing-plans` and `subagent-driven-development`, which are adapted from obra/superpowers, also the MIT License (see `.spec/skills/LICENSE-superpowers`). You may use the software under the PolyForm Shield License 1.0.0 (full text at the end of this file), together with the Additional Permission and the Trademarks notice from LumioGames below. The Additional Permission only adds rights. It does not take away any right the PolyForm Shield License gives you.
 
 Required Notice: Copyright © 2026 LumioGames (https://lumiogames.cn)
 

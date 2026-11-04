@@ -14,7 +14,7 @@
 1. 和用户一起定引擎版本和工程目录名，写进 `.spec/decisions/`，再建工程；引擎生成的缓存和临时目录加进 `.gitignore`。
 2. 要用 LGUI 时：按 `.spec/knowledge/lumio-platform/lgui.md`「装 LGUI」安装，在仓库根目录跑 `lgui init Client/app --name {{英文短名}}`。
 <!-- 如果：发布到 Lumio -->
-3. 发布到 Lumio：Lumio 收的是网页包（见 `.spec/knowledge/lumio-platform/publishing.md`），先确认工程能导出成那样的网页包，再按 `sdk.md` 接 SDK、用 `Tools/lumio-pack.mjs` 打包，ZIP 输出到 `Builds/lumio/`。
+3. 发布到 Lumio：Lumio 收的是网页包（见 `.spec/knowledge/lumio-platform/publishing.md`），先确认工程能导出成那样的网页包，再按 `sdk.md` 接 SDK、用 `node .spec/tools/lumio-pack.mjs` 打包，ZIP 输出到 `Builds/lumio/`。
 <!-- 结束 -->
 4. 把构建和测试命令补进 `.spec/AGENTS.md`「收口门槛」和 `.spec/knowledge/standards/testing.md`。
 

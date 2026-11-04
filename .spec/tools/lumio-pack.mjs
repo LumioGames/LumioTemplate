@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // 把构建好的网页目录打成能直接在 Lumio 创作中心上传的 ZIP。零依赖，Node 24（24.18 以上的 24.x；Lumio SDK 不支持 25 及以上）。
-// 用法：node Tools/lumio-pack.mjs <构建目录> [输出.zip]（模板里先放在 .spec/tools/，初始化时，发布到 Lumio 的项目把它移到 Tools/）
+// 用法：node .spec/tools/lumio-pack.mjs <构建目录> [输出.zip]（框架文件，随框架更新）
 // 先按平台的上传规则检查（见 .spec/knowledge/lumio-platform/publishing.md），有问题就报错退出，不会打出一个注定被拒的包。
 // 平台上传时还会再做完整校验，以创作中心的结果为准。
 import fs from 'node:fs';
@@ -16,7 +16,7 @@ function fail(message) {
 }
 
 const [dirArg, outArg] = process.argv.slice(2);
-if (!dirArg) fail('缺少构建目录。用法：node Tools/lumio-pack.mjs <构建目录> [输出.zip]');
+if (!dirArg) fail('缺少构建目录。用法：node .spec/tools/lumio-pack.mjs <构建目录> [输出.zip]');
 const root = path.resolve(dirArg);
 if (!fs.existsSync(root) || !fs.statSync(root).isDirectory()) fail(`构建目录不存在：${root}`);
 

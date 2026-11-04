@@ -15,7 +15,7 @@
 1. 装 UE（版本建工程时和用户一起定，定下来写进 `.spec/decisions/`），在 `Client/unreal/` 建工程。UE 生成的 `Binaries/`、`Intermediate/`、`Saved/`、`DerivedDataCache/` 等目录要加进 `.gitignore`；大文件考虑用 Git LFS。
 2. 想先做网页原型：装 LGUI（按 `.spec/knowledge/lumio-platform/lgui.md`「装 LGUI」），在仓库根目录跑 `lgui init Client/app --name {{英文短名}}`。原型只用来验证玩法，不是正式客户端。
 <!-- 如果：发布到 Lumio -->
-3. 发布到 Lumio：Lumio 收的是网页包（见 `.spec/knowledge/lumio-platform/publishing.md`）。UE 工程能不能导出成那样的网页包，建工程时先确认；确认不了时，可以先把网页原型发到 Lumio，ZIP 用 `Tools/lumio-pack.mjs` 打，输出到 `Builds/lumio/`。
+3. 发布到 Lumio：Lumio 收的是网页包（见 `.spec/knowledge/lumio-platform/publishing.md`）。UE 工程能不能导出成那样的网页包，建工程时先确认；确认不了时，可以先把网页原型发到 Lumio，ZIP 用 `node .spec/tools/lumio-pack.mjs` 打，输出到 `Builds/lumio/`。
 <!-- 结束 -->
 4. 把构建和测试命令补进 `.spec/AGENTS.md`「收口门槛」和 `.spec/knowledge/standards/testing.md`。
 

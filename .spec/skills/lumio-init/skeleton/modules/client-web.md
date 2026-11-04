@@ -13,10 +13,10 @@
 1. 装 LGUI：按 `.spec/knowledge/lumio-platform/lgui.md`「装 LGUI」，Claude Code 和 Codex 各有安装命令；装完先跑 `lgui doctor`。
 2. 在仓库根目录跑 `lgui init Client/app --name {{英文短名}}`（`lgui init` 只接受不存在或空的目录）。工程里会带 LGUI 自己的 `AGENTS.md` / `CLAUDE.md`，在 `Client/app/` 里干活时也要遵守它们。
 <!-- 如果：发布到 Lumio -->
-3. 接 Lumio：在 `Client/app/` 里装 SDK、加 Lumio Service、写 `lumio.json`，按 `lgui.md`「接 Lumio」和 `.spec/knowledge/lumio-platform/sdk.md`、`publishing.md`。正式构建和打包用 `Tools/lgui-build-web.mjs` 和 `Tools/lumio-pack.mjs`，ZIP 输出到 `Builds/lumio/`。
+3. 接 Lumio：在 `Client/app/` 里装 SDK、加 Lumio Service、写 `lumio.json`，按 `lgui.md`「接 Lumio」和 `.spec/knowledge/lumio-platform/sdk.md`、`publishing.md`。正式构建和打包用 `node .spec/tools/lgui-build-web.mjs` 和 `node .spec/tools/lumio-pack.mjs`，ZIP 输出到 `Builds/lumio/`。
 <!-- 结束 -->
 <!-- 如果：不发布到 Lumio -->
-3. 正式构建用 `Tools/lgui-build-web.mjs`，输出到 `Builds/web/`。
+3. 正式构建用 `node .spec/tools/lgui-build-web.mjs`，输出到 `Builds/web/`。
 <!-- 结束 -->
 4. 把构建和测试命令（`lgui test`、`lgui verify` 等）补进 `.spec/AGENTS.md`「收口门槛」和 `.spec/knowledge/standards/testing.md`。
 

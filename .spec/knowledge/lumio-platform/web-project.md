@@ -31,7 +31,7 @@ npm i -D --save-exact vite@7.3.7 typescript@5.9.3
   "scripts": {
     "dev": "vite",
     "build": "tsc --noEmit && vite build",
-    "pack": "node ../../Tools/lumio-pack.mjs dist ../../Builds/lumio/<英文短名>.zip"
+    "pack": "node ../../.spec/tools/lumio-pack.mjs dist ../../Builds/lumio/<英文短名>.zip"
   }
 }
 ```

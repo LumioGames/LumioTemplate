@@ -19,6 +19,8 @@ description: 当用户说「更新框架」「升级框架」「看看模板有�
 .spec/rules/system.md
 .spec/agents/reviewer.md
 .spec/tools/spec-lint.mjs
+.spec/tools/lumio-pack.mjs
+.spec/tools/lgui-build-web.mjs
 .spec/knowledge/lumio-platform/
 .spec/skills/README.md
 .spec/skills/LICENSE
@@ -68,9 +70,8 @@ description: 当用户说「更新框架」「升级框架」「看看模板有�
 
 1. 新版在 `.spec/rules/` 下多了文件：在根目录 `CLAUDE.md` 加一行 `@.spec/rules/<文件名>`，在根目录 `AGENTS.md` 的必读清单加一行；去掉的规则文件，两处都删掉那一行。
 2. CHANGELOG 里「需要手动处理」的事项，逐项给用户看，用户同意后照做。
-3. **Lumio 工具**：项目里有 `Tools/lumio-pack.mjs` 或 `Tools/lgui-build-web.mjs` 时，和 `<临时目录>/.spec/tools/` 里的同名文件比；不一样就给用户看差异，问要不要换成新版。它们在 `Tools/` 里，属于项目，不自动覆盖。
-4. `node .spec/tools/spec-lint.mjs`，报出的问题告诉用户。
-5. 本地提交一次，例如 `git commit -m "chore: 框架更新到 <最新版本>"`。**推送前先问用户。** 删掉临时目录。
+3. `node .spec/tools/spec-lint.mjs`，报出的问题告诉用户。
+4. 本地提交一次，例如 `git commit -m "chore: 框架更新到 <最新版本>"`。**推送前先问用户。** 删掉临时目录。
 
 ### 6. 看看 LGUI 和 SDK 有没有新版（只提示，不自动升）
 

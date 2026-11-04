@@ -50,7 +50,7 @@ my-game/
 ├─ Client/        客户端。网页路线以后在 Client/app 建 LGUI 工程（Unity 路线还有 Client/unity）
 ├─ Config/        配表和通用配置；有自己的服务端时还放协议
 ├─ Art/           美术源文件：风格探索、参考图、出图提示词
-├─ Tools/         开发工具，包括 Lumio 打包工具
+├─ Tools/         开发工具（Lumio 打包工具在 .spec/tools/）
 ├─ Builds/        构建产物，只有 README 进 git
 ├─ .spec/
 │  ├─ AGENTS.md   项目中心文档：项目是什么、模块、收口命令
@@ -79,7 +79,7 @@ my-game/
 | `.spec/decisions/`、`plans/` | 决策记录、实现计划的格式（任务卡就是计划里的 `### Task N`） |
 | `.spec/skills/` | 11 个常驻技能（含更新框架用的 `lumio-update`），加上一次性的 `lumio-init`（初始化流程和生成模板，收尾时删除） |
 | `.spec/agents/reviewer.md` | 审查子 Agent |
-| `.spec/tools/` | `spec-lint.mjs` 结构检查；`lumio-pack.mjs` 和 `lgui-build-web.mjs` 初始化时按路线移到 `Tools/` 或删除 |
+| `.spec/tools/` | `spec-lint.mjs` 结构检查、`lumio-pack.mjs` Lumio 打包、`lgui-build-web.mjs` LGUI 网页构建（过渡脚本） |
 | `.claude/`、`.agents/` | 指向 `.spec/` 的软链（让客户端找到技能和子 Agent） |
 | `CHANGELOG.md` | 框架的版本记录（每个版本一个 tag），初始化收尾时删除 |
 

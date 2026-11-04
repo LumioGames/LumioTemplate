@@ -15,7 +15,7 @@
 1. 装 Unity（版本建工程时和用户一起定，定下来写进 `.spec/decisions/`），在 `Client/unity/` 建工程。Unity 生成的 `Library/`、`Temp/`、`Logs/` 等目录要加进 `.gitignore`。
 2. 装 LGUI：按 `.spec/knowledge/lumio-platform/lgui.md`「装 LGUI」，然后在仓库根目录跑 `lgui init Client/app --name {{英文短名}}`。导出到 Unity 的做法以 LGUI 仓库 README 为准。
 <!-- 如果：发布到 Lumio -->
-3. 发布到 Lumio：Lumio 收的是网页包（见 `.spec/knowledge/lumio-platform/publishing.md`），先确认这个 Unity 工程能导出成那样的网页包，再按 `sdk.md` 接 SDK、用 `Tools/lumio-pack.mjs` 打包，ZIP 输出到 `Builds/lumio/`。
+3. 发布到 Lumio：Lumio 收的是网页包（见 `.spec/knowledge/lumio-platform/publishing.md`），先确认这个 Unity 工程能导出成那样的网页包，再按 `sdk.md` 接 SDK、用 `node .spec/tools/lumio-pack.mjs` 打包，ZIP 输出到 `Builds/lumio/`。
 <!-- 结束 -->
 4. 把构建和测试命令补进 `.spec/AGENTS.md`「收口门槛」和 `.spec/knowledge/standards/testing.md`。
 

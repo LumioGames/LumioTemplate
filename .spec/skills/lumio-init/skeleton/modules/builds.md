@@ -8,7 +8,7 @@
 | --- | --- |
 | `web/` | 网页正式构建 |
 <!-- 如果：发布到 Lumio -->
-| `lumio/` | 上传到 Lumio 创作中心的 ZIP（`Tools/lumio-pack.mjs` 的输出） |
+| `lumio/` | 上传到 Lumio 创作中心的 ZIP（`.spec/tools/lumio-pack.mjs` 的输出） |
 <!-- 结束 -->
 | `playtest/` | 给试玩的人用的测试包 |
 

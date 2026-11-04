@@ -22,14 +22,14 @@
 
 ## 3. 打算用什么做：网页、Unity、UE 还是别的
 
-- **决定什么**：`Client/README.md` 用哪一份模板，里面写清楚以后怎么建工程；要不要保留 LGUI 的网页构建脚本；代码风格的默认值。
+- **决定什么**：`Client/README.md` 用哪一份模板，里面写清楚以后怎么建工程；代码风格的默认值。
 - **说明**：每条路线都推荐用 [LGUI](https://github.com/LumioGames/LGUI) 做界面：网页直接用；目标是 Unity 时，界面在 LGUI 里做好再导出到 Unity；UE 没有 LGUI 后端，可以先用网页做原型验证玩法。
 - **例子**：「网页，手机浏览器里玩」→ 网页；「Unity，以后上手机应用商店」→ Unity。
 - **默认值**：网页（界面用 LGUI）。
 
 ## 4. 发不发布到 Lumio
 
-- **决定什么**：`rules/project.md` 要不要加 Lumio 平台红线；要不要保留 Lumio 打包工具 `lumio-pack.mjs`。不发布也会保留 `.spec/knowledge/lumio-platform/`，以后改主意还能用。
+- **决定什么**：`rules/project.md` 要不要加 Lumio 平台红线。不发布也会保留 `.spec/knowledge/lumio-platform/` 和打包工具，以后改主意还能用。
 - **例子**：「先发到 Lumio 给朋友玩」→ 发布；「只在自己的网站上放」→ 不发布。
 - **默认值**：发布。
 

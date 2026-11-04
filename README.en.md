@@ -50,7 +50,7 @@ my-game/
 ├─ Client/        Client. The web route later creates an LGUI project in Client/app (Unity also adds Client/unity)
 ├─ Config/        Data tables and shared config; protocols too if you write your own server
 ├─ Art/           Art sources: style exploration, references, image prompts
-├─ Tools/         Dev tools, including the Lumio packaging tool
+├─ Tools/         Dev tools (the Lumio packaging tool lives in .spec/tools/)
 ├─ Builds/        Build output; only its README is in git
 ├─ .spec/
 │  ├─ AGENTS.md   Project hub: what it is, modules, closeout commands
@@ -79,7 +79,7 @@ You also get `Server/` if you write your own server code. Every module has a REA
 | `.spec/decisions/`, `plans/` | Formats for decision records and implementation plans (a task card is a `### Task N` section of a plan) |
 | `.spec/skills/` | 11 standing skills (including `lumio-update` for framework updates), plus the one-time `lumio-init` (setup flow and templates, deleted at the end of setup) |
 | `.spec/agents/reviewer.md` | Review subagent |
-| `.spec/tools/` | `spec-lint.mjs` structure lint; `lumio-pack.mjs` and `lgui-build-web.mjs` move to `Tools/` or are deleted during setup, depending on your route |
+| `.spec/tools/` | `spec-lint.mjs` structure lint, `lumio-pack.mjs` Lumio packaging, `lgui-build-web.mjs` LGUI web build (stopgap) |
 | `.claude/`, `.agents/` | Symlinks into `.spec/` (so clients find the skills and the subagent) |
 | `CHANGELOG.md` | Framework release notes (one tag per version); deleted at the end of setup |
 

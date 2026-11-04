@@ -101,20 +101,20 @@ lgui verify  # 横竖屏标准尺寸截图
 
 ## 5. 正式构建和打包
 
-LGUI 插件还没有网页正式构建命令。在它提供之前，用过渡脚本 `Tools/lgui-build-web.mjs`（初始化时，网页加 LGUI 路线把它从 `.spec/tools/` 移到 `Tools/`）：它调用已装插件里的生成和打包代码，输出 `index.html`、`app.js`、`ui/`、`i18n/`，在入口页引用 `./lumio-bootstrap.js`，并把 `lumio.json` 复制进去。插件目录自动从 Claude Code / Codex 的插件缓存里找，找不到时设环境变量 `LGUI_PLUGIN=<插件目录>`。
+LGUI 插件还没有网页正式构建命令。在它提供之前，用过渡脚本 `.spec/tools/lgui-build-web.mjs`（框架文件，随框架更新）：它调用已装插件里的生成和打包代码，输出 `index.html`、`app.js`、`ui/`、`i18n/`，在入口页引用 `./lumio-bootstrap.js`，并把 `lumio.json` 复制进去。插件目录自动从 Claude Code / Codex 的插件缓存里找，找不到时设环境变量 `LGUI_PLUGIN=<插件目录>`。
 
 `Client/app/package.json` 里加：
 
 ```json
 "scripts": {
-  "build": "node ../../Tools/lgui-build-web.mjs . dist",
-  "pack": "node ../../Tools/lumio-pack.mjs dist ../../Builds/lumio/<英文短名>.zip"
+  "build": "node ../../.spec/tools/lgui-build-web.mjs . dist",
+  "pack": "node ../../.spec/tools/lumio-pack.mjs dist ../../Builds/lumio/<英文短名>.zip"
 }
 ```
 
 `npm run build && npm run pack` 在 `Builds/lumio/` 生成 ZIP。正式构建里 `LGUI_DEV` 为 `false`，模拟器分支和它的动态 import 会被剔除；可以 `grep -c simulated_friend dist/app.js` 确认结果是 0（这个字符串只在模拟器模块里；正式包里残留一段走不到的 `createLumioSimulator(` 分支没关系）。
 
-LGUI 出了正式构建命令后，把 `build` 换成它，删掉 `Tools/lgui-build-web.mjs`。
+LGUI 出了正式构建命令后，把 `build` 换成它；`.spec/tools/lgui-build-web.mjs` 随之在框架更新里去掉。
 
 ## 6. 更新 LGUI
 

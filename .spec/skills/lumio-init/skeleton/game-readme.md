@@ -18,7 +18,7 @@
 | `Server/` | 自己写的服务端代码 |
 <!-- 结束 -->
 | `Art/` | 美术源文件 |
-| `Tools/` | 开发工具<!-- 如果：发布到 Lumio -->（含 Lumio 打包工具 `lumio-pack.mjs`）<!-- 结束 --> |
+| `Tools/` | 开发工具 |
 | `Builds/` | 构建产物，不进 git |
 | `.spec/` | 项目规范：中心文档、红线、知识、决策、技能 |
 | `AGENTS.md` / `CLAUDE.md` | 给 AI Agent 的入口 |

@@ -53,10 +53,7 @@ description: 当 `.spec/AGENTS.md` 写着「状态：未初始化」，或用户
 ├─ Client/README.md          客户端：网页，以后在 Client/app 建 LGUI 工程
 ├─ Config/README.md          配表和通用配置
 ├─ Art/README.md             美术源文件
-├─ Tools/
-│  ├─ README.md              开发工具
-│  ├─ lumio-pack.mjs         Lumio 打包工具（发布到 Lumio 才有）
-│  └─ lgui-build-web.mjs     LGUI 网页构建的过渡脚本（网页路线才有）
+├─ Tools/README.md           开发工具（Lumio 打包和 LGUI 网页构建工具在 .spec/tools/）
 ├─ Builds/README.md          构建产物，只有 README 进 git
 └─ .spec/                    补全：项目中心文档、项目红线、4 份规范、ADR 0001、项目一页纸、美术一页纸
 ```
@@ -91,14 +88,7 @@ description: 当 `.spec/AGENTS.md` 写着「状态：未初始化」，或用户
 | `.spec/knowledge/standards/testing.md` | 不改，两处「待完善」留到以后（定玩法、建工程时） |
 | `.spec/knowledge/README.md` | 在 standards 一节前加一节「一页纸（先看这里）」，两行：`[project.md](project.md)` 项目一页纸——是什么、技术、美术一句话、范围，开工和讨论玩法前先看；`[art/README.md](art/README.md)` 美术一页纸——风格、色板、UI 基调和各块细节，出图、做资产、审美术稿前先看。「暂无正式功能文档」那行保留（还没有功能文档） |
 
-处理两个工具（它们在模板里先放在 `.spec/tools/`）：
-
-| 工具 | 怎么处理 |
-| --- | --- |
-| `lumio-pack.mjs` | 发布到 Lumio：`git mv .spec/tools/lumio-pack.mjs Tools/lumio-pack.mjs`；不发布：`git rm .spec/tools/lumio-pack.mjs` |
-| `lgui-build-web.mjs` | 网页路线：`git mv .spec/tools/lgui-build-web.mjs Tools/lgui-build-web.mjs`；其他路线：`git rm .spec/tools/lgui-build-web.mjs`。LGUI 自己有了网页构建命令之后，整个去掉 |
-
-不发布到 Lumio 时，`.spec/knowledge/lumio-platform/` 照样保留，以备以后改主意。
+`.spec/tools/` 里的 `lumio-pack.mjs`、`lgui-build-web.mjs` 是框架文件，不管走哪条路线都不移动、不删除；不发布到 Lumio 时，`.spec/knowledge/lumio-platform/` 也照样保留，以备以后改主意。
 
 ### 4. 检查
 

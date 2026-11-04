@@ -19,7 +19,7 @@ metadata:
 - 格式：`type(scope): subject`，例如 `feat(client): 新增主菜单`、`fix(config): 修正关卡表字段`。
 - 常用 type：`feat` / `fix` / `refactor` / `chore` / `docs` / `ci`。scope 可省略，常用模块名（`client` / `config` / `server` / `art` / `tools`）或 `spec`。
 - **一次提交只做一类事**；文档、脚手架、功能、测试修复不混在一起。
-- 提交前不跑测试（SDD），一个计划合完统一跑；走 TDD 时只跑这次新写的测试；规则见 `rules/system.md`「工作方式」。
+- 提交前跑不跑测试、什么时候跑，见 `testing.md`「什么时候跑」。
 - 提交前自检：无调试残留、知识已同步（见下节）。
 
 ## 合并 / PR 流程

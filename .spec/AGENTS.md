@@ -16,7 +16,7 @@
 
 ## 收口门槛
 
-一个计划全部合完以后统一跑的命令（spec-lint 只提示、不挡交付，规则见 `rules/system.md`「工程红线」）。初始只有结构检查；建好工程后，把构建和测试命令补在这里。
+收口门槛命令。何时跑见 `knowledge/standards/testing.md`「什么时候跑」；spec-lint 只提示、不挡交付，见 `rules/system.md`「工程红线」。初始只有结构检查；建好工程后，把构建和测试命令补在这里。
 
 ```bash
 node .spec/tools/spec-lint.mjs

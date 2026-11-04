@@ -34,7 +34,7 @@ status: pending
 - **Files**：新建 / 修改的文件路径（这就是这张卡的文件集）。
 - **Interfaces**：用什么（上游卡产出的名字和签名）、产出什么（下游卡要用的名字和签名）。并行的 worker 看不到彼此的代码，这一块是它们唯一的对齐依据。
 - **复用**：按「项目公共模块 → LGUI / Lumio SDK → 成熟开源方案」查过用什么；第二处要用的东西抽进公共模块；引入影响全项目的库，卡里写上要记一条 ADR。
-- **验收**：每条都能客观判断（「375px 宽不出现横向滚动」，不写「看起来不错」）。TDD 卡先列边界清单，作为要先写的测试；SDD 卡的验收测试照写，标「最后统一跑」。
+- **验收**：每条都能客观判断（「375px 宽不出现横向滚动」，不写「看起来不错」）。TDD 卡先列边界清单，作为要先写的测试；SDD 卡的验收测试照写，什么时候跑见 `testing.md`。
 
 ## 例子
 
@@ -49,7 +49,7 @@ status: pending
 **Files**：新建 `Client/app/src/inventory/InventoryPanel.ts`
 **Interfaces**：用 Task 1 的 `InventoryItem`、`inventory.update`
 **复用**：格子列表用 LGUI 的列表组件，不自己写
-**验收**：40 格、超出可滚动；收到 `inventory.update` 后数量刷新（验收测试最后统一跑）
+**验收**：40 格、超出可滚动；收到 `inventory.update` 后数量刷新（验收测试照写，按 testing.md 的时机跑）
 
 ### Task 3（wave 1）：道具配表
 **Files**：新建 `Config/items.csv`

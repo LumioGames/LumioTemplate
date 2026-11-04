@@ -1,6 +1,6 @@
 ---
 name: subagent-driven-development
-description: 按计划派子 Agent 并行实现时使用（SDD 模式，或 TDD 模式需要并行时）——契约卡先做，实现卡按 wave 并行，写完就合，计划合完统一跑一次、审一次。
+description: 按计划派子 Agent 并行实现时使用（SDD 模式，或 TDD 模式需要并行时）——契约卡先做，实现卡按 wave 并行，写完就合，计划合完审一次。
 ---
 
 > 来源：改编自 [obra/superpowers](https://github.com/obra/superpowers)（MIT，Copyright (c) 2025 Jesse Vincent，见 [LICENSE-superpowers](../LICENSE-superpowers)），经 LumioAgentSpec 1.1.1（MIT，见 [LICENSE-agentspec](../LICENSE-agentspec)）收入 LumioTemplate。
@@ -18,9 +18,9 @@ description: 按计划派子 Agent 并行实现时使用（SDD 模式，或 TDD 
 3. **Wave 0：契约卡。** 先做各部分共用、要先约定好的东西，例如：`Config/` 里客户端和服务端之间的协议、配表格式、存档格式、公共模块的接口。契约卡合入后才开下一 wave；契约不够用时改契约卡、再重派依赖它的卡，不在实现卡里自己扩接口。
 4. **Wave 1+：实现卡并行。** 例如：客户端某个界面、服务端某段逻辑、一张配表、一批美术资源接入。文件集不重叠的卡才放进同一 wave。每张卡：记下 BASE 提交，跑 `scripts/task-brief PLAN_FILE N` 生成任务简报，按 [implementer-prompt.md](implementer-prompt.md) 派 worker，各在自己的 worktree 里做。
 5. **收 wave。** 按 worker 返回的状态处理（见下面），写完就合进主工作区，台账记一行，进下一 wave。
-6. **收尾。** 计划全部合完以后：主 Agent 统一跑一次收口门槛（命令见 `.spec/AGENTS.md`）；用 `scripts/review-package MERGE_BASE HEAD`（MERGE_BASE = `git merge-base main HEAD`）生成审查包，派 `reviewer`（`agents/reviewer.md`）审一次，给它计划路径、审查包路径、台账。审出的问题交给**一个**修复子 Agent 带完整清单一次改完，改完直接合，不审第二轮。最后计划改成 `status: completed`，按下面「合入」收分支。
+6. **收尾。** 计划全部合完以后：主 Agent 跑收口门槛（命令见 `.spec/AGENTS.md`，何时跑见 `testing.md`）；用 `scripts/review-package MERGE_BASE HEAD`（MERGE_BASE = `git merge-base main HEAD`）生成审查包，派 `reviewer`（`agents/reviewer.md`）审一次，给它计划路径、审查包路径、台账。审出的问题交给**一个**修复子 Agent 带完整清单一次改完，改完直接合，不审第二轮。最后计划改成 `status: completed`，按下面「合入」收分支。
 
-**测试**：SDD 模式下 worker 不跑任何测试——自动测试、类型检查、端到端、性能测量都不跑，证据写「未执行」。TDD 模式的卡只跑这次新写的测试。已有的测试不删、不跳、不削弱。**不做每卡审查**，审查只在收尾做一次。
+**测试**：worker 什么时候跑测试见 `knowledge/standards/testing.md`「什么时候跑」（派活时按 `implementer-prompt.md` 写清）。**不做每卡审查**，审查只在收尾做一次。
 
 **bug**：顺手能修的当场修；修不了的记进 bug 墙（`.spec/knowledge/bug-wall.md`），继续往前做。
 
@@ -66,6 +66,6 @@ description: 按计划派子 Agent 并行实现时使用（SDD 模式，或 TDD 
 
 ## 没有子 Agent 时（Inline Fallback）
 
-客户端不支持子 Agent 时，在当前会话里串行执行同一份计划：先查计划矛盾，有就先问用户 → 契约卡先做，其余按 wave 顺序一张张做（SDD 不跑测试，TDD 只跑新写的测试）→ 遇到缺依赖、指令不清就停下来问，不猜 → 全部做完统一跑一次收口门槛，再对照 `agents/reviewer.md` 把整个 diff 对抗地自审一遍，计划改成 `status: completed`，按「合入」收分支。
+客户端不支持子 Agent 时，在当前会话里串行执行同一份计划：先查计划矛盾，有就先问用户 → 契约卡先做，其余按 wave 顺序一张张做（测试按 `testing.md`）→ 遇到缺依赖、指令不清就停下来问，不猜 → 全部做完跑收口门槛，再对照 `agents/reviewer.md` 把整个 diff 对抗地自审一遍，计划改成 `status: completed`，按「合入」收分支。
 
 这样做没有每卡的干净上下文，也没有独立审查，是已知的降级，自审时要格外挑剔。

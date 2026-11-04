@@ -10,8 +10,8 @@ LumioTemplate 框架的版本记录。每个版本对应一个 tag（`vX.Y.Z`）
 
 **框架内容**（框架文件清单见 `.spec/skills/lumio-update/SKILL.md`）
 
-- 规则：`rules/system.md` 一份——第一性原理、工作方式（SDD / TDD 两种模式，默认 SDD）、工程红线、安全与外发。结构检查只报告、不阻断。
-- 子 Agent：`agents/reviewer.md`，只读（`tools: Read, Grep, Glob`）。
+- 规则：`rules/system.md` 一份，四节——第一性原理、工作方式（SDD / TDD 两种模式，默认 SDD）、工程红线、安全 / 外发。结构检查只报告、不阻断，随计划合完在收口门槛里跑。
+- 子 Agent：`agents/reviewer.md`，能读能跑命令、不改文件（`tools: Read, Grep, Glob, Bash`，不给 Edit / Write）。
 - 11 个常驻技能：框架技能 writing-plans、subagent-driven-development、test-driven-development、systematic-debugging、spec-steward、lumio-update；策划技能 design-director、design-review；美术技能 art-director、art-prompt、art-review。
 - 工具：`tools/spec-lint.mjs` 结构检查；`tools/lumio-pack.mjs` Lumio 打包；`tools/lgui-build-web.mjs` LGUI 网页构建（过渡脚本）。
 - Lumio 平台知识：`knowledge/lumio-platform/`（SDK 2.11.1、`lumio.json` 与打包、LGUI、网页工程、资源地址）。
@@ -31,7 +31,7 @@ LumioTemplate 框架的版本记录。每个版本对应一个 tag（`vX.Y.Z`）
 
 改了：
 
-- **SDD / TDD 两种开发模式**：写计划时先定走哪种，拿不准问用户。SDD 契约先行、并行、写完就合，合并前不跑测试，一个计划合完统一跑一次测试、审一次；TDD 测试先行，开发中只跑新写的测试。测试政策只写在 `standards/testing.md`。
+- **SDD / TDD 两种开发模式**：写计划时先定走哪种，拿不准问用户。SDD 契约先行、并行、写完就合，合并前不跑测试，一个计划合完统一跑一次测试、审一次；TDD 测试先行，开发中只跑新写的测试。规则在 `system.md` 一句，测试政策和什么时候跑只写在 `standards/testing.md`，其余地方一句指过去。
 - SDD、TDD、排障、writing-plans、spec-steward 重写成中文、站在做游戏的角度；策划和美术总监改成不预设品类和引擎的通用方法。
 - 出图（art-prompt）以风格一致为核心：风格锚带版本、基准图库 `Art/baseline/`、每张图一份出图记录。
 - Windows 软链不再自动修复：检出成普通文件就停下，请用户开开发者模式后用 `git clone -c core.symlinks=true` 重新克隆。

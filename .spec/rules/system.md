@@ -1,9 +1,5 @@
 # System Rules(系统规则 · 每次 Agent 初始化强制加载)
 
-本文件经根目录 `CLAUDE.md` 的 `@import` 在每次会话开始时载入(Codex 等客户端按根目录 `AGENTS.md` 主动读)——始终在场的硬红线,不走渐进式披露。
-只写「**必须 / 只能 / 不得**」:什么必须做、什么禁止做。不写「怎么做 / 是什么」(那在 [`dispatch.md`](dispatch.md) 或项目 `.spec/knowledge/standards/`)。
-本文件是框架文件,项目不改;项目自己的红线写在 [`project.md`](project.md)。`rules/` 下每加一个文件,都要在根目录 `CLAUDE.md` 加一行 `@import`(`node .spec/tools/spec-lint.mjs` 会检查)。
-
 ## 工程
 
 ### 第一性原理
@@ -55,15 +51,14 @@
 - **改完沉淀。** 新的做法、规范用 `spec-steward` 写进 `.spec/knowledge/`，决定记 `.spec/decisions/`（ADR 不改写，只新增取代）；feature 文档只写设计现状。纯修复、微调可以不沉淀，交付时说一声。
 - **子 Agent 只有 `reviewer`**（`.spec/agents/reviewer.md`）：写的人和审的人分开。只有主 Agent 派活。
 - **子 Agent 不得再派生别的子 Agent。** 调度权只在主 loop;被调用的子 Agent 只执行、不再派活(也符合宿主限制:subagent 不能再 spawn subagent)。
-- **子 Agent 的 frontmatter 只用 `name` + `description`。** 其余(追求什么、用哪些技能、不做什么)写进正文;`role` / `goal` / `tools` 等不被宿主据以调度,写了不生效。
+- **子 Agent 能做什么,写进 frontmatter 的 `tools` 白名单,正文也写清楚**(Codex 不读 frontmatter)。
 - **改动若影响调度关系(增删子 Agent、改流程或技能分工),必须同步更新本节。** 漏更新 = 主 Agent 调度依据失真。
 
 ### 工程红线
 
-- **结构校验只报告、不阻断,红是待办**:`node .spec/tools/spec-lint.mjs`(项目定义了更大的验证命令时以其为准,见项目 `.spec/AGENTS.md`「收口门槛」)。提交前跑一次,报出的问题记下来尽快修;不得因 lint 未过拦下提交,也不得为了消红删检查项。
+- **结构校验只报告、不阻断,红是待办**:`node .spec/tools/spec-lint.mjs`(项目定义了更大的验证命令时以其为准,见项目 `.spec/AGENTS.md`「收口门槛」)。提交前跑一次,报出的问题记下来尽快修;不得因 lint 未过拦下提交或交付,也不得为了消红删检查项。
 - **生成物不得手改**,只能经生成源与生成命令更新,并与生成源一起提交。
 - **dev-only 开关 / 种子数据 / 调试后门不得在生产开启。**
-- **高风险改动在 reviewer 通过前不得提交**(豁免条件见 `dispatch.md` 调度核心)。
 
 ## 安全 / 外发
 

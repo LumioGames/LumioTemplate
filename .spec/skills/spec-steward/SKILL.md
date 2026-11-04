@@ -40,7 +40,7 @@ description: 维护项目 `.spec/` 的结构并把改动沉淀进知识库——
    - 可复用方法 → 项目技能 `.spec/skills/<name>/SKILL.md`（目录名即 skill 名；description 只写触发条件、不概括流程——概括流程的 description 会让 agent 照描述走捷径、跳过正文）。名字不要和模板自带的技能重名，以免模板更新时被覆盖
 2. **放对位置 + 命名**（agent 文件 `agents/<name>.md`、skill 目录 `skills/<name>/`；均 kebab、全局唯一，且目录 / 文件名与 frontmatter `name` 一致）。
 3. **写 frontmatter**：
-   - agents：仅 `name` + `description`
+   - agents：`name` + `description` + `tools`（能用的工具白名单；正文也写清楚能做什么，Codex 不读 frontmatter）
    - skills：必含 `name` + `description`；跨客户端可移植性所需的 Agent Skills 标准可选字段（`license` / `allowed-tools` / `metadata` / `version`）允许出现，其余键不要加
    - knowledge：`name` + `description` + `metadata`（type / status）
    - rules：**无** frontmatter
@@ -48,7 +48,7 @@ description: 维护项目 `.spec/` 的结构并把改动沉淀进知识库——
    - 加 / 删子 Agent → 在 `.spec/AGENTS.md`「项目专属约定」写明何时调度（`rules/system.md` 是框架文件，不改）
    - 加 / 删 skill → 客户端经软链自动发现，不用登记；若进入默认流程，在 `.spec/AGENTS.md`「项目专属约定」写明
    - 加 / 删知识文档 → 更新 `.spec/knowledge/README.md` 文件导航
-   - 加 / 删 `rules/` 下的文件 → 同步根目录 `CLAUDE.md` 的 `@import` 行与根目录 `AGENTS.md` 的必读清单
+   - 加 / 删 `rules/` 下的文件 → 同步根目录 `CLAUDE.md` 的 `@import` 行与根目录 `AGENTS.md` 的必读清单（漏了 Claude Code 就不会载入，spec-lint 检查）。`rules/` 下的文件经 `CLAUDE.md` 的 `@import` 每次会话载入（Codex 等客户端按根目录 `AGENTS.md` 主动读），所以只放每次都要在场的硬规则：什么必须做、什么不得做；「怎么做」写进 `knowledge/standards/` 或技能。`rules/system.md` 是框架文件，项目不改，项目自己的红线写在 `rules/project.md`
 
 ### 流程 B · 沉淀知识（改动完成后）
 
@@ -77,7 +77,7 @@ description: 维护项目 `.spec/` 的结构并把改动沉淀进知识库——
 | 某功能的设计 / 记录 | `.spec/knowledge/features/…` | 有 |
 | 决策（功能内 / 框架级，唯一落点） | `.spec/decisions/`（ADR） | 无（见其 README 模板） |
 | bug（值得记的） | `.spec/knowledge/bug-wall.md` | 有 |
-| 职能角色 | `.spec/agents/` | 仅 name+description |
+| 职能角色 | `.spec/agents/` | name+description+tools |
 | 可复用方法 | `.spec/skills/<name>/SKILL.md` | name+description（+ 标准可选字段）|
 
 ## 注意事项（Pitfalls）

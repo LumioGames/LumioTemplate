@@ -18,6 +18,11 @@ description: 当 `.spec/AGENTS.md` 写着「状态：未初始化」，或用户
 - [topics.md](topics.md)：第二段的 7 个话题，补哪个文件、用哪个技能、先问什么。
 - `skeleton/`：第一段的生成模板（见下面「模板写法」）。
 
+## 两种开场
+
+- **客户端自动载入了**：用户在项目文件夹里开对话说「开始」，Claude Code 已经经 `CLAUDE.md` 载入核心文档、经软链发现了技能。直接往下做。
+- **你主动读文件开始的**：你刚在这次对话里把模板克隆进当前文件夹（README「给 Agent」那一节的第 2 步），客户端没有载入 `CLAUDE.md`，也没有发现技能。这不是错误，不用开新对话：先读根目录 `AGENTS.md` 和它列出的 5 份文件，再往下做；要用到别的技能（design-director、art-director 等）时，直接读 `.spec/skills/<技能名>/SKILL.md`。Claude Code 的提交前检查钩子这次对话里可能也没生效，所以每次提交前自己跑 `node .spec/tools/spec-lint.mjs`（第一段第 4 步、第三段第 5 步已经包含）。
+
 ## 先判断做到哪了
 
 - `Client/README.md` 和 `.spec/decisions/0001-project-structure.md` 都不在：从第 0 步开始。
@@ -26,7 +31,7 @@ description: 当 `.spec/AGENTS.md` 写着「状态：未初始化」，或用户
 
 ## 第 0 步：检查环境
 
-1. **三条软链。** `.claude/skills`、`.claude/agents`、`.agents/skills` 必须是指向 `.spec/` 下对应目录的链接，客户端靠它们找到技能和审查子 Agent。
+1. **三条软链。** `.claude/skills`、`.claude/agents`、`.agents/skills` 必须是指向 `.spec/` 下对应目录的链接，客户端靠它们找到技能和审查子 Agent。这一步只检查磁盘上的链接对不对；这次对话里客户端有没有列出这些技能不影响结果（见上面「两种开场」）。
    - macOS / Linux / Git Bash：`ls -la .claude .agents` 应看到 `skills -> ../.spec/skills`、`agents -> ../.spec/agents`；`ls .claude/skills/ .agents/skills/` 能列出技能文件夹。
    - Windows PowerShell：`Get-Item .claude\skills, .claude\agents, .agents\skills | Format-List FullName, LinkType, Target`，`LinkType` 应是 `SymbolicLink` 或 `Junction`。
    - 如果它们被检出成了普通文件（打开只有一行 `../.spec/skills` 这样的文字），在 Windows 上用目录联接重建（不需要管理员权限）。在仓库根目录打开命令提示符（cmd）：
@@ -38,7 +43,7 @@ description: 当 `.spec/AGENTS.md` 写着「状态：未初始化」，或用户
      mklink /J .agents\skills .spec\skills
      ```
 
-     重建后请用户**重开一次对话**（客户端只在对话开始时扫描技能），再说「继续初始化」。这三条联接不要用 `git add` 提交成普通文件，收尾提交时按第三段第 6 步检查。
+     重建后：如果这次对话是客户端自动载入的，请用户**重开一次对话**（客户端只在对话开始时扫描技能），再说「继续初始化」；如果是你主动读文件开始的，不用重开，接着往下做——这三条链接是给以后的新对话用的。这三条联接不要用 `git add` 提交成普通文件，收尾提交时按第三段第 6 步检查。
 2. **Git 和 Node。** `git --version`；`node -v` 要 24.18 或更高（结构检查和提交前检查用 Node；以后建网页工程、用 LGUI 和 Lumio SDK 也要 Node 24）。缺哪个就告诉用户装什么、去哪下载（Git：https://git-scm.com/downloads ；Node：https://nodejs.org ，选 24 LTS），用户装好后再检查一遍。**不替用户安装系统软件。**
 
 ## 第一段：立项问答与生成骨架
@@ -164,5 +169,6 @@ description: 当 `.spec/AGENTS.md` 写着「状态：未初始化」，或用户
    1. **建工程**：按 `Client/README.md` 做，包括装 LGUI、装依赖、建网页或 Unity 工程；建好后把构建和测试命令补进 `.spec/AGENTS.md`「收口门槛」和 `.spec/knowledge/standards/testing.md`。
    2. **定玩法、定美术**：第二段没聊完的部分，说「我们来定玩法」（design-director）或「我们来定美术方向」（art-director）。
    3. **开始做某个功能**：先用 writing-plans 写计划，再派活。
-   4. 发布到 Lumio 的项目：打包上传的规则见 `.spec/knowledge/lumio-platform/publishing.md`；上传和提交审核由用户自己在创作中心点，Agent 不替用户上传。
+   4. **做完后打包发布**：发布到 Lumio 的项目按 `.spec/knowledge/lumio-platform/publishing.md` 做，有两种方式让用户选——A. Agent 把 ZIP 打到 `Builds/lumio/`，用户自己在创作中心上传；B. 用户建好作者 API 密钥、自己设进环境变量，Agent 用 API 发布。不发布到 Lumio 的项目，构建产物放 `Builds/`，发到哪里由用户定。
    5. 以后模板出了新版框架，说「更新框架」（lumio-update）。
+   6. 以后在这个文件夹里开新对话，规则和技能会自动载入，直接说想做什么就行。

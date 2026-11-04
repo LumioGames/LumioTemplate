@@ -18,7 +18,7 @@ Any engine works: web, Unity, UE and others. Publishing to [Lumio](https://lumio
    > start
 
    Cloning this repository directly also works; at the end of setup the agent asks whether to drop the template's remote and history.
-2. **Let your agent clone it**: in any conversation, say "use LumioTemplate to start a game for me". The agent asks for a folder name, clones `https://github.com/LumioGames/LumioTemplate` into it, and asks you to open a new conversation in that folder and say "start" (skills and `CLAUDE.md` only load in a conversation opened in the project folder).
+2. **Let your agent clone it**: in any conversation, send the agent this repository's address and say "use LumioTemplate to start a game for me". The agent follows the "For AI agents" section below. If the current folder is empty, it clones the template right there and starts setup in the same conversation. Otherwise it asks for a folder name, clones into it, and asks you to open a new conversation in that folder and say "start".
 
 Setup has three parts:
 
@@ -27,6 +27,19 @@ Setup has three parts:
 3. **Wrap up**: delete the one-time setup skill, rewrite the README for your game, and make one local commit. The agent asks before pushing anywhere.
 
 You need Git, Node.js 24.18 or later, and an AI coding agent.
+
+## For AI agents
+
+This section is for an AI agent that reads this README from outside the repository (for example, the user only sent a link). The user may not write code: explain each step in the user's language.
+
+> **For AI agents: starting a game project with LumioTemplate**
+>
+> Do these in order. If any step fails, stop and show the user the exact error. Do not skip steps.
+>
+> 1. Run `git --version` and `node -v`: Git must be installed, and Node must be 24.18 or later. If either is missing, tell the user what to install and where to get it (Git: https://git-scm.com/downloads ; Node: https://nodejs.org , pick 24 LTS), ask the user to install it, and check again afterwards. Do not install it for the user.
+> 2. **The current folder is empty** (`ls -A` prints nothing; in PowerShell, `Get-ChildItem -Force`): run `git clone https://github.com/LumioGames/LumioTemplate .`. Then carry on **in this same conversation**: read `AGENTS.md` and the files it lists, then start setup by following `.spec/skills/lumio-init/SKILL.md`. There is no need for a new conversation. This conversation does not load those files automatically, so read them yourself.
+> 3. **The current folder is not empty**: ask the user what to call the project folder (lowercase letters, digits and hyphens, e.g. `star-hop`), run `git clone https://github.com/LumioGames/LumioTemplate <folder>`, then ask the user to open a new conversation in that folder and say "start". Do not set up the project in the current folder.
+> 4. **The user wants their own GitHub repository**: before cloning in step 2 or 3, ask for the repository name and whether it should be public or private. With the user's consent, run `gh repo create <name> --template LumioGames/LumioTemplate --private` (or `--public`), wait a few seconds for GitHub to generate it, then clone **that new repository** in step 2 or 3 instead of the template. If `gh` is not installed or not signed in, ask the user to click Use this template on GitHub and send you the new repository's address. Ask the user before every outward action, such as pushing, creating a remote repository or publishing.
 
 ## What you get
 

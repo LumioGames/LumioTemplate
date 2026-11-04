@@ -39,7 +39,7 @@ metadata:
 | 文档 | 一句话 |
 |------|--------|
 | [`lumio-platform/sdk.md`](lumio-platform/sdk.md) | Lumio SDK 的版本、安装、本地模拟器与平台连接、开放能力和调用规则——接入或使用平台能力时查 |
-| [`lumio-platform/publishing.md`](lumio-platform/publishing.md) | `lumio.json` 声明、ZIP 打包规则和创作中心上传步骤——打包上传或被拒收时查 |
+| [`lumio-platform/publishing.md`](lumio-platform/publishing.md) | `lumio.json` 声明、ZIP 打包规则和两种发布方式（自己上传 ZIP、用作者 API 密钥发布）——打包发布或被拒收时查 |
 | [`lumio-platform/lgui.md`](lumio-platform/lgui.md) | 用 LGUI 做界面的游戏怎么建工程、接 SDK、正式构建——选了 LGUI 时查 |
 | [`lumio-platform/web-project.md`](lumio-platform/web-project.md) | 不用 LGUI 时用 Vite + TypeScript 建网页工程并接 SDK——自己画界面或用其他网页引擎时查 |
 | [`lumio-platform/resources.md`](lumio-platform/resources.md) | Lumio 相关仓库、文档、创作中心和社群地址——找官方资料或求助时查 |

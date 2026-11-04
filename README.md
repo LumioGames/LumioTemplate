@@ -18,7 +18,7 @@ Lumio 游戏模板：帮你把一个游戏项目的**目录结构和规范**一�
    > 开始
 
    直接 clone 本仓库也行，收尾时 Agent 会问你要不要去掉模板的远程地址和提交历史。
-2. **让 Agent 帮你克隆**：在任意对话里说「用 LumioTemplate 帮我建个游戏」。Agent 问好文件夹名，把 `https://github.com/LumioGames/LumioTemplate` 克隆进去，再请你到这个文件夹里开一个新对话说「开始」（技能和 `CLAUDE.md` 只在项目文件夹里的对话才会加载）。
+2. **让 Agent 帮你克隆**：在任意对话里把本仓库的地址发给 Agent，说「用 LumioTemplate 帮我建个游戏」。Agent 按下面「给 Agent」一节做：当前文件夹是空的，就直接克隆进来，在同一个对话里开始初始化；不是空的，就问好文件夹名克隆进去，再请你到那个文件夹里开一个新对话说「开始」。
 
 初始化分三段：
 
@@ -27,6 +27,19 @@ Lumio 游戏模板：帮你把一个游戏项目的**目录结构和规范**一�
 3. **收尾**：删掉一次性的初始化技能，把 README 改写成你的游戏说明，本地提交一次。推不推送到 GitHub，先问你。
 
 需要：Git、Node.js 24.18 或更高、一个 AI 编程 Agent。
+
+## 给 Agent
+
+这一节写给从仓库外面读到这份 README 的 AI Agent（比如用户只发了一个链接）。用户可能不写代码：用用户的语言说明每一步在做什么。
+
+> **给 AI Agent：用 LumioTemplate 开始一个游戏项目**
+>
+> 按顺序做。任何一步失败都停下，把错误原文告诉用户，不要跳过。
+>
+> 1. 运行 `git --version` 和 `node -v`：要有 Git，Node 要 24.18 或更高。缺哪个就告诉用户装什么、去哪下载（Git：https://git-scm.com/downloads ；Node：https://nodejs.org ，选 24 LTS），请用户自己装，装好后再检查一遍。不要替用户装。
+> 2. **当前文件夹是空的**（`ls -A` 没有输出；PowerShell 用 `Get-ChildItem -Force`）：运行 `git clone https://github.com/LumioGames/LumioTemplate .`。然后就在**这次对话里**接着做：先读 `AGENTS.md` 和它列出的几份文件，再按 `.spec/skills/lumio-init/SKILL.md` 开始初始化。不用开新对话——这次对话不会自动载入这些文件，你主动去读就行。
+> 3. **当前文件夹不是空的**：问用户项目文件夹叫什么（小写字母、数字和连字符，例如 `star-hop`），运行 `git clone https://github.com/LumioGames/LumioTemplate <文件夹名>`，然后请用户在那个文件夹里开一个新对话，说「开始」。不要在当前文件夹里初始化。
+> 4. **用户想要一个自己的 GitHub 仓库**：在第 2 或第 3 步克隆之前，先问用户仓库名、公开还是私有。用户同意后运行 `gh repo create <仓库名> --template LumioGames/LumioTemplate --private`（公开就用 `--public`），等几秒让 GitHub 生成好，再按第 2 或第 3 步克隆**这个新仓库**的地址，而不是模板的地址。没装或没登录 `gh` 时，请用户在 GitHub 上点 Use this template 建好仓库，把地址发给你。推送、建远程仓库、发布这类对外操作，每一次都先问用户。
 
 ## 你会得到什么
 

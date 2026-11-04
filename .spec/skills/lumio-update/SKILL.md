@@ -107,7 +107,7 @@ git diff --no-index --stat <临时目录>/old/<路径> <路径>
 1. **补登记**（漏了，新东西就隐身）：
    - 新版在 `.spec/rules/` 下多了文件：在根目录 `CLAUDE.md` 加一行 `@.spec/rules/<文件名>`，在根目录 `AGENTS.md` 的必读清单加一行。去掉的规则文件，两处都删掉那一行。
    - 框架技能有增减：同步 `.spec/AGENTS.md` 的技能名册。
-   - `lumio-platform/` 里有文档增减：同步 `.spec/knowledge/README.md` 的 lumio-platform 表。
+   - `lumio-platform/` 里有文档增减，或某篇的 frontmatter `description` 改了：同步 `.spec/knowledge/README.md` 的 lumio-platform 表（导航行和 `description` 是同一句话）。
    - CHANGELOG 里「需要手动处理」的事项（例如 `.claude/settings.json` 的钩子变了），逐项给用户看，用户同意后照做。
 2. **Lumio 工具**：项目里有 `Tools/lumio-pack.mjs` 或 `Tools/lgui-build-web.mjs` 时，和 `<临时目录>/new/.spec/tools/` 里的同名文件比；不一样就给用户看差异，问要不要换成新版。新版里没有这个文件了，告诉用户 CHANGELOG 是怎么说的。它们在 `Tools/` 里，属于项目，不自动覆盖。
 3. **检查**：`node .spec/tools/spec-lint.mjs` 输出 `spec-lint: OK`；不 OK 就按报出的问题修。

@@ -21,7 +21,7 @@ LumioTemplate 框架的版本记录。每个版本对应一个 tag（`vX.Y.Z`）
 
 **来源**
 
-- 框架取自 LumioAgentSpec 1.1.1（提交 `8f93f82`），放进仓库使用：插件路径和命令改成仓库内写法，软链布局沿用 LumioAgentSpec 0.x。LumioAgentSpec 已并入 LumioTemplate，以后框架在本仓库更新。
+- 框架取自 LumioAgentSpec 1.1.1（提交 `8f93f82`），放进仓库使用：插件路径和命令改成仓库内写法，软链布局沿用 LumioAgentSpec 0.x。LumioAgentSpec 仍独立维护；模板里是它 1.1.1 的快照，之后由模板维护者按需要同步新版。
 - 策划和美术技能来自 LumioGame（Apache-2.0），去掉了只适用于原项目的内容。
 
 **需要手动处理**

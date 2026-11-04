@@ -34,4 +34,4 @@ metadata:
 
 ## 语言 / 框架特定风格
 
-> 待完善：初始化时按技术路线写默认值，建工程时补上 formatter / linter 的配置位置。例：网页路线用 TypeScript 严格模式（`strict: true`），界面用 LGUI 时遵守 LGUI 工程自带的 `AGENTS.md`；Unity 路线用 C#，遵守 Unity 官方命名惯例。
+> 待完善（建工程时）：初始化时先按技术路线写默认值，建工程时补上 formatter / linter 的配置位置。例：网页路线用 TypeScript 严格模式（`strict: true`），界面用 LGUI 时遵守 LGUI 工程自带的 `AGENTS.md`；Unity 路线用 C#，遵守 Unity 官方命名惯例。

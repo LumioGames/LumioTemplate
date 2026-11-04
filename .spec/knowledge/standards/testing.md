@@ -50,4 +50,4 @@ SDD / TDD 两种模式，写计划时先定走哪种：在计划开头用一句�
 
 ## 项目测试栈与命令
 
-> 待完善：建工程时填写测试框架、各层运行命令、截图验收的做法，并把默认要跑的命令补进 `AGENTS.md`「收口门槛」。例：LGUI 工程用 `lgui test` 和 `lgui verify`（见 `knowledge/lumio-platform/lgui.md`）；Unity 工程用 Unity Test Framework。
+> 待完善（建工程时）：填写测试框架、各层运行命令、截图验收的做法，并把默认要跑的命令补进 `AGENTS.md`「收口门槛」。例：LGUI 工程用 `lgui test` 和 `lgui verify`（见 `knowledge/lumio-platform/lgui.md`）；Unity 工程用 Unity Test Framework。

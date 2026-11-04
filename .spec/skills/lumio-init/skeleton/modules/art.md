@@ -13,7 +13,7 @@
 
 ## 目录
 
-> 待完善：定美术方向时补。默认按用途分：`explore/`（风格探索）、`reference/`（参考图）、`prompts/`（出图提示词）、`source/`（可编辑源文件）、`baseline/`（基准图库，见下），资产清单放 `assets.md`。
+> 待完善（定美术方向时）：默认按用途分：`explore/`（风格探索）、`reference/`（参考图）、`prompts/`（出图提示词）、`source/`（可编辑源文件）、`baseline/`（基准图库，见下），资产清单放 `assets.md`。
 
 ## 基准图库
 

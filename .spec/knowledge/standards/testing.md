@@ -42,11 +42,11 @@ SDD / TDD 两种模式，写计划时先定走哪种：在计划开头用一句�
 
 ## 验收标准（Definition of Done）
 
-- [ ] 计划合完后，收口门槛命令跑过并贴了输出（命令见 [`../../AGENTS.md`](../../AGENTS.md)「收口门槛」）。
+- [ ] 计划合完后，收口门槛命令跑过并贴了输出（命令见 `.spec/AGENTS.md`「收口门槛」）。
 - [ ] 走 TDD 的部分，边界清单里每条都有测试。
 - [ ] 界面和手感类改动附了截图或试玩清单。
 - [ ] 相关知识文档已更新（见 [`workflow.md`](./workflow.md)）。
 
 ## 项目测试栈与命令
 
-> 待完善（建工程时）：填写测试框架、各层运行命令、截图验收的做法，并把默认要跑的命令补进 `AGENTS.md`「收口门槛」。例：LGUI 工程用 `lgui test` 和 `lgui verify`（见 `knowledge/lumio-platform/lgui.md`）；Unity 工程用 Unity Test Framework。
+> 待完善（建工程时）：填写测试框架、各层运行命令、截图验收的做法，并把默认要跑的命令补进 `.spec/AGENTS.md`「收口门槛」。例：LGUI 工程用 `lgui test` 和 `lgui verify`（见 `knowledge/lumio-platform/lgui.md`）；Unity 工程用 Unity Test Framework。

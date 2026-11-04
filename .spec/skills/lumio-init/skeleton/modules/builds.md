@@ -12,8 +12,8 @@
 | `web/` | 网页正式构建 |
 | `lumio-platform/` | 上传到 Lumio 创作中心的 ZIP（`.spec/tools/lumio-pack.mjs` 的输出） |
 | `wechat/` | 微信小游戏构建 |
-| `windows/` | Windows（PC）构建 |
-| `steam/` | 上传到 Steam 的构建 |
+| `steam/` | 上传到 Steam 的包（Steam 上发的 PC 版放这里） |
+| `windows/` | 不经 Steam 分发的 Windows（PC）构建 |
 | `android/` | 安卓安装包 |
 | `ios/` | iOS 构建 |
 

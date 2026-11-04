@@ -23,7 +23,7 @@ metadata:
 - **发布目标**：{{发布目标}}。
 - **客户端**：{{技术路线}}（{{引擎理由}}），怎么建工程见 `Client/README.md`。
 - **界面**：{{界面}}（LGUI 见 `.spec/knowledge/lumio-platform/lgui.md`）。
-<!-- 如果：Unity -->
+<!-- 如果：Unity 先做原型 -->
 - **原型**：网页 + LGUI（验证后转 Unity），在 `Client/app/`。
 <!-- 结束 -->
 <!-- 如果：有 Server -->

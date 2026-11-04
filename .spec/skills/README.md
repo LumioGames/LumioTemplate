@@ -9,14 +9,7 @@
 | art-director、art-prompt、art-review | 美术技能：定美术方向并写进美术一页纸 → 出图提示词 → 审查 |
 | lumio-init | 一次性技能：把模板初始化成用户自己的项目。只在模板和还没初始化完的项目里有，初始化结束时整个删除 |
 
-除 lumio-init 外都是框架文件：项目不改，以后随模板更新整份覆盖（更新用 lumio-update，框架文件清单以它为准）。项目自己的技能另建文件夹，名字不要和这些重名。
-
-## 落点
-
-- 项目一页纸：`.spec/knowledge/project.md`，功能细节在 `.spec/knowledge/features/`；美术一页纸：`.spec/knowledge/art/README.md`，美术细节放同一文件夹；`features/`、`standards/` 下的新文档在 `.spec/knowledge/README.md` 加一行导航。
-- 实现计划：`.spec/plans/YYYY-MM-DD-<name>.md`（格式见 `.spec/plans/README.md`）。
-- 决策：`.spec/decisions/NNNN-<slug>.md`（格式见 `.spec/decisions/README.md`）。
-- subagent-driven-development 的配套脚本需要 Bash 和 Git，Windows 上用 Git Bash。
+除 lumio-init 外都是框架文件，项目不改、随 lumio-update 整份覆盖；项目自己的技能另建文件夹，名字不要和这些重名。subagent-driven-development 的脚本需要 Bash 和 Git（Windows 用 Git Bash）。
 
 ## 来源与许可
 

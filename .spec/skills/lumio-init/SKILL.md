@@ -24,8 +24,9 @@ description: 当 `.spec/AGENTS.md` 写着「状态：未初始化」，或用户
 
 ## 先判断做到哪了
 
-- `Client/README.md` 和 `.spec/decisions/0001-project-structure.md` 都不在：从第 0 步开始。
-- 两个都在：第一段已经做完，跑完第 0 步后直接进第二段（收尾）。
+- `Client/README.md` 不在：第一段没做完，从第 0 步重来，已经生成的文件按模板直接覆盖。
+- `Client/README.md` 在、`.spec/AGENTS.md` 仍写「未初始化」：跑完第 0 步后直接进第二段（收尾）。
+- `.spec/AGENTS.md` 已是「已初始化」、但本技能还在：收尾最后一步没做完，告诉用户，只把「删掉本技能」这一步做掉。
 
 ## 第 0 步：检查环境
 
@@ -119,7 +120,7 @@ description: 当 `.spec/AGENTS.md` 写着「状态：未初始化」，或用户
 
 ## 第二段：收尾
 
-按顺序做。
+按顺序做。每一步先看是不是已经做过，做过就跳过（例如 `LICENSE` 已经在 `.spec/` 里就不再 `git mv`；`lumio-init` 已删就不再删）。
 
 1. **处理许可，改写 README，删掉模板专用的文件。**
    - 把根目录 `LICENSE` 移到 `.spec/LICENSE`（`git mv LICENSE .spec/LICENSE`）。它是 LumioTemplate 的许可条款，跟着项目里保留的模板文件走；根目录留给用户自己的游戏。

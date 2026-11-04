@@ -39,12 +39,12 @@ digraph when_to_use {
 1. **Read the plan once.** Note Global Constraints, create todos per card, set the plan's frontmatter to `status: in_progress`. Check the ledger (Durable Progress) — cards marked complete there are done.
 2. **Pre-flight plan review** (below).
 3. **Wave 0 — contract cards.** Dispatch the implementer(s) for the shared dependencies: types / data structures, API signatures, protocols, common modules, conventions. A contract card is done when its artefacts exist, lint and type check pass, and the ledger records it. **Never fan out wave 1 before wave 0 is merged** — implementation workers align only through the contract artefacts. A contract that proves insufficient is fixed on the contract card, never widened inside an implementation card.
-4. **Wave N — implementation cards, in parallel.** For every card in the wave: record the BASE commit, run `scripts/task-brief PLAN_FILE N`, and dispatch an implementer (./implementer-prompt.md) in its own isolated worktree (Claude Code: Agent tool `isolation: "worktree"`; the 【文件集边界】 / 【环境】 lines come from `references/dispatch-templates.md`). Cards with overlapping file sets or an unresolved dependency edge go to a later wave, never side by side.
+4. **Wave N — implementation cards, in parallel.** For every card in the wave: record the BASE commit, run `scripts/task-brief PLAN_FILE N`, and dispatch an implementer (./implementer-prompt.md) in its own isolated worktree (Claude Code: Agent tool `isolation: "worktree"`; fill in the 【文件集边界】 / 【环境】 lines of the implementer template). Cards with overlapping file sets or an unresolved dependency edge go to a later wave, never side by side.
 5. **Collect the wave.** Handle each implementer status (below). A worker's report carries its own lint + covering-test evidence — do not re-run those tests. Merge each passing worktree into the main workspace; conflicts go back to the implementer. Append one ledger line per card.
 6. **Next wave** until every card is done.
-7. **Closeout.** Run `closeout-gate` for the review level; run the project's full 收口门槛 **once**; generate `scripts/review-package MERGE_BASE HEAD` (MERGE_BASE = `git merge-base main HEAD`) and dispatch the closeout reviewer (./code-reviewer.md) with the printed path. Findings → ONE fix subagent carrying the complete list → re-review. Then set the plan to `status: completed` and finish the branch per `rules/dispatch.md`「并行边界与合入」.
+7. **Closeout.** Run `closeout-gate` for the review level; run the project's full 收口门槛 **once**; generate `scripts/review-package MERGE_BASE HEAD` (MERGE_BASE = `git merge-base main HEAD`) and dispatch the `reviewer` subagent (`agents/reviewer.md`) with the printed path. Findings → ONE fix subagent carrying the complete list → re-review. Then set the plan to `status: completed` and finish the branch per `rules/dispatch.md`「并行边界与合入」.
 
-**Per-card review is not part of the loop.** The one exception: a card touching the red-line surface (`rules/`, hooks, `.claude/`, CI config, auth / security) is reviewed **before** it is merged, with ./task-reviewer-prompt.md.
+**Per-card review is not part of the loop.** The one exception: a card touching the red-line surface (`rules/`, hooks, `.claude/`, CI config, auth / security) is reviewed **before** it is merged: dispatch the `reviewer` subagent and say in the prompt that this is a pre-merge single-card review.
 
 ## Pre-Flight Plan Review
 
@@ -71,7 +71,7 @@ Use the least powerful model that can handle each role, and name it explicitly i
 
 Implementer subagents report one of four statuses. Handle each appropriately:
 
-**DONE:** Confirm the report contains the covering tests, the command run, and the output (a bare "tests pass" is not evidence). Merge the worktree, record the ledger line. Red-line cards only: generate `scripts/review-package BASE HEAD` (BASE is the commit you recorded before dispatch — never `HEAD~1`, which silently drops all but the last commit of a multi-commit task) and dispatch the task reviewer before merging.
+**DONE:** Confirm the report contains the covering tests, the command run, and the output (a bare "tests pass" is not evidence). Merge the worktree, record the ledger line. Red-line cards only: generate `scripts/review-package BASE HEAD` (BASE is the commit you recorded before dispatch — never `HEAD~1`, which silently drops all but the last commit of a multi-commit task) and dispatch `reviewer` before merging.
 
 **DONE_WITH_CONCERNS:** The implementer completed the work but flagged doubts. Read the concerns before merging. If they are about correctness, scope, or the contract, address them before the merge. If they are observations (e.g. "this file is getting large"), note them in the ledger for the closeout reviewer and proceed.
 
@@ -95,7 +95,7 @@ The closeout reviewer may report "⚠️ Cannot verify from diff" items — requ
 - Do not add open-ended directives like "check all uses" or "run race tests if useful" without a concrete, task-specific reason
 - Do not ask a reviewer to re-run tests the implementers already ran on the same code — their reports carry the test evidence; the reviewer replays only the 收口门槛 and the one most critical claim (快审) or more (深审) per `agents/reviewer.md`
 - Do not pre-judge findings for the reviewer — never instruct a reviewer to ignore or not flag a specific issue. If you believe a finding would be a false positive, let the reviewer raise it and adjudicate it in the review loop. If the prompt you are writing contains "do not flag," "don't treat X as a defect," "at most P2," or "the plan chose" — stop: you are pre-judging, usually to spare yourself a review loop.
-- The global-constraints block you hand the reviewer is its attention lens. Copy the binding requirements verbatim from the plan's Global Constraints section or the spec: exact values, exact formats, and the stated relationships between components ("same layout as X", "matches Y"). The reviewer's template already carries the process rules (YAGNI, test hygiene, review method) — the constraints block is for what THIS project's spec demands.
+- The global-constraints block you hand the reviewer is its attention lens. Copy the binding requirements verbatim from the plan's Global Constraints section or the spec: exact values, exact formats, and the stated relationships between components ("same layout as X", "matches Y"). `agents/reviewer.md` already carries the process rules (YAGNI, test hygiene, review method) — the constraints block is for what THIS project's spec demands.
 - Hand the reviewer its diff as a file: run this skill's `scripts/review-package MERGE_BASE HEAD` and pass the printed path (or, without bash: `git log --oneline`, `git diff --stat`, and `git diff -U10` for the range, redirected to one uniquely named file). The output never enters your own context, and the reviewer sees the commit list, stat summary, and full diff with context in one Read call.
 - Point the closeout reviewer at the ledger's list of observations and P2-grade concerns collected from the workers, so it can triage which must be fixed before merge. A roll-up nobody reads is a silent discard.
 - A finding labeled plan-mandated — or any finding that conflicts with what the plan's text requires — is the human's decision, like any plan contradiction: present the finding and the plan text, ask which governs. Do not dismiss the finding because the plan mandates it, and do not dispatch a fix that contradicts the plan without asking.
@@ -125,8 +125,7 @@ Conversation memory does not survive compaction. In real sessions, controllers t
 ## Prompt Templates
 
 - [implementer-prompt.md](implementer-prompt.md) - Dispatch an implementer subagent (contract or implementation card)
-- [code-reviewer.md](code-reviewer.md) - Dispatch the closeout whole-branch reviewer
-- [task-reviewer-prompt.md](task-reviewer-prompt.md) - Dispatch a single-card reviewer — **red-line cards only**, before merge
+- Reviews (the closeout review, and red-line cards before merge) go to the `reviewer` subagent ([`agents/reviewer.md`](../../agents/reviewer.md)); it has no separate prompt template
 
 ## Example Workflow
 

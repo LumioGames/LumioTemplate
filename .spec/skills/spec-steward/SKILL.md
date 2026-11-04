@@ -12,7 +12,7 @@ description: 维护项目 `.spec/` 的结构并把改动沉淀进知识库——
 
 | 类别 | 包含 | 规则 |
 |------|------|------|
-| **框架文件** | `LICENSE`（模板的许可条款）、`rules/system.md`、`rules/dispatch.md`、`agents/`、`skills/` 里模板自带的技能（含 `lumio-update`）、`tools/`、`references/`、`knowledge/lumio-platform/`；逐个路径的清单在 `lumio-update` 技能里 | 项目不改；以后随模板更新，按文件或按技能文件夹整份覆盖 |
+| **框架文件** | `LICENSE`（模板的许可条款）、`rules/system.md`、`rules/dispatch.md`、`agents/`、`skills/` 里模板自带的技能（含 `lumio-update`）、`tools/`、`knowledge/lumio-platform/`；逐个路径的清单在 `lumio-update` 技能里 | 项目不改；以后随模板更新，按文件或按技能文件夹整份覆盖 |
 | **项目文件** | `AGENTS.md`、`rules/project.md`、`knowledge/` 里除 `lumio-platform/` 以外的部分、`decisions/`、`tasks/`、`plans/`、项目自己加的技能 | 归项目所有，初始化时生成，之后由项目维护 |
 
 判据:**这处改动要落在框架文件里吗?** 要 → 不改框架文件，把项目自己的版本写进项目文件（红线进 `rules/project.md`，做法进 `knowledge/standards/`，新方法另建项目技能）；框架文件本身有问题，记进 `knowledge/lessons.md` 或告诉用户，等模板更新。
@@ -55,7 +55,7 @@ description: 维护项目 `.spec/` 的结构并把改动沉淀进知识库——
 1. 一句话总结：这次改了什么、为什么。
 2. 判断文档归属：
    - 影响**开发流程 / 规范**（workflow / 测试策略 / 代码风格等）→ 更新 `knowledge/standards/` 对应文件。
-   - 影响**功能设计**（新功能、行为变更）→ 更新 `knowledge/features/` 对应文档并流转 `status`（feature 文档由 brainstorming 在设计期直接建立、`设计中` 起步，交付时改 `已交付`；确无文档才从 `_TEMPLATE.md` 补建）——只写设计现状，不留决策记录，无二次搬运。
+   - 影响**功能设计**（新功能、行为变更）→ 更新 `knowledge/features/` 对应文档并流转 `status`（feature 文档在设计期直接建立、`设计中` 起步，交付时改 `已交付`；确无文档才从 `_TEMPLATE.md` 补建）——只写设计现状，不留决策记录，无二次搬运。
    - **决策**（功能内与框架级都算：为什么这样调度 / 选型 / 划边界）→ `.spec/decisions/` 新增 ADR（**唯一落点**，见其 `README.md`）。
    - **复发问题 / 踩坑经验**（reviewer 退回报告、known gaps 中第二次出现的同类问题）→ 追加进 `.spec/knowledge/lessons.md`（收录准入与条目格式见该文档）。
 3. 更新正文——**只保留当前有效内容**，交付历史不入库（git 提交即历史）。

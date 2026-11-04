@@ -20,7 +20,6 @@ description: 当用户说「更新框架」「升级框架」「看看模板有�
 .spec/rules/system.md
 .spec/rules/dispatch.md
 .spec/agents/reviewer.md
-.spec/references/dispatch-templates.md
 .spec/tools/spec-lint.mjs
 .spec/tools/closeout-gate.mjs
 .spec/tools/guard-commit.mjs
@@ -29,7 +28,6 @@ description: 当用户说「更新框架」「升级框架」「看看模板有�
 .spec/skills/LICENSE
 .spec/skills/LICENSE-agentspec
 .spec/skills/LICENSE-superpowers
-.spec/skills/brainstorming/
 .spec/skills/writing-plans/
 .spec/skills/subagent-driven-development/
 .spec/skills/test-driven-development/

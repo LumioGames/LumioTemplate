@@ -39,7 +39,9 @@ Subagent (general-purpose):
     5. Self-review (see below)
     6. Report back
 
-    Work from: [directory]
+    【文件集边界】只改:<路径列表>。并行方正在改:<路径列表>(一律不动;
+    lint 报错涉及它们时只记录,主 loop 统一收口)。
+    【环境】<独立 worktree 路径>(Work from here)
 
     **While you work:** If you encounter something unexpected or unclear, **ask questions**.
     It's always OK to pause and clarify. Don't guess or make assumptions.

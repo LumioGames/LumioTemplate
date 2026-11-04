@@ -28,7 +28,6 @@ node .spec/tools/spec-lint.mjs
 
 | 技能 | 适用任务 |
 | --- | --- |
-| [brainstorming](skills/brainstorming/SKILL.md) | 做新功能、改行为之前，先把需求和设计聊清楚 |
 | [writing-plans](skills/writing-plans/SKILL.md) | 动手写多步功能前写实现计划，或拆成可并行的任务卡 |
 | [subagent-driven-development](skills/subagent-driven-development/SKILL.md) | 按计划一波波派子 Agent 实现，合入后统一审一次 |
 | [test-driven-development](skills/test-driven-development/SKILL.md) | 大任务先写失败的测试再写实现 |
@@ -55,7 +54,7 @@ node .spec/tools/spec-lint.mjs
 
 | 类别 | 包含 | 规则 |
 | --- | --- | --- |
-| 框架文件 | `LICENSE`（LumioTemplate 的许可条款，初始化时从仓库根目录移到这里）、`rules/system.md`、`rules/dispatch.md`、`agents/`、`skills/` 里模板自带的技能（含 `lumio-update`）、`tools/`、`references/`、`knowledge/lumio-platform/` | 项目不改；以后随模板更新，按文件或按技能文件夹覆盖 |
+| 框架文件 | `LICENSE`（LumioTemplate 的许可条款，初始化时从仓库根目录移到这里）、`rules/system.md`、`rules/dispatch.md`、`agents/`、`skills/` 里模板自带的技能（含 `lumio-update`）、`tools/`、`knowledge/lumio-platform/` | 项目不改；以后随模板更新，按文件或按技能文件夹覆盖 |
 | 项目文件 | `AGENTS.md`（本文件）、`rules/project.md`、`knowledge/` 里除 `lumio-platform/` 以外的部分、`decisions/`、`tasks/`、`plans/`、项目自己加的技能 | 归项目所有，初始化时生成，之后由项目维护 |
 
 放哪、怎么登记，用 [spec-steward](skills/spec-steward/SKILL.md)。

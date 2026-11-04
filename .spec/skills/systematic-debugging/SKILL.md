@@ -37,7 +37,7 @@ Complete each phase before the next.
 2. **Reproduce consistently** — exact steps, reliable trigger. Not reproducible → gather more data, don't guess.
 3. **Check recent changes** — git diff, recent commits, new dependencies, config, environment.
 4. **Gather evidence at component boundaries** (multi-component systems: CI → build → signing, API → service → DB): before proposing fixes, log what enters and exits each component, run once, and let the evidence show WHERE it breaks — then investigate that component.
-5. **Trace data flow backward** — where does the bad value originate? Keep tracing up the call stack to the source; fix at the source, not the symptom. Complete technique: `root-cause-tracing.md` in this directory.
+5. **Trace data flow backward** — where does the bad value originate? Keep tracing up the call stack to the source; fix at the source, not the symptom.
 
 ### Phase 2: Pattern Analysis
 
@@ -92,10 +92,10 @@ Each fix revealing a new problem elsewhere, or every fix requiring "massive refa
 
 ## When Investigation Finds "No Root Cause"
 
-If the issue is truly environmental or timing-dependent: document what you investigated, implement appropriate handling (retry / timeout / clear error message), add logging for future investigation. But 95% of "no root cause" cases are incomplete investigation.
+If the issue is truly environmental or timing-dependent: document what you investigated, give a clear error message and add logging for future investigation — no retry or other fallback that hides the failure. But 95% of "no root cause" cases are incomplete investigation.
 
-## Supporting Techniques
+## Flaky Tests
 
-In this directory: `root-cause-tracing.md` (trace bugs backward through the call stack), `defense-in-depth.md` (multi-layer validation after the root cause is found), `condition-based-waiting.md` (replace arbitrary timeouts with condition polling).
+Wait for the actual condition (poll until the state you need is true), not an arbitrary `sleep` / timeout. Keep a fixed delay only when the timing itself is what the test checks, and say why.
 
 Related: `test-driven-development` (Phase 4's failing test for large fixes; small fixes reproduce by steps — size gate in `rules/dispatch.md`「测试分级」); claim "fixed" only with the verification run per `rules/dispatch.md`「收工即验证」.

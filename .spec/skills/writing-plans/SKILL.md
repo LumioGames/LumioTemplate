@@ -26,7 +26,7 @@ Assume they are a skilled developer, but know almost nothing about our toolset o
 
 ## Scope Check
 
-Decomposition into sub-projects is brainstorming's job (or this skill's shallow mode), not the deep plan's. If the spec still covers multiple independent subsystems, stop and send it back for splitting — one plan per subsystem, each producing working, testable software on its own.
+Decomposition into sub-projects happens in the design step (or this skill's shallow mode), not in the deep plan. If the spec still covers multiple independent subsystems, stop and send it back for splitting — one plan per subsystem, each producing working, testable software on its own.
 
 ## File Structure
 

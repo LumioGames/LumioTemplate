@@ -29,7 +29,7 @@ metadata:
 
 ## 怎么派 Agent
 
-> 待完善：默认按 `.spec/rules/dispatch.md` 走（创造性工作先 `brainstorming`，多步功能用 `writing-plans` 写计划，再用 `subagent-driven-development` 派活，合入后 `reviewer` 审一次）。本项目有额外约定（例如哪些模块必须深审）时写在这里。
+> 待完善：默认按 `.spec/rules/dispatch.md` 走（创造性工作先出设计，多步功能用 `writing-plans` 写计划，再用 `subagent-driven-development` 派活，合入后 `reviewer` 审一次）。本项目有额外约定（例如哪些模块必须深审）时写在这里。
 
 ## 改动完成 = 知识已同步
 

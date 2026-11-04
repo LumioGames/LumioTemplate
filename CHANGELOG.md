@@ -17,6 +17,7 @@ LumioTemplate 框架的版本记录。每个版本对应一个 tag（`vX.Y.Z`）
 - Lumio 平台知识：`knowledge/lumio-platform/`（SDK 2.11.1、`lumio.json` 与打包、LGUI、网页工程、资源地址）。
 - 客户端发现方式：`CLAUDE.md` 的 `@import`、根目录 `AGENTS.md` 指路、三条软链（`.claude/skills`、`.claude/agents`、`.agents/skills`）、`.claude/settings.json` 的提交前检查钩子。
 - 一次性的 `lumio-init` 初始化技能（只在模板里，不随更新分发）。
+- 许可：`LICENSE` 覆盖 LumioTemplate 的文件和它们在项目里的副本，逐项写明 MIT、Apache-2.0 的例外。初始化后它在 `.spec/LICENSE`，也是框架文件；根目录留给游戏自己的许可。
 
 **来源**
 

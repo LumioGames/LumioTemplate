@@ -41,6 +41,7 @@ my-game/
 ├─ Builds/        构建产物，只有 README 进 git
 ├─ .spec/
 │  ├─ AGENTS.md   项目中心文档：项目是什么、模块、收口命令、技能名册
+│  ├─ LICENSE     LumioTemplate 的许可条款（初始化时从根目录移进来，根目录留给你的游戏）
 │  ├─ rules/      通用红线、调度与编码规程、本项目的红线
 │  ├─ knowledge/  规范（项目结构、工作流、代码风格、测试、美术）、玩法方向、Lumio 平台知识
 │  ├─ decisions/  决策记录（ADR），第一条是项目结构与技术路线
@@ -95,7 +96,6 @@ Windows 上如果软链被检出成了普通文件，初始化第一步会用 `m
 - [LumioAgentSpec](https://github.com/LumioGames/LumioAgentSpec)：框架文件（通用红线、调度规程、框架技能、检查工具）最初的来源，已并入本仓库，不再单独维护。
 - [LGUI](https://github.com/LumioGames/LGUI)：给 Agent 用的游戏 UI 框架，每条路线都推荐用它做界面。
 - [Lumio SDK](https://github.com/LumioGames/LumioSDK)：`@lumiogames/sdk` 的说明与类型。
-- [Lumio DevKit](https://github.com/LumioGames/Lumio-DevKit)：Lumio 引擎（联机、体素、服务端）的 Agent 插件；用本模板做游戏用不到。
 
 ## 社群
 
@@ -111,4 +111,4 @@ LumioTemplate 源码公开，采用 [PolyForm Shield 1.0.0](https://polyformproj
 | 点 Use this template、fork、修改、提 PR，用来学习、教学、研究 | 换个名字、换层皮把模板本身重新发布 |
 | 在你的游戏里写「用 LumioTemplate 制作」「在 Lumio 发布」 | 把 Lumio、LumioGames 的名字和图标当成自己的品牌 |
 
-`.spec/skills/` 里的技能保留各自的许可：框架技能来自 LumioAgentSpec，是 MIT，其中 writing-plans 和 subagent-driven-development 改编自 obra/superpowers，也是 MIT；策划、美术技能是 Apache-2.0（见 [.spec/skills/README.md](.spec/skills/README.md)）。有其他用法，请先通过[开发者中心](https://lumiogames.cn/studio/)或上面的社群联系我们，单独授权。以 LICENSE 里的英文原文为准，这里的中文只是帮助理解。
+许可覆盖模板的文件和它们的副本，包括你用模板初始化的项目里保留的那些（初始化后条款放在 `.spec/LICENSE`）；你在自己项目里新加的文件不在其中。其中几部分另有许可：取自 LumioAgentSpec 的规则、子 Agent、检查工具和 6 个框架技能是 MIT（writing-plans 和 subagent-driven-development 同时改编自 obra/superpowers，也是 MIT）；7 个策划、美术技能是 Apache-2.0（见 [.spec/skills/README.md](.spec/skills/README.md)）。有其他用法，请先通过[开发者中心](https://lumiogames.cn/studio/)或上面的社群联系我们，单独授权。以 LICENSE 里的英文原文为准，这里的中文只是帮助理解。

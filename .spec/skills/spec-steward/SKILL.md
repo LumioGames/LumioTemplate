@@ -12,7 +12,7 @@ description: 维护项目 `.spec/` 的结构并把改动沉淀进知识库——
 
 | 类别 | 包含 | 规则 |
 |------|------|------|
-| **框架文件** | `rules/system.md`、`rules/dispatch.md`、`agents/`、`skills/` 里模板自带的技能（含 `lumio-update`）、`tools/`、`references/`、`knowledge/lumio-platform/`；逐个路径的清单在 `lumio-update` 技能里 | 项目不改；以后随模板更新，按文件或按技能文件夹整份覆盖 |
+| **框架文件** | `LICENSE`（模板的许可条款）、`rules/system.md`、`rules/dispatch.md`、`agents/`、`skills/` 里模板自带的技能（含 `lumio-update`）、`tools/`、`references/`、`knowledge/lumio-platform/`；逐个路径的清单在 `lumio-update` 技能里 | 项目不改；以后随模板更新，按文件或按技能文件夹整份覆盖 |
 | **项目文件** | `AGENTS.md`、`rules/project.md`、`knowledge/` 里除 `lumio-platform/` 以外的部分、`decisions/`、`tasks/`、`plans/`、项目自己加的技能 | 归项目所有，初始化时生成，之后由项目维护 |
 
 判据:**这处改动要落在框架文件里吗?** 要 → 不改框架文件，把项目自己的版本写进项目文件（红线进 `rules/project.md`，做法进 `knowledge/standards/`，新方法另建项目技能）；框架文件本身有问题，记进 `knowledge/lessons.md` 或告诉用户，等模板更新。

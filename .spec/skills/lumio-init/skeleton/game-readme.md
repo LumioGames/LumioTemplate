@@ -46,4 +46,11 @@
 
 ## 许可
 
-本项目用 [LumioTemplate](https://github.com/LumioGames/LumioTemplate) 初始化。根目录的 `LICENSE` 是 LumioTemplate 模板本身的许可；你用它做的游戏归你所有。`.spec/skills/` 里的技能保留各自的许可，见 `.spec/skills/README.md`。
+<!-- 如果：选了游戏许可 -->
+游戏本身的许可见根目录 `LICENSE`。
+<!-- 结束 -->
+<!-- 如果：没选游戏许可 -->
+游戏本身的代码和内容归作者所有，还没有对外授权。
+<!-- 结束 -->
+
+本项目用 [LumioTemplate](https://github.com/LumioGames/LumioTemplate) 初始化。项目里保留的 LumioTemplate 文件（主要在 `.spec/`）按 LumioTemplate 的许可使用，条款在 `.spec/LICENSE`；其中一部分规则、检查工具和技能另有 MIT 或 Apache-2.0 许可，见 `.spec/skills/README.md`。你在项目里新加的文件不受这些条款约束。

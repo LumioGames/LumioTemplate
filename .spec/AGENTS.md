@@ -55,7 +55,7 @@ node .spec/tools/spec-lint.mjs
 
 | 类别 | 包含 | 规则 |
 | --- | --- | --- |
-| 框架文件 | `rules/system.md`、`rules/dispatch.md`、`agents/`、`skills/` 里模板自带的技能（含 `lumio-update`）、`tools/`、`references/`、`knowledge/lumio-platform/` | 项目不改；以后随模板更新，按文件或按技能文件夹覆盖 |
+| 框架文件 | `LICENSE`（LumioTemplate 的许可条款，初始化时从仓库根目录移到这里）、`rules/system.md`、`rules/dispatch.md`、`agents/`、`skills/` 里模板自带的技能（含 `lumio-update`）、`tools/`、`references/`、`knowledge/lumio-platform/` | 项目不改；以后随模板更新，按文件或按技能文件夹覆盖 |
 | 项目文件 | `AGENTS.md`（本文件）、`rules/project.md`、`knowledge/` 里除 `lumio-platform/` 以外的部分、`decisions/`、`tasks/`、`plans/`、项目自己加的技能 | 归项目所有，初始化时生成，之后由项目维护 |
 
 放哪、怎么登记，用 [spec-steward](skills/spec-steward/SKILL.md)。

@@ -41,6 +41,7 @@ my-game/
 ├─ Builds/        Build output; only its README is in git
 ├─ .spec/
 │  ├─ AGENTS.md   Project hub: what it is, modules, closeout commands, skill list
+│  ├─ LICENSE     LumioTemplate's license terms (moved here from the root during setup; the root is left for your game)
 │  ├─ rules/      General red lines, dispatch and coding rules, this project's red lines
 │  ├─ knowledge/  Conventions (structure, workflow, code style, testing, art), gameplay direction, Lumio platform facts
 │  ├─ decisions/  Decision records (ADRs); the first one covers structure and tech route
@@ -97,7 +98,6 @@ On Windows, if the symlinks come out as plain files, the first setup step rebuil
 - [LumioAgentSpec](https://github.com/LumioGames/LumioAgentSpec): the original source of the framework files (general red lines, dispatch rules, framework skills, lint tools); merged into this repository and no longer maintained on its own.
 - [LGUI](https://github.com/LumioGames/LGUI): a game UI framework for agents, recommended for the UI on every route.
 - [Lumio SDK](https://github.com/LumioGames/LumioSDK): docs and types for `@lumiogames/sdk`.
-- [Lumio DevKit](https://github.com/LumioGames/Lumio-DevKit): agent plugin for the Lumio engine (multiplayer, voxels, servers); not needed for games made with this template.
 
 ## Community
 
@@ -113,4 +113,4 @@ LumioTemplate is source-available under the [PolyForm Shield License 1.0.0](http
 | Use this template, fork, change and send pull requests; use it for learning, teaching and research | Republish the template itself under another name or skin |
 | Say "made with LumioTemplate" or "published on Lumio" in your game | Use the Lumio or LumioGames names and logos as your own brand |
 
-The skills in `.spec/skills/` keep their own licenses: the framework skills come from LumioAgentSpec under MIT, and writing-plans and subagent-driven-development, adapted from obra/superpowers, are MIT as well; the design and art skills are Apache-2.0 (see [.spec/skills/README.md](.spec/skills/README.md)). For any other use, contact us through the [Developer Center](https://lumiogames.cn/studio/) or the community group above for a separate license. The English text in LICENSE is what counts.
+The license covers the template's files and their copies, including the copies that remain in a project you set up from it (after setup the terms live in `.spec/LICENSE`); files you add to your own project are not covered. A few parts have their own licenses: the rules, subagent, lint tools and six framework skills taken from LumioAgentSpec are MIT (writing-plans and subagent-driven-development are also adapted from obra/superpowers, MIT as well); the seven design and art skills are Apache-2.0 (see [.spec/skills/README.md](.spec/skills/README.md)). For any other use, contact us through the [Developer Center](https://lumiogames.cn/studio/) or the community group above for a separate license. The English text in LICENSE is what counts.

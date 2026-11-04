@@ -8,7 +8,7 @@ metadata:
 
 # 开发工作流（分支 / 提交 / 合并）
 
-> 本文是“开发这件事**怎么做**”的手册。Agent 之间**怎么协作**（拆解 → 实现 → reviewer 对抗审查 → 收口）在 `.spec/rules/dispatch.md` 的「调度核心」与「编码约定」里，不在这里。
+> 本文是“开发这件事**怎么做**”的手册。Agent 之间**怎么协作**（拆解 → 实现 → reviewer 对抗审查 → 收口）在 `.spec/rules/system.md` 的「工作方式」里，不在这里。
 > “禁止碰什么”的硬性护栏在 `.spec/rules/system.md`（通用）与 `.spec/rules/project.md`（本项目）；本文只描述流程，遇到护栏处**引用**它，不重复定义。
 
 ## 分支策略
@@ -28,11 +28,11 @@ metadata:
 
 ## 怎么派 Agent
 
-> 待完善：默认按 `.spec/rules/dispatch.md` 走（创造性工作先出设计，多步功能用 `writing-plans` 写计划，再用 `subagent-driven-development` 派活，合入后 `reviewer` 审一次）。本项目有额外约定（例如哪些模块必须深审）时写在这里。
+> 待完善：默认按 `.spec/rules/system.md`「工作方式」走（创造性工作先出设计，多步功能用 `writing-plans` 写计划，再用 `subagent-driven-development` 派活，合入后 `reviewer` 审一次）。本项目有额外约定（例如哪些模块必须深审）时写在这里。
 
 ## 改动完成 = 知识已同步
 
-一处改动只有在**知识沉淀完成**后才算 Done：用 `spec-steward` 技能更新对应 `knowledge/` 文档、`status` 与 `knowledge/README.md` 导航（交付历史在 git，不进文档）。豁免口径与 `.spec/rules/dispatch.md`「编码约定·改完沉淀」一致：纯修复 / 机械套用既有模式可豁免，但**豁免必须在交回物里声明**，不得静默跳过。
+一处改动只有在**知识沉淀完成**后才算 Done：用 `spec-steward` 技能更新对应 `knowledge/` 文档、`status` 与 `knowledge/README.md` 导航（交付历史在 git，不进文档）。豁免口径与 `.spec/rules/system.md`「工作方式·改完沉淀」一致：纯修复 / 机械套用既有模式可豁免，但**豁免必须在交回物里声明**，不得静默跳过。
 
 ## 相关
 

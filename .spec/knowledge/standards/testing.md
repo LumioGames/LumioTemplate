@@ -29,7 +29,7 @@ metadata:
 
 ## 验证证据
 
-形式要求以 `.spec/rules/dispatch.md`「交回物格式」为单一权威——「已通过」三个字不是证据。
+形式要求以 `.spec/rules/system.md`「工作方式」为准：跑了什么写什么命令和关键输出，没跑的写「未执行」——「已通过」三个字不是证据。
 
 ## 验收标准（Definition of Done）
 

@@ -98,4 +98,4 @@ If the issue is truly environmental or timing-dependent: document what you inves
 
 Wait for the actual condition (poll until the state you need is true), not an arbitrary `sleep` / timeout. Keep a fixed delay only when the timing itself is what the test checks, and say why.
 
-Related: `test-driven-development` (Phase 4's failing test for planned fixes; fixes without a plan reproduce by steps — `knowledge/standards/testing.md`「何时走 TDD」); claim "fixed" only with the verification run per `rules/dispatch.md`「收工即验证」.
+Related: `test-driven-development` (Phase 4's failing test for planned fixes; fixes without a plan reproduce by steps — `knowledge/standards/testing.md`「何时走 TDD」); claim "fixed" only with the verification run per `rules/system.md`「工作方式」 (never say "passed" for something not run).

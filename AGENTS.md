@@ -6,9 +6,8 @@
 
 1. [`.spec/AGENTS.md`](.spec/AGENTS.md)：项目中心文档（项目是什么、模块、收口命令、技能名册）。
 2. [`.spec/knowledge/README.md`](.spec/knowledge/README.md)：知识导航。
-3. [`.spec/rules/system.md`](.spec/rules/system.md)：通用红线。
-4. [`.spec/rules/dispatch.md`](.spec/rules/dispatch.md)：调度与编码规程。
-5. [`.spec/rules/project.md`](.spec/rules/project.md)：本项目的红线。
+3. [`.spec/rules/system.md`](.spec/rules/system.md)：工作方式与通用红线。
+4. [`.spec/rules/project.md`](.spec/rules/project.md)：本项目的红线。
 
 技能在 `.spec/skills/`（Claude Code 经 `.claude/skills`、Codex 经 `.agents/skills` 自动发现；其他客户端用到时读对应的 `SKILL.md`），审查子 Agent 在 `.spec/agents/`。
 

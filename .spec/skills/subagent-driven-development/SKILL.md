@@ -11,7 +11,7 @@ Execute a plan by dispatching fresh implementer subagents **wave by wave**: the 
 
 **Why subagents:** You delegate tasks to specialized agents with isolated context. By precisely crafting their instructions and context, you ensure they stay focused and succeed at their task. They should never inherit your session's context or history — you construct exactly what they need. This also preserves your own context for coordination work.
 
-**Core principle:** contract first + parallel waves + one review of the merged whole = fast iteration without cross-worker drift. The parallel boundary, merge policy and review timing have a single authority — `rules/dispatch.md`(「并行边界与合入」「审查闭环」「收口门槛」); this skill only operationalises them.
+**Core principle:** contract first + parallel waves + one review of the merged whole = fast iteration without cross-worker drift. Review timing follows `rules/system.md`「工作方式」; the parallel boundary, merging, hand-back and returns are in 「并行、合入、交回与退回」 below.
 
 **Narration:** between tool calls, narrate at most one short line — the ledger and the tool results carry the record.
 
@@ -42,9 +42,16 @@ digraph when_to_use {
 4. **Wave N — implementation cards, in parallel.** For every card in the wave: record the BASE commit, run `scripts/task-brief PLAN_FILE N`, and dispatch an implementer (./implementer-prompt.md) in its own isolated worktree (Claude Code: Agent tool `isolation: "worktree"`; fill in the 【文件集边界】 / 【环境】 lines of the implementer template). Cards with overlapping file sets or an unresolved dependency edge go to a later wave, never side by side.
 5. **Collect the wave.** Handle each implementer status (below). A worker's report carries its own lint + covering-test evidence — do not re-run those tests. Merge each passing worktree into the main workspace; conflicts go back to the implementer. Append one ledger line per card.
 6. **Next wave** until every card is done.
-7. **Closeout.** Run the project's full 收口门槛 **once**; generate `scripts/review-package MERGE_BASE HEAD` (MERGE_BASE = `git merge-base main HEAD`) and dispatch the `reviewer` subagent (`agents/reviewer.md`) with the printed path. Findings → ONE fix subagent carrying the complete list → re-review. Then set the plan to `status: completed` and finish the branch per `rules/dispatch.md`「并行边界与合入」.
+7. **Closeout.** Run the project's full 收口门槛 **once**; generate `scripts/review-package MERGE_BASE HEAD` (MERGE_BASE = `git merge-base main HEAD`) and dispatch the `reviewer` subagent (`agents/reviewer.md`) with the printed path. Findings → ONE fix subagent carrying the complete list → re-review. Then set the plan to `status: completed` and finish the branch per 「并行、合入、交回与退回」 below.
 
 **Per-card review is not part of the loop.** The one exception: a card touching the red-line surface (`rules/`, hooks, `.claude/`, CI config, auth / security) is reviewed **before** it is merged: dispatch the `reviewer` subagent and say in the prompt that this is a pre-merge single-card review.
+
+## 并行、合入、交回与退回
+
+- **并行边界**：文件集互不重叠才并行，重叠就串行；文件不重叠但共用同一份数据（存档、配表、同一份状态）的，写明一条共同的验收方式。每个并行的子 Agent 在自己的 git worktree 里做（Claude Code 用 Agent 工具的 `isolation: "worktree"`，其他客户端 `git worktree add`；仓库内的 `.worktrees/` 先确认已写进 `.gitignore`）。
+- **合入**：收回交付先看有没有冲突，不复跑子 Agent 的测试，合进主工作区；冲突退回实现方。全部合完按 `knowledge/standards/workflow.md` 的分支策略收尾，没写就问用户；只清理本流程建的 worktree，删分支或 worktree 前列出会丢的内容，问过用户。
+- **交回物**：① 改了什么；② 证据——跑了什么命令、关键输出，没跑的写「未执行」，不写「通过」；子 Agent 的成功报告不作数，以 diff 为准；③ 已知没做完的；④ 沉淀到了哪，或说明不用沉淀。reviewer 交审查报告（格式见 `agents/reviewer.md`）。
+- **退回**：reviewer 报 P0 / P1 就附报告退回重做。处理退回先对照代码核实再改，不盲改、不表演性认同；有不清楚的先全部问清再动手；和用户已定的决定冲突的，交用户裁决。同一问题三次不过就质疑方案、重新拆；方向问题交给用户。
 
 ## Pre-Flight Plan Review
 
@@ -153,7 +160,7 @@ Closeout
 [run full 收口门槛 once: green]
 [review-package MERGE_BASE HEAD; dispatch closeout reviewer with the path + ledger]
 Reviewer: 通过, 1 × P2 (naming) → fix subagent with the full list → re-review: 通过
-[plan status: completed; finish branch per rules/dispatch.md]
+[plan status: completed; finish branch per 「并行、合入、交回与退回」]
 ```
 
 ## Red Flags
@@ -161,7 +168,7 @@ Reviewer: 通过, 1 × P2 (naming) → fix subagent with the full list → re-re
 **Never:**
 - Start implementation on main/master branch without explicit user consent
 - Fan out an implementation wave before its contract cards are merged
-- Dispatch cards with overlapping file sets — or an unresolved dependency edge — in the same wave (non-overlapping cards fan out in parallel per `rules/dispatch.md`「并行边界与合入」)
+- Dispatch cards with overlapping file sets — or an unresolved dependency edge — in the same wave (non-overlapping cards fan out in parallel per 「并行、合入、交回与退回」)
 - Let an implementation card widen a contract on its own — the contract card changes, then the dependants re-dispatch
 - Merge a card whose report lacks the covering tests, the command and the output
 - Re-run a worker's tests yourself or in a reviewer — the report is the evidence; the full suite runs once at closeout
@@ -185,7 +192,7 @@ Reviewer: 通过, 1 × P2 (naming) → fix subagent with the full list → re-re
 **Subagents should use:**
 - **test-driven-development** — per `knowledge/standards/testing.md`「何时走 TDD」
 
-**Workspace isolation and branch finishing** follow `rules/dispatch.md`「并行边界与合入」— no separate skill.
+**Workspace isolation and branch finishing** follow 「并行、合入、交回与退回」 below — no separate skill.
 
 ## Inline Fallback (No Subagents)
 
@@ -194,6 +201,6 @@ When the host has no subagent support, execute the plan inline in this session:
 1. **Load and review the plan critically.** Concerns → raise them with the user before starting. No concerns → create todos for the cards and set the plan file's frontmatter to `status: in_progress`.
 2. **Contract cards first, then the rest in wave order** (waves collapse to serial execution). For each card: mark in_progress → follow its steps exactly as written → run the verifications it specifies (covering tests only) → mark complete.
 3. **Stop and ask instead of guessing** when you hit a blocking condition: missing dependency, failing test, unclear instruction, repeated verification failure.
-4. **After all cards complete,** run the full 收口门槛 once, do one adversarial self-review of the whole diff against `agents/reviewer.md`, set the plan's frontmatter to `status: completed`, then finish the branch per `rules/dispatch.md`.
+4. **After all cards complete,** run the full 收口门槛 once, do one adversarial self-review of the whole diff against `agents/reviewer.md`, set the plan's frontmatter to `status: completed`, then finish the branch per 「并行、合入、交回与退回」.
 
 This mode loses fresh-context-per-card and independent review — a known degradation. Apply extra skepticism when self-reviewing.

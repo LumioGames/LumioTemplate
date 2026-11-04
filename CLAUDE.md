@@ -10,11 +10,9 @@ Claude Code 的入口。下面的 `@` 行在每次会话开始时把对应文件
 
 @.spec/knowledge/README.md
 
-规则（通用红线、调度与编码规程、项目红线）：
+规则（工作方式与通用红线、项目红线）：
 
 @.spec/rules/system.md
-
-@.spec/rules/dispatch.md
 
 @.spec/rules/project.md
 

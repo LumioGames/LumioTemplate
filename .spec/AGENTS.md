@@ -4,7 +4,7 @@
 
 > 未初始化时，Agent 先按 [`skills/lumio-init/SKILL.md`](skills/lumio-init/SKILL.md) 带用户初始化：问几个立项问题，生成模块目录、README 和规范，再问要不要接着聊玩法、美术。初始化结束时删掉 `skills/lumio-init/` 和这段提示，把上面的状态改成「已初始化」。
 
-本文件只写本项目独有的东西：项目是什么、模块、收口门槛、技能名册、文件归属。通用规程（调度核心、编码约定、交回物格式、宿主差异）在 [`rules/dispatch.md`](rules/dispatch.md)，通用红线在 [`rules/system.md`](rules/system.md)，本项目的红线在 [`rules/project.md`](rules/project.md)，这里不复述。
+本文件只写本项目独有的东西：项目是什么、模块、收口门槛、技能名册、文件归属。工作方式和通用红线在 [`rules/system.md`](rules/system.md)，本项目的红线在 [`rules/project.md`](rules/project.md)，这里不复述。
 
 ## 项目是什么
 
@@ -40,11 +40,11 @@ node .spec/tools/spec-lint.mjs
 | [art-prompt](skills/art-prompt/SKILL.md) | 把美术方向写成 AI 出图提示词 |
 | [art-review](skills/art-review/SKILL.md) | 按美术规范审查美术资产和设计稿 |
 
-子 Agent 只有 `reviewer`（[`agents/reviewer.md`](agents/reviewer.md)），名册和调度时机见 `rules/dispatch.md`。
+子 Agent 只有 `reviewer`（[`agents/reviewer.md`](agents/reviewer.md)），调度时机见 `rules/system.md`「工作方式」。
 
 ## 项目专属约定
 
-（可选。只写与 `rules/dispatch.md` 通用规程「不同」或「更严」的部分，相同的不要复制过来。）
+（可选。只写与 `rules/system.md`「工作方式」「不同」或「更严」的部分，相同的不要复制过来。）
 
 ## 框架文件和项目文件
 
@@ -52,7 +52,7 @@ node .spec/tools/spec-lint.mjs
 
 | 类别 | 包含 | 规则 |
 | --- | --- | --- |
-| 框架文件 | `LICENSE`（LumioTemplate 的许可条款，初始化时从仓库根目录移到这里）、`rules/system.md`、`rules/dispatch.md`、`agents/`、`skills/` 里模板自带的技能（含 `lumio-update`）、`tools/`、`knowledge/lumio-platform/` | 项目不改；以后随模板更新，按文件或按技能文件夹覆盖 |
+| 框架文件 | `LICENSE`（LumioTemplate 的许可条款，初始化时从仓库根目录移到这里）、`rules/system.md`、`agents/`、`skills/` 里模板自带的技能（含 `lumio-update`）、`tools/`、`knowledge/lumio-platform/` | 项目不改；以后随模板更新，按文件或按技能文件夹覆盖 |
 | 项目文件 | `AGENTS.md`（本文件）、`rules/project.md`、`knowledge/` 里除 `lumio-platform/` 以外的部分、`decisions/`、`plans/`、项目自己加的技能 | 归项目所有，初始化时生成，之后由项目维护 |
 
 放哪、怎么登记，用 [spec-steward](skills/spec-steward/SKILL.md)。

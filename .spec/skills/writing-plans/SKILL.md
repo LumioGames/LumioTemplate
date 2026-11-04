@@ -22,7 +22,7 @@ Assume they are a skilled developer, but know almost nothing about our toolset o
 ## Two Outputs: Deep Plan vs Task Cards
 
 - **Deep plan** (the rest of this file): one feature, executed step by step with complete code in every step. Use when the work is one coherent thread.
-- **Shallow mode — task cards** (section at the end): several independent cards fanned out to parallel workers. Use when the goal splits into pieces that can be built and verified separately. This is the default whenever parallel execution is possible (`rules/dispatch.md`「调度取向」).
+- **Shallow mode — task cards** (section at the end): several independent cards fanned out to parallel workers. Use when the goal splits into pieces that can be built and verified separately. This is the default whenever parallel execution is possible (`rules/system.md`「工作方式」).
 
 ## Scope Check
 
@@ -182,7 +182,7 @@ Split one goal into cards that a worker can start without asking a question and 
 2. **Extract the shared dependencies first — the contract cards (wave 0).** Anything two or more cards would both need: data structures, type definitions, API signatures, protocols, common modules, conventions. Each becomes its own card whose deliverable is the artefact itself (a types / interface file, a schema, a `.spec/knowledge/standards/` doc). Implementation cards align only through these artefacts; if a contract turns out insufficient, the contract card changes — no implementation card widens an interface on its own.
 3. **Split the rest.** One card = one thing, independently completable and verifiable. Two cards touching the same logic is a signal to merge them.
 4. **Write the cards.** Every card with a neighbour dependency **must** carry the `## 接口` block (Consumes / Produces with exact signatures) — parallel workers never see each other's code, so the contract on the card is their only alignment. No placeholders (see No Placeholders above).
-5. **Schedule waves.** Wave 0 = contract cards; a wave contains only cards with no dependency edge between them and non-overlapping file sets; waves run serially, cards inside a wave in parallel (rules: `rules/dispatch.md`「并行边界与合入」).
+5. **Schedule waves.** Wave 0 = contract cards; a wave contains only cards with no dependency edge between them and non-overlapping file sets; waves run serially, cards inside a wave in parallel (rules: `subagent-driven-development`「并行、合入、交回与退回」).
 6. **Self-check.** Each card starts without a follow-up question; every acceptance criterion is objectively verifiable ("no horizontal scroll at 375px", not "looks good"); the set covers the goal with no gap, no overlap, no scope creep; no wave has an internal edge or overlapping file set.
 
 Don't over-split: work that is one step stays one card.

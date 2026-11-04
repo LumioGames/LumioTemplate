@@ -6,13 +6,13 @@ description: 维护项目 `.spec/` 的结构并把改动沉淀进知识库——
 # Spec Steward（仓库管家）
 
 保证任何结构改动都「放对位置、格式合规、索引与名册同步」，并在开发完成后把「改了什么、为什么」沉淀回知识库。
-本技能**不复述**那些规矩（权威在 `.spec/rules/dispatch.md` 与 `.spec/knowledge/README.md`），只在改动发生时把规矩**用起来**，并指回对应处。
+本技能**不复述**那些规矩（权威在 `.spec/rules/system.md` 与 `.spec/knowledge/README.md`），只在改动发生时把规矩**用起来**，并指回对应处。
 
 **先分清两类文件**——划分以 `.spec/AGENTS.md`「框架文件和项目文件」一节为准：
 
 | 类别 | 包含 | 规则 |
 |------|------|------|
-| **框架文件** | `LICENSE`（模板的许可条款）、`rules/system.md`、`rules/dispatch.md`、`agents/`、`skills/` 里模板自带的技能（含 `lumio-update`）、`tools/`、`knowledge/lumio-platform/`；逐个路径的清单在 `lumio-update` 技能里 | 项目不改；以后随模板更新，按文件或按技能文件夹整份覆盖 |
+| **框架文件** | `LICENSE`（模板的许可条款）、`rules/system.md`、`agents/`、`skills/` 里模板自带的技能（含 `lumio-update`）、`tools/`、`knowledge/lumio-platform/`；逐个路径的清单在 `lumio-update` 技能里 | 项目不改；以后随模板更新，按文件或按技能文件夹整份覆盖 |
 | **项目文件** | `AGENTS.md`、`rules/project.md`、`knowledge/` 里除 `lumio-platform/` 以外的部分、`decisions/`、`plans/`、项目自己加的技能 | 归项目所有，初始化时生成，之后由项目维护 |
 
 判据:**这处改动要落在框架文件里吗?** 要 → 不改框架文件，把项目自己的版本写进项目文件（红线进 `rules/project.md`，做法进 `knowledge/standards/`，新方法另建项目技能）；框架文件本身有问题，记进 `knowledge/lessons.md` 或告诉用户，等模板更新。
@@ -25,7 +25,7 @@ description: 维护项目 `.spec/` 的结构并把改动沉淀进知识库——
 
 ## 前置条件
 
-- 能随时查阅 `.spec/rules/dispatch.md`（调度核心、宿主差异）与 `.spec/knowledge/README.md`（知识导航）——本技能指回它们，不重复。
+- 能随时查阅 `.spec/rules/system.md`（工作方式）与 `.spec/knowledge/README.md`（知识导航）——本技能指回它们，不重复。
 - 改动目标明确（知道要加 / 改 / 删什么）。
 
 ## 操作步骤
@@ -36,7 +36,7 @@ description: 维护项目 `.spec/` 的结构并把改动沉淀进知识库——
    - 禁止碰什么（护栏）→ 项目红线写进 `.spec/rules/project.md`（无 frontmatter）；`rules/system.md` 是框架文件，不改。另立规则文件时，必须在根目录 `CLAUDE.md` 加一行 `@import`，否则 Claude Code 不会载入（spec-lint 检查）
    - 怎么做（流程 / 规范）→ `.spec/knowledge/standards/`
    - 某功能的设计 / 记录 → `.spec/knowledge/features/<领域>/…`
-   - 一个职能角色 → `.spec/agents/`（先过 `rules/dispatch.md` 的准入门槛「隔离本身即是产出价值」，再照 `reviewer` 范例写，正文承载判断；frontmatter 见下面第 3 步，禁令见 `rules/system.md`）
+   - 一个职能角色 → `.spec/agents/`（先过准入门槛「隔离本身即是产出价值」——当前只有 `reviewer`，再照 `reviewer` 范例写，正文承载判断；frontmatter 见下面第 3 步，禁令见 `rules/system.md`）
    - 可复用方法 → 项目技能 `.spec/skills/<name>/SKILL.md`（目录名即 skill 名；description 只写触发条件、不概括流程——概括流程的 description 会让 agent 照描述走捷径、跳过正文）。名字不要和模板自带的技能重名，以免模板更新时被覆盖
 2. **放对位置 + 命名**（agent 文件 `agents/<name>.md`、skill 目录 `skills/<name>/`；均 kebab、全局唯一，且目录 / 文件名与 frontmatter `name` 一致）。
 3. **写 frontmatter**：
@@ -45,7 +45,7 @@ description: 维护项目 `.spec/` 的结构并把改动沉淀进知识库——
    - knowledge：`name` + `description` + `metadata`（type / status）
    - rules：**无** frontmatter
 4. **同步登记**（漏一处，能力就隐身）：
-   - 加 / 删子 Agent → 在 `.spec/AGENTS.md` 登记名册，并说明 Codex 等没有子 Agent 的客户端怎么降级（`rules/dispatch.md` 是框架文件，不改）
+   - 加 / 删子 Agent → 在 `.spec/AGENTS.md` 登记名册，并说明 Codex 等没有子 Agent 的客户端怎么降级（`rules/system.md` 是框架文件，不改）
    - 加 / 删 skill → 更新 `.spec/AGENTS.md` 技能名册；若进入默认流程，在 `.spec/AGENTS.md`「项目专属约定」写明
    - 加 / 删知识文档 → 更新 `.spec/knowledge/README.md` 文件导航
    - 加 / 删 `rules/` 下的文件 → 同步根目录 `CLAUDE.md` 的 `@import` 行与根目录 `AGENTS.md` 的必读清单
@@ -87,7 +87,7 @@ description: 维护项目 `.spec/` 的结构并把改动沉淀进知识库——
 - **导航行要精简**：Claude Code 每次会话经 `CLAUDE.md` 强制载入 `.spec/AGENTS.md`、`knowledge/README.md` 和 `rules/` 下各文件，其余文档靠导航按需下钻。导航行是 Agent 判断「该不该翻这份文档」的唯一依据；历史在 git，不进正文 / 导航行 / description / status。
 - **rules 管禁止，standards 管怎么做**，别混。
 - **框架文件不改**：项目内容写进框架文件，下次模板更新覆盖时就会丢；项目要不同的做法，写进项目文件。
-- 本技能是**被拉取**的：「每次改完都更新知识」这条**义务**靠 `workflow.md` 与 `rules/dispatch.md`「编码约定」的交付标准保证，不靠本技能自觉。
+- 本技能是**被拉取**的：「每次改完都更新知识」这条**义务**靠 `workflow.md` 与 `rules/system.md`「工作方式」的交付标准保证，不靠本技能自觉。
 
 ## 验证
 

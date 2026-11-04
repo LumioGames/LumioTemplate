@@ -55,7 +55,7 @@ my-game/
 ├─ .spec/
 │  ├─ AGENTS.md   项目中心文档：项目是什么、模块、收口命令、技能名册
 │  ├─ LICENSE     LumioTemplate 的许可条款（初始化时从根目录移进来，根目录留给你的游戏）
-│  ├─ rules/      通用红线、调度与编码规程、本项目的红线
+│  ├─ rules/      工作方式与通用红线、本项目的红线
 │  ├─ knowledge/  规范（项目结构、工作流、代码风格、测试、美术）、玩法方向、Lumio 平台知识
 │  ├─ decisions/  决策记录（ADR），第一条是项目结构与技术路线
 │  ├─ skills/     技能：写计划、派子 Agent、测试先行、排障、沉淀、更新框架，以及策划和美术
@@ -74,7 +74,7 @@ my-game/
 | --- | --- |
 | `AGENTS.md` / `CLAUDE.md` | Agent 的入口：先读哪几份文档；Claude Code 经 `CLAUDE.md` 自动载入 |
 | `.spec/AGENTS.md` | 项目中心文档，初始状态是「未初始化」 |
-| `.spec/rules/` | `system.md` 通用红线、`dispatch.md` 调度与编码规程、`project.md` 项目红线（初始化时生成） |
+| `.spec/rules/` | `system.md` 工作方式与通用红线、`project.md` 项目红线（初始化时生成） |
 | `.spec/knowledge/` | 规范骨架、功能文档模板、经验教训，以及 `lumio-platform/`：SDK、`lumio.json` 与打包、LGUI、网页工程、资源地址 |
 | `.spec/decisions/`、`plans/` | 决策记录、实现计划的格式（任务卡就是计划里的 `### Task N`） |
 | `.spec/skills/` | 11 个常驻技能（含更新框架用的 `lumio-update`），加上一次性的 `lumio-init`（初始化流程和生成模板，收尾时删除） |
@@ -85,7 +85,7 @@ my-game/
 
 ## 更新框架
 
-`.spec/` 里的通用红线、调度规程、技能、检查工具和 Lumio 平台知识是**框架文件**，项目不改；你自己的规则、规范、玩法和决策是**项目文件**，归你所有。模板以后出了新版，在项目里对 Agent 说：
+`.spec/` 里的工作方式与通用红线、技能、检查工具和 Lumio 平台知识是**框架文件**，项目不改；你自己的规则、规范、玩法和决策是**项目文件**，归你所有。模板以后出了新版，在项目里对 Agent 说：
 
 > 更新框架
 
@@ -105,7 +105,7 @@ Windows 上如果软链被检出成了普通文件，初始化第一步会用 `m
 
 ## 相关仓库
 
-- [LumioAgentSpec](https://github.com/LumioGames/LumioAgentSpec)：框架文件（通用红线、调度规程、框架技能、检查工具）的来源。它是一个不限于游戏的通用 Agent 项目管理框架，仍在独立维护；本模板里是它 1.1.1 的快照，按游戏项目改成了仓库内加软链的形态。
+- [LumioAgentSpec](https://github.com/LumioGames/LumioAgentSpec)：框架文件（通用红线、框架技能、检查工具）的来源。它是一个不限于游戏的通用 Agent 项目管理框架，仍在独立维护；本模板里是它 1.1.1 的快照，按游戏项目改成了仓库内加软链的形态。
 - [LGUI](https://github.com/LumioGames/LGUI)：给 Agent 用的游戏 UI 框架，每条路线都推荐用它做界面。
 - [Lumio SDK](https://github.com/LumioGames/LumioSDK)：`@lumiogames/sdk` 的说明与类型。
 

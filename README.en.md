@@ -55,7 +55,7 @@ my-game/
 ├─ .spec/
 │  ├─ AGENTS.md   Project hub: what it is, modules, closeout commands, skill list
 │  ├─ LICENSE     LumioTemplate's license terms (moved here from the root during setup; the root is left for your game)
-│  ├─ rules/      General red lines, dispatch and coding rules, this project's red lines
+│  ├─ rules/      Way of working and general red lines, this project's red lines
 │  ├─ knowledge/  Conventions (structure, workflow, code style, testing, art), gameplay direction, Lumio platform facts
 │  ├─ decisions/  Decision records (ADRs); the first one covers structure and tech route
 │  ├─ skills/     Skills for planning, subagent dispatch, test-first, debugging, upkeep, framework updates, game design and art
@@ -74,7 +74,7 @@ You also get `Server/` if you write your own server code. Every module has a REA
 | --- | --- |
 | `AGENTS.md` / `CLAUDE.md` | Agent entry points: which docs to read first; Claude Code loads them through `CLAUDE.md` |
 | `.spec/AGENTS.md` | Project hub, initially marked 「未初始化」 (not set up) |
-| `.spec/rules/` | `system.md` general red lines, `dispatch.md` dispatch and coding rules, `project.md` project red lines (generated during setup) |
+| `.spec/rules/` | `system.md` way of working and general red lines, `project.md` project red lines (generated during setup) |
 | `.spec/knowledge/` | Convention skeletons, a feature doc template, lessons, and `lumio-platform/`: SDK, `lumio.json` and packaging, LGUI, web projects, links |
 | `.spec/decisions/`, `plans/` | Formats for decision records and implementation plans (a task card is a `### Task N` section of a plan) |
 | `.spec/skills/` | 11 standing skills (including `lumio-update` for framework updates), plus the one-time `lumio-init` (setup flow and templates, deleted at the end of setup) |
@@ -87,7 +87,7 @@ The rules and knowledge files are written in Chinese; agents read them fine and 
 
 ## Updating the framework
 
-The general red lines, dispatch rules, skills, lint tools and Lumio platform facts in `.spec/` are **framework files**: your project does not edit them. Your own rules, conventions, gameplay docs and decisions are **project files** and belong to you. When the template ships a new version, say this to the agent in your project:
+The way of working and general red lines, skills, lint tools and Lumio platform facts in `.spec/` are **framework files**: your project does not edit them. Your own rules, conventions, gameplay docs and decisions are **project files** and belong to you. When the template ships a new version, say this to the agent in your project:
 
 > update the framework
 
@@ -107,7 +107,7 @@ On Windows, if the symlinks come out as plain files, the first setup step rebuil
 
 ## Related repositories
 
-- [LumioAgentSpec](https://github.com/LumioGames/LumioAgentSpec): the source of the framework files (general red lines, dispatch rules, framework skills, lint tools). It is a general-purpose agent project management framework, not limited to games, and is still maintained on its own. This template holds a snapshot of its 1.1.1 release, adapted to live inside the repository with symlinks.
+- [LumioAgentSpec](https://github.com/LumioGames/LumioAgentSpec): the source of the framework files (general red lines, framework skills, lint tools). It is a general-purpose agent project management framework, not limited to games, and is still maintained on its own. This template holds a snapshot of its 1.1.1 release, adapted to live inside the repository with symlinks.
 - [LGUI](https://github.com/LumioGames/LGUI): a game UI framework for agents, recommended for the UI on every route.
 - [Lumio SDK](https://github.com/LumioGames/LumioSDK): docs and types for `@lumiogames/sdk`.
 

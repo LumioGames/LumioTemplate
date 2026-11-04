@@ -20,7 +20,7 @@ description: 当 `.spec/AGENTS.md` 写着「状态：未初始化」，或用户
 ## 两种开场
 
 - **客户端自动载入了**：用户在项目文件夹里开对话说「开始」，Claude Code 已经经 `CLAUDE.md` 载入核心文档、经软链发现了技能。直接往下做。
-- **你主动读文件开始的**：你刚在这次对话里把模板克隆进当前文件夹（README「给 Agent」那一节的第 2 步），客户端没有载入 `CLAUDE.md`，也没有发现技能。这不是错误，不用开新对话：先读根目录 `AGENTS.md` 和它列出的 5 份文件，再往下做；要用到别的技能（design-director、art-director 等）时，直接读 `.spec/skills/<技能名>/SKILL.md`。
+- **你主动读文件开始的**：你刚在这次对话里把模板克隆进当前文件夹（README「给 Agent」那一节的第 2 步），客户端没有载入 `CLAUDE.md`，也没有发现技能。这不是错误，不用开新对话：先读根目录 `AGENTS.md` 和它列出的 4 份文件，再往下做；要用到别的技能（design-director、art-director 等）时，直接读 `.spec/skills/<技能名>/SKILL.md`。
 
 ## 先判断做到哪了
 

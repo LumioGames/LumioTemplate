@@ -44,7 +44,7 @@ my-game/
 │  ├─ rules/      通用红线、调度与编码规程、本项目的红线
 │  ├─ knowledge/  规范（项目结构、工作流、代码风格、测试、美术）、玩法方向、Lumio 平台知识
 │  ├─ decisions/  决策记录（ADR），第一条是项目结构与技术路线
-│  ├─ skills/     技能：设计、写计划、派子 Agent、测试先行、排障、沉淀，以及策划和美术
+│  ├─ skills/     技能：设计、写计划、派子 Agent、测试先行、排障、沉淀、更新框架，以及策划和美术
 │  ├─ agents/     审查子 Agent
 │  └─ tools/      结构检查、收口定级、提交前检查
 ├─ AGENTS.md      给 Agent 的入口（指路）
@@ -63,10 +63,19 @@ my-game/
 | `.spec/rules/` | `system.md` 通用红线、`dispatch.md` 调度与编码规程、`project.md` 项目红线（初始化时生成） |
 | `.spec/knowledge/` | 规范骨架、功能文档模板、经验教训，以及 `lumio-platform/`：SDK、`lumio.json` 与打包、LGUI、网页工程、资源地址 |
 | `.spec/decisions/`、`tasks/`、`plans/` | 决策记录、任务卡、实现计划的格式 |
-| `.spec/skills/` | 13 个常驻技能，加上一次性的 `lumio-init`（初始化流程和生成模板，收尾时删除） |
+| `.spec/skills/` | 14 个常驻技能（含更新框架用的 `lumio-update`），加上一次性的 `lumio-init`（初始化流程和生成模板，收尾时删除） |
 | `.spec/agents/reviewer.md` | 审查子 Agent |
 | `.spec/tools/` | `spec-lint.mjs` 结构检查、`closeout-gate.mjs` 收口定级、`guard-commit.mjs` 提交前检查；`lumio-pack.mjs` 和 `lgui-build-web.mjs` 初始化时按路线移到 `Tools/` 或删除 |
 | `.claude/`、`.agents/` | 指向 `.spec/` 的软链（让客户端找到技能和子 Agent），以及 Claude Code 的提交前检查钩子 |
+| `CHANGELOG.md` | 框架的版本记录（每个版本一个 tag），初始化收尾时删除 |
+
+## 更新框架
+
+`.spec/` 里的通用红线、调度规程、技能、检查工具和 Lumio 平台知识是**框架文件**，项目不改；你自己的规则、规范、玩法和决策是**项目文件**，归你所有。模板以后出了新版，在项目里对 Agent 说：
+
+> 更新框架
+
+Agent 会用 `lumio-update` 技能：拉取 LumioTemplate 最新的版本 tag，把这之间的更新记录给你看，只覆盖框架文件（你本地改过的先给你看差异再问），跑一遍结构检查，本地提交一次，推送前先问你。顺带看看 LGUI 和 Lumio SDK 有没有新版，只提示、不自动升级。当前框架版本写在 `.spec/skills/lumio-update/SKILL.md` 里。
 
 ## 支持哪些 Agent
 
@@ -83,7 +92,7 @@ Windows 上如果软链被检出成了普通文件，初始化第一步会用 `m
 
 ## 相关仓库
 
-- [LumioAgentSpec](https://github.com/LumioGames/LumioAgentSpec)：框架文件（通用红线、调度规程、框架技能、检查工具）的来源。
+- [LumioAgentSpec](https://github.com/LumioGames/LumioAgentSpec)：框架文件（通用红线、调度规程、框架技能、检查工具）最初的来源，已并入本仓库，不再单独维护。
 - [LGUI](https://github.com/LumioGames/LGUI)：给 Agent 用的游戏 UI 框架，每条路线都推荐用它做界面。
 - [Lumio SDK](https://github.com/LumioGames/LumioSDK)：`@lumiogames/sdk` 的说明与类型。
 - [Lumio DevKit](https://github.com/LumioGames/Lumio-DevKit)：Lumio 引擎（联机、体素、服务端）的 Agent 插件；用本模板做游戏用不到。

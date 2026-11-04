@@ -137,7 +137,7 @@ description: 当 `.spec/AGENTS.md` 写着「状态：未初始化」，或用户
 
 按顺序做。
 
-1. **改写 README。** 按 `skeleton/game-readme.md` 把根目录 `README.md` 改写成这款游戏的说明；删掉 `README.en.md`（用户要英文版，就按同样的内容改写它，不删）。根目录 `LICENSE` 是模板本身的许可，保留它；用户想给自己的游戏定许可，另放在用户自己选的位置，不改根目录 `LICENSE`。
+1. **改写 README，删掉模板专用的文件。** 按 `skeleton/game-readme.md` 把根目录 `README.md` 改写成这款游戏的说明；删掉 `README.en.md`（用户要英文版，就按同样的内容改写它，不删）；删掉根目录 `CHANGELOG.md`（那是模板的版本记录，以后更新框架时读的是新版模板里的那份）。根目录 `LICENSE` 是模板本身的许可，保留它；用户想给自己的游戏定许可，另放在用户自己选的位置，不改根目录 `LICENSE`。
 2. **改入口文档。** `.spec/AGENTS.md`：状态改成「已初始化」，删掉状态下面那段引用块提示。根目录 `AGENTS.md`：删掉「`.spec/AGENTS.md` 写着『状态：未初始化』时……」那一段。
 3. **处理远程地址。** 跑 `git remote -v`：
    - 远程是用户自己的仓库（在 GitHub 上点 Use this template 建的）：不动。
@@ -161,3 +161,4 @@ description: 当 `.spec/AGENTS.md` 写着「状态：未初始化」，或用户
    2. **定玩法、定美术**：第二段没聊完的部分，说「我们来定玩法」（design-director）或「我们来定美术方向」（art-director）。
    3. **开始做某个功能**：先用 writing-plans 写计划，再派活。
    4. 发布到 Lumio 的项目：打包上传的规则见 `.spec/knowledge/lumio-platform/publishing.md`；上传和提交审核由用户自己在创作中心点，Agent 不替用户上传。
+   5. 以后模板出了新版框架，说「更新框架」（lumio-update）。

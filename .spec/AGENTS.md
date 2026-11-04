@@ -34,6 +34,7 @@ node .spec/tools/spec-lint.mjs
 | [test-driven-development](skills/test-driven-development/SKILL.md) | 大任务先写失败的测试再写实现 |
 | [systematic-debugging](skills/systematic-debugging/SKILL.md) | 遇到 bug、测试失败、异常行为，先找根因再动手 |
 | [spec-steward](skills/spec-steward/SKILL.md) | 改了 `.spec/` 的结构，或做完一处改动要沉淀进知识库 |
+| [lumio-update](skills/lumio-update/SKILL.md) | 用户说「更新框架」：把框架文件更新到 LumioTemplate 最新版本，顺带看 LGUI 和 SDK 有没有新版 |
 | [design-director](skills/design-director/SKILL.md) | 讨论并定下玩法、系统、数值、关卡、商业化方向 |
 | [design-doc](skills/design-doc/SKILL.md) | 把定下的玩法写成策划案（`knowledge/features/`） |
 | [design-review](skills/design-review/SKILL.md) | 审查策划案和开发需求 |
@@ -50,11 +51,11 @@ node .spec/tools/spec-lint.mjs
 
 ## 框架文件和项目文件
 
-`.spec/` 里的文件分两类。框架文件将来随 LumioTemplate 更新时整份覆盖，所以项目自己的内容不要写进框架文件。
+`.spec/` 里的文件分两类。框架文件将来随 LumioTemplate 更新时整份覆盖（对 Agent 说「更新框架」，用 [lumio-update](skills/lumio-update/SKILL.md)；逐个路径的清单和当前框架版本以它为准），所以项目自己的内容不要写进框架文件。
 
 | 类别 | 包含 | 规则 |
 | --- | --- | --- |
-| 框架文件 | `rules/system.md`、`rules/dispatch.md`、`agents/`、`skills/` 里模板自带的技能、`tools/`、`references/`、`knowledge/lumio-platform/` | 项目不改；以后随模板更新，按文件或按技能文件夹覆盖 |
+| 框架文件 | `rules/system.md`、`rules/dispatch.md`、`agents/`、`skills/` 里模板自带的技能（含 `lumio-update`）、`tools/`、`references/`、`knowledge/lumio-platform/` | 项目不改；以后随模板更新，按文件或按技能文件夹覆盖 |
 | 项目文件 | `AGENTS.md`（本文件）、`rules/project.md`、`knowledge/` 里除 `lumio-platform/` 以外的部分、`decisions/`、`tasks/`、`plans/`、项目自己加的技能 | 归项目所有，初始化时生成，之后由项目维护 |
 
 放哪、怎么登记，用 [spec-steward](skills/spec-steward/SKILL.md)。

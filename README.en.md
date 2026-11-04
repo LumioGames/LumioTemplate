@@ -44,7 +44,7 @@ my-game/
 │  ├─ rules/      General red lines, dispatch and coding rules, this project's red lines
 │  ├─ knowledge/  Conventions (structure, workflow, code style, testing, art), gameplay direction, Lumio platform facts
 │  ├─ decisions/  Decision records (ADRs); the first one covers structure and tech route
-│  ├─ skills/     Skills for design, planning, subagent dispatch, test-first, debugging, upkeep, game design and art
+│  ├─ skills/     Skills for design, planning, subagent dispatch, test-first, debugging, upkeep, framework updates, game design and art
 │  ├─ agents/     Review subagent
 │  └─ tools/      Structure lint, closeout grading, pre-commit check
 ├─ AGENTS.md      Agent entry point (points to the docs)
@@ -63,12 +63,21 @@ You also get `Server/` if you write your own server code. Every module has a REA
 | `.spec/rules/` | `system.md` general red lines, `dispatch.md` dispatch and coding rules, `project.md` project red lines (generated during setup) |
 | `.spec/knowledge/` | Convention skeletons, a feature doc template, lessons, and `lumio-platform/`: SDK, `lumio.json` and packaging, LGUI, web projects, links |
 | `.spec/decisions/`, `tasks/`, `plans/` | Formats for decision records, task cards and implementation plans |
-| `.spec/skills/` | 13 standing skills, plus the one-time `lumio-init` (setup flow and templates, deleted at the end of setup) |
+| `.spec/skills/` | 14 standing skills (including `lumio-update` for framework updates), plus the one-time `lumio-init` (setup flow and templates, deleted at the end of setup) |
 | `.spec/agents/reviewer.md` | Review subagent |
 | `.spec/tools/` | `spec-lint.mjs` structure lint, `closeout-gate.mjs` closeout grading, `guard-commit.mjs` pre-commit check; `lumio-pack.mjs` and `lgui-build-web.mjs` move to `Tools/` or are deleted during setup, depending on your route |
 | `.claude/`, `.agents/` | Symlinks into `.spec/` (so clients find the skills and the subagent), and Claude Code's pre-commit hook |
+| `CHANGELOG.md` | Framework release notes (one tag per version); deleted at the end of setup |
 
 The rules and knowledge files are written in Chinese; agents read them fine and reply in your language.
+
+## Updating the framework
+
+The general red lines, dispatch rules, skills, lint tools and Lumio platform facts in `.spec/` are **framework files**: your project does not edit them. Your own rules, conventions, gameplay docs and decisions are **project files** and belong to you. When the template ships a new version, say this to the agent in your project:
+
+> update the framework
+
+The agent uses the `lumio-update` skill. It fetches LumioTemplate's latest version tag and shows you the release notes since your version. It then replaces only the framework files, showing you a diff first for any you changed locally, runs the structure lint, and makes one local commit; it asks before pushing. It also checks whether LGUI or the Lumio SDK has a newer version, and only tells you. The current framework version is written in `.spec/skills/lumio-update/SKILL.md`.
 
 ## Supported agents
 
@@ -85,7 +94,7 @@ On Windows, if the symlinks come out as plain files, the first setup step rebuil
 
 ## Related repositories
 
-- [LumioAgentSpec](https://github.com/LumioGames/LumioAgentSpec): source of the framework files (general red lines, dispatch rules, framework skills, lint tools).
+- [LumioAgentSpec](https://github.com/LumioGames/LumioAgentSpec): the original source of the framework files (general red lines, dispatch rules, framework skills, lint tools); merged into this repository and no longer maintained on its own.
 - [LGUI](https://github.com/LumioGames/LGUI): a game UI framework for agents, recommended for the UI on every route.
 - [Lumio SDK](https://github.com/LumioGames/LumioSDK): docs and types for `@lumiogames/sdk`.
 - [Lumio DevKit](https://github.com/LumioGames/Lumio-DevKit): agent plugin for the Lumio engine (multiplayer, voxels, servers); not needed for games made with this template.

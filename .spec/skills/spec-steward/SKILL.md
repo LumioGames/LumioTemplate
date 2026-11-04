@@ -12,7 +12,7 @@ description: 维护项目 `.spec/` 的结构并把改动沉淀进知识库——
 
 | 类别 | 包含 | 规则 |
 |------|------|------|
-| **框架文件** | `rules/system.md`、`rules/dispatch.md`、`agents/`、`skills/` 里模板自带的技能、`tools/`、`references/`、`knowledge/lumio-platform/` | 项目不改；以后随模板更新，按文件或按技能文件夹整份覆盖 |
+| **框架文件** | `rules/system.md`、`rules/dispatch.md`、`agents/`、`skills/` 里模板自带的技能（含 `lumio-update`）、`tools/`、`references/`、`knowledge/lumio-platform/`；逐个路径的清单在 `lumio-update` 技能里 | 项目不改；以后随模板更新，按文件或按技能文件夹整份覆盖 |
 | **项目文件** | `AGENTS.md`、`rules/project.md`、`knowledge/` 里除 `lumio-platform/` 以外的部分、`decisions/`、`tasks/`、`plans/`、项目自己加的技能 | 归项目所有，初始化时生成，之后由项目维护 |
 
 判据:**这处改动要落在框架文件里吗?** 要 → 不改框架文件，把项目自己的版本写进项目文件（红线进 `rules/project.md`，做法进 `knowledge/standards/`，新方法另建项目技能）；框架文件本身有问题，记进 `knowledge/lessons.md` 或告诉用户，等模板更新。
@@ -70,10 +70,8 @@ description: 维护项目 `.spec/` 的结构并把改动沉淀进知识库——
 
 ### 流程 D · 框架文件更新（模板 → 项目）
 
-- 框架文件随 LumioTemplate 更新：拿到新版模板后，按文件或按技能文件夹整份覆盖框架文件，不合并、不挑行。
-- 覆盖前先看 `git diff` 确认项目没有改过这些文件；改过的，先把项目自己的内容挪进项目文件，再覆盖。
+- 用户说「更新框架」时用 `lumio-update` 技能：它写着当前框架版本和框架文件清单，按 LumioTemplate 最新 tag 只覆盖清单里的路径，本地改过的先给用户看差异再问。本技能不另写一套更新流程。
 - 项目文件不随模板覆盖。新版模板新增的项目文件骨架（例如新的规范模板），对照着手工补进项目。
-- 覆盖后跑 `node .spec/tools/spec-lint.mjs`，并检查 `CLAUDE.md` 的 `@import` 是否覆盖了 `rules/` 下的全部文件。
 
 ## 快速参考
 

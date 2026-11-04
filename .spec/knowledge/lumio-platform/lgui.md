@@ -115,3 +115,17 @@ LGUI 插件还没有网页正式构建命令。在它提供之前，用过渡脚
 `npm run build && npm run pack` 在 `Builds/lumio/` 生成 ZIP。正式构建里 `LGUI_DEV` 为 `false`，模拟器分支和它的动态 import 会被剔除；可以 `grep -c simulated_friend dist/app.js` 确认结果是 0（这个字符串只在模拟器模块里；正式包里残留一段走不到的 `createLumioSimulator(` 分支没关系）。
 
 LGUI 出了正式构建命令后，把 `build` 换成它，删掉 `Tools/lgui-build-web.mjs`。
+
+## 6. 更新 LGUI
+
+LGUI 分两部分：装在客户端里的插件（命令行和技能），以及工程里 `.lgui/` 下的框架副本。先更新插件，再把新框架同步进工程。
+
+1. 先看 LGUI 的更新记录（仓库根目录的 `CHANGELOG.md`，地址见 [resources.md](resources.md)），确认有没有不兼容的改动。
+2. 更新插件：
+   - Claude Code：`claude plugin marketplace update lumio-lgui`，然后 `claude plugin update lgui@lumio-lgui`，重开 Claude Code 后生效。
+   - Codex：`codex plugin marketplace upgrade lumio-lgui`，然后再执行一次 `codex plugin add lgui@lumio-lgui`。
+   - 其他客户端：在克隆下来的 LGUI 目录里 `git pull`。
+   - 命令以客户端当前版本的 `--help` 为准。
+3. 在工程目录（`Client/app/`）里跑 `lgui upgrade`，把插件里的新版框架和 Unity 包同步进工程。这里的 `lgui` 指新版插件目录里的 `tools/lgui.mjs`。
+4. 跑 `lgui check`、`lgui test`、`lgui verify`，再正式构建一次；界面导出到 Unity 的工程，再跑一次 `lgui unity export`。
+5. LGUI 的技能要新开一个会话才生效。

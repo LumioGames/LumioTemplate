@@ -14,13 +14,21 @@ metadata:
 
 | 项 | 值 |
 | --- | --- |
-| 本仓库使用 | `2.11.1`（npm 上的 `latest`） |
+| 本模板验证过的版本 | `2.11.1`（npm 上的 `latest`）。项目实际用的版本以客户端工程的 `package.json` 为准 |
 | 安装 | 在 `Client/app/` 里 `npm i --save-exact @lumiogames/sdk@2.11.1` |
 | 查 npm 上有哪些版本 | `npm view @lumiogames/sdk versions` |
 
-不要用 2.11.1 以前的版本：2.10.x 在 iPhone Safari 和微信内置浏览器里可能连不上平台（返回 `platform.not_granted`），2.11.1 修好了。以后升级时改安装版本，重新构建、打包、上传，并改掉本节的「本仓库使用」。
+不要用 2.11.1 以前的版本：2.10.x 在 iPhone Safari 和微信内置浏览器里可能连不上平台（返回 `platform.not_granted`），2.11.1 修好了。以后升级见下面「升级 SDK」。
 
 2.11.0 起，SDK 连上平台后自己上报加载进度和页面报错，连上就算游戏已启动。本模板的写法是第一次用到平台能力时才连接 SDK，所以入口页仍引用平台启动脚本 `./lumio-bootstrap.js`：它让游戏页一加载就开始；不引用的话，SDK 连上之前平台要等页面加载完 2 秒才开始。两者都在时，报错由启动脚本上报，进度以 SDK 为准。见 [publishing.md](publishing.md)。
+
+## 升级 SDK
+
+1. 查有没有新版：`npm view @lumiogames/sdk version`，和客户端工程 `package.json` 里的版本比。
+2. 升级前先读 LumioSDK 的更新记录（仓库根目录的 `CHANGELOG.md`，地址见 [resources.md](resources.md)），看有没有不兼容的改动、要不要改 `lumio.json` 或调用写法。
+3. 在客户端工程里（网页路线是 `Client/app/`）：`npm i --save-exact @lumiogames/sdk@<新版>`。
+4. 重新跑测试、正式构建、打包，确认正式包里仍然搜不到 `simulated_friend`，再到创作中心上传新版本。
+5. 版本只写在 `package.json` 里，不改本文：本文是框架文件，随框架更新。升级有取舍时记 ADR。
 
 ## 本地模拟器和平台连接
 

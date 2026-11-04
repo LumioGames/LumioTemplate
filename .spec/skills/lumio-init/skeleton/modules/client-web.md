@@ -20,6 +20,8 @@
 <!-- 结束 -->
 4. 把构建和测试命令（`lgui test`、`lgui verify` 等）补进 `.spec/AGENTS.md`「收口门槛」和 `.spec/knowledge/standards/testing.md`。
 
+以后更新 LGUI：先更新插件，再在 `Client/app/` 里跑 `lgui upgrade`，见 `.spec/knowledge/lumio-platform/lgui.md`「更新 LGUI」。
+
 不用 LGUI、自己画界面（Canvas、Phaser、PixiJS 等）时，按 `.spec/knowledge/lumio-platform/web-project.md` 建 Vite + TypeScript 工程，同样放在 `Client/app/`。
 
 ## 依赖

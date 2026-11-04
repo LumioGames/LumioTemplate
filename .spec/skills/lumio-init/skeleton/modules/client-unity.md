@@ -19,6 +19,8 @@
 <!-- 结束 -->
 4. 把构建和测试命令补进 `.spec/AGENTS.md`「收口门槛」和 `.spec/knowledge/standards/testing.md`。
 
+以后更新 LGUI：先更新插件，再在 `Client/app/` 里跑 `lgui upgrade`，然后重新 `lgui unity export` 到 `Client/unity/`，见 `.spec/knowledge/lumio-platform/lgui.md`「更新 LGUI」。
+
 ## 依赖
 
 - 可以读 `Config/` 的配表和配置。

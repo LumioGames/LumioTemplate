@@ -11,11 +11,17 @@ import { pathToFileURL } from 'node:url';
 
 function findPlugin() {
   if (process.env.LGUI_PLUGIN) return path.resolve(process.env.LGUI_PLUGIN);
+  const required = ['output.mjs', 'project.mjs', 'vendor.mjs', 'generate/index.mjs', 'generate/model.mjs', 'generate/i18n.mjs', 'dev/bundle.mjs', 'dev/shell.html'];
+  const candidates = [];
   for (const base of ['.claude', '.codex'].map((dir) => path.join(os.homedir(), dir, 'plugins', 'cache', 'lumio-lgui', 'lgui'))) {
     if (!fs.existsSync(base)) continue;
-    const versions = fs.readdirSync(base).sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
-    if (versions.length > 0) return path.join(base, versions.at(-1));
+    for (const version of fs.readdirSync(base)) {
+      const dir = path.join(base, version);
+      if (required.every((file) => fs.existsSync(path.join(dir, 'tools', 'lib', file)))) candidates.push({ version, dir });
+    }
   }
+  candidates.sort((a, b) => a.version.localeCompare(b.version, undefined, { numeric: true }));
+  if (candidates.length) return candidates.at(-1).dir;
   console.error('找不到 LGUI 插件目录。先装 LGUI 插件，或设置环境变量 LGUI_PLUGIN=<插件目录>（里面有 tools/lgui.mjs）。');
   process.exit(1);
 }
@@ -33,8 +39,12 @@ const { readUiModel } = await lib('generate/model.mjs');
 const { generateTranslations } = await lib('generate/i18n.mjs');
 const { bundleErrors, webBuildOptions, writeWebBootstrap } = await lib('dev/bundle.mjs');
 
+if (!fs.existsSync(path.join(root, 'lumio.json'))) {
+  console.error(`${root} 里没有 lumio.json。`);
+  process.exit(1);
+}
+
 try {
-  if (!fs.existsSync(path.join(root, 'lumio.json'))) throw new Error(`${root} 里没有 lumio.json。`);
   const project = readProject(root);
   fs.rmSync(out, { recursive: true, force: true });
   await generateWeb(uiProjectPath(root), path.join(out, 'ui'));

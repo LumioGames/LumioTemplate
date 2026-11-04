@@ -37,8 +37,8 @@ This section is for an AI agent that reads this README from outside the reposito
 > Do these in order. If any step fails, stop and show the user the exact error. Do not skip steps.
 >
 > 1. Run `git --version` and `node -v`: Git must be installed, and Node must be 24.18 or later. If either is missing, tell the user what to install and where to get it (Git: https://git-scm.com/downloads ; Node: https://nodejs.org , pick 24 LTS), ask the user to install it, and check again afterwards. Do not install it for the user.
-> 2. **The current folder is empty** (`ls -A` prints nothing; in PowerShell, `Get-ChildItem -Force`): run `git clone https://github.com/LumioGames/LumioTemplate .`. Then carry on **in this same conversation**: read `AGENTS.md` and the files it lists, then start setup by following `.spec/skills/lumio-init/SKILL.md`. There is no need for a new conversation. This conversation does not load those files automatically, so read them yourself.
-> 3. **The current folder is not empty**: ask the user what to call the project folder (lowercase letters, digits and hyphens, e.g. `star-hop`), run `git clone https://github.com/LumioGames/LumioTemplate <folder>`, then ask the user to open a new conversation in that folder and say "start". Do not set up the project in the current folder.
+> 2. **The current folder is empty** (`ls -A` prints nothing; in PowerShell, `Get-ChildItem -Force`): run `git clone -c core.symlinks=true https://github.com/LumioGames/LumioTemplate .`. Then carry on **in this same conversation**: read `AGENTS.md` and the files it lists, then start setup by following `.spec/skills/lumio-init/SKILL.md`. There is no need for a new conversation. This conversation does not load those files automatically, so read them yourself.
+> 3. **The current folder is not empty**: ask the user what to call the project folder (lowercase letters, digits and hyphens, e.g. `star-hop`), run `git clone -c core.symlinks=true https://github.com/LumioGames/LumioTemplate <folder>`, then ask the user to open a new conversation in that folder and say "start". Do not set up the project in the current folder.
 > 4. **The user wants their own GitHub repository**: before cloning in step 2 or 3, ask for the repository name and whether it should be public or private. With the user's consent, run `gh repo create <name> --template LumioGames/LumioTemplate --private` (or `--public`), wait a few seconds for GitHub to generate it, then clone **that new repository** in step 2 or 3 instead of the template. If `gh` is not installed or not signed in, ask the user to click Use this template on GitHub and send you the new repository's address. Ask the user before every outward action, such as pushing, creating a remote repository or publishing.
 
 ## What you get
@@ -103,7 +103,7 @@ The agent uses the `lumio-update` skill. It fetches LumioTemplate's latest versi
 | Skills | `.claude/skills` symlink, discovered automatically | `.agents/skills` symlink, discovered automatically | Read from `.spec/skills/` as `AGENTS.md` says |
 | Review subagent | `.claude/agents` symlink | None; the main agent reviews with `reviewer.md` itself | Same as Codex |
 
-On Windows, if the symlinks come out as plain files, the first setup step rebuilds them with `mklink /J` (no administrator rights needed) and asks you to reopen the conversation.
+On Windows, turn on Developer Mode first, then clone with the `-c core.symlinks=true` command above; otherwise the three symlinks come out as plain files and the skills are not found.
 
 ## Related repositories
 

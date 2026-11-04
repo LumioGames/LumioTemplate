@@ -37,8 +37,8 @@ Lumio 游戏模板：帮你把一个游戏项目的**目录结构和规范**一�
 > 按顺序做。任何一步失败都停下，把错误原文告诉用户，不要跳过。
 >
 > 1. 运行 `git --version` 和 `node -v`：要有 Git，Node 要 24.18 或更高。缺哪个就告诉用户装什么、去哪下载（Git：https://git-scm.com/downloads ；Node：https://nodejs.org ，选 24 LTS），请用户自己装，装好后再检查一遍。不要替用户装。
-> 2. **当前文件夹是空的**（`ls -A` 没有输出；PowerShell 用 `Get-ChildItem -Force`）：运行 `git clone https://github.com/LumioGames/LumioTemplate .`。然后就在**这次对话里**接着做：先读 `AGENTS.md` 和它列出的几份文件，再按 `.spec/skills/lumio-init/SKILL.md` 开始初始化。不用开新对话——这次对话不会自动载入这些文件，你主动去读就行。
-> 3. **当前文件夹不是空的**：问用户项目文件夹叫什么（小写字母、数字和连字符，例如 `star-hop`），运行 `git clone https://github.com/LumioGames/LumioTemplate <文件夹名>`，然后请用户在那个文件夹里开一个新对话，说「开始」。不要在当前文件夹里初始化。
+> 2. **当前文件夹是空的**（`ls -A` 没有输出；PowerShell 用 `Get-ChildItem -Force`）：运行 `git clone -c core.symlinks=true https://github.com/LumioGames/LumioTemplate .`。然后就在**这次对话里**接着做：先读 `AGENTS.md` 和它列出的几份文件，再按 `.spec/skills/lumio-init/SKILL.md` 开始初始化。不用开新对话——这次对话不会自动载入这些文件，你主动去读就行。
+> 3. **当前文件夹不是空的**：问用户项目文件夹叫什么（小写字母、数字和连字符，例如 `star-hop`），运行 `git clone -c core.symlinks=true https://github.com/LumioGames/LumioTemplate <文件夹名>`，然后请用户在那个文件夹里开一个新对话，说「开始」。不要在当前文件夹里初始化。
 > 4. **用户想要一个自己的 GitHub 仓库**：在第 2 或第 3 步克隆之前，先问用户仓库名、公开还是私有。用户同意后运行 `gh repo create <仓库名> --template LumioGames/LumioTemplate --private`（公开就用 `--public`），等几秒让 GitHub 生成好，再按第 2 或第 3 步克隆**这个新仓库**的地址，而不是模板的地址。没装或没登录 `gh` 时，请用户在 GitHub 上点 Use this template 建好仓库，把地址发给你。推送、建远程仓库、发布这类对外操作，每一次都先问用户。
 
 ## 你会得到什么
@@ -101,7 +101,7 @@ Agent 会用 `lumio-update` 技能：拉取 LumioTemplate 最新的版本 tag，
 | 技能 | `.claude/skills` 软链，自动发现 | `.agents/skills` 软链，自动发现 | 按 `AGENTS.md` 去 `.spec/skills/` 读 |
 | 审查子 Agent | `.claude/agents` 软链 | 没有，主 Agent 读 `reviewer.md` 自审 | 同 Codex |
 
-Windows 上如果软链被检出成了普通文件，初始化第一步会用 `mklink /J` 重建（不需要管理员权限），然后请你重开一次对话。
+Windows 上要先打开开发者模式，再用上面带 `-c core.symlinks=true` 的命令克隆，否则三条软链会变成普通文件，技能找不到。
 
 ## 相关仓库
 

@@ -31,17 +31,10 @@ description: 当 `.spec/AGENTS.md` 写着「状态：未初始化」，或用户
 
 1. **三条软链。** `.claude/skills`、`.claude/agents`、`.agents/skills` 必须是指向 `.spec/` 下对应目录的链接，客户端靠它们找到技能和审查子 Agent。这一步只检查磁盘上的链接对不对；这次对话里客户端有没有列出这些技能不影响结果（见上面「两种开场」）。
    - macOS / Linux / Git Bash：`ls -la .claude .agents` 应看到 `skills -> ../.spec/skills`、`agents -> ../.spec/agents`；`ls .claude/skills/ .agents/skills/` 能列出技能文件夹。
-   - Windows PowerShell：`Get-Item .claude\skills, .claude\agents, .agents\skills | Format-List FullName, LinkType, Target`，`LinkType` 应是 `SymbolicLink` 或 `Junction`。
-   - 如果它们被检出成了普通文件（打开只有一行 `../.spec/skills` 这样的文字），在 Windows 上用目录联接重建（不需要管理员权限）。在仓库根目录打开命令提示符（cmd）：
+   - Windows PowerShell：`Get-Item .claude\skills, .claude\agents, .agents\skills | Format-List FullName, LinkType, Target`，`LinkType` 应是 `SymbolicLink`。
+   - 如果它们是普通文件（打开只有一行 `../.spec/skills` 这样的文字），不要修复，停下，对用户说这段原话：
 
-     ```bat
-     del .claude\skills .claude\agents .agents\skills
-     mklink /J .claude\skills .spec\skills
-     mklink /J .claude\agents .spec\agents
-     mklink /J .agents\skills .spec\skills
-     ```
-
-     重建后：如果这次对话是客户端自动载入的，请用户**重开一次对话**（客户端只在对话开始时扫描技能），再说「继续初始化」；如果是你主动读文件开始的，不用重开，接着往下做——这三条链接是给以后的新对话用的。这三条联接不要用 `git add` 提交成普通文件，收尾提交时按第二段第 6 步检查。
+     「这个文件夹里的三条软链（`.claude/skills`、`.claude/agents`、`.agents/skills`）被检出成了普通文件，Claude Code 和 Codex 会找不到技能和审查子 Agent，初始化先停在这里。请在 Windows 设置里打开开发者模式（设置 → 系统 → 开发者选项），然后换一个空文件夹，用 `git clone -c core.symlinks=true https://github.com/LumioGames/LumioTemplate <文件夹名>` 重新克隆，在新文件夹里开一个新对话，说「开始」。」
 2. **Git 和 Node。** `git --version`；`node -v` 要 24.18 或更高（结构检查用 Node；以后建网页工程、用 LGUI 和 Lumio SDK 也要 Node 24）。缺哪个就告诉用户装什么、去哪下载（Git：https://git-scm.com/downloads ；Node：https://nodejs.org ，选 24 LTS），用户装好后再检查一遍。**不替用户安装系统软件。**
 
 ## 第一段：立项问答与生成骨架
@@ -139,17 +132,7 @@ description: 当 `.spec/AGENTS.md` 写着「状态：未初始化」，或用户
    - 远程指向 `LumioGames/LumioTemplate`（直接 clone 的）：先告诉用户要做什么——去掉模板的远程地址、清空模板的提交历史、重新开始一个只属于这个项目的仓库；这只影响本地这个文件夹，模板仓库本身不受影响。用户同意后，在仓库根目录删掉 `.git` 文件夹（bash：`rm -rf .git`；PowerShell：`Remove-Item -Recurse -Force .git`），再 `git init -b main`。用户不同意就只 `git remote remove origin`。
 4. **删掉本技能。** 删除整个 `.spec/skills/lumio-init/` 文件夹（还在 git 里时用 `git rm -r -q .spec/skills/lumio-init`）。三条软链都指向 `.spec/skills/`，删一次两边客户端就都看不到它了：`ls .claude/skills/ .agents/skills/` 里不应再有 `lumio-init`。
 5. **再检查一次。** `node .spec/tools/spec-lint.mjs` 输出 `spec-lint: OK`。
-6. **本地提交一次。** `git add -A`，然后 `git commit -m "chore: 用 LumioTemplate 初始化项目"`。提交后跑 `git ls-files -s .claude .agents`：应该正好是 `.claude/agents`、`.claude/skills`、`.agents/skills` 三行 `120000`（符号链接）。如果这三条变成了一堆普通文件（Windows 上的目录联接可能被这样提交），在 Git Bash 里把它们改回符号链接，再提交一次：
-
-   ```bash
-   git rm -r --cached -q .claude/skills .claude/agents .agents/skills
-   for p in .claude/skills:../.spec/skills .claude/agents:../.spec/agents .agents/skills:../.spec/skills; do
-     id=$(printf '%s' "${p#*:}" | git hash-object -w --stdin)
-     git update-index --add --cacheinfo "120000,$id,${p%%:*}"
-   done
-   git commit -m "chore: 软链按符号链接提交"
-   ```
-
+6. **本地提交一次。** `git add -A`，然后 `git commit -m "chore: 用 LumioTemplate 初始化项目"`。提交后跑 `git ls-files -s .claude .agents`：应该正好是 `.claude/agents`、`.claude/skills`、`.agents/skills` 三行 `120000`（符号链接）。不对时停下，告诉用户「提交里三条软链变成了普通文件，先不要推送」，不修复。
 7. **推送前先问用户。** 要不要推到 GitHub、推到哪个仓库，都由用户决定；用户要新建远程仓库，就请用户给地址，或在用户同意后用 `gh repo create` 建，再 `git remote add origin <地址>` 和 `git push -u origin main`。
 8. **告诉用户接下来能做什么**，第一项是建工程：
    1. **建工程**：按 `Client/README.md` 做，包括装 LGUI、装依赖、建网页或 Unity 工程；建好后把构建和测试命令补进 `.spec/AGENTS.md`「收口门槛」和 `.spec/knowledge/standards/testing.md`。

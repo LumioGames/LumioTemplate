@@ -42,7 +42,7 @@ digraph when_to_use {
 4. **Wave N — implementation cards, in parallel.** For every card in the wave: record the BASE commit, run `scripts/task-brief PLAN_FILE N`, and dispatch an implementer (./implementer-prompt.md) in its own isolated worktree (Claude Code: Agent tool `isolation: "worktree"`; fill in the 【文件集边界】 / 【环境】 lines of the implementer template). Cards with overlapping file sets or an unresolved dependency edge go to a later wave, never side by side.
 5. **Collect the wave.** Handle each implementer status (below). A worker's report carries its own lint + covering-test evidence — do not re-run those tests. Merge each passing worktree into the main workspace; conflicts go back to the implementer. Append one ledger line per card.
 6. **Next wave** until every card is done.
-7. **Closeout.** Run `closeout-gate` for the review level; run the project's full 收口门槛 **once**; generate `scripts/review-package MERGE_BASE HEAD` (MERGE_BASE = `git merge-base main HEAD`) and dispatch the `reviewer` subagent (`agents/reviewer.md`) with the printed path. Findings → ONE fix subagent carrying the complete list → re-review. Then set the plan to `status: completed` and finish the branch per `rules/dispatch.md`「并行边界与合入」.
+7. **Closeout.** Run the project's full 收口门槛 **once**; generate `scripts/review-package MERGE_BASE HEAD` (MERGE_BASE = `git merge-base main HEAD`) and dispatch the `reviewer` subagent (`agents/reviewer.md`) with the printed path. Findings → ONE fix subagent carrying the complete list → re-review. Then set the plan to `status: completed` and finish the branch per `rules/dispatch.md`「并行边界与合入」.
 
 **Per-card review is not part of the loop.** The one exception: a card touching the red-line surface (`rules/`, hooks, `.claude/`, CI config, auth / security) is reviewed **before** it is merged: dispatch the `reviewer` subagent and say in the prompt that this is a pre-merge single-card review.
 
@@ -150,7 +150,7 @@ Wave 2 — Task 4 (depends on 2 and 3)
 [task-brief 4; dispatch; DONE; merge; ledger]
 
 Closeout
-[closeout-gate → 快审; run full 收口门槛 once: green]
+[run full 收口门槛 once: green]
 [review-package MERGE_BASE HEAD; dispatch closeout reviewer with the path + ledger]
 Reviewer: 通过, 1 × P2 (naming) → fix subagent with the full list → re-review: 通过
 [plan status: completed; finish branch per rules/dispatch.md]
@@ -183,7 +183,7 @@ Reviewer: 通过, 1 × P2 (naming) → fix subagent with the full list → re-re
 ## Integration
 
 **Subagents should use:**
-- **test-driven-development** — for large cards, per `rules/dispatch.md`「编码约定 · 测试分级」; small cards run existing tests only
+- **test-driven-development** — per `knowledge/standards/testing.md`「何时走 TDD」
 
 **Workspace isolation and branch finishing** follow `rules/dispatch.md`「并行边界与合入」— no separate skill.
 

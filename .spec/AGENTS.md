@@ -30,7 +30,7 @@ node .spec/tools/spec-lint.mjs
 | --- | --- |
 | [writing-plans](skills/writing-plans/SKILL.md) | 动手写多步功能前写实现计划，或拆成可并行的任务卡 |
 | [subagent-driven-development](skills/subagent-driven-development/SKILL.md) | 按计划一波波派子 Agent 实现，合入后统一审一次 |
-| [test-driven-development](skills/test-driven-development/SKILL.md) | 大任务先写失败的测试再写实现 |
+| [test-driven-development](skills/test-driven-development/SKILL.md) | 写了计划的大需求先写失败的测试再写实现 |
 | [systematic-debugging](skills/systematic-debugging/SKILL.md) | 遇到 bug、测试失败、异常行为，先找根因再动手 |
 | [spec-steward](skills/spec-steward/SKILL.md) | 改了 `.spec/` 的结构，或做完一处改动要沉淀进知识库 |
 | [lumio-update](skills/lumio-update/SKILL.md) | 用户说「更新框架」：把框架文件更新到 LumioTemplate 最新版本，顺带看 LGUI 和 SDK 有没有新版 |

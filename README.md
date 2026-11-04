@@ -60,7 +60,7 @@ my-game/
 │  ├─ decisions/  决策记录（ADR），第一条是项目结构与技术路线
 │  ├─ skills/     技能：写计划、派子 Agent、测试先行、排障、沉淀、更新框架，以及策划和美术
 │  ├─ agents/     审查子 Agent
-│  └─ tools/      结构检查、收口定级
+│  └─ tools/      结构检查
 ├─ AGENTS.md      给 Agent 的入口（指路）
 ├─ CLAUDE.md      Claude Code 的入口（自动载入核心文档）
 └─ README.md      你的游戏说明
@@ -79,7 +79,7 @@ my-game/
 | `.spec/decisions/`、`plans/` | 决策记录、实现计划的格式（任务卡就是计划里的 `### Task N`） |
 | `.spec/skills/` | 11 个常驻技能（含更新框架用的 `lumio-update`），加上一次性的 `lumio-init`（初始化流程和生成模板，收尾时删除） |
 | `.spec/agents/reviewer.md` | 审查子 Agent |
-| `.spec/tools/` | `spec-lint.mjs` 结构检查、`closeout-gate.mjs` 收口定级；`lumio-pack.mjs` 和 `lgui-build-web.mjs` 初始化时按路线移到 `Tools/` 或删除 |
+| `.spec/tools/` | `spec-lint.mjs` 结构检查；`lumio-pack.mjs` 和 `lgui-build-web.mjs` 初始化时按路线移到 `Tools/` 或删除 |
 | `.claude/`、`.agents/` | 指向 `.spec/` 的软链（让客户端找到技能和子 Agent） |
 | `CHANGELOG.md` | 框架的版本记录（每个版本一个 tag），初始化收尾时删除 |
 

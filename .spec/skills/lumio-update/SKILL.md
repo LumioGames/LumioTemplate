@@ -20,7 +20,6 @@ description: 当用户说「更新框架」「升级框架」「看看模板有�
 .spec/rules/dispatch.md
 .spec/agents/reviewer.md
 .spec/tools/spec-lint.mjs
-.spec/tools/closeout-gate.mjs
 .spec/knowledge/lumio-platform/
 .spec/skills/README.md
 .spec/skills/LICENSE

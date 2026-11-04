@@ -60,7 +60,7 @@ my-game/
 │  ├─ decisions/  Decision records (ADRs); the first one covers structure and tech route
 │  ├─ skills/     Skills for planning, subagent dispatch, test-first, debugging, upkeep, framework updates, game design and art
 │  ├─ agents/     Review subagent
-│  └─ tools/      Structure lint, closeout grading
+│  └─ tools/      Structure lint
 ├─ AGENTS.md      Agent entry point (points to the docs)
 ├─ CLAUDE.md      Claude Code entry point (auto-loads the core docs)
 └─ README.md      Your game's README
@@ -79,7 +79,7 @@ You also get `Server/` if you write your own server code. Every module has a REA
 | `.spec/decisions/`, `plans/` | Formats for decision records and implementation plans (a task card is a `### Task N` section of a plan) |
 | `.spec/skills/` | 11 standing skills (including `lumio-update` for framework updates), plus the one-time `lumio-init` (setup flow and templates, deleted at the end of setup) |
 | `.spec/agents/reviewer.md` | Review subagent |
-| `.spec/tools/` | `spec-lint.mjs` structure lint, `closeout-gate.mjs` closeout grading; `lumio-pack.mjs` and `lgui-build-web.mjs` move to `Tools/` or are deleted during setup, depending on your route |
+| `.spec/tools/` | `spec-lint.mjs` structure lint; `lumio-pack.mjs` and `lgui-build-web.mjs` move to `Tools/` or are deleted during setup, depending on your route |
 | `.claude/`, `.agents/` | Symlinks into `.spec/` (so clients find the skills and the subagent) |
 | `CHANGELOG.md` | Framework release notes (one tag per version); deleted at the end of setup |
 

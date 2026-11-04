@@ -14,7 +14,7 @@ LumioTemplate 框架的版本记录。每个版本对应一个 tag（`vX.Y.Z`）
 - 子 Agent：`agents/reviewer.md`，能读能跑命令、不改文件（`tools: Read, Grep, Glob, Bash`，不给 Edit / Write）。
 - 11 个常驻技能：框架技能 writing-plans、subagent-driven-development、test-driven-development、systematic-debugging、spec-steward、lumio-update；策划技能 design-director、design-review；美术技能 art-director、art-prompt、art-review。
 - 工具：`tools/spec-lint.mjs` 结构检查；`tools/lumio-pack.mjs` Lumio 打包；`tools/lgui-build-web.mjs` LGUI 网页构建（过渡脚本）。
-- Lumio 平台知识：`knowledge/lumio-platform/`（SDK 2.11.1、`lumio.json` 与打包、LGUI、网页工程、资源地址）。
+- Lumio 平台知识：`knowledge/lumio-platform/`（SDK 2.11.2、`lumio.json` 与打包、LGUI、网页工程、资源地址）。
 - 客户端发现方式：`CLAUDE.md` 的 `@import`、根目录 `AGENTS.md` 指路、三条软链（`.claude/skills`、`.claude/agents`、`.agents/skills`）。
 - 一次性的 `lumio-init` 初始化技能（只在模板里，不随更新分发）。
 - 许可：`LICENSE` 覆盖 LumioTemplate 的文件和它们在项目里的副本，逐项写明 MIT、Apache-2.0 的例外。初始化后它在 `.spec/LICENSE`，不随框架更新覆盖；根目录留给游戏自己的许可。
@@ -35,7 +35,7 @@ LumioTemplate 框架的版本记录。每个版本对应一个 tag（`vX.Y.Z`）
 - SDD、TDD、排障、writing-plans、spec-steward 重写成中文、站在做游戏的角度；策划和美术总监改成不预设品类和引擎的通用方法。
 - 出图（art-prompt）以风格一致为核心：风格锚带版本、基准图库 `Art/baseline/`、每张图一份出图记录。
 - Windows 软链不再自动修复：检出成普通文件就停下，请用户开开发者模式后用 `git clone -c core.symlinks=true` 重新克隆。
-- Node 要求统一成「Node 24（24.18 以上的 24.x；Lumio SDK 不支持 25 及以上）」。
+- Node 要求统一成「Node 26 LTS（Lumio SDK 支持 24.18 到 26.x，27 及以上不支持）」。
 - 立项问题改成：名字和一句话、有没有服务端、发布到哪（可多选）、用什么引擎（按发布目标推荐，默认先用网页 + LGUI 做原型）、几个人做；文档语言默认跟用户说话的语言一致。`Builds/` 按发布目标分子目录，发到 Lumio 的叫 `lumio-platform/`。
 - 两个 Lumio 工具留在 `.spec/tools/` 当框架文件，初始化不再移动或删除；初始化遇到中断按三种情况接着做，收尾每步做过就跳过；「待完善」都写明什么时候补。
 

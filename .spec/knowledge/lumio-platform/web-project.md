@@ -17,7 +17,7 @@ metadata:
 ```bash
 mkdir -p Client/app/src Client/app/public && cd Client/app
 # 先写好下面的 package.json，再装依赖
-npm i --save-exact @lumiogames/sdk@2.11.1
+npm i --save-exact @lumiogames/sdk@2.11.2
 npm i -D --save-exact vite@7.3.7 typescript@5.9.3
 ```
 

@@ -8,14 +8,14 @@ metadata:
 
 # Lumio SDK
 
-包名 `@lumiogames/sdk`，ESM，带类型声明，要求 Node 24（24.18 以上的 24.x；Lumio SDK 不支持 25 及以上）。
+包名 `@lumiogames/sdk`，ESM，带类型声明，要求 Node 26 LTS（Lumio SDK 支持 24.18 到 26.x，27 及以上不支持）。
 
 ## 版本
 
 | 项 | 值 |
 | --- | --- |
-| 本模板验证过的版本 | `2.11.1`（npm 上的 `latest`）。项目实际用的版本以客户端工程的 `package.json` 为准 |
-| 安装 | 在 `Client/app/` 里 `npm i --save-exact @lumiogames/sdk@2.11.1` |
+| 本模板验证过的版本 | `2.11.2`（npm 上的 `latest`）。项目实际用的版本以客户端工程的 `package.json` 为准 |
+| 安装 | 在 `Client/app/` 里 `npm i --save-exact @lumiogames/sdk@2.11.2` |
 | 查 npm 上有哪些版本 | `npm view @lumiogames/sdk versions` |
 
 不要用 2.11.1 以前的版本：2.10.x 在 iPhone Safari 和微信内置浏览器里可能连不上平台（返回 `platform.not_granted`），2.11.1 修好了。以后升级见下面「升级 SDK」。

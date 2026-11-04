@@ -10,7 +10,7 @@ metadata:
 
 LGUI 是 Lumio 给 AI Agent 用的游戏 UI 框架：界面放在 `ui/`（FairyGUI 格式），功能用 TypeScript 按 MVC 写，在浏览器里预览和测试，以后还能导出到 Unity。仓库 https://github.com/LumioGames/LGUI ，许可是 PolyForm Shield 加 LumioGames 附加许可：做自己的游戏（含商业）可以用，详见它的 LICENSE。
 
-本篇写的流程在 LGUI 0.3.0 + SDK 2.11.1 上实际跑通过（2026-11-03）。
+本篇写的流程在 LGUI 0.3.0 + SDK 2.11.1 上实际跑通过（2026-11-03）；2.11.2 只放宽了 Node 版本要求，代码没变。
 
 ## 1. 装 LGUI
 
@@ -20,7 +20,7 @@ LGUI 是 Lumio 给 AI Agent 用的游戏 UI 框架：界面放在 `ui/`（FairyG
 - Codex：`codex plugin marketplace add LumioGames/LGUI`，然后 `codex plugin add lgui@lumio-lgui`。
 - 其他客户端：`git clone --depth 1 https://github.com/LumioGames/LGUI`，把里面的 `plugin/` 当插件目录。
 - 下文的 `lgui` 指 `node <插件目录>/tools/lgui.mjs`。Claude Code 的插件目录在 `~/.claude/plugins/cache/lumio-lgui/lgui/<版本>/`，Codex 在 `~/.codex/plugins/cache/lumio-lgui/lgui/<版本>/`。
-- 先跑 `lgui doctor`，要求 Node 24，电脑上有 Chrome 或 Edge。
+- 先跑 `lgui doctor`，要求 Node 24 或更高，电脑上有 Chrome 或 Edge。
 - LGUI 的技能要新开一个会话才生效。建工程只用命令行，装完就能用；建完告诉用户新开会话再做界面。
 
 ## 2. 建工程
@@ -30,7 +30,7 @@ LGUI 是 Lumio 给 AI Agent 用的游戏 UI 框架：界面放在 `ui/`（FairyG
 ```bash
 lgui init Client/app --name <英文短名>
 cd Client/app
-npm i --save-exact @lumiogames/sdk@2.11.1
+npm i --save-exact @lumiogames/sdk@2.11.2
 ```
 
 `lgui init` 只接受不存在或空的目录。它会在 `Client/app/` 里放 `ui/`、`src/`、`tests/`、`i18n/`、`.lgui/`（框架副本和配置），以及 LGUI 自己的 `AGENTS.md` / `CLAUDE.md`（在 `Client/app/` 里干活时也要遵守它们）。横竖屏在 `Client/app/.lgui/project.json` 的 `orientation` 里改。

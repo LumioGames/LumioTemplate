@@ -2,7 +2,7 @@
 
 [![Made by LumioGames](https://img.shields.io/badge/made%20by-LumioGames-6659DB?style=flat-square&labelColor=171C34&logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIiB3aWR0aD0iOTYiIGhlaWdodD0iOTYiPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjEiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iIzY2NTlkYiIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzlhYTZmZiIvPjwvbGluZWFyR3JhZGllbnQ%2BPC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiByeD0iMjkiIGZpbGw9InVybCgjZykiLz48cmVjdCB4PSIyNSIgeT0iMjIiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgcng9IjQiIGZpbGw9IiNmZmYiLz48cmVjdCB4PSIyNSIgeT0iNDIiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgcng9IjQiIGZpbGw9IiNmZmYiLz48cmVjdCB4PSIyNSIgeT0iNjIiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgcng9IjQiIGZpbGw9IiNmZmYiLz48cmVjdCB4PSI0NSIgeT0iNjIiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgcng9IjQiIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iLjYiLz48cmVjdCB4PSI2NSIgeT0iNjIiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgcng9IjQiIGZpbGw9IiM1ZGUyYzYiLz48cGF0aCBkPSJNNzAgMTlDNzEuNTYgMjguMSA3My45IDMwLjQ0IDgzIDMyQzczLjkgMzMuNTYgNzEuNTYgMzUuOSA3MCA0NUM2OC40NCAzNS45IDY2LjEgMzMuNTYgNTcgMzJDNjYuMSAzMC40NCA2OC40NCAyOC4xIDcwIDE5WiIgZmlsbD0iI2ZmZiIvPjwvc3ZnPgo%3D)](https://lumiogames.cn/)
 [![Use this template](https://img.shields.io/badge/Use%20this%20template-one%20click-6659DB?style=flat-square&labelColor=171C34)](https://github.com/LumioGames/LumioTemplate/generate)
-[![node](https://img.shields.io/badge/node-24.x-5DE2C6?style=flat-square&labelColor=171C34)](https://nodejs.org/)
+[![node](https://img.shields.io/badge/node-26-5DE2C6?style=flat-square&labelColor=171C34)](https://nodejs.org/)
 [![license](https://img.shields.io/badge/license-PolyForm%20Shield%20%2B%20extra%20grant-AEB5D6?style=flat-square&labelColor=171C34)](#license)
 
 [中文](README.md)
@@ -26,7 +26,7 @@ Setup has two parts:
    After generating, the agent asks one question: do you want to talk about gameplay or art now? You can also skip it and later say "let's decide the gameplay" or "let's decide the art direction".
 2. **Wrap up**: delete the one-time setup skill, rewrite the README for your game, and make one local commit. The agent asks before pushing anywhere.
 
-You need Git, Node 24 (24.x, 24.18 or later; the Lumio SDK does not support 25+), and an AI coding agent.
+You need Git, Node 26 LTS (the Lumio SDK supports 24.18 through 26.x, not 27+), and an AI coding agent.
 
 ## For AI agents
 
@@ -36,7 +36,7 @@ This section is for an AI agent that reads this README from outside the reposito
 >
 > Do these in order. If any step fails, stop and show the user the exact error. Do not skip steps.
 >
-> 1. Run `git --version` and `node -v`: Git and Node 24 must be installed (24.x, 24.18 or later; the Lumio SDK does not support 25+). If either is missing, tell the user what to install and where to get it (Git: https://git-scm.com/downloads ; Node: https://nodejs.org , pick 24 LTS), ask the user to install it, and check again afterwards. Do not install it for the user.
+> 1. Run `git --version` and `node -v`: Git and Node 26 LTS must be installed (the Lumio SDK supports 24.18 through 26.x, not 27+). If either is missing, tell the user what to install and where to get it (Git: https://git-scm.com/downloads ; Node: https://nodejs.org , pick 26 LTS), ask the user to install it, and check again afterwards. Do not install it for the user.
 > 2. **The current folder is empty** (`ls -A` prints nothing; in PowerShell, `Get-ChildItem -Force`): run `git clone -c core.symlinks=true https://github.com/LumioGames/LumioTemplate .`. Then carry on **in this same conversation**: read `AGENTS.md` and the files it lists, then start setup by following `.spec/skills/lumio-init/SKILL.md`. There is no need for a new conversation. This conversation does not load those files automatically, so read them yourself.
 > 3. **The current folder is not empty**: ask the user what to call the project folder (lowercase letters, digits and hyphens, e.g. `star-hop`), run `git clone -c core.symlinks=true https://github.com/LumioGames/LumioTemplate <folder>`, then ask the user to open a new conversation in that folder and say "start". Do not set up the project in the current folder.
 > 4. **The user wants their own GitHub repository**: before cloning in step 2 or 3, ask for the repository name and whether it should be public or private. With the user's consent, run `gh repo create <name> --template LumioGames/LumioTemplate --private` (or `--public`), wait a few seconds for GitHub to generate it, then clone **that new repository** in step 2 or 3 instead of the template. If `gh` is not installed or not signed in, ask the user to click Use this template on GitHub and send you the new repository's address. Ask the user before every outward action, such as pushing, creating a remote repository or publishing.

@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// 把构建好的网页目录打成能直接在 Lumio 创作中心上传的 ZIP。零依赖，Node 24（24.18 以上的 24.x；Lumio SDK 不支持 25 及以上）。
+// 把构建好的网页目录打成能直接在 Lumio 创作中心上传的 ZIP。零依赖，Node 26 LTS（Lumio SDK 支持 24.18 到 26.x，27 及以上不支持）。
 // 用法：node .spec/tools/lumio-pack.mjs <构建目录> [输出.zip]（框架文件，随框架更新）
 // 先按平台的上传规则检查（见 .spec/knowledge/lumio-platform/publishing.md），有问题就报错退出，不会打出一个注定被拒的包。
 // 平台上传时还会再做完整校验，以创作中心的结果为准。

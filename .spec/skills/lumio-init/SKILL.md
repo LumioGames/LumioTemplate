@@ -36,7 +36,7 @@ description: 当 `.spec/AGENTS.md` 写着「状态：未初始化」，或用户
    - 如果它们是普通文件（打开只有一行 `../.spec/skills` 这样的文字），不要修复，停下，对用户说这段原话：
 
      「这个文件夹里的三条软链（`.claude/skills`、`.claude/agents`、`.agents/skills`）被检出成了普通文件，Claude Code 和 Codex 会找不到技能和审查子 Agent，初始化先停在这里。请在 Windows 设置里打开开发者模式（设置 → 系统 → 开发者选项），然后换一个空文件夹，用 `git clone -c core.symlinks=true https://github.com/LumioGames/LumioTemplate <文件夹名>` 重新克隆，在新文件夹里开一个新对话，说「开始」。」
-2. **Git 和 Node。** `git --version`；`node -v` 要是 Node 24（24.18 以上的 24.x；Lumio SDK 不支持 25 及以上）。结构检查用 Node，以后建网页工程、用 LGUI 和 Lumio SDK 也要它。缺哪个就告诉用户装什么、去哪下载（Git：https://git-scm.com/downloads ；Node：https://nodejs.org ，选 24 LTS），用户装好后再检查一遍。**不替用户安装系统软件。**
+2. **Git 和 Node。** `git --version`；`node -v` 要是 Node 26 LTS（Lumio SDK 支持 24.18 到 26.x，27 及以上不支持）。结构检查用 Node，以后建网页工程、用 LGUI 和 Lumio SDK 也要它。缺哪个就告诉用户装什么、去哪下载（Git：https://git-scm.com/downloads ；Node：https://nodejs.org ，选 26 LTS），用户装好后再检查一遍。**不替用户安装系统软件。**
 3. **Git 身份。** `git config user.name` 和 `git config user.email` 都要有输出（收尾时要提交一次）。没设就告诉用户这两条命令，请用户填上自己的名字和邮箱后跑，然后停下，等用户设好再继续：
 
    ```bash

@@ -190,7 +190,7 @@ Reviewer: 通过, 1 × P2 (naming) → fix subagent with the full list → re-re
 ## Integration
 
 **Subagents should use:**
-- **test-driven-development** — per `knowledge/standards/testing.md`「何时走 TDD」
+- **test-driven-development** — when the plan chose TDD (`knowledge/standards/testing.md`「两种模式和判据」)
 
 **Workspace isolation and branch finishing** follow 「并行、合入、交回与退回」 below — no separate skill.
 

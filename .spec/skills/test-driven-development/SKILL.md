@@ -1,324 +1,47 @@
 ---
 name: test-driven-development
-description: Use when implementing work that has a written plan (.spec/plans/) — feature, bugfix or refactor — before writing implementation code
+description: 功能复杂、边界情况多（战斗结算、技能和状态叠加、复杂界面状态和流程、联机同步、存档升级、经济系统），或用户要求测试先行时，在写实现代码之前使用。
 ---
 
-# Test-Driven Development (TDD)
+# TDD（测试先行）
 
-## Overview
+先把边界想清楚、用测试约束住，再开发。和默认的快速模式（SDD：契约先行、并行、最后统一跑测试）并存，两种模式的判据和测试政策以 `knowledge/standards/testing.md` 为准。
 
-Write the test first. Watch it fail. Write minimal code to pass.
+## 何时用
 
-**Core principle:** If you didn't watch the test fail, you don't know if it tests the right thing.
+任务一开始写计划时就定：在计划开头用一句话写明这次走快速模式还是 TDD、为什么。
 
-**Violating the letter of the rules is violating the spirit of the rules.**
+- **走 TDD**：边界多、出错代价大、靠试玩难发现的——战斗结算、技能和状态叠加、复杂界面的状态和流程、联机同步、存档格式升级、经济系统。
+- **走快速模式**：边界清楚、约定好接口就能各自做的——新界面、新关卡、新道具、按现有模式扩内容。
+- 两头都沾、或判断不了：问用户。
 
-## When to Use
+**不走 TDD 的**：界面长什么样、手感好不好、美术对不对，用截图和试玩验收（见 `testing.md`）。
 
-**Plan gate first** (single authority: `knowledge/standards/testing.md`「何时走 TDD」). The iron law below binds **work that has a written plan** (`.spec/plans/`). **Changes made without a plan** are exempt — no failing-test-first, no new test per change.
+## 五步
 
-**Large tasks — always:**
-- New features
-- Bug fixes
-- Refactoring
-- Behavior changes
+1. **列边界清单**：正常、边界值、非法输入、叠加和先后顺序、存档前后版本，一条一行。
+2. **写测试**：清单里每条一个用例，名字说清楚测的是什么行为。
+3. **跑一下，确认失败，而且是因为对的原因**：失败原因是「功能还没有」，不是拼写错、导入错。立刻通过的测试没有约束力，改测试。
+4. **实现**：只写让测试通过需要的代码。
+5. **跑到通过**：再看一遍有没有可以收拾的重复。
 
-**Exceptions even when large (ask the user):**
-- Throwaway prototypes
-- Generated code
+开发中只跑这次新写的测试；全量回归留到计划全部合完以后统一跑一次（快速模式也一样）。
 
-Thinking "skip TDD just this once" on planned work? Stop. That's rationalization.
+## 游戏里的测试窍门
 
-## The Iron Law
+- **固定随机种子**：掉落、暴击、地图生成都从可注入的随机源取数，测试里固定种子。
+- **假时钟**：计时器、冷却、buff 持续时间用可推进的假时钟测，不 `sleep`；等异步结果时等条件成立，不等固定时长。
+- **数值照配表写成表格**：输入和期望按行列出（等级、攻击、防御 → 伤害），一行一个用例，数值来源标在旁边。
+- **配表读进来先校验**：字段齐不齐、类型对不对、引用的 id 存不存在，读表时就报清楚的错。
 
-```
-NO PRODUCTION CODE WITHOUT A FAILING TEST FIRST
-```
+## 回归用例
 
-Write code before the test? Delete it. Start over.
+计划合完那一遍查出的 bug，能自动复现的（数值、规则）修的时候补一条回归用例；界面长相和手感类不补。
 
-**No exceptions:**
-- Don't keep it as "reference"
-- Don't "adapt" it while writing tests
-- Don't look at it
-- Delete means delete
+## 反模式（各一行）
 
-Implement fresh from tests. Period.
-
-## Red-Green-Refactor
-
-```dot
-digraph tdd_cycle {
-    rankdir=LR;
-    red [label="RED\nWrite failing test", shape=box, style=filled, fillcolor="#ffcccc"];
-    verify_red [label="Verify fails\ncorrectly", shape=diamond];
-    green [label="GREEN\nMinimal code", shape=box, style=filled, fillcolor="#ccffcc"];
-    verify_green [label="Verify passes\nAll green", shape=diamond];
-    refactor [label="REFACTOR\nClean up", shape=box, style=filled, fillcolor="#ccccff"];
-    next [label="Next", shape=ellipse];
-
-    red -> verify_red;
-    verify_red -> green [label="yes"];
-    verify_red -> red [label="wrong\nfailure"];
-    green -> verify_green;
-    verify_green -> refactor [label="yes"];
-    verify_green -> green [label="no"];
-    refactor -> verify_green [label="stay\ngreen"];
-    verify_green -> next;
-    next -> red;
-}
-```
-
-### RED - Write Failing Test
-
-Write one minimal test showing what should happen.
-
-<Good>
-```typescript
-test('retries failed operations 3 times', async () => {
-  let attempts = 0;
-  const operation = () => {
-    attempts++;
-    if (attempts < 3) throw new Error('fail');
-    return 'success';
-  };
-
-  const result = await retryOperation(operation);
-
-  expect(result).toBe('success');
-  expect(attempts).toBe(3);
-});
-```
-Clear name, tests real behavior, one thing
-</Good>
-
-<Bad>
-```typescript
-test('retry works', async () => {
-  const mock = jest.fn()
-    .mockRejectedValueOnce(new Error())
-    .mockRejectedValueOnce(new Error())
-    .mockResolvedValueOnce('success');
-  await retryOperation(mock);
-  expect(mock).toHaveBeenCalledTimes(3);
-});
-```
-Vague name, tests mock not code
-</Bad>
-
-**Requirements:**
-- One behavior
-- Clear name
-- Real code (no mocks unless unavoidable)
-
-### Verify RED - Watch It Fail
-
-**MANDATORY. Never skip.**
-
-```bash
-npm test path/to/test.test.ts
-```
-
-Confirm:
-- Test fails (not errors)
-- Failure message is expected
-- Fails because feature missing (not typos)
-
-**Test passes?** You're testing existing behavior. Fix test.
-
-**Test errors?** Fix error, re-run until it fails correctly.
-
-### GREEN - Minimal Code
-
-Write simplest code to pass the test.
-
-<Good>
-```typescript
-async function retryOperation<T>(fn: () => Promise<T>): Promise<T> {
-  for (let i = 0; i < 3; i++) {
-    try {
-      return await fn();
-    } catch (e) {
-      if (i === 2) throw e;
-    }
-  }
-  throw new Error('unreachable');
-}
-```
-Just enough to pass
-</Good>
-
-<Bad>
-```typescript
-async function retryOperation<T>(
-  fn: () => Promise<T>,
-  options?: {
-    maxRetries?: number;
-    backoff?: 'linear' | 'exponential';
-    onRetry?: (attempt: number) => void;
-  }
-): Promise<T> {
-  // YAGNI
-}
-```
-Over-engineered
-</Bad>
-
-Don't add features, refactor other code, or "improve" beyond the test.
-
-### Verify GREEN - Watch It Pass
-
-**MANDATORY.**
-
-```bash
-npm test path/to/test.test.ts
-```
-
-Confirm:
-- Test passes
-- Other tests still pass
-- Output pristine (no errors, warnings)
-
-**Test fails?** Fix code, not test.
-
-**Other tests fail?** Fix now.
-
-### REFACTOR - Clean Up
-
-After green only:
-- Remove duplication
-- Improve names
-- Extract helpers
-
-Keep tests green. Don't add behavior.
-
-### Repeat
-
-Next failing test for next feature.
-
-## Good Tests
-
-| Quality | Good | Bad |
-|---------|------|-----|
-| **Minimal** | One thing. "and" in name? Split it. | `test('validates email and domain and whitespace')` |
-| **Clear** | Name describes behavior | `test('test1')` |
-| **Shows intent** | Demonstrates desired API | Obscures what code should do |
-
-## Common Rationalizations
-
-| Excuse | Reality |
-|--------|---------|
-| "Too simple to test" | Simple code breaks. Test takes 30 seconds. |
-| "I'll test after" | Tests passing immediately prove nothing. |
-| "Tests after achieve same goals" | Tests-after = "what does this do?" Tests-first = "what should this do?" |
-| "Already manually tested" | Ad-hoc ≠ systematic. No record, can't re-run. |
-| "Deleting X hours is wasteful" | Sunk cost fallacy. Keeping unverified code is technical debt. |
-| "Keep as reference, write tests first" | You'll adapt it. That's testing after. Delete means delete. |
-| "Need to explore first" | Fine. Throw away exploration, start with TDD. |
-| "Test hard = design unclear" | Listen to test. Hard to test = hard to use. |
-| "TDD will slow me down" | TDD faster than debugging. Pragmatic = test-first. |
-| "Manual test faster" | Manual doesn't prove edge cases. You'll re-test every change. |
-| "Existing code has no tests" | You're improving it. Add tests for existing code. |
-
-## Red Flags - STOP and Start Over
-
-- Code before test
-- Test after implementation
-- Test passes immediately
-- Can't explain why test failed
-- Tests added "later"
-- Rationalizing "just this once"
-- "I already manually tested it"
-- "Tests after achieve the same purpose"
-- "It's about spirit not ritual"
-- "Keep as reference" or "adapt existing code"
-- "Already spent X hours, deleting is wasteful"
-- "TDD is dogmatic, I'm being pragmatic"
-- "This is different because..."
-
-**All of these mean: Delete code. Start over with TDD.**
-
-## Example: Bug Fix
-
-**Bug:** Empty email accepted
-
-**RED**
-```typescript
-test('rejects empty email', async () => {
-  const result = await submitForm({ email: '' });
-  expect(result.error).toBe('Email required');
-});
-```
-
-**Verify RED**
-```bash
-$ npm test
-FAIL: expected 'Email required', got undefined
-```
-
-**GREEN**
-```typescript
-function submitForm(data: FormData) {
-  if (!data.email?.trim()) {
-    return { error: 'Email required' };
-  }
-  // ...
-}
-```
-
-**Verify GREEN**
-```bash
-$ npm test
-PASS
-```
-
-**REFACTOR**
-Extract validation for multiple fields if needed.
-
-## Verification Checklist
-
-Before marking work complete:
-
-- [ ] Every new function/method has a test
-- [ ] Watched each test fail before implementing
-- [ ] Each test failed for expected reason (feature missing, not typo)
-- [ ] Wrote minimal code to pass each test
-- [ ] All tests pass
-- [ ] Output pristine (no errors, warnings)
-- [ ] Tests use real code (mocks only if unavoidable)
-- [ ] Edge cases and errors covered
-
-Can't check all boxes? You skipped TDD. Start over.
-
-## When Stuck
-
-| Problem | Solution |
-|---------|----------|
-| Don't know how to test | Write wished-for API. Write assertion first. Ask the user. |
-| Test too complicated | Design too complicated. Simplify interface. |
-| Must mock everything | Code too coupled. Use dependency injection. |
-| Test setup huge | Extract helpers. Still complex? Simplify design. |
-
-## Debugging Integration
-
-Bug found in planned work? Write failing test reproducing it. Follow TDD cycle. Test proves fix and prevents regression. (Fixes made without a plan reproduce by steps — plan gate above.)
-
-Never fix bugs without a test.
-
-## Testing Anti-Patterns
-
-When adding mocks or test utilities, avoid these:
-- **Testing mock behavior** — assert on what the real code does, not on the mock being called or rendered.
-- **Test-only methods in production classes** — put test helpers in test utilities, not in production code.
-- **Mocking without understanding the dependency** — know which side effects the test relies on before mocking it; mock at the lowest level that keeps the test meaningful.
-- **Incomplete mocks** — a mock must mirror the full shape of the real data the code consumes, not only the fields this test reads.
-- **Tests as an afterthought** — testing is part of the implementation; "done" includes the tests.
-
-## Final Rule
-
-```
-Production code → test exists and failed first
-Otherwise → not TDD
-```
-
-No exceptions without the user's permission.
+- **测 mock 的行为**：断言真代码做了什么，不断言 mock 被调用了。
+- **为测试往生产代码加方法**：测试辅助放在测试工具里。
+- **不懂依赖就 mock**：先弄清测试依赖哪些副作用，在最低一层 mock。
+- **mock 不完整**：mock 的数据结构要和真实数据一致，不只写这条测试用到的字段。
+- **测试事后补**：走 TDD 的任务，测试是实现的一部分，没有测试不算做完。

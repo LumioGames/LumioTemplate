@@ -32,7 +32,7 @@ tools: Read, Grep, Glob
 2. **正确性**：从代码路径推演声称的行为是否成立；空值 / 并发 / 错误分支 / 状态回滚是否处理。
 3. **安全**：注入、越权、密钥 / 敏感数据泄露、不受控的对外请求；新增对外暴露面必须有访问控制。
 4. **护栏与规范**（[`rules/system.md`](../rules/system.md) 全部护栏、项目 `.spec/knowledge/standards/` 各规范）：护栏是红线，任何一条被绕过即 `P0`；规范违背按严重度定级。
-5. **测试**（项目 `.spec/knowledge/standards/testing.md`）：新增 / 修改行为有测试覆盖且是真断言（不是空转）；写了计划的大需求，其 bug 修复有能复现的测试；没写计划的小修复交回物里有复现步骤与症状消失的说明。
+5. **测试**（项目 `.spec/knowledge/standards/testing.md`）：新增 / 修改的测试是真断言（不是空转）；走 TDD 的部分，边界清单里每条都有测试；能自动复现的 bug 修复补了回归用例；没跑的写了「未执行」。
 6. **提交卫生**（项目 `.spec/knowledge/standards/workflow.md`）：一次提交只做一类事；无任务外夹带（口径见 [`rules/system.md`](../rules/system.md)「工作方式·不夹带」）。
 7. **沉淀**：新模式 / 新规范已按 `spec-steward` 落进 `knowledge/` 且索引同步，决策已记 `decisions/`；纯修复 / 套用既有模式可豁免，但豁免须在交回物里声明。
 

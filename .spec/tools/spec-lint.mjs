@@ -15,7 +15,7 @@
  *  3. 链接可达:.spec 下全部 .md 的相对链接必须指向存在的文件
  *     (剥围栏代码块与行内代码,避免代码里的 [T](x) 误判)。
  *  5. 禁并行文档根:git 索引内不得出现 docs/specs/、docs/plans/,或仓根之外的
- *     第二个 .spec/(templates/.spec/ 模板骨架豁免);非 git 仓库或无 git 时跳过本项,
+ *     第二个 .spec/;非 git 仓库或无 git 时跳过本项,
  *     其余 git 失败上报(不静默失效)。
  *  6. ADR 状态行:每条 ADR 必有「- 状态:」行,取值以「生效」开头,或
  *     「(部分)被 [NNNN](<file>) 取代」——被取代必须链接取代者。
@@ -187,8 +187,8 @@ for (const rel of indexedFiles ?? []) {
   if (/(^|\/)docs\/(specs|plans)\//.test(rel)) {
     err(join(ROOT, rel), '并行文档根:框架产物(设计/计划)只落 .spec/,不落 docs/')
   }
-  if (rel.includes('/.spec/') && !rel.includes('templates/.spec/')) {
-    err(join(ROOT, rel), '仓根之外出现第二个 .spec/(模板骨架 templates/.spec/ 豁免)')
+  if (rel.includes('/.spec/')) {
+    err(join(ROOT, rel), '仓根之外出现第二个 .spec/')
   }
 }
 

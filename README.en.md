@@ -99,9 +99,9 @@ The agent uses the `lumio-update` skill. It fetches LumioTemplate's latest versi
 
 | Capability | Claude Code | Codex | Other agents that read `AGENTS.md` |
 | --- | --- | --- | --- |
-| Core docs | `@import` in `CLAUDE.md`, loaded every session | Read on demand via `AGENTS.md` | Read on demand via `AGENTS.md` |
-| Skills | `.claude/skills` symlink, discovered automatically | `.agents/skills` symlink, discovered automatically | Read from `.spec/skills/` as `AGENTS.md` says |
-| Review subagent | `.claude/agents` symlink | None; the main agent reviews with `reviewer.md` itself | Same as Codex |
+| Core docs | The template loads them every session through `@import` in `CLAUDE.md` | The template lists them in the root `AGENTS.md`; the main agent reads them | Same as Codex |
+| Skills | The template ships a `.claude/skills` symlink | The template ships a `.agents/skills` symlink | Read from `.spec/skills/` as `AGENTS.md` says |
+| Review subagent | The template ships a `.claude/agents` symlink | The template sets up no project-level subagent for Codex; the main agent reviews with `reviewer.md` itself | The main agent reviews with `reviewer.md` itself |
 
 On Windows, turn on Developer Mode first, then clone with the `-c core.symlinks=true` command above; otherwise the three symlinks come out as plain files and the skills are not found.
 

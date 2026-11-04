@@ -97,9 +97,9 @@ Agent 会用 `lumio-update` 技能：拉取 LumioTemplate 最新的版本 tag，
 
 | 能力 | Claude Code | Codex | 其他读 `AGENTS.md` 的 Agent |
 | --- | --- | --- | --- |
-| 核心文档 | `CLAUDE.md` 的 `@import`，每次会话自动载入 | 按 `AGENTS.md` 主动读 | 按 `AGENTS.md` 主动读 |
-| 技能 | `.claude/skills` 软链，自动发现 | `.agents/skills` 软链，自动发现 | 按 `AGENTS.md` 去 `.spec/skills/` 读 |
-| 审查子 Agent | `.claude/agents` 软链 | 没有，主 Agent 读 `reviewer.md` 自审 | 同 Codex |
+| 核心文档 | 模板用 `CLAUDE.md` 的 `@import` 每次会话载入 | 模板在根目录 `AGENTS.md` 列出要读的文件，主 Agent 主动读 | 同 Codex |
+| 技能 | 模板放了 `.claude/skills` 软链 | 模板放了 `.agents/skills` 软链 | 按 `AGENTS.md` 去 `.spec/skills/` 读 |
+| 审查子 Agent | 模板放了 `.claude/agents` 软链 | 模板没给 Codex 配项目级子 Agent，主 Agent 读 `reviewer.md` 自审 | 主 Agent 读 `reviewer.md` 自审 |
 
 Windows 上要先打开开发者模式，再用上面带 `-c core.symlinks=true` 的命令克隆，否则三条软链会变成普通文件，技能找不到。
 

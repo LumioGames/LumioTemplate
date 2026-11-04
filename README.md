@@ -123,4 +123,4 @@ LumioTemplate 源码公开，采用 [PolyForm Shield 1.0.0](https://polyformproj
 | 点 Use this template、fork、修改、提 PR，用来学习、教学、研究 | 换个名字、换层皮把模板本身重新发布 |
 | 在你的游戏里写「用 LumioTemplate 制作」「在 Lumio 发布」 | 把 Lumio、LumioGames 的名字和图标当成自己的品牌 |
 
-许可覆盖模板的文件和它们的副本，包括你用模板初始化的项目里保留的那些（初始化后条款放在 `.spec/LICENSE`）；你在自己项目里新加的文件不在其中。其中几部分另有许可：取自 LumioAgentSpec 的规则、子 Agent、检查工具和 6 个框架技能是 MIT（writing-plans 和 subagent-driven-development 同时改编自 obra/superpowers，也是 MIT）；7 个策划、美术技能是 Apache-2.0（见 [.spec/skills/README.md](.spec/skills/README.md)）。有其他用法，请先通过[开发者中心](https://lumiogames.cn/studio/)或上面的社群联系我们，单独授权。以 LICENSE 里的英文原文为准，这里的中文只是帮助理解。
+许可覆盖模板的文件和它们的副本，包括你用模板初始化的项目里保留的那些（初始化后条款放在 `.spec/LICENSE`）；你在自己项目里新加的文件不在其中。其中几部分另有许可：取自 LumioAgentSpec 的规则、子 Agent、检查工具和 5 个框架技能（writing-plans、subagent-driven-development、test-driven-development、systematic-debugging、spec-steward）是 MIT（writing-plans 和 subagent-driven-development 同时改编自 obra/superpowers，也是 MIT）；5 个策划、美术技能（design-director、design-review、art-director、art-prompt、art-review）是 Apache-2.0（见 [.spec/skills/README.md](.spec/skills/README.md)）。有其他用法，请先通过[开发者中心](https://lumiogames.cn/studio/)或上面的社群联系我们，单独授权。以 LICENSE 里的英文原文为准，这里的中文只是帮助理解。

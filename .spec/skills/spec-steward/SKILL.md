@@ -1,6 +1,6 @@
 ---
 name: spec-steward
-description: 两种情况用：新增或修改知识文档、规则、子 Agent、项目技能，或做完一处改动要沉淀进 `.spec/` 时；用户说「复盘」「体检」时。
+description: 两种情况用：新增或修改知识文档、规则、子 Agent、项目技能，或做完一处改动要沉淀进 `.spec/` 时；用户说「复盘」「体检」「整理 bug 墙」时。
 ---
 
 # Spec Steward（`.spec/` 管家）
@@ -15,7 +15,7 @@ description: 两种情况用：新增或修改知识文档、规则、子 Agent�
 | --- | --- | --- |
 | 每次都要在场的硬规则（项目红线） | `.spec/rules/project.md` | 无 |
 | 怎么做（流程、规范） | `.spec/knowledge/standards/` | `name` + `description` + `metadata`（type / status） |
-| 某功能的设计 | `.spec/knowledge/features/<领域>/…`，照 `_TEMPLATE.md` 建 | 同上 |
+| 某功能的设计 | `.spec/knowledge/features/<名称>.md`，照 `_TEMPLATE.md` 建；多了再按领域分子目录 | 同上 |
 | 决策：为什么这样选、为什么不选别的 | `.spec/decisions/`（ADR，不改写、只新增取代，格式见其 `README.md`） | 无 |
 | bug（值得记的） | `.spec/knowledge/bug-wall.md` 追加一行（规则见文件开头） | — |
 | 职能角色（隔离本身就是价值的才设，现在只有 `reviewer`） | `.spec/agents/<name>.md`，照 `reviewer` 写 | `name` + `description` + `tools`（工具白名单；正文也写清能做什么，Codex 不读 frontmatter） |
@@ -39,7 +39,7 @@ description: 两种情况用：新增或修改知识文档、规则、子 Agent�
 
 ## 复盘
 
-**什么时候**：用户说「复盘」「体检」时做；bug 墙满 200 行时提醒用户做一次。不定时。
+**什么时候**：用户说「复盘」「体检」「整理 bug 墙」时做；bug 墙满 200 行时，Agent 不再往里加，告诉用户「该复盘了」，用户同意再做。不定时。
 
 **看三样**：
 

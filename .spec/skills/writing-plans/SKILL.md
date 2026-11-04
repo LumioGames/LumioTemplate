@@ -176,12 +176,12 @@ After saving the plan, hand off to execution:
 
 ## Shallow Mode: Task Cards (parallel fan-out)
 
-Split one goal into cards that a worker can start without asking a question and that can be verified on their own. Card format has a single authority — the project's `.spec/tasks/README.md` (goal / 涉及范围 / 验收标准 / 依赖 / 接口) — do not restate it here.
+Split one goal into cards that a worker can start without asking a question and that can be verified on their own. Each card is a `### Task N` section of a plan in `.spec/plans/` (what `scripts/task-brief` extracts), in the Task Structure format above: goal, Files (the card's file set), Interfaces, acceptance criteria, and the cards it depends on.
 
 1. **Clarify.** Read the goal plus `AGENTS.md`, `knowledge/` and the relevant source. Resolve what the code or docs can answer; list the rest explicitly as 待澄清项 — never fill a gap with a guess.
 2. **Extract the shared dependencies first — the contract cards (wave 0).** Anything two or more cards would both need: data structures, type definitions, API signatures, protocols, common modules, conventions. Each becomes its own card whose deliverable is the artefact itself (a types / interface file, a schema, a `.spec/knowledge/standards/` doc). Implementation cards align only through these artefacts; if a contract turns out insufficient, the contract card changes — no implementation card widens an interface on its own.
 3. **Split the rest.** One card = one thing, independently completable and verifiable. Two cards touching the same logic is a signal to merge them.
-4. **Write the cards.** Every card with a neighbour dependency **must** carry the `## 接口` block (Consumes / Produces with exact signatures) — parallel workers never see each other's code, so the contract on the card is their only alignment. Mark the expected size (small / large per `rules/dispatch.md`「测试分级」); the closeout tool's verdict wins later. No placeholders (criteria in the card README).
+4. **Write the cards.** Every card with a neighbour dependency **must** carry the `## 接口` block (Consumes / Produces with exact signatures) — parallel workers never see each other's code, so the contract on the card is their only alignment. Mark the expected size (small / large per `rules/dispatch.md`「测试分级」); the closeout tool's verdict wins later. No placeholders (see No Placeholders above).
 5. **Schedule waves.** Wave 0 = contract cards; a wave contains only cards with no dependency edge between them and non-overlapping file sets; waves run serially, cards inside a wave in parallel (rules: `rules/dispatch.md`「并行边界与合入」).
 6. **Self-check.** Each card starts without a follow-up question; every acceptance criterion is objectively verifiable ("no horizontal scroll at 375px", not "looks good"); the set covers the goal with no gap, no overlap, no scope creep; no wave has an internal edge or overlapping file set.
 

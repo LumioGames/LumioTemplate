@@ -76,7 +76,7 @@ my-game/
 | `.spec/AGENTS.md` | 项目中心文档，初始状态是「未初始化」 |
 | `.spec/rules/` | `system.md` 通用红线、`dispatch.md` 调度与编码规程、`project.md` 项目红线（初始化时生成） |
 | `.spec/knowledge/` | 规范骨架、功能文档模板、经验教训，以及 `lumio-platform/`：SDK、`lumio.json` 与打包、LGUI、网页工程、资源地址 |
-| `.spec/decisions/`、`tasks/`、`plans/` | 决策记录、任务卡、实现计划的格式 |
+| `.spec/decisions/`、`plans/` | 决策记录、实现计划的格式（任务卡就是计划里的 `### Task N`） |
 | `.spec/skills/` | 14 个常驻技能（含更新框架用的 `lumio-update`），加上一次性的 `lumio-init`（初始化流程和生成模板，收尾时删除） |
 | `.spec/agents/reviewer.md` | 审查子 Agent |
 | `.spec/tools/` | `spec-lint.mjs` 结构检查、`closeout-gate.mjs` 收口定级、`guard-commit.mjs` 提交前检查；`lumio-pack.mjs` 和 `lgui-build-web.mjs` 初始化时按路线移到 `Tools/` 或删除 |

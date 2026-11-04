@@ -76,7 +76,7 @@ You also get `Server/` if you write your own server code. Every module has a REA
 | `.spec/AGENTS.md` | Project hub, initially marked 「未初始化」 (not set up) |
 | `.spec/rules/` | `system.md` general red lines, `dispatch.md` dispatch and coding rules, `project.md` project red lines (generated during setup) |
 | `.spec/knowledge/` | Convention skeletons, a feature doc template, lessons, and `lumio-platform/`: SDK, `lumio.json` and packaging, LGUI, web projects, links |
-| `.spec/decisions/`, `tasks/`, `plans/` | Formats for decision records, task cards and implementation plans |
+| `.spec/decisions/`, `plans/` | Formats for decision records and implementation plans (a task card is a `### Task N` section of a plan) |
 | `.spec/skills/` | 14 standing skills (including `lumio-update` for framework updates), plus the one-time `lumio-init` (setup flow and templates, deleted at the end of setup) |
 | `.spec/agents/reviewer.md` | Review subagent |
 | `.spec/tools/` | `spec-lint.mjs` structure lint, `closeout-gate.mjs` closeout grading, `guard-commit.mjs` pre-commit check; `lumio-pack.mjs` and `lgui-build-web.mjs` move to `Tools/` or are deleted during setup, depending on your route |

@@ -45,7 +45,7 @@ description: 当用户说「更新框架」「升级框架」「看看模板有�
 
 `.spec/LICENSE` 是 LumioTemplate 的许可条款。它在模板仓库里放在根目录 `LICENSE`，初始化收尾时才移进 `.spec/`，所以第 4、5 步比较和复制它时，从 `<临时目录>/old/LICENSE`、`<临时目录>/new/LICENSE` 取。
 
-不在清单里的都不动：项目文件（`.spec/AGENTS.md`、`rules/project.md`、`knowledge/` 里除 `lumio-platform/` 以外的部分、`decisions/`、`tasks/`、`plans/`）、用户自己加的技能和子 Agent、各模块目录、根目录的 `AGENTS.md` / `CLAUDE.md` / `README.md`、用户给游戏选的根目录 `LICENSE`、`.claude/settings.json` 和三条软链。初始化用的 `lumio-init` 不随更新分发。
+不在清单里的都不动：项目文件（`.spec/AGENTS.md`、`rules/project.md`、`knowledge/` 里除 `lumio-platform/` 以外的部分、`decisions/`、`plans/`）、用户自己加的技能和子 Agent、各模块目录、根目录的 `AGENTS.md` / `CLAUDE.md` / `README.md`、用户给游戏选的根目录 `LICENSE`、`.claude/settings.json` 和三条软链。初始化用的 `lumio-init` 不随更新分发。
 
 ## 步骤
 

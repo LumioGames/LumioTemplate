@@ -13,7 +13,7 @@ description: 维护项目 `.spec/` 的结构并把改动沉淀进知识库——
 | 类别 | 包含 | 规则 |
 |------|------|------|
 | **框架文件** | `LICENSE`（模板的许可条款）、`rules/system.md`、`rules/dispatch.md`、`agents/`、`skills/` 里模板自带的技能（含 `lumio-update`）、`tools/`、`knowledge/lumio-platform/`；逐个路径的清单在 `lumio-update` 技能里 | 项目不改；以后随模板更新，按文件或按技能文件夹整份覆盖 |
-| **项目文件** | `AGENTS.md`、`rules/project.md`、`knowledge/` 里除 `lumio-platform/` 以外的部分、`decisions/`、`tasks/`、`plans/`、项目自己加的技能 | 归项目所有，初始化时生成，之后由项目维护 |
+| **项目文件** | `AGENTS.md`、`rules/project.md`、`knowledge/` 里除 `lumio-platform/` 以外的部分、`decisions/`、`plans/`、项目自己加的技能 | 归项目所有，初始化时生成，之后由项目维护 |
 
 判据:**这处改动要落在框架文件里吗?** 要 → 不改框架文件，把项目自己的版本写进项目文件（红线进 `rules/project.md`，做法进 `knowledge/standards/`，新方法另建项目技能）；框架文件本身有问题，记进 `knowledge/lessons.md` 或告诉用户，等模板更新。
 
@@ -63,11 +63,6 @@ description: 维护项目 `.spec/` 的结构并把改动沉淀进知识库——
 5. `.spec/knowledge/README.md` 导航行**来源于** frontmatter `description`：同一句话口径，允许排版差异，但不得出现 description 没有的事实、不含交付历史（行文一致性靠本步骤自觉，spec-lint 只机械校验长度 / 枚举 / 覆盖 / 链接）——导航行是 Agent 决定「要不要翻开这份文档」的唯一依据，含糊或膨胀都会让判断失准。
 6. 待执行的事走任务卡（拆解用 `writing-plans` 浅拆模式），**别堆进知识库**。
 
-### 流程 C · 清理离线任务卡（无内置任务工具的宿主，`.spec/tasks/`）
-
-- `.spec/tasks/` 目录只留**未完成 / 进行中**的卡。
-- 任务完成后直接删除卡文件（历史在 git，不设归档目录）。
-
 ### 流程 D · 框架文件更新（模板 → 项目）
 
 - 用户说「更新框架」时用 `lumio-update` 技能：它写着当前框架版本和框架文件清单，按 LumioTemplate 最新 tag 只覆盖清单里的路径，本地改过的先给用户看差异再问。本技能不另写一套更新流程。
@@ -102,4 +97,3 @@ description: 维护项目 `.spec/` 的结构并把改动沉淀进知识库——
 - [ ] knowledge 文档 `status` 与现状一致；正文只含当前有效内容，无历史堆积。
 - [ ] 没有把任何规矩复制进多处。
 - [ ] 删除操作：无悬空引用残留。
-- [ ] `.spec/tasks/` 只含在途卡（完成的已按流程 C 删除）。

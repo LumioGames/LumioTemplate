@@ -53,7 +53,7 @@ my-game/
 ├─ Tools/         开发工具，包括 Lumio 打包工具
 ├─ Builds/        构建产物，只有 README 进 git
 ├─ .spec/
-│  ├─ AGENTS.md   项目中心文档：项目是什么、模块、收口命令、技能名册
+│  ├─ AGENTS.md   项目中心文档：项目是什么、模块、收口命令
 │  ├─ LICENSE     LumioTemplate 的许可条款（初始化时从根目录移进来，根目录留给你的游戏）
 │  ├─ rules/      工作方式与通用红线、本项目的红线
 │  ├─ knowledge/  规范（项目结构、工作流、代码风格、测试、美术）、玩法方向、Lumio 平台知识

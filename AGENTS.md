@@ -4,7 +4,7 @@
 
 开工前按顺序读下面几份。Claude Code 经 `CLAUDE.md` 的 `@import` 自动载入它们；Codex 和其他客户端请在这里主动读：
 
-1. [`.spec/AGENTS.md`](.spec/AGENTS.md)：项目中心文档（项目是什么、模块、收口命令、技能名册）。
+1. [`.spec/AGENTS.md`](.spec/AGENTS.md)：项目中心文档（项目是什么、模块、收口命令）。
 2. [`.spec/knowledge/README.md`](.spec/knowledge/README.md)：知识导航。
 3. [`.spec/rules/system.md`](.spec/rules/system.md)：工作方式与通用红线。
 4. [`.spec/rules/project.md`](.spec/rules/project.md)：本项目的红线。

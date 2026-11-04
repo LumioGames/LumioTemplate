@@ -8,7 +8,7 @@ description: 维护项目 `.spec/` 的结构并把改动沉淀进知识库——
 保证任何结构改动都「放对位置、格式合规、索引与名册同步」，并在开发完成后把「改了什么、为什么」沉淀回知识库。
 本技能**不复述**那些规矩（权威在 `.spec/rules/system.md` 与 `.spec/knowledge/README.md`），只在改动发生时把规矩**用起来**，并指回对应处。
 
-**先分清两类文件**——划分以 `.spec/AGENTS.md`「框架文件和项目文件」一节为准：
+**先分清两类文件**——框架文件逐个路径的清单以 `lumio-update` 技能为准：
 
 | 类别 | 包含 | 规则 |
 |------|------|------|
@@ -45,8 +45,8 @@ description: 维护项目 `.spec/` 的结构并把改动沉淀进知识库——
    - knowledge：`name` + `description` + `metadata`（type / status）
    - rules：**无** frontmatter
 4. **同步登记**（漏一处，能力就隐身）：
-   - 加 / 删子 Agent → 在 `.spec/AGENTS.md` 登记名册，并说明 Codex 等没有子 Agent 的客户端怎么降级（`rules/system.md` 是框架文件，不改）
-   - 加 / 删 skill → 更新 `.spec/AGENTS.md` 技能名册；若进入默认流程，在 `.spec/AGENTS.md`「项目专属约定」写明
+   - 加 / 删子 Agent → 在 `.spec/AGENTS.md`「项目专属约定」写明何时调度（`rules/system.md` 是框架文件，不改）
+   - 加 / 删 skill → 客户端经软链自动发现，不用登记；若进入默认流程，在 `.spec/AGENTS.md`「项目专属约定」写明
    - 加 / 删知识文档 → 更新 `.spec/knowledge/README.md` 文件导航
    - 加 / 删 `rules/` 下的文件 → 同步根目录 `CLAUDE.md` 的 `@import` 行与根目录 `AGENTS.md` 的必读清单
 
@@ -93,7 +93,7 @@ description: 维护项目 `.spec/` 的结构并把改动沉淀进知识库——
 
 - [ ] `node .spec/tools/spec-lint.mjs` 已跑（完整校验项清单以脚本头部注释为准；只报告不阻断，报出的问题要修或记下）。
 - [ ] 内容在正确目录、命名合规；没有改框架文件。
-- [ ] `.spec/AGENTS.md` 的技能名册、子 Agent 名册与实际一致；`CLAUDE.md` 的 `@import` 覆盖 `rules/` 下全部文件。
+- [ ] `CLAUDE.md` 的 `@import` 覆盖 `rules/` 下全部文件。
 - [ ] knowledge 文档 `status` 与现状一致；正文只含当前有效内容，无历史堆积。
 - [ ] 没有把任何规矩复制进多处。
 - [ ] 删除操作：无悬空引用残留。

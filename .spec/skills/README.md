@@ -1,6 +1,6 @@
 # 技能
 
-用到时读对应的 `SKILL.md`，需要时再读同目录的配套文件；名册和适用任务见 [项目中心文档](../AGENTS.md)。Claude Code 经 `.claude/skills`、Codex 经 `.agents/skills` 两条软链自动发现本目录里的技能。
+用到时读对应的 `SKILL.md`，需要时再读同目录的配套文件。Claude Code 经 `.claude/skills`、Codex 经 `.agents/skills` 两条软链自动发现本目录里的技能。
 
 | 技能 | 作用 |
 | --- | --- |
@@ -9,7 +9,7 @@
 | art-director、art-prompt、art-review | 美术技能：定美术方向并写进美术规范 → 出图提示词 → 审查 |
 | lumio-init | 一次性技能：把模板初始化成用户自己的项目。只在模板和还没初始化完的项目里有，初始化结束时整个删除 |
 
-除 lumio-init 外都是框架文件：项目不改，以后随模板更新整份覆盖（见 [项目中心文档](../AGENTS.md)「框架文件和项目文件」；更新用 lumio-update，清单以它为准）。项目自己的技能另建文件夹，名字不要和这些重名。
+除 lumio-init 外都是框架文件：项目不改，以后随模板更新整份覆盖（更新用 lumio-update，框架文件清单以它为准）。项目自己的技能另建文件夹，名字不要和这些重名。
 
 ## 落点
 

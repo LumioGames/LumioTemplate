@@ -53,7 +53,7 @@ my-game/
 ├─ Tools/         Dev tools, including the Lumio packaging tool
 ├─ Builds/        Build output; only its README is in git
 ├─ .spec/
-│  ├─ AGENTS.md   Project hub: what it is, modules, closeout commands, skill list
+│  ├─ AGENTS.md   Project hub: what it is, modules, closeout commands
 │  ├─ LICENSE     LumioTemplate's license terms (moved here from the root during setup; the root is left for your game)
 │  ├─ rules/      Way of working and general red lines, this project's red lines
 │  ├─ knowledge/  Conventions (structure, workflow, code style, testing, art), gameplay direction, Lumio platform facts

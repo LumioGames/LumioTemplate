@@ -15,7 +15,7 @@ metadata:
 |------|--------|
 | [`standards/project-structure.md`](standards/project-structure.md) | 项目结构:有哪些模块、依赖方向、命名规则、新东西放哪——建目录、加文件、跨模块引用前查 |
 | [`standards/workflow.md`](standards/workflow.md) | 开发工作流:分支/提交/合并·PR 与知识同步义务——动手改代码、开 PR 前查 |
-| [`standards/code-style.md`](standards/code-style.md) | 代码与文档风格:语言约定、命名、注释原则、生成物纪律——写代码/建文档时查 |
+| [`standards/code-style.md`](standards/code-style.md) | 代码与文档风格:语言约定、命名、注释原则、生成物表(哪些提交、哪些能手改)——写代码/建文档时查 |
 | [`standards/testing.md`](standards/testing.md) | 测试与验收:SDD 和 TDD 两种模式的判据、测什么不测什么、什么时候跑、回归用例与验收——写计划、实现功能、修 bug 时查 |
 
 ## features/(功能设计与记录 · 供了解)
@@ -34,4 +34,4 @@ metadata:
 
 ## lumio-platform/(Lumio 平台事实 · 框架文件)
 
-Lumio 平台的事实在 `lumio-platform/`：sdk（接 SDK）、publishing（打包发布）、lgui（用 LGUI 做界面）、web-project（不用 LGUI 的网页工程）、resources（官方链接）。
+Lumio 平台的事实在 `lumio-platform/`：environment（Node、Git 和技能链接）、sdk（接 SDK）、publishing（打包发布）、lgui（用 LGUI 做界面）、web-project（不用 LGUI 的网页工程）、resources（官方链接）。

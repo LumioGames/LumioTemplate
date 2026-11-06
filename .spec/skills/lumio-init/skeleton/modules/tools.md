@@ -7,7 +7,7 @@
 | 工具 | 做什么 | 用法 |
 | --- | --- | --- |
 
-结构检查、Lumio 打包（`lumio-pack.mjs`）、LGUI 网页构建（`lgui-build-web.mjs`）这些框架工具在 `.spec/tools/`，不放这里，用法写 `node .spec/tools/<工具>`。
+结构检查（`spec-lint.mjs`）、技能链接（`link-skills.mjs`）、LGUI 短入口（`lgui.mjs`）、Lumio 打包（`lumio-pack.mjs`）、LGUI 网页构建（`lgui-build-web.mjs`）这些框架工具在 `.spec/tools/`，不放这里，用法写 `node .spec/tools/<工具>`。
 
 ## 依赖
 

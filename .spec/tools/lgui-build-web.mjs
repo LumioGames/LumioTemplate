@@ -2,31 +2,14 @@
 // 过渡脚本：LGUI 插件还没有「网页正式构建」命令，这里用已装插件里的同一套生成与打包代码，把 LGUI 工程打成静态网页。
 // LGUI 提供 `lgui build` 之后删掉本文件，改用它。逻辑同 LGUI 仓库的 scripts/build-demo.mjs。
 // 用法：node .spec/tools/lgui-build-web.mjs [工程目录=Client/app] [输出目录=<工程>/dist]（框架文件，随框架更新）
-// 插件目录：环境变量 LGUI_PLUGIN；不设就在 Claude Code / Codex 的插件缓存里找最新版本。
+// 插件目录：环境变量 LGUI_PLUGIN；不设就在 Claude Code / Codex 的插件缓存里找最新版本（findLguiPlugin，在 lgui.mjs）。
 import crypto from 'node:crypto';
 import fs from 'node:fs';
-import os from 'node:os';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
+import { findLguiPlugin } from './lgui.mjs';
 
-function findPlugin() {
-  if (process.env.LGUI_PLUGIN) return path.resolve(process.env.LGUI_PLUGIN);
-  const required = ['output.mjs', 'project.mjs', 'vendor.mjs', 'generate/index.mjs', 'generate/model.mjs', 'generate/i18n.mjs', 'dev/bundle.mjs', 'dev/shell.html'];
-  const candidates = [];
-  for (const base of ['.claude', '.codex'].map((dir) => path.join(os.homedir(), dir, 'plugins', 'cache', 'lumio-lgui', 'lgui'))) {
-    if (!fs.existsSync(base)) continue;
-    for (const version of fs.readdirSync(base)) {
-      const dir = path.join(base, version);
-      if (required.every((file) => fs.existsSync(path.join(dir, 'tools', 'lib', file)))) candidates.push({ version, dir });
-    }
-  }
-  candidates.sort((a, b) => a.version.localeCompare(b.version, undefined, { numeric: true }));
-  if (candidates.length) return candidates.at(-1).dir;
-  console.error('找不到 LGUI 插件目录。先装 LGUI 插件，或设置环境变量 LGUI_PLUGIN=<插件目录>（里面有 tools/lgui.mjs）。');
-  process.exit(1);
-}
-
-const plugin = findPlugin();
+const plugin = findLguiPlugin(['lib/output.mjs', 'lib/project.mjs', 'lib/vendor.mjs', 'lib/generate/index.mjs', 'lib/generate/model.mjs', 'lib/generate/i18n.mjs', 'lib/dev/bundle.mjs', 'lib/dev/shell.html']);
 const lib = (rel) => import(pathToFileURL(path.join(plugin, 'tools', 'lib', rel)).href);
 const root = path.resolve(process.argv[2] ?? 'Client/app');
 const out = path.resolve(process.argv[3] ?? path.join(root, 'dist'));

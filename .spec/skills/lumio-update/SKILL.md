@@ -19,6 +19,8 @@ description: 当用户说「更新框架」「升级框架」「看看模板有�
 .spec/rules/system.md
 .spec/agents/reviewer.md
 .spec/tools/spec-lint.mjs
+.spec/tools/link-skills.mjs
+.spec/tools/lgui.mjs
 .spec/tools/lumio-pack.mjs
 .spec/tools/lgui-build-web.mjs
 .spec/knowledge/lumio-platform/
@@ -39,7 +41,7 @@ description: 当用户说「更新框架」「升级框架」「看看模板有�
 .spec/skills/lumio-update/
 ```
 
-不在清单里的都不动：项目文件（`.spec/AGENTS.md`、`rules/project.md`、`knowledge/` 里除 `lumio-platform/` 以外的部分、`decisions/`、`plans/`）、用户自己加的技能和子 Agent、各模块目录、根目录的 `AGENTS.md` / `CLAUDE.md` / `README.md` / `LICENSE` 和三条软链。初始化用的 `lumio-init` 不随更新分发。
+不在清单里的都不动：项目文件（`.spec/AGENTS.md`、`rules/project.md`、`knowledge/` 里除 `lumio-platform/` 以外的部分、`decisions/`、`plans/`）、用户自己加的技能和子 Agent、各模块目录、根目录的 `AGENTS.md` / `CLAUDE.md` / `README.md` / `LICENSE` / `.node-version` / `.gitignore`。三条技能链接（`.claude/skills`、`.claude/agents`、`.agents/skills`）不进 git，也不在清单里：它们指向 `.spec/` 下的整个文件夹，框架里新增的技能和子 Agent 自动就能被发现，更新完照第 5 步跑一次链接脚本即可。初始化用的 `lumio-init` 不随更新分发。
 
 ## 步骤
 
@@ -47,7 +49,7 @@ description: 当用户说「更新框架」「升级框架」「看看模板有�
 
 ### 1. 准备
 
-- `git status` 要干净。有没提交的改动，先请用户提交或决定怎么处理，这样更新的改动能单独成一次提交。
+- `git status` 要干净，这样更新的改动能单独成一次存档。有没存档的改动：跟用户说「更新前先把你现在的改动存个档」，同意后本地提交；不同意就停下。
 - 查最新版本：`git ls-remote --tags --refs https://github.com/LumioGames/LumioTemplate 'v*'`，按版本号取最大的那个。和上面「当前框架版本」一样：告诉用户框架已是最新，直接跳到第 6 步。
 - 比当前新：`git clone -q --depth 1 --branch <最新版本> https://github.com/LumioGames/LumioTemplate <临时目录>`。
 
@@ -66,12 +68,13 @@ description: 当用户说「更新框架」「升级框架」「看看模板有�
 
 `git status` 和 `git diff` 给用户看：改动只应出现在清单里的路径下。框架文件按规则不在本地改；如果 diff 里冲掉了项目自己的内容，请用户决定把它挪进项目文件（红线进 `rules/project.md`、做法进 `knowledge/standards/`、自己的方法另建项目技能），旧内容在 git 历史里找得回来。
 
-### 5. 登记、检查、提交
+### 5. 登记、检查、存档
 
 1. 新版在 `.spec/rules/` 下多了文件：在根目录 `CLAUDE.md` 加一行 `@.spec/rules/<文件名>`，在根目录 `AGENTS.md` 的必读清单加一行；去掉的规则文件，两处都删掉那一行。
 2. CHANGELOG 里「需要手动处理」的事项，逐项给用户看，用户同意后照做。
-3. `node .spec/tools/spec-lint.mjs`，报出的问题告诉用户。
-4. 本地提交一次，例如 `git commit -m "chore: 框架更新到 <最新版本>"`。**推送前先问用户。** 删掉临时目录。
+3. `node .spec/tools/link-skills.mjs`，确认三条技能链接还在、指向对的地方。
+4. `node .spec/tools/spec-lint.mjs`，报出的问题告诉用户（说「检查发现 N 处要改」，不提工具名）。
+5. 本地提交一次（存档），例如 `git commit -m "chore: 框架更新到 <最新版本>"`。有云端备份的，**同步到云端前先问用户。** 删掉临时目录。
 
 ### 6. 看看 LGUI 和 SDK 有没有新版（只提示，不自动升）
 

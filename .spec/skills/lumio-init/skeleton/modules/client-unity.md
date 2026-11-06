@@ -20,12 +20,12 @@
 初始化只建了这个目录和本文件。建工程是初始化之后的第一步<!-- 如果：Unity 先做原型 -->，按这个顺序：先网页原型，验证玩法后再转 Unity<!-- 结束 -->。
 
 <!-- 如果：Unity 先做原型 -->
-- **先建网页原型**：按 `.spec/knowledge/lumio-platform/lgui.md`「装 LGUI」装好，在仓库根目录跑 `lgui init Client/app --name {{英文短名}}`，在浏览器里把玩法做出来、试玩验证。
+- **先建网页原型**：按 `.spec/knowledge/lumio-platform/lgui.md`「装 LGUI」装好，在仓库根目录跑 `lgui init Client/app --name {{英文短名}}`，照 `lgui.md`「建工程」把常用命令写进 `Client/app/package.json`，在浏览器里把玩法做出来、试玩验证。
 <!-- 结束 -->
 <!-- 如果：Unity 用 LGUI -->
 - **建 Unity 工程**<!-- 如果：Unity 先做原型 -->（玩法验证后）<!-- 结束 -->：LGUI 目前适配的是 **Unity 6000.6.x** 加 **PuerTS 3.0.3**（Core 和 V8 两个包都放进工程的 `Packages/`），具体步骤见 `lgui.md` 和 LGUI 仓库的 `plugin/references/unity.md`，这里不复述。在 `Client/unity/` 建工程，版本写进 `.spec/decisions/`。
 <!-- 如果：Unity 不做原型 -->
-- **建 LGUI 工程**：按 `lgui.md`「装 LGUI」装好，在仓库根目录跑 `lgui init Client/app --name {{英文短名}}`，界面在这里做。
+- **建 LGUI 工程**：按 `lgui.md`「装 LGUI」装好，在仓库根目录跑 `lgui init Client/app --name {{英文短名}}`，照 `lgui.md`「建工程」把常用命令写进 `Client/app/package.json`，界面在这里做。
 <!-- 结束 -->
 - **导出到 Unity**：在 `Client/app/` 里跑 `lgui unity export --to ../unity`，做法以 LGUI 仓库为准。
 <!-- 结束 -->
@@ -57,4 +57,12 @@
 - 构建产物不放在这里，放 `Builds/`。
 <!-- 如果：Unity 用 LGUI -->
 - 不手改 LGUI 导出到 Unity 的文件，改 `app/` 里的界面再重新导出。
+<!-- 结束 -->
+<!-- 如果：Unity 先做原型 -->
+- 不改 `app/` 里的 LGUI 框架副本（`Client/app/.lgui/framework/`）。框架有问题就报给 LGUI（https://github.com/LumioGames/LGUI/issues ），记进 bug 墙（归因「框架」）；框架副本只由 `lgui init` / `lgui upgrade` 更新。
+<!-- 结束 -->
+<!-- 如果：Unity 不做原型 -->
+<!-- 如果：Unity 用 LGUI -->
+- 不改 `app/` 里的 LGUI 框架副本（`Client/app/.lgui/framework/`）。框架有问题就报给 LGUI（https://github.com/LumioGames/LGUI/issues ），记进 bug 墙（归因「框架」）；框架副本只由 `lgui init` / `lgui upgrade` 更新。
+<!-- 结束 -->
 <!-- 结束 -->

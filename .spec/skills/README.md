@@ -1,6 +1,6 @@
 # 技能
 
-用到时读对应的 `SKILL.md`，需要时再读同目录的配套文件。Claude Code 经 `.claude/skills`、Codex 经 `.agents/skills` 两条软链自动发现本目录里的技能。
+用到时读对应的 `SKILL.md`，需要时再读同目录的配套文件。Claude Code 经 `.claude/skills`、Codex 经 `.agents/skills` 两条链接自动发现本目录里的技能；链接不进 git，由 `node .spec/tools/link-skills.mjs` 在本地建（见 `.spec/knowledge/lumio-platform/environment.md`「技能链接」）。
 
 | 技能 | 作用 |
 | --- | --- |
@@ -17,6 +17,6 @@ LumioTemplate 的许可条款在它的 `LICENSE` 里：模板仓库放在根目�
 
 - **取自 [LumioGames/LumioAgentSpec](https://github.com/LumioGames/LumioAgentSpec) 1.1.1（提交 `8f93f82`）的文件**：MIT，Copyright (c) 2026 Lumio，全文见 [LICENSE-agentspec](LICENSE-agentspec)。包括 `.spec/rules/system.md`、`.spec/agents/reviewer.md`、`.spec/tools/` 里的 spec-lint，以及 5 个框架技能 writing-plans、subagent-driven-development、test-driven-development、systematic-debugging、spec-steward。为放进仓库使用，把插件路径和插件命令改成了仓库内的写法，spec-steward 改成按「框架文件和项目文件」划分。其中 writing-plans、subagent-driven-development 同时改编自 [obra/superpowers](https://github.com/obra/superpowers)，也是 MIT，Copyright (c) 2025 Jesse Vincent，全文见 [LICENSE-superpowers](LICENSE-superpowers)。
 - **策划和美术技能**（design-director、design-review、art-director、art-prompt、art-review）：来自 LumioGames/LumioGame 仓库的 `.spec/skills`（固定提交 `f7bef4624fb555013e59f64eed0302055d454000`），Apache-2.0，全文见 [LICENSE](LICENSE)。收入本仓库时去掉了只适用于原项目的内容（如写死的平台约束、开源定位）。每个技能开头注明了来源。
-- **按 PolyForm Shield 加附加许可的部分**包括 lumio-init、lumio-update 两个技能，`.spec/knowledge/lumio-platform/`，以及 `lumio-pack.mjs`、`lgui-build-web.mjs` 两个 Lumio 工具。
+- **按 PolyForm Shield 加附加许可的部分**包括 lumio-init、lumio-update 两个技能，`.spec/knowledge/lumio-platform/`，以及 `lumio-pack.mjs`、`lgui-build-web.mjs`、`lgui.mjs`、`link-skills.mjs` 四个工具。
 
 框架文件是 LumioAgentSpec 1.1.1 的快照。LumioAgentSpec 仍独立维护（通用，不限于游戏）。模板的框架版本记在模板仓库的 `CHANGELOG.md`，用户项目通过 lumio-update 从模板更新。

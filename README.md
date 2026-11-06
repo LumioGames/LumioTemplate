@@ -36,7 +36,7 @@ LumioTemplate 是 [LumioGames](https://lumio.games/studio/) 出品的游戏项�
 
 | 功能 | 怎么跟 Agent 说 | 它会帮你做什么 |
 | :-- | :-- | :-- |
-| **快速建项** | `开始` | 问你 5 个简单问题（做什么游戏、用什么引擎、发到哪等），几分钟建好 `Client/`、`Config/`、`Art/` 目录和全套项目文档。 |
+| **快速建项** | `开始` | 问你几个简单问题（做什么游戏、发到哪等，其余都有默认值），几分钟建好 `Client/`、`Config/`、`Art/` 目录和全套项目文档。 |
 | **策划与玩法定调** | `我们来定玩法` | 以策划总监视角给你 2–3 个方向选，定下核心循环和最小可玩版本，写进项目文档供后续写代码时自动参考。 |
 | **美术定调与 AI 出图** | `我们来定美术方向`<br>`帮我出主界面 / 角色的图` | 定下配色与固定风格词；出图时自动对照 `Art/baseline/` 基准图库，确保不同时间生成的 UI、角色、场景保持同一画风。 |
 | **多 Agent 并行写代码** | `帮我建工程`<br>`做背包和商店功能` | 先提取公共配表与接口契约，再把功能拆成独立任务派给多个子 Agent 并行开发，写完自动跑测试和代码审查。 |
@@ -45,14 +45,19 @@ LumioTemplate 是 [LumioGames](https://lumio.games/studio/) 出品的游戏项�
 
 ## 怎么开始
 
-1. **自己在 GitHub 上建仓库**：点 **[Use this template](https://github.com/LumioGames/LumioTemplate/generate)** 创建你的游戏仓库并克隆到本地，用 Claude Code、Codex 或任意 Agent 打开，输入 `开始`（Windows 克隆请加 `git clone -c core.symlinks=true`）。
-2. **直接把链接发给 Agent**：在任意对话里发一句「用 `https://github.com/LumioGames/LumioTemplate` 帮我建个游戏」。
+不需要 GitHub 账号，项目默认只存在你自己的电脑上。两种方式选一种：
+
+1. **直接把链接发给 Agent**（最省事）：在 Claude Code、Codex 等任意 Agent 的对话里发一句「用 `https://github.com/LumioGames/LumioTemplate` 帮我建个游戏」。
+2. **自己下载**：把本仓库下载到一个空文件夹（`git clone https://github.com/LumioGames/LumioTemplate <文件夹名>`，或者在本页点 Code → Download ZIP 再解压），用 Agent 打开这个文件夹，输入 `开始`。想一开始就备份到自己的 GitHub，可以先点 **[Use this template](https://github.com/LumioGames/LumioTemplate/generate)** 建仓库再克隆。
+
+电脑上没有 Node 或 Git 也没关系：Agent 会问你一次，你同意后它从官方渠道装好。以后想备份到云端、或者和别人一起做，跟 Agent 说一声就行；发布到 Lumio 不需要 GitHub。
 
 > **给 AI Agent 的快速指引**（当用户把本仓库链接发给你时按顺序执行）：
 >
-> 1. 检查 `git --version` 和 `node -v`（需 Node 24.18–26.x），缺哪个请用户自行安装（Git：https://git-scm.com/downloads ；Node：https://nodejs.org 选 26 LTS），不要替用户装。
-> 2. 若用户想先在 GitHub 建自己的仓库，询问仓库名与公开/私有后运行 `gh repo create <name> --template LumioGames/LumioTemplate` 并克隆该仓库；否则直接运行 `git clone -c core.symlinks=true https://github.com/LumioGames/LumioTemplate <目标目录>`（当前目录为空可克隆到 `.`）。
-> 3. 克隆完成后，若在项目根目录则直接读取 `AGENTS.md` 指向的文档并按 `.spec/skills/lumio-init/SKILL.md` 带用户完成初始化；若克隆在子目录则请用户在该子目录开新对话说「开始」。所有对外操作（建远端仓库、`git push`、上传发布）每次都先征得用户同意。
+> 1. 检查 `node -v`（要 Node 26 LTS，见仓库根目录 `.node-version`；Lumio SDK 支持 24.18–26.x）和 `git --version`。缺了或版本不对：问用户一次要不要帮忙装，同意后按 [`.spec/knowledge/lumio-platform/environment.md`](.spec/knowledge/lumio-platform/environment.md) 从官方渠道装（Windows 用 winget，macOS 用 nodejs.org 的官方安装包），装完在这次对话里用绝对路径继续，不要求用户重开终端。
+> 2. 下载到本地：`git clone https://github.com/LumioGames/LumioTemplate <目标目录>`（当前目录为空可克隆到 `.`）。默认只在本地，不建 GitHub 仓库；用户明确说要备份到云端时，才在用户同意后用 `gh repo create <名字> --template LumioGames/LumioTemplate` 建仓库再克隆。
+> 3. 跑 `node <项目目录>/.spec/tools/link-skills.mjs`，在本地建好 Claude Code 和 Codex 找技能用的三条链接（不进 git；Windows 上是目录联接，不需要开发者模式）。
+> 4. 克隆在当前目录：读 `AGENTS.md` 指向的文档，按 `.spec/skills/lumio-init/SKILL.md` 带用户完成初始化（不依赖客户端已经发现技能）；克隆在子目录：请用户在该子目录开新对话说「开始」。跟用户只说结果（「存档了」「检查通过了」），不说提交、分支这类词；对外操作（备份到云端、发布）每次都先征得用户同意。
 
 ## 配套工具与平台
 

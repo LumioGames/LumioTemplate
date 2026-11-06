@@ -27,7 +27,7 @@ description: 两种情况用：新增或修改知识文档、规则、子 Agent�
 
 - 加 / 删知识文档 → 改 `.spec/knowledge/README.md` 的导航：一篇一行，和 frontmatter `description` 同一句话（是什么 + 何时查，≤120 字符），不写交付历史。
 - 加 / 删 `rules/` 下的文件 → 根目录 `CLAUDE.md` 加 / 删一行 `@import`（漏了 Claude Code 就不会载入，spec-lint 会查），根目录 `AGENTS.md` 的必读清单同步。
-- 加 / 删子 Agent，或项目技能进了默认流程 → 在 `.spec/AGENTS.md`「项目专属约定」写明什么时候用。技能经软链自动发现，不用另外登记。
+- 加 / 删子 Agent，或项目技能进了默认流程 → 在 `.spec/AGENTS.md`「项目专属约定」写明什么时候用。技能经 `.claude/skills`、`.agents/skills` 两条本地链接自动发现，不用另外登记（链接不进 git，由 `node .spec/tools/link-skills.mjs` 建）。
 
 ## 沉淀（改动完成后）
 

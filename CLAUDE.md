@@ -17,3 +17,5 @@ Claude Code 的入口。下面的 `@` 行在每次会话开始时把对应文件
 @.spec/rules/project.md
 
 本文件只负责载入，规则写在 `.spec/`；`rules/` 下新增文件要在上面加 `@import`。
+
+新克隆或下载的文件夹里 `.claude/skills` 还不存在时，先跑 `node .spec/tools/link-skills.mjs`（见根目录 `AGENTS.md`）。

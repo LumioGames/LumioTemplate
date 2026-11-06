@@ -36,7 +36,7 @@ Talk to your Agent in plain language:
 
 | Capability | What to say | What the Agent does |
 | :-- | :-- | :-- |
-| **Quick Project Setup** | `Start` | Asks 5 simple questions (game idea, engine, target platform, etc.) and generates `Client/`, `Config/`, `Art/`, and all project docs in minutes. |
+| **Quick Project Setup** | `Start` | Asks a few simple questions (game idea, target platform, etc. — everything else has defaults) and generates `Client/`, `Config/`, `Art/`, and all project docs in minutes. |
 | **Gameplay Direction** | `Let's decide the gameplay` | Proposes 2–3 directions, locks in the core loop and MVP scope, and records them in project docs for future coding tasks. |
 | **Art Direction & Consistent AI Art** | `Let's set the art direction`<br>`Generate main menu / character art` | Defines color palettes and fixed style tags; compares against approved reference images in `Art/baseline/` so UI, characters, and scenes stay in the same style across batches. |
 | **Parallel Multi-Agent Coding** | `Set up the client project`<br>`Build the inventory and shop` | Extracts shared data schemas and interfaces first, then dispatches independent implementation tasks to multiple subagents in parallel, followed by tests and review. |
@@ -45,14 +45,19 @@ Talk to your Agent in plain language:
 
 ## Getting Started
 
-1. **Create from template on GitHub**: Click **[Use this template](https://github.com/LumioGames/LumioTemplate/generate)** to create your game repository, clone it locally (on Windows, use `git clone -c core.symlinks=true`), open it in Claude Code, Codex, or any Agent, and say `Start`.
-2. **Send the link to your Agent**: Paste `https://github.com/LumioGames/LumioTemplate` into any Agent chat and say “Create a game project for me with LumioTemplate”.
+No GitHub account needed — your project lives on your own computer by default. Pick either way:
+
+1. **Send the link to your Agent** (easiest): paste `https://github.com/LumioGames/LumioTemplate` into any Agent chat (Claude Code, Codex, …) and say “Create a game project for me with LumioTemplate”.
+2. **Download it yourself**: put this repo in an empty folder (`git clone https://github.com/LumioGames/LumioTemplate <folder>`, or Code → Download ZIP on this page and unzip), open the folder in your Agent, and say `Start`. If you want a GitHub backup from day one, click **[Use this template](https://github.com/LumioGames/LumioTemplate/generate)** first and clone your new repo.
+
+Missing Node or Git? The Agent asks you once and, with your OK, installs them from the official sources. When you later want a cloud backup or to build with others, just tell the Agent; publishing to Lumio does not need GitHub.
 
 > **Quick Guide for AI Agents** (follow in order when the user gives you this repo URL):
 >
-> 1. Check `git --version` and `node -v` (Node 24.18–26.x required). If either is missing, ask the user to install it themselves (Git: https://git-scm.com/downloads ; Node: https://nodejs.org, pick 26 LTS).
-> 2. If the user wants their own GitHub repository first, ask for the repo name and visibility, run `gh repo create <name> --template LumioGames/LumioTemplate`, and clone that repo; otherwise run `git clone -c core.symlinks=true https://github.com/LumioGames/LumioTemplate <target-dir>` (use `.` if the current directory is empty).
-> 3. Once cloned, if you are in the project root, read `AGENTS.md` and the files it lists, then follow `.spec/skills/lumio-init/SKILL.md` to initialize the project; if cloned into a subfolder, ask the user to open a new session in that subfolder and say `Start`. Always ask the user before any external action (creating remote repos, `git push`, or publishing).
+> 1. Check `node -v` (Node 26 LTS, see `.node-version` in the repo root; Lumio SDK supports 24.18–26.x) and `git --version`. If either is missing or Node is the wrong version, ask the user once whether you may install it; with their OK, follow [`.spec/knowledge/lumio-platform/environment.md`](.spec/knowledge/lumio-platform/environment.md) to install from the official sources (winget on Windows, the nodejs.org installer on macOS), then keep going with absolute paths in this session — do not ask the user to reopen the terminal.
+> 2. Download locally: `git clone https://github.com/LumioGames/LumioTemplate <target-dir>` (use `.` if the current directory is empty). Stay local by default and do not create a GitHub repo; only when the user explicitly asks for a cloud backup, run `gh repo create <name> --template LumioGames/LumioTemplate` with their OK and clone that repo instead.
+> 3. Run `node <project-dir>/.spec/tools/link-skills.mjs` to create the three local links Claude Code and Codex use to find the skills (not tracked by git; directory junctions on Windows, so no Developer Mode needed).
+> 4. If cloned into the current directory, read the files `AGENTS.md` points to and follow `.spec/skills/lumio-init/SKILL.md` to initialize the project (it does not rely on the client having discovered the skills); if cloned into a subfolder, ask the user to open a new session in that subfolder and say `Start`. Tell the user outcomes (“saved”, “checks passed”), not git terms like commit or branch; ask before every external action (cloud backup, publishing).
 
 ## Ecosystem & Platform
 

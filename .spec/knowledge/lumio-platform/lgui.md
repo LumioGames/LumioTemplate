@@ -19,7 +19,7 @@ LGUI 是 Lumio 给 AI Agent 用的游戏 UI 框架：界面放在 `ui/`（FairyG
 - Claude Code：`claude plugin marketplace add LumioGames/LGUI`，然后 `claude plugin install lgui@lumio-lgui`。
 - Codex：`codex plugin marketplace add LumioGames/LGUI`，然后 `codex plugin add lgui@lumio-lgui`。
 - 其他客户端：`git clone --depth 1 https://github.com/LumioGames/LGUI`，把里面的 `plugin/` 当插件目录。
-- 下文的 `lgui` 指 `node <插件目录>/tools/lgui.mjs`。Claude Code 的插件目录在 `~/.claude/plugins/cache/lumio-lgui/lgui/<版本>/`，Codex 在 `~/.codex/plugins/cache/lumio-lgui/lgui/<版本>/`。
+- 下文的 `lgui` 指 `node <插件目录>/tools/lgui.mjs`。Claude Code 的插件目录在 `~/.claude/plugins/cache/lumio-lgui/lgui/<版本>/`，Codex 在 `~/.codex/plugins/cache/lumio-lgui/lgui/<版本>/`。在本项目里不用手写这个路径：`node .spec/tools/lgui.mjs <命令>` 会自己找到插件（找版本号最大的那份，或环境变量 `LGUI_PLUGIN`），建好工程后用下面的 npm 脚本。
 - 先跑 `lgui doctor`，要求 Node 24 或更高，电脑上有 Chrome 或 Edge。
 - LGUI 的技能要新开一个会话才生效。建工程只用命令行，装完就能用；建完告诉用户新开会话再做界面。
 
@@ -33,7 +33,21 @@ cd Client/app
 npm i --save-exact @lumiogames/sdk@2.11.2
 ```
 
-`lgui init` 只接受不存在或空的目录。它会在 `Client/app/` 里放 `ui/`、`src/`、`tests/`、`i18n/`、`.lgui/`（框架副本和配置），以及 LGUI 自己的 `AGENTS.md` / `CLAUDE.md`（在 `Client/app/` 里干活时也要遵守它们）。横竖屏在 `Client/app/.lgui/project.json` 的 `orientation` 里改。
+`lgui init` 只接受不存在或空的目录。它会在 `Client/app/` 里放 `ui/`、`src/`、`tests/`、`i18n/`、`.lgui/`（框架副本和配置），以及 LGUI 自己的 `AGENTS.md` / `CLAUDE.md`（在 `Client/app/` 里干活时也要遵守它们）。横竖屏在 `Client/app/.lgui/project.json` 的 `orientation` 里改。`.lgui/framework/` 是框架副本，不改，有问题报给 LGUI。
+
+`lgui init` 生成的 `package.json` 没有 `scripts`。把常用命令加进去，以后在 `Client/app/` 里用短命令：
+
+```json
+"scripts": {
+  "lgui": "node ../../.spec/tools/lgui.mjs",
+  "check": "node ../../.spec/tools/lgui.mjs check",
+  "test": "node ../../.spec/tools/lgui.mjs test",
+  "verify": "node ../../.spec/tools/lgui.mjs verify",
+  "dev": "node ../../.spec/tools/lgui.mjs dev"
+}
+```
+
+`npm run check`、`npm test`、`npm run verify`、`npm run dev`；其他命令和参数写在 `--` 后面，例如 `npm run lgui -- art cut <整页图> --pkg Main --names names.txt`、`npm run verify -- --size phone-portrait`。工程不在 `Client/app/`（比如 Unity 路线的原型）时，按实际层数改 `../../`。Node 刚装好、还不在 PATH 上时的跑法见 [environment.md](environment.md)。
 
 ## 3. 接 Lumio：放在一个 Service 里
 
@@ -103,7 +117,7 @@ lgui verify  # 横竖屏标准尺寸截图
 
 LGUI 插件还没有网页正式构建命令。在它提供之前，用过渡脚本 `.spec/tools/lgui-build-web.mjs`（框架文件，随框架更新）：它调用已装插件里的生成和打包代码，输出 `index.html`、`app.js`、`ui/`、`i18n/`，在入口页引用 `./lumio-bootstrap.js`，并把 `lumio.json` 复制进去。插件目录自动从 Claude Code / Codex 的插件缓存里找，找不到时设环境变量 `LGUI_PLUGIN=<插件目录>`。
 
-`Client/app/package.json` 里加：
+`Client/app/package.json` 的 `scripts` 里再加两条：
 
 ```json
 "scripts": {

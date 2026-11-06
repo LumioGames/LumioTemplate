@@ -7,21 +7,41 @@ description: 当 `.spec/AGENTS.md` 写着「状态：未初始化」，或用户
 
 带用户把 LumioTemplate 变成用户自己的游戏项目：一次整理好**目录结构和规范**。分两段：生成骨架、收尾。生成完问一句要不要接着聊玩法 / 美术。
 
+- **让用户尽快上手：** 用户只需要说清楚想做什么游戏。能用默认值的就用默认值，不检查、不要求非必需的东西（比如 Git 署名），只在真正需要用户动手的时候才请用户做（见下面「说话规则」）。
 - **不写游戏代码、不建工程、不装依赖、不构建打包、不定 MVP。** 这些是初始化之后的下一步，收尾时告诉用户。
-- 用户可能不写代码：用用户的语言说明每一步在做什么、为什么。
 - 任何一步失败就停下，把错误原文告诉用户；不跳过、不编造成功。
 - 只把用户拍板（或明确交给你定）的内容写成结论；没聊到的地方标「待完善（什么时候补）」，例如「待完善（建工程时）」「待完善（定玩法时）」「待完善（首批资产时）」，让用户看得懂哪些现在补不了。
 
 本文件夹里的其他文件：
 
-- [questions.md](questions.md)：第一段的 5 个立项问题，每题的例子、默认值和复述模板。
+- [questions.md](questions.md)：第一段的立项问题，每题的例子、默认值和复述模板。
 - `skeleton/`：第一段的生成模板（见下面「模板写法」）。
+
+## 说话规则
+
+- 用户可能不写代码：用用户的语言说每一步在做什么、为什么，一两句就够。
+- **只说结果，不说内部词**（通用规则见 `.spec/rules/system.md`「工作方式」）。ADR、spec-lint、bug 墙、worktree、PR、提交、分支、仓库、远程、软链、目录联接这些词不出现在跟用户说的话里。初始化里常用的说法：
+
+  | 你在做的事 | 跟用户说 |
+  | --- | --- |
+  | 本地提交 | 「存档了」「我先存个档」 |
+  | 回滚、看 diff | 「回到之前的存档」「看看改了什么」 |
+  | 写 ADR | 「这个决定我记下了」 |
+  | spec-lint 通过 / 报了问题 | 「检查通过了」/「检查发现 N 处要改，已经改好了」 |
+  | 记 bug 墙 | 「这个问题我记下了」 |
+  | 建技能链接、去掉模板的远程地址、重建 Git 历史 | 不用提 |
+  | 推送到 GitHub | 「备份到云端」 |
+
+  用户自己先用了这些词，或者问起来，再照实解释。
+- **只在这几种时候请用户动手**：电脑缺 Node 或 Git（问一次要不要帮忙装，见第 0 步）；装软件时系统弹出确认框或要开机密码；第一次存档时电脑上还没有署名（见第二段第 6 步）；要对外的操作（备份到云端、发布）。其余都自己做完再告诉结果。
 
 ## 三种开场
 
-- **客户端自动载入了**：用户在项目文件夹里开对话说「开始」，Claude Code 已经经 `CLAUDE.md` 载入核心文档、经软链发现了技能。直接往下做。Codex 等客户端：先读根目录 `AGENTS.md` 列的文件，再往下做。
-- **你主动读文件开始的**：你刚在这次对话里把模板克隆进当前文件夹（README「给 Agent」那一节的第 2 步），客户端没有载入 `CLAUDE.md`，也没有发现技能。这不是错误，不用开新对话：先读根目录 `AGENTS.md` 和它列出的文件，再往下做；要用到别的技能（design-director、art-director 等）时，直接读 `.spec/skills/<技能名>/SKILL.md`。
-- **文件夹已经是模板的 clone，用户直接说「开始」**：客户端可能载入了 `CLAUDE.md`、也可能没有。不管哪种，都先读根目录 `AGENTS.md` 和它列出的文件，再往下做。
+初始化不依赖客户端有没有发现技能：要用到别的技能（design-director、art-director 等）时，直接读 `.spec/skills/<技能名>/SKILL.md`。
+
+- **客户端自动载入了**：用户在项目文件夹里开对话说「开始」，Claude Code 已经经 `CLAUDE.md` 载入核心文档。直接往下做。Codex 等客户端：先读根目录 `AGENTS.md` 列的文件，再往下做。
+- **你主动读文件开始的**：你刚在这次对话里把模板下载进当前文件夹（README「给 Agent」那一节），客户端没有载入 `CLAUDE.md`。这不是错误，不用开新对话：先读根目录 `AGENTS.md` 和它列出的文件，再往下做。
+- **文件夹已经是模板的副本，用户直接说「开始」**：客户端可能载入了 `CLAUDE.md`、也可能没有。不管哪种，都先读根目录 `AGENTS.md` 和它列出的文件，再往下做。
 
 ## 先判断做到哪了
 
@@ -31,31 +51,24 @@ description: 当 `.spec/AGENTS.md` 写着「状态：未初始化」，或用户
 - ADR 0001 在、`.spec/AGENTS.md` 仍写「未初始化」：跑完第 0 步，先补问一句「要不要现在聊玩法 / 美术」，再进第二段（收尾）。
 - `.spec/AGENTS.md` 已是「已初始化」、但本技能还在：收尾最后一步没做完，告诉用户，只把「删掉本技能」这一步做掉。
 
-## 第 0 步：检查环境
+## 第 0 步：准备环境
 
-1. **三条软链。** `.claude/skills`、`.claude/agents`、`.agents/skills` 必须是指向 `.spec/` 下对应目录的链接，客户端靠它们找到技能和审查子 Agent。这一步只检查磁盘上的链接对不对；这次对话里客户端有没有列出这些技能不影响结果（见上面「三种开场」）。
-   - macOS / Linux / Git Bash：`ls -la .claude .agents` 应看到 `skills -> ../.spec/skills`、`agents -> ../.spec/agents`；`ls .claude/skills/ .agents/skills/` 能列出技能文件夹。
-   - Windows PowerShell：`Get-Item .claude\skills, .claude\agents, .agents\skills | Format-List FullName, LinkType, Target`，`LinkType` 应是 `SymbolicLink`。
-   - 如果它们是普通文件（打开只有一行 `../.spec/skills` 这样的文字），不要修复，停下，对用户说这段原话：
+用户基本感觉不到这一步；一切正常就不用跟用户提。
 
-     「这个文件夹里的三条软链（`.claude/skills`、`.claude/agents`、`.agents/skills`）被检出成了普通文件，Claude Code 和 Codex 会找不到技能和审查子 Agent，初始化先停在这里。请在 Windows 设置里打开开发者模式（设置 → 系统 → 开发者选项），然后换一个空文件夹，用 `git clone -c core.symlinks=true https://github.com/LumioGames/LumioTemplate <文件夹名>` 重新克隆，在新文件夹里开一个新对话，说「开始」。」
-2. **Git 和 Node。** `git --version`；`node -v` 要是 Node 26 LTS（Lumio SDK 支持 24.18 到 26.x，27 及以上不支持）。结构检查用 Node，以后建网页工程、用 LGUI 和 Lumio SDK 也要它。缺哪个就告诉用户装什么、去哪下载（Git：https://git-scm.com/downloads ；Node：https://nodejs.org ，选 26 LTS），用户装好后再检查一遍。**不替用户安装系统软件。**
-3. **Git 身份。** `git config user.name` 和 `git config user.email` 都要有输出（收尾时要提交一次）。没设就告诉用户这两条命令，请用户填上自己的名字和邮箱后跑，然后停下，等用户设好再继续：
+1. **Node 和 Git。** `node -v` 要是根目录 `.node-version` 写的大版本（26，Node 26 LTS；Lumio SDK 支持 24.18 到 26.x，27 及以上不支持），`git --version` 有输出。结构检查和技能链接脚本要用 Node，以后建网页工程、用 LGUI 和 Lumio SDK 也要它；自动存档靠 Git。缺哪个、或 Node 版本不对：按 `.spec/knowledge/lumio-platform/environment.md` 问用户一次要不要帮忙装，同意后从官方渠道装；装完在这次对话里用 Node 和 Git 的绝对路径继续，不要求用户重开终端。用户不同意就告诉用户去哪下载，装好后再检查一遍。
+2. **技能链接。** 跑 `node .spec/tools/link-skills.mjs`，在本地建好 `.claude/skills`、`.claude/agents`、`.agents/skills` 三条链接（Windows 上是目录联接，不需要开发者模式）。三行都是「已建」「已存在」或「已改正」就往下；报错就停下，按 `environment.md`「技能链接」处理。链接不进 git，不用跟用户提。
 
-   ```bash
-   git config --global user.name "你的名字"
-   git config --global user.email "你的邮箱"
-   ```
+不检查 Git 署名（`user.name` / `user.email`）：第一次存档真的因为缺署名失败时才请用户填，见第二段第 6 步。
 
 ## 第一段：立项问答与生成骨架
 
 ### 1. 问
 
-按 [questions.md](questions.md) 一轮问完 5 个问题，每题带例子和默认值。用户说「你定」，就按默认值替他选，并在生成的文件里那一处标上「Agent 代定，可以改」。问完按 questions.md 的复述模板复述一遍，用户确认后再往下。
+按 [questions.md](questions.md) 一轮问完，每题带例子和默认值；几个人做、英文短名不问，按默认值来，引擎只问一句「就用这个可以吗」。用户说「你定」，就按默认值替他选，并在生成的文件里那一处标上「Agent 代定，可以改」。问完按 questions.md 的复述模板复述一遍，用户确认后再往下。
 
 ### 2. 画目录树，用户确认后再生成
 
-按答案把要生成的目录树画给用户看，只列顶层模块和会新建或改写的文件。例如「单机、发布到 Lumio、网页 + LGUI」：
+按答案把要生成的目录树画给用户看，只列顶层模块和会新建或改写的文件，说明用用户听得懂的话（不写 ADR、spec-lint 这类词）。例如「单机、发布到 Lumio、网页 + LGUI」：
 
 ```
 <项目>/
@@ -64,7 +77,7 @@ description: 当 `.spec/AGENTS.md` 写着「状态：未初始化」，或用户
 ├─ Art/README.md             美术源文件
 ├─ Tools/README.md           开发工具（Lumio 打包和 LGUI 网页构建工具在 .spec/tools/）
 ├─ Builds/README.md          构建产物，按发布目标分子目录（这里是 lumio-platform/），只有 README 进 git
-└─ .spec/                    补全：项目中心文档、项目红线、3 份规范（项目结构、工作流、代码风格）、ADR 0001、项目一页纸、美术一页纸
+└─ .spec/                    项目规范：中心文档、红线、3 份规范（项目结构、工作流、代码风格）、第一条决策记录、项目一页纸、美术一页纸
 ```
 
 有自己的服务端时多一行 `Server/README.md`。用户要改（比如加一个模块），先改树，再生成。
@@ -93,11 +106,11 @@ description: 当 `.spec/AGENTS.md` 写着「状态：未初始化」，或用户
 | `.spec/AGENTS.md` | 「项目是什么」写四行摘要（一句话、发布目标、引擎和界面、有没有自己的服务端），末尾一句「以 `knowledge/project.md` 为准」；填「模块」（每个模块一行：放什么 + 指向它的 README）。「收口门槛」保持只有 spec-lint。状态这时不改，第二段才改 |
 | `.spec/knowledge/standards/project-structure.md` | 「模块」一节只把那条「待完善（初始化时）」换成本项目的模块表，下面「可选的模块」那张表保留；没有 `Server/` 时，依赖方向和「新东西放哪」里删掉 Server 和协议相关的内容 |
 | `.spec/knowledge/standards/workflow.md` | 按人数填「分支策略」「合并 / PR 流程」，删掉这两节的「待完善」 |
-| `.spec/knowledge/standards/code-style.md` | 「文档与注释的语言」写成 `{{语言}}`（跟用户说话的语言一致；用户要文档和注释用不同语言就分开写），删掉这一节的「待完善」；「语言 / 框架特定风格」写上本路线的默认值，保留「待完善」 |
+| `.spec/knowledge/standards/code-style.md` | 「文档与注释的语言」写成 `{{语言}}`（跟用户说话的语言一致；用户要文档和注释用不同语言就分开写），删掉这一节的「待完善」；「语言 / 框架特定风格」写上本路线的默认值，保留「待完善」；「生成物」表只留本路线用得到的行（例如网页路线删掉两行 Unity 的） |
 | `.spec/knowledge/standards/testing.md` | 不改，「项目测试栈与命令」的「待完善（建工程时）」留到建工程时 |
 | `.spec/knowledge/README.md` | 在 standards 一节前加一节「一页纸（先看这里）」，两行：`[project.md](project.md)` 项目一页纸——是什么、技术、美术一句话、范围，开工和讨论玩法前先看；`[art/README.md](art/README.md)` 美术一页纸——风格、色板、UI 基调和各块细节，出图、做资产、审美术稿前先看。「暂无正式功能文档」那行保留（还没有功能文档） |
 
-`.spec/tools/` 里的 `lumio-pack.mjs`、`lgui-build-web.mjs` 是框架文件，不管走哪条路线都不移动、不删除；不发布到 Lumio 时，`.spec/knowledge/lumio-platform/` 也照样保留，以备以后改主意。
+`.spec/tools/` 里的工具（`lumio-pack.mjs`、`lgui-build-web.mjs`、`lgui.mjs`、`link-skills.mjs` 等）是框架文件，不管走哪条路线都不移动、不删除；不发布到 Lumio 时，`.spec/knowledge/lumio-platform/` 也照样保留，以备以后改主意。
 
 ### 4. 检查
 
@@ -105,7 +118,7 @@ description: 当 `.spec/AGENTS.md` 写着「状态：未初始化」，或用户
 - 生成的文件里没有残留的模板标记：在 `Client`、`Config`、`Server`（有的话）、`Art`、`Tools`、`Builds`、`.spec` 里（不含 `.spec/skills/lumio-init/`）搜不到 `{{`、`<!-- 如果`、`<!-- 结束`、`<!-- 生成时` 和「初始化时填写」。
 - 目录树和第 2 步给用户看的一致。
 
-做完告诉用户：项目现在已经是完整、能用的了。然后只问一句：要不要现在聊玩法 / 美术？要聊就直接用 design-director（玩法）或 art-director（美术），聊完进第二段收尾；不聊就直接收尾。
+做完告诉用户：项目现在已经是完整、能用的了（检查通过时说「检查通过了」，不提工具名）。然后只问一句：要不要现在聊玩法 / 美术？要聊就直接用 design-director（玩法）或 art-director（美术），聊完进第二段收尾；不聊就直接收尾。
 
 ### 模板写法
 
@@ -119,25 +132,34 @@ description: 当 `.spec/AGENTS.md` 写着「状态：未初始化」，或用户
 
 ## 第二段：收尾
 
-按顺序做。每一步先看是不是已经做过，做过就跳过（例如 `LICENSE` 已经在 `.spec/` 里就不再 `git mv`；`lumio-init` 已删就不再删）。
+按顺序做。每一步先看是不是已经做过，做过就跳过（例如 `LICENSE` 已经在 `.spec/` 里就不再移动；`lumio-init` 已删就不再删）。这一段只有第 6 步缺署名、第 7 步备份到云端可能要问用户，其余直接做。
 
-1. **处理远程地址（先做，免得后面的 `git mv` 白做）。** 跑 `git remote -v`：
+1. **把文件夹变成用户自己的项目（先做，免得后面的 `git mv` 白做）。** 不用问用户，也不用跟用户提：
+   - 不是 git 仓库（用户下载的是 ZIP）：`git init -b main`。
    - 远程是用户自己的仓库（在 GitHub 上点 Use this template 建的）：不动。
-   - 远程指向 `LumioGames/LumioTemplate`（直接 clone 的）：先告诉用户要做什么——去掉模板的远程地址、清空模板的提交历史、重新开始一个只属于这个项目的仓库；这只影响本地这个文件夹，模板仓库本身不受影响。用户同意后，**先记住**当前生效的 `git config user.name`、`git config user.email` 和 `git config core.symlinks` 的值（这些可能只存在于即将删除的仓库配置中）。然后在仓库根目录删掉 `.git` 文件夹（bash：`rm -rf .git`；PowerShell：`Remove-Item -Recurse -Force .git`），再 `git init -b main`；在新仓库用 `git config --local user.name`、`git config --local user.email` 和 `git config --local core.symlinks` 恢复刚才记住的值（`core.symlinks` 没有值时不设置），并重新检查三项，失败就停下。不要改全局配置。用户不同意就只 `git remote remove origin`。
-2. **处理许可，改写 README，删掉模板专用的文件。**
-   - 把根目录 `LICENSE` 移到 `.spec/LICENSE`（第 1 步清过历史的，文件还没被跟踪，用 `mv LICENSE .spec/LICENSE`；没清的用 `git mv LICENSE .spec/LICENSE`）。它是 LumioTemplate 的许可条款，跟着项目里保留的模板文件走；根目录留给用户自己的游戏。
-   - 问用户要不要给游戏选一个许可，默认不放。跟用户说清楚：不放许可文件，游戏的代码和内容仍然归用户所有，只是没有对外授权；想让别人也能用（比如开源），才需要选一个。用户要选，就请用户说用哪一种（例如 MIT、Apache-2.0）和版权人写谁，按该许可的标准全文写进根目录 `LICENSE`。Agent 不替用户挑许可。
-   - 按 `skeleton/game-readme.md` 把根目录 `README.md` 改写成这款游戏的说明（条件 `选了游戏许可` / `没选游戏许可` 按上一条的答案）。
-   - 问用户要不要英文版 README，默认不要：删掉 `README.en.md`；要就按同样的内容改写它。删掉根目录 `CHANGELOG.md` 和 `.github/readme/`（那是模板的版本记录与说明配图，以后更新框架时读的是新版模板里的那份）。
+   - 远程指向 `LumioGames/LumioTemplate`（直接下载的模板）：先看有没有用户自己的存档，`git rev-list --count HEAD --not --remotes=origin`。
+     - 输出 `0`：里面只有模板的历史，对用户没用，换成只属于这个项目的新历史。先记下 `git config --local --get user.name` 和 `git config --local --get user.email` 的输出（它们只存在仓库自己的配置里，会随 `.git` 一起删掉；没有输出就不用记）。在仓库根目录删掉 `.git` 文件夹（bash：`rm -rf .git`；PowerShell：`Remove-Item -Recurse -Force .git`），`git init -b main`，再用 `git config --local user.name` / `user.email` 恢复刚才记下的值。工作区里的文件不受影响。
+     - 不是 `0`、或者命令报错：里面可能有用户自己的存档，不删历史，只 `git remote remove origin`。
+   - 不改全局配置。
+2. **处理许可，改写 README，删掉模板专用的文件。** 都按默认值做，不问用户：
+   - 把根目录 `LICENSE` 移到 `.spec/LICENSE`（还没被跟踪时用 `mv LICENSE .spec/LICENSE`，否则 `git mv LICENSE .spec/LICENSE`）。它是 LumioTemplate 的许可条款，跟着项目里保留的模板文件走；根目录留给用户自己的游戏。
+   - 游戏本身默认不放许可文件。用户在初始化过程中主动说要开源或选许可，才请用户说用哪一种（例如 MIT、Apache-2.0）和版权人写谁，按该许可的标准全文写进根目录 `LICENSE`。Agent 不替用户挑许可。
+   - 按 `skeleton/game-readme.md` 把根目录 `README.md` 改写成这款游戏的说明（条件 `选了游戏许可` / `没选游戏许可` 按上一条）。
+   - 英文版 README 默认不要：删掉 `README.en.md`（用户在初始化过程中说要英文版，就按同样的内容改写它）。删掉根目录 `CHANGELOG.md` 和 `.github/readme/`（那是模板的版本记录与说明配图，以后更新框架时读的是新版模板里的那份）。
 3. **改入口文档。** `.spec/AGENTS.md`：状态改成「已初始化」，删掉状态下面那段引用块提示。根目录 `AGENTS.md`：删掉「`.spec/AGENTS.md` 写着『状态：未初始化』时……」那一段。
-4. **删掉本技能。** 删除整个 `.spec/skills/lumio-init/` 文件夹（还在 git 里时用 `git rm -r -q .spec/skills/lumio-init`）。三条软链都指向 `.spec/skills/`，删一次两边客户端就都看不到它了：`ls .claude/skills/ .agents/skills/` 里不应再有 `lumio-init`。
+4. **删掉本技能。** 删除整个 `.spec/skills/lumio-init/` 文件夹（还在 git 里时用 `git rm -r -q .spec/skills/lumio-init`）。三条技能链接都指向 `.spec/skills/`，删一次两边客户端就都看不到它了：`ls .claude/skills/ .agents/skills/` 里不应再有 `lumio-init`。
 5. **再检查一次。** `node .spec/tools/spec-lint.mjs` 输出 `spec-lint: OK`。
-6. **本地提交一次。** `git add -A`，然后 `git commit -m "chore: 用 LumioTemplate 初始化项目"`。提交后跑 `git ls-files -s .claude .agents`：应该正好是 `.claude/agents`、`.claude/skills`、`.agents/skills` 三行 `120000`（符号链接）。不对时停下，告诉用户「提交里三条软链变成了普通文件，先不要推送」，不修复。
-7. **推送前先问用户。** 要不要推到 GitHub、推到哪个仓库，都由用户决定；用户要新建远程仓库，就请用户给地址，或在用户同意后用 `gh repo create` 建，再 `git remote add origin <地址>` 和 `git push -u origin main`。
+6. **存档（本地提交一次）。** `git add -A`，然后 `git commit -m "chore: 用 LumioTemplate 初始化项目"`。
+   - 因为缺署名失败（报错里有 `Please tell me who you are` 或 `user.email`）：这时才请用户填，按 `.spec/knowledge/standards/workflow.md`「存档」的说法问名字和邮箱，写进本项目后再提交一次。
+   - 别的原因失败：停下，把原文告诉用户。
+   - 提交后检查：`git status --porcelain` 没有输出；`git ls-files .claude/skills .claude/agents .agents/skills` 没有输出（技能链接不进 git）。有输出就停下，跟用户说「存档里多了不该有的文件，先停在这里」并附上输出原文，不修复。
+7. **备份到云端：只在用户已经有自己的 GitHub 仓库时问。** 远程是用户自己的仓库（第 1 步没动它）：问用户「要不要现在把项目备份到你的 GitHub 仓库」，同意后 `git push -u origin main`。没有远程：不问，也不提 GitHub——发布到 Lumio 不需要它。
 8. **告诉用户接下来能做什么**，第一项是建工程：
    1. **建工程**：按 `Client/README.md` 做，包括装 LGUI、装依赖、建工程。Unity 路线默认也先建网页原型（`Client/app/`），玩法验证得差不多再建 Unity 工程（用户不要原型时直接建 Unity 工程）；建好后把构建和测试命令补进 `.spec/AGENTS.md`「收口门槛」和 `.spec/knowledge/standards/testing.md`。
    2. **定玩法、定美术**：初始化时没聊完的部分，说「我们来定玩法」（design-director）或「我们来定美术方向」（art-director）。
    3. **开始做某个功能**：先用 writing-plans 写计划，再派活。
    4. **做完后打包发布**：发布到 Lumio 的项目按 `.spec/knowledge/lumio-platform/publishing.md` 做，有两种方式让用户选——A. Agent 把 ZIP 打到 `Builds/lumio-platform/`，用户自己在创作中心上传；B. 用户建好作者 API 密钥、自己设进环境变量，Agent 用 API 发布。不发布到 Lumio 的项目，构建产物放 `Builds/`，发到哪里由用户定。
-   5. 以后模板出了新版框架，说「更新框架」（lumio-update）。
-   6. 以后在这个文件夹里开新对话，规则和技能会自动载入，直接说想做什么就行。
+   5. **备份到云端、和别人一起做**：用户想要时说一声，Agent 帮忙在 GitHub 上建（要一个 GitHub 账号），见 `workflow.md`「备份到云端」。现在都存在这台电脑上，每做完一件事会自动存档。
+   6. 游戏的代码和内容归用户自己；想开源、给别人授权，或者要英文版说明，以后跟 Agent 说。
+   7. 以后模板出了新版框架，说「更新框架」（lumio-update）。
+   8. 以后在这个文件夹里开新对话，规则和技能会自动载入，直接说想做什么就行。

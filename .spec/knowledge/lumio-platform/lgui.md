@@ -33,7 +33,7 @@ cd Client/app
 npm i --save-exact @lumiogames/sdk@2.11.2
 ```
 
-`lgui init` 只接受不存在或空的目录。它会在 `Client/app/` 里放 `ui/`、`src/`、`tests/`、`i18n/`、`.lgui/`（框架副本和配置），以及 LGUI 自己的 `AGENTS.md` / `CLAUDE.md`（在 `Client/app/` 里干活时也要遵守它们）。横竖屏在 `Client/app/.lgui/project.json` 的 `orientation` 里改。`.lgui/framework/` 是框架副本，不改，有问题报给 LGUI。
+`lgui init` 只接受不存在或空的目录。它会在 `Client/app/` 里放 `ui/`、`src/`、`tests/`、`i18n/`、`.lgui/`（框架副本和配置），以及 LGUI 自己的 `AGENTS.md` / `CLAUDE.md`（在 `Client/app/` 里干活时也要遵守它们）。横竖屏在 `Client/app/.lgui/project.json` 的 `orientation` 里改。`.lgui/framework/` 是框架副本，不改，有问题报给 LGUI。项目自带的字体放 `Client/app/ui/fonts/`，命名和用法见 LGUI 仓库 [`plugin/references/ui-spec.md`](https://github.com/LumioGames/LGUI/blob/main/plugin/references/ui-spec.md) 第 8 节「文字」。
 
 `lgui init` 生成的 `package.json` 没有 `scripts`。把常用命令加进去，以后在 `Client/app/` 里用短命令：
 

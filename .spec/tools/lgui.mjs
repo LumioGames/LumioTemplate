@@ -22,7 +22,7 @@ export function findLguiPlugin(required = ['lgui.mjs']) {
   }
   candidates.sort((a, b) => a.version.localeCompare(b.version, undefined, { numeric: true }));
   if (candidates.length) return candidates.at(-1).dir;
-  console.error('找不到 LGUI 插件目录。先装 LGUI 插件（见 .spec/knowledge/lumio-platform/lgui.md「装 LGUI」），或设置环境变量 LGUI_PLUGIN=<插件目录>（里面有 tools/lgui.mjs）。');
+  console.error(`找不到 LGUI 插件目录（要有 tools/ 下的 ${required.join('、')}）。没装就先装，装的是旧版就先更新（见 .spec/knowledge/lumio-platform/lgui.md「装 LGUI」「更新 LGUI」），或设置环境变量 LGUI_PLUGIN=<插件目录>。`);
   process.exit(1);
 }
 

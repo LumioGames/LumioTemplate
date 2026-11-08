@@ -6,3 +6,12 @@ dist/
 # 构建产物：Builds/ 下只有 README.md 进 git
 Builds/*
 !Builds/README.md
+
+# 技能链接：每台电脑由 node .spec/tools/link-skills.mjs 在本地建，不进 git（不加结尾的 /，git 把软链当文件看）
+/.claude/skills
+/.claude/agents
+/.agents/skills
+
+# Agent 并行开发用的 git worktree（Claude Code 默认建在 .claude/worktrees/），不进 git
+/.claude/worktrees/
+/.worktrees/

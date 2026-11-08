@@ -12,6 +12,7 @@
 
 - 装 LGUI：按 `.spec/knowledge/lumio-platform/lgui.md`「装 LGUI」，Claude Code 和 Codex 各有安装命令；装完先跑 `lgui doctor`。
 - 在仓库根目录跑 `lgui init Client/app --name {{英文短名}}`（`lgui init` 只接受不存在或空的目录）。工程里会带 LGUI 自己的 `AGENTS.md` / `CLAUDE.md`，在 `Client/app/` 里干活时也要遵守它们。
+- 把常用命令写进 `Client/app/package.json` 的 `scripts`（照 `lgui.md`「建工程」那一段），以后在 `Client/app/` 里用 `npm run check`、`npm test`、`npm run verify`、`npm run dev`，其他命令用 `npm run lgui -- <命令>`，不用每次手写插件目录的长路径。它们经 `.spec/tools/lgui.mjs` 找到已装的 LGUI 插件；Node 刚装好、还不在 PATH 上时的跑法见 `.spec/knowledge/lumio-platform/environment.md`。
 <!-- 如果：发布到 Lumio -->
 - 接 Lumio：在 `Client/app/` 里装 SDK、加 Lumio Service、写 `lumio.json`，按 `lgui.md`「接 Lumio」和 `.spec/knowledge/lumio-platform/sdk.md`、`publishing.md`。正式构建和打包用 `node .spec/tools/lgui-build-web.mjs` 和 `node .spec/tools/lumio-pack.mjs`，ZIP 输出到 `Builds/lumio-platform/`。
 <!-- 结束 -->
@@ -36,4 +37,5 @@
 
 - 数值不写死在代码里，放 `Config/`。
 - 构建产物不放在这里，放 `Builds/`。
-- 不手改 LGUI 生成的文件，改生成源再重新生成。
+- 不手改 LGUI 生成的文件，改生成源再重新生成（哪些是生成物见 `.spec/knowledge/standards/code-style.md`「生成物」）。
+- 不改工程里的 LGUI 框架副本（`Client/app/.lgui/framework/`）。框架有问题就报给 LGUI（https://github.com/LumioGames/LGUI/issues ），记进 bug 墙（归因「框架」），工程里先用不改框架的写法绕开；框架副本只由 `lgui init` / `lgui upgrade` 更新。

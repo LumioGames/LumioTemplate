@@ -32,6 +32,8 @@ test('web build skips an incomplete Claude cache and finds the installed Codex p
     const base='.codex/plugins/cache/lumio-lgui/lgui/0.3.0/tools/lib/';
     const files={
       'output.mjs':'export const toErrors = e => [{code:"LGUI-CLI-999",message:e.message}];',
+      'paths.mjs':'export const buildDir = () => "";',
+      'generate/fonts.mjs':'export const generateFonts = async () => [];',
       'project.mjs':'export const readProject = () => ({});',
       'vendor.mjs':'export const esbuild = () => ({});',
       'generate/index.mjs':'export const generateProjectTypes=()=>{}; export const generateWeb=()=>{}; export const uiProjectPath=()=>{};',
